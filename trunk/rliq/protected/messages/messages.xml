@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<xliff version="1.0">
+    <file original="I18N Example IndexPage" source-language="EN" datatype="plaintext" date="2009-03-12T11:55:44Z">
+        <body>
+
+<trans-unit id="n1">
+<source>Hello</source>
+<target xml:lang="de">Willkommen</target>
+</trans-unit>
+
+        
+<trans-unit id="1">
+<source>Home</source>
+<target>Startseite</target>
+</trans-unit>
+
+<trans-unit id="2">
+<source>Username</source>
+<target>Benutzername</target>
+</trans-unit>
+
+<trans-unit id="3">
+<source>Password</source>
+<target>Passwort</target>
+</trans-unit>
+</body>
+    </file>
+</xliff>

@@ -1,0 +1,121 @@
+body
+{
+	margin: 0;
+	padding: 0;
+	width: 100% !important;
+}
+.image-manager
+{
+	border: 1px solid #ccc;
+}
+.image-manager, .image-manager select, .image-manager td
+{
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+}
+
+.image-manager .location-bar
+{
+	width: 100%;
+}
+
+.image-manager td.location
+{
+	width: 50%;
+}
+
+.image-manager td.buttons
+{
+	width: 45%;
+}
+
+.image-manager select.location
+{
+	width: 100%;
+}
+
+.image-manager .image-button
+{
+	padding: 2px;
+	text-align: center;
+	float: left;
+	font-size: 8pt;
+	margin-right: 2px;
+	border: 0 none;
+	text-decoration: none;
+	color: Black;
+	border: 1px solid transparent;
+}
+
+.image-manager .image-button:hover
+{
+	background-color: #FAFAD2;
+	border: 1px solid #F0E68C;
+}
+
+.image-manager .image-button img
+{
+	vertical-align: -3px;
+	border: 0 none;
+}
+
+.image-manager .image-button .caption
+{
+	margin-left: 3px;
+}
+
+.image-manager .separator
+{
+	width:0px;
+	height: 3ex;
+	border-left: 1px solid #ccc;
+	float: left;
+	margin-right: 5px;
+	margin-left: 3px;
+}
+
+.image-manager .content-frame
+{
+	border: 0 none;
+	border-top: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	width: 100%;
+	height: 300px;
+}
+
+.image-manager .action-buttons
+{
+	text-align: right;
+	padding: 1em;
+}
+
+.image-manager .action-buttons input
+{
+	width: 6em;
+	margin-left: 1em;
+}
+
+.image-manager .loading-panel
+{
+	width: 250px;
+	border: 1px solid #B0C4DE;
+	position: relative;
+	padding: 1.5em 0;
+	text-align: center;
+	font-size: 1.3em;
+	font-weight: bold;
+	color: #4682B4;
+	background-color: White;
+	float: left;
+	margin-top: -270px;
+	margin-left: 30%;
+}
+
+.image-manager .status
+{
+	text-align: center;
+	padding: 3px;
+	background-color: #EEEFFD;
+	font-size: 9pt;
+	border-bottom: 1px solid #ccc;
+}

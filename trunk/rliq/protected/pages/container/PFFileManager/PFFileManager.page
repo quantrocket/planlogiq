@@ -1,0 +1,15 @@
+<com:TContent ID="Main">
+<table width="100%">
+
+<tr><td colspan="3">
+    <h2><%[ Filemanager ]%></h2>
+</td></tr>
+
+<tr><td colspan="3">
+
+    <com:Application.pages.ImageManager.ImageManagerDialog ID="ImageManagerContainer" />
+
+</td></tr>
+
+</table>
+</com:TContent>

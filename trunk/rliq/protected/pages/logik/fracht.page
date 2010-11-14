@@ -1,0 +1,134 @@
+<%@ Title="Market 4 Energy - Fracht neu" %>
+ 
+<com:TContent ID="Main">
+
+<com:TMultiView ID="viewPanel" ActiveViewIndex="0">
+
+<com:TView ID="neu_Fracht"> 
+
+<com:TWizard BackColor="#FFffff"
+        Width="740px"
+        SideBarStyle.Width="100px">
+    <com:TWizardStep Title="1. Fracht Uebersicht" StepType="Start">
+    
+    <com:TTabPanel>
+    <com:TTabView id="step1TAB" Caption="1. Fracht Übersicht">
+
+		<p id="infobox">Hier können Sie die Informationen zur angebotenen oder benötigten Ware ändern...</p>
+
+		<table>
+
+			<tr>
+			<td>Auftragsnummer:</td>
+			<td><com:TActiveTextBox Id="fracht_auftragsnummer" /></td>
+			<td>Status:</td>
+			<td>
+			<com:TActiveDropDownList Id="fracht_status">
+				<com:TListItem Value="1" Text="verhandelbar" />
+  				<com:TListItem Value="2" Text="fix" Selected="true" />
+			</com:TActiveDropDownList>
+			</td>
+			</tr>
+			
+			<tr>
+			<td>Bezeichnung:</td>
+			<td><com:TActiveTextBox Id="waren_bezeichnung" TextMode="MultiLine" /></td>
+			<td>Fahrzeugart:</td>
+			<td><com:TActiveDropDownList Id="idtm_fahrzeug_kategorie" /></td>
+			</tr>
+		
+		
+		</table>
+			
+	</com:TTabView>
+	</com:TTabPanel>
+			
+
+
+    </com:TWizardStep>
+ 
+    <com:TWizardStep Title="2. Fracht Details" StepType="Step">
+    content in step 2, may contain other controls
+    </com:TWizardStep>
+ 
+    <com:TWizardStep Title="3. Sonstiges" StepType="Finish">
+    content in finish step, may contain other controls
+    </com:TWizardStep>
+</com:TWizard>
+
+
+
+</com:TView>
+
+<com:TView ID="edit_Waren"> 
+<com:TTabPanel>
+<com:TTabView id="EDITTAB" Caption="Ware editieren">
+
+<p id="infobox">Hier können Sie die Informationen zur angebotenen oder benötigten Ware ändern...</p>
+
+<table>
+
+<tr>
+<td>Artikelnummer:</td>
+<td><com:TActiveTextBox Id="edwaren_artikelnummer" /></td>
+<td>EAN:</td>
+<td><com:TActiveTextBox Id="edwaren_ean" /></td>
+</tr>
+
+<tr>
+<td>Bezeichnung:</td>
+<td><com:TActiveTextBox Id="edwaren_bezeichnung" TextMode="MultiLine" /></td>
+<td>Kategorie:</td>
+<td><com:TActiveDropDownList Id="edidtm_waren_kategorie" /></td>
+</tr>
+
+<tr>
+<td>Menge/Gewicht:</td>
+<td><com:TActiveTextBox Id="edwaren_menge" />/<com:TActiveTextBox Id="edwaren_gewicht" /></td>
+<td>Preis:</td>
+<td><com:TActiveTextBox Id="edwaren_preis" /> Typ: <com:TActiveDropDownList Id="edidtm_preis_kategorie" /><com:TActiveImage ID="edTT1_PIC" ImageUrl="/gsprocurement/themes/basic/gfx/16x16/actions/info.png" /></td>
+</tr>
+
+<tr>
+<td colspan="1">Gültig bis:</td>
+<td colspan="3"><com:TDatePicker Id="edwaren_dat_lb" Mode="ImageButton" DateFormat="yyyy-MM-dd" InputMode="DropDownList" /></td>
+</tr>
+
+<tr>
+<td colspan="1">B/A</td>
+<td colspan="3">
+<com:TActiveDropDownList Id="edwaren_typ">
+	<com:TListItem Value="1" Text="Bedarf" />
+  	<com:TListItem Value="2" Text="Angebot" Selected="true" />
+</com:TActiveDropDownList>
+</td>
+</tr>
+
+</table>
+
+<p id="infobox">Bitte wählen Sie den Standort aus, an dem die Ware liegt oder an dem die Ware benötigt wird.</p>
+
+<com:XActiveDataGrid ID="edAdresseListe" AllowPaging="true" AllowSorting="false" AllowCustomPaging="true" PageSize="5" onSortCommand="eddtgList_SortCommand"  OnPageIndexChanged="eddtgList_PageIndexChanged" OnEditCommand="eddtgList_EditCommand" OnUpdateCommand="eddtgList_UpdateCommand" OnCancelCommand="eddtgList_CancelCommand" AutoGenerateColumns="false" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+	<com:XActiveBoundColumn ID="edlst_idta_adresse" DataField="idta_adresse" HeaderText="ID" SortExpression="idta_adresse" />
+	<com:XActiveBoundColumn ID="edlst_adresse_zip" DataField="adresse_zip" HeaderText="PLZ" />
+	<com:XActiveBoundColumn ID="edlst_adresse_street" DataField="adresse_street" HeaderText="Strasse" />
+	<com:XActiveBoundColumn ID="edlst_adresse_town" DataField="adresse_town" HeaderText="Stadt" />
+	<com:XActiveEditCommandColumn HeaderText="SELECT" HeaderStyle.Width="100px" UpdateText="Save" EditText="Select" CancelText="Cancel"/>
+</com:XActiveDataGrid>
+
+Ausgewählt: <b><com:TActiveLabel Id="edidta_adresse_label" /></b>
+<com:TActiveLabel Id="edidta_adresse" />
+<br />
+
+<com:THiddenField id="edidta_waren" />
+<com:TButton Text="Save" OnClick="editButtonClicked" CssClass="submit"/>
+</com:TTabView>
+</com:TTabPanel>
+</com:TView>
+
+
+
+</com:TMultiView>
+ 
+
+</com:TContent>

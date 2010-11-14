@@ -1,0 +1,13 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="Market 4 Energy" %>
+
+<com:TContent ID="Navigation">
+
+<com:Application.pages.navigation.nav_main />
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+		<com:TScaffoldView RecordClass="FrachtTeilladungRecord" />
+
+</com:TContent>

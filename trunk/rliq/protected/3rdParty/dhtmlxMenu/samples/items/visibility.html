@@ -1,0 +1,110 @@
+<!--conf
+<sample>
+              <product version="1.0" edition="std"/>
+                     <modifications>
+                            <modified date="080318"/>
+                     </modifications>
+               </sample>
+ --> 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Menu Items Visibility Control</title>
+	
+	<link rel="stylesheet" type="text/css" href="../../codebase/skins/dhtmlxmenu_dhx_blue.css">
+	
+	<script  src="../../codebase/dhtmlxcommon.js"></script>
+	<script  src="../../codebase/dhtmlxmenu.js"></script>
+</head>
+<body onload="initMenu();">
+<link rel='STYLESHEET' type='text/css' href='../common/style.css'>
+<table cellspacing="0" cellpadding="0" class="sample_header" border="0">
+	<tr valign="middle">
+		<!-- COMPONENT ICON -->
+		<td width="40" align="center"><img src="../common/dhtmlxmenu_icon.gif" border="0"></td>
+		<!-- COMPONENT NAME -->
+		<td width="150" align="left" nowrap="true">Sample: dhtmlxMenu</td>
+		<!-- SAMPLE TITLE -->
+		<td width="0" align="left" nowrap><b>Menu Items Visibility Control</b></td>
+		<!-- LINK TO COMPONENT PAGE -->
+		<td width="0" align="right"><a href="http://www.dhtmlx.com/docs/products/dhtmlxMenu/index.shtml">dhtmlxMenu main page</a></td>
+		<!-- CLOSE BUTTON -->
+		<td width="50"><div class="sample_close"><a href="javascript:void(0);" onclick="self.close();"><img src="../common/sample_close.gif" width="14" height="14" border="0" alt="X"></a></div></td>
+	</tr>
+</table>
+	<div id="menuObj"></div>
+	<div style="margin-top: 200px;">
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td>Select Item</td>
+				<td width="10">&nbsp;</td>
+				<td><select id="sel">
+					<option value="m1" >File</option>
+					<option value="m11">New</option>
+					<option value="m12">Open</option>
+					<option value="m13">Save</option>
+					<option value="m14">Save As...</option>
+					<option value="m15">Print</option>
+					<option value="m16">Page Setup</option>
+					<option value="m17">Close</option>
+					<option value="m2" >Edit</option>
+					<option value="m21">Undo</option>
+					<option value="m22">Redo</option>
+					<option value="m23">Select All</option>
+					<option value="m24">Cut</option>
+					<option value="m25">Copy</option>
+					<option value="m26">Paste</option>
+					<option value="m3" >Help</option>
+					<option value="m31">About...</option>
+					<option value="m32">Help</option>
+					<option value="m33">Bug Reporting</option>
+					<option value="m34">Tip of the Day</option>
+				</select></td>
+				<td width="10">&nbsp;</td>
+				<td><input type="button" value="Show" onclick="show();"> <input type="button" value="Hide" onclick="hide();"> <input type="button" value="Is Hidden?" onclick="isHidden();"></td>
+			</tr>
+		</table>
+	</div>
+<div class='sample_code'><div class="hl-main"><pre><span class="hl-code"> 
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">script</span><span class="hl-brackets">&gt;</span><span class="hl-code"><div class="hl-main"><pre><span class="hl-code"> 
+    </span><span class="hl-reserved">var</span><span class="hl-code"> </span><span class="hl-identifier">menu</span><span class="hl-code"> = </span><span class="hl-reserved">new</span><span class="hl-code"> </span><span class="hl-identifier">dhtmlXMenuObject</span><span class="hl-brackets">(</span><span class="hl-quotes">&quot;</span><span class="hl-string">menuObj</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">)</span><span class="hl-code">;
+    ...
+    </span><span class="hl-comment">//</span><span class="hl-comment"> showing item</span><span class="hl-comment"></span><span class="hl-code">
+    </span><span class="hl-identifier">menu</span><span class="hl-code">.</span><span class="hl-identifier">showItem</span><span class="hl-brackets">(</span><span class="hl-identifier">id</span><span class="hl-brackets">)</span><span class="hl-code">;
+    </span><span class="hl-comment">//</span><span class="hl-comment"> hiding item</span><span class="hl-comment"></span><span class="hl-code">
+    </span><span class="hl-identifier">menu</span><span class="hl-code">.</span><span class="hl-identifier">hideItem</span><span class="hl-brackets">(</span><span class="hl-identifier">id</span><span class="hl-brackets">)</span><span class="hl-code">;
+    </span><span class="hl-comment">//</span><span class="hl-comment"> getting state</span><span class="hl-comment"></span><span class="hl-code">
+    </span><span class="hl-reserved">var</span><span class="hl-code"> </span><span class="hl-identifier">isHidden</span><span class="hl-code"> = </span><span class="hl-identifier">menu</span><span class="hl-code">.</span><span class="hl-identifier">isItemHidden</span><span class="hl-brackets">(</span><span class="hl-identifier">id</span><span class="hl-brackets">)</span><span class="hl-code">; </span><span class="hl-comment">//</span><span class="hl-comment"> true|false</span><span class="hl-comment"></span></pre></div></span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">script</span><span class="hl-brackets">&gt;</span></pre></div></div>
+
+<br>
+
+<script>
+	var menu;
+	function initMenu() {
+		menu = new dhtmlXMenuObject("menuObj");
+		menu.setImagePath("../../codebase/imgs/");
+		menu.setIconsPath("../images/");
+		menu.loadXML("../common/dhtmlxmenu.xml?e=" + new Date().getTime());
+	}
+	function getId() {
+		var sel = document.getElementById("sel");
+		var id = sel.options[sel.selectedIndex].value;
+		return id;
+	}
+	function show() {
+		menu.showItem(getId());
+	}
+	function hide() {
+		menu.hideItem(getId());
+	}
+	function isHidden() {
+		alert(menu.isItemHidden(getId()));
+	}
+</script>
+
+<!-- FOOTER -->
+<table callspacing="0" cellpadding="0" border="0" class="sample_footer"><tr><td style="padding-left: 8px;">&copy; <a href="http://www.dhtmlx.com">DHTMLX LTD</a>. All rights reserved</td></tr></table>
+<!-- FOOTER -->
+
+</body>

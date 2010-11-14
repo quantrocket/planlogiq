@@ -1,0 +1,221 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>Quick Chart Wizard</title>
+        <meta name="build" content="$BuildVersion$" />
+        <link href="styles.css" type="text/css" rel="stylesheet" />
+        <script src="/QvAjaxZfc/htc/QvAjax.js" type="text/javascript">
+        </script>
+        <script src="/QvAjaxZfc/htc/QvAjaxBaseMgr.js" type="text/javascript">
+        </script>
+        <script src="/QvAjaxZfc/htc/QvAjaxScan.js" type="text/javascript">
+        </script>
+        <script src="/QvAjaxZfc/htc/QvAjaxTrace.js" type="text/javascript">
+        </script>
+        <script src="/QvAjaxZfc/htc/QvAjaxProperties.js" type="text/javascript">
+        </script>
+    </head>
+    <body onload="Start('QuickChartWizard', 700, 540);" onunload="Qva.CloseModal()" avqscope="QuickChartWizard">
+        <div id="PageHeader" style="width:650">
+            <div>Step 1 - Select chart type</div>
+            <div style="display:none" avq="wizardpage:.Step2">Step 2 - Define dimension(s)</div>
+            <div style="display:none">Step 3 - Define Expression</div>
+            <div style="display:none">Step 4 - Chart format</div>
+        </div>
+        <div id="PageContainer" style="width:650;height:384">
+            <div id="IDD_QUICKCHARTWIZARD_TYPEPAGE" style="height:384; visibility:visible">
+                <div style="left:210;height:318;white-space: nowrap;top:6" class="Label">Select the type of chart you want to create by clicking on one of the icons.</div>
+                <div style="left:13;height:12;white-space: nowrap;top:13" class="Label" avq="label:.Step1.ChartType">Bar Chart<div style="left:0;height:48;width:48;top:20;text-align:center"><img alt="" class="unselectedborder" avq="imgradio:.Step1.ChartType" src="Images/GraphMode/ModeBar.png" value="ModeBar" /></div></div>
+                <div style="left:13;height:12;white-space: nowrap;top:93" class="Label" avq="label:.Step1.ChartType">Line Chart<div style="left:0;height:48;width:48;top:20;text-align:center"><img alt="" class="unselectedborder" avq="imgradio:.Step1.ChartType" src="Images/GraphMode/ModeLine.png" value="ModeLine" /></div></div>
+                <div style="left:13;height:12;white-space: nowrap;top:172" class="Label" avq="label:.Step1.ChartType">Pie Chart<div style="left:0;height:48;width:48;top:20;text-align:center"><img alt="" class="unselectedborder" avq="imgradio:.Step1.ChartType" src="Images/GraphMode/ModePie.png" value="ModePie" /></div></div>
+                <div style="left:108;height:12;white-space: nowrap;top:13" class="Label" avq="label:.Step1.ChartType">Straight Table<div style="left:0;height:48;width:48;top:20;text-align:center"><img alt="" class="unselectedborder" avq="imgradio:.Step1.ChartType" src="Images/GraphMode/ModeStraighttable.png" value="ModeStraighttable" /></div></div>
+                <div style="left:108;height:12;white-space: nowrap;top:93" class="Label" avq="label:.Step1.ChartType">Pivot Table<div style="left:0;height:48;width:48;top:20;text-align:center"><img alt="" class="unselectedborder" avq="imgradio:.Step1.ChartType" src="Images/GraphMode/ModePivottable.png" value="ModePivottable" /></div></div>
+                <div style="left:108;height:12;white-space: nowrap;top:172" class="Label" avq="label:.Step1.ChartType">Gauge Chart<div style="left:0;height:48;width:48;top:20;text-align:center"><img alt="" class="unselectedborder" avq="imgradio:.Step1.ChartType" src="Images/GraphMode/ModeGauge.png" value="ModeGauge" /></div></div>
+            </div>
+            <div id="IDD_QUICKCHARTWIZARD_DIMENSIONPAGE" style="height:384; visibility:hidden">
+                <div style="left:6;height:12;white-space: nowrap;top:19" class="Label">First Dimension</div>
+                <div style="left:6;height:12;width:180;top:37" class="Select" avq="label:.Step2.Dimension1">
+                    <select avq=".Step2.Dimension1" style="width:98%">
+                    </select>
+                </div>
+                <div style="left:6;height:12;white-space: nowrap;top:66" class="Label">Second Dimension</div>
+                <div style="left:6;height:12;width:180;top:85" class="Select" avq="label:.Step2.Dimension2">
+                    <select avq=".Step2.Dimension2" style="width:98%">
+                    </select>
+                </div>
+                <div style="left:6;height:12;white-space: nowrap;top:120" class="Label">Third Dimension</div>
+                <div style="left:6;height:12;width:180;top:138" class="Select" avq="label:.Step2.Dimension3">
+                    <select avq=".Step2.Dimension3" style="width:98%">
+                    </select>
+                </div>
+                <div style="left:204;height:318;width: 420px; top:6" class="Label">Select one or more dimensions in the drop-down boxes. The dimension(s) define the values for which to calculate the chart expression(s). Dimensions are typically found to the left in table charts and on the x-axis in e.g bar charts.<br />
+                    <br />
+                    Gauge charts are normally dimensionless, so this page is skipped when you have selected gauge chart as chart type.</div>
+            </div>
+            <div id="IDD_QUICKCHARTWIZARD_EXPRESSIONPAGE" style="height:384; visibility:hidden">
+                <div style="left:6;height:15;width:45;top:21" class="Radio" avq="label:.Step3.ExprType">
+                    <input type="radio" avq=".Step3.ExprType" value="Sum" />Sum</div>
+                <div style="left:6;height:15;width:64;top:45" class="Radio" avq="label:.Step3.ExprType">
+                    <input type="radio" avq=".Step3.ExprType" value="Average" />Average</div>
+                <div style="left:6;height:15;width:52;top:69" class="Radio" avq="label:.Step3.ExprType">
+                    <input type="radio" avq=".Step3.ExprType" value="Count" />Count</div>
+                <div style="left:6;height:15;width:58;top:141" class="Radio" avq="label:.Step3.ExprType">
+                    <input type="radio" avq=".Step3.ExprType" value="Custom" />Custom</div>
+                <div style="left:24;height:12;width:150;top:102" class="Select" avq="label:.Step3.FieldName">
+                    <select avq=".Step3.FieldName" style="width:98%">
+                    </select>
+                </div>
+                <div style="left:186;height:318;width:420;top:6" class="Label">The chart expression 
+                    defines the calculated value(s) in the chart. Expressions are typically found to 
+                    the right in table charts and on the y-axis in e.g bar charts.<br />
+                    <br />
+                    Expressions in QlikView can range from short and simple to long and complex. 
+                    This page allows you to choose between three very common base expressions or 
+                    type your own expression from scratch.<br />
+                    <br />
+                    Sum<br />
+                    Choose this option if you want to see the numeric sum of a field, e.g. 
+                    sum(Sales). Then choose a field to sum in the combo box below.<br />
+                    <br />
+                    Average<br />
+                    Choose this option if you want to see the numeric average (mean) of a field. 
+                    Then choose a field for the calculation in the combo box below.<br />
+                    <br />
+                    Count<br />
+                    Choose this option if you want to see the number of values in a field, e.g. 
+                    count(Visits). Then choose a field to count in the combo box below.<br />
+                    <br />
+                    Custom<br />
+                    Choose this option if you want to type your own expression from scratch.<br />
+                </div>
+                <div style="left:6;height:60;width:168;top:168" class="Text" avq="label:.Step3.ExprText">
+                    <textarea avq=".Step3.ExprText" style="width:98%" rows="4">
+                    </textarea>
+                </div>
+                <div style="left:6;height:12;white-space: nowrap;top:108" class="Label">of</div>
+            </div>
+            <div id="IDD_QUICKCHARTWIZARD_STYLEPAGE" style="height:384; visibility:hidden">
+                <div style="left:6;height:12;white-space: nowrap;top:6" class="Label" avq="label:.Step4.BarStyle">Style
+                    <div style="left:0;height:48;width:48;top:20;text-align:center"><img alt="" class="unselectedborder" avq="imgradio:.Step4.BarStyle:QuickChartWizard.Step4.BarStyle" src="Images/BarStyle/2d.png" value="2d" /></div>
+                    <div style="left:60;height:48;width:48;top:20;text-align:center"><img alt="" class="unselectedborder" avq="imgradio:.Step4.BarStyle:QuickChartWizard.Step4.BarStyle" src="Images/BarStyle/2dshadow.png" value="2dshadow" /></div>
+                    <div style="left:120;height:48;width:48;top:20;text-align:center"><img alt="" class="unselectedborder" avq="imgradio:.Step4.BarStyle:QuickChartWizard.Step4.BarStyle" src="Images/BarStyle/Block.png" value="Block" /></div>
+                </div>
+                <div style="left:6;height:12;white-space: nowrap;top:6" class="Label" avq="label:.Step4.LineStyle">Style
+                    <div style="left:0;height:48;width:48;top:20;text-align:center"><img alt="" class="unselectedborder" avq="imgradio:.Step4.LineStyle" src="Images/LineStyle/2d.png" value="2d" /></div>
+                    <div style="left:60;height:48;width:48;top:20;text-align:center"><img alt="" class="unselectedborder" avq="imgradio:.Step4.LineStyle" src="Images/LineStyle/3d.png" value="3d" /></div>
+                    <div style="left:120;height:48;width:48;top:20;text-align:center"><img alt="" class="unselectedborder" avq="imgradio:.Step4.LineStyle" src="Images/LineStyle/2dshadow.png" value="2dshadow" /></div>
+                </div>
+                <div style="left:6;height:12;white-space: nowrap;top:6" class="Label" avq="label:.Step4.PieStyle">Style
+                    <div style="left:0;height:48;width:48;top:20;text-align:center"><img alt="" class="unselectedborder" avq="imgradio:.Step4.PieStyle" src="Images/PieStyle/2d.png" value="2d" /></div>
+                    <div style="left:60;height:48;width:48;top:20;text-align:center"><img alt="" class="unselectedborder" avq="imgradio:.Step4.PieStyle" src="Images/PieStyle/Bevel.png" value="Bevel" /></div>
+                    <div style="left:120;height:48;width:48;top:20;text-align:center"><img alt="" class="unselectedborder" avq="imgradio:.Step4.PieStyle" src="Images/PieStyle/True3d.png" value="True3d" /></div>
+                </div>
+                <div style="left:6;height:12;white-space: nowrap;top:6" class="Label" avq="label:.Step4.GaugeType">Type
+                    <div style="left:0;height:48;width:48;top:20;text-align:center"><img alt="" class="unselectedborder" avq="imgradio:.Step4.GaugeType" src="Images/GaugeType/Circular.png" value="Circular" /></div>
+                    <div style="left:60;height:48;width:48;top:20;text-align:center"><img alt="" class="unselectedborder" avq="imgradio:.Step4.GaugeType" src="Images/GaugeType/Straight.png" value="Straight" /></div>
+                    <div style="left:120;height:48;width:48;top:20;text-align:center"><img alt="" class="unselectedborder" avq="imgradio:.Step4.GaugeType" src="Images/GaugeType/Trafficlight.png" value="Trafficlight" /></div>
+                </div>
+                <div style="left:6;height:12;white-space: nowrap;top:87" class="Label" avq="label:.Step4.Horizontal">Orientation
+                    <div style="left:0;height:48;width:48;top:20;text-align:center"><img alt="" class="unselectedborder" avq="imgradio:.Step4.Horizontal:QuickChartWizard.Step4.Horizontal" src="Images/Orientation/Vertical.png" value="0" /></div>
+                    <div style="left:60;height:48;width:48;top:20;text-align:center"><img alt="" class="unselectedborder" avq="imgradio:.Step4.Horizontal:QuickChartWizard.Step4.Horizontal" src="Images/Orientation/Horizontal.png" value="1" /></div>
+                </div>
+                <div style="left:6;height:12;white-space: nowrap;top:168" class="Label" avq="label:.Step4.Stacked">Mode
+                    <div style="left:0;height:48;width:48;top:20;text-align:center"><img alt="" class="unselectedborder" avq="imgradio:.Step4.Stacked:QuickChartWizard.Step4.Stacked" src="Images/Stacked/Grouped.png" AvqDisabledSrc="Images/Stacked/Grouped_d.png" value="0" /></div>
+                    <div style="left:60;height:48;width:48;top:20;text-align:center"><img alt="" class="unselectedborder" avq="imgradio:.Step4.Stacked:QuickChartWizard.Step4.Stacked" src="Images/Stacked/Stacked.png" AvqDisabledSrc="Images/Stacked/Stacked_d.png" value="1" /></div>
+                </div>
+                <div style="left:6;height:12;white-space: nowrap;top:168" class="Label" avq="label:.Step4.LineMode">Mode
+                    <div style="left:0;height:48;width:48;top:20;text-align:center"><img alt="" class="unselectedborder" avq="imgradio:.Step4.LineMode" src="Images/LineMode/Line.png" value="Line" /></div>
+                    <div style="left:60;height:48;width:48;top:20;text-align:center"><img alt="" class="unselectedborder" avq="imgradio:.Step4.LineMode" src="Images/LineMode/Symbol.png" value="Symbol" /></div>
+                    <div style="left:120;height:48;width:48;top:20;text-align:center"><img alt="" class="unselectedborder" avq="imgradio:.Step4.LineMode" src="Images/LineMode/Both.png" value="Both" /></div>
+                </div>
+                <div style="left:6;height:12;white-space: nowrap;top:67" class="Label" avq="label:.Step4.AllLeft">Mode
+                    <div style="left:0;height:48;width:48;top:20;text-align:center"><img alt="" class="unselectedborder" avq="imgradio:.Step4.AllLeft" src="Images/PivotMode/AllLeft.png" value="1" /></div>
+                    <div style="left:60;height:48;width:48;top:20;text-align:center"><img alt="" class="unselectedborder" avq="imgradio:.Step4.AllLeft" src="Images/PivotMode/CrossTable.png" value="0" /></div>
+                </div>
+                <div style="left:6;height:15;white-space: nowrap;top:246" class="Checkbox" avq="label:.Step4.ShowNumbers">
+                    <input type="checkbox" avq=".Step4.ShowNumbers" />Show Numbers</div>
+                <div style="left:6;height:12;white-space: nowrap;top:87" class="Label" avq="label:.Step4.MaxSliceCount">Maximum Number of Slices (2 - 50)</div>
+                <div style="left:6;height:21;width:72;top:102" class="Text" avq="label:.Step4.MaxSliceCount">
+                    <input avq=".Step4.MaxSliceCount" style="width:98%" />
+                </div>
+                <div style="left:6;height:12;white-space: nowrap;top:87" class="Label" avq="label:.Step4.SegmentCount">Number of Segments</div>
+                <div style="left:6;height:21;width:72;top:102" class="Text" avq="label:.Step4.SegmentCount">
+                    <input avq=".Step4.SegmentCount" style="width:98%" />
+                </div>
+                <div style="left:6;height:15;white-space: nowrap;top:138" class="Checkbox" avq="label:.Step4.NumbersInLegend">
+                    <input type="checkbox" avq=".Step4.NumbersInLegend" />Numbers in Legend</div>
+                <div style="left:6;height:12;width:186;top:159" class="Select" avq="label:.Step4.IndicatorMode">
+                    <select avq=".Step4.IndicatorMode" style="width:98%">
+                    </select>
+                </div>
+                <div style="left:6;height:12;width:186;top:213" class="Select" avq="label:.Step4.IndicatorStyle">
+                    <select avq=".Step4.IndicatorStyle" style="width:98%">
+                    </select>
+                </div>
+                <div style="left:6;height:12;white-space: nowrap;top:6" class="Label" avq="label:.Step4.TableStyle">Style</div>
+                <div style="left:6;height:12;width:186;top:25" class="Select" avq="label:.Step4.TableStyle">
+                    <select avq=".Step4.TableStyle" style="width:98%">
+                    </select>
+                </div>
+                <div style="left:6;height:15;white-space: nowrap;top:156" class="Checkbox" avq="label:.Step4.AlwaysExpanded">
+                    <input type="checkbox" avq=".Step4.AlwaysExpanded" />Always Fully Expanded</div>
+                <div style="left:207;height:318;width:420;top:7" class="Label" avq="show:.Step1.ChartType:ModeBar">
+                    Style<br/>
+                    Select a bar chart style by clicking on one of the 
+                    icons.<br/><br/>
+                    Orientation<br/>
+                    Bar charts can be shown vertically or horizontally. Make 
+                    your selection by clicking on the appropriate icon.<br/><br/>
+                    Mode<br/>
+                    When you have more 
+                    than two dimension in the bar chart, you must choose between showing datapoints 
+                    stacked or clustered (side by side). Make your selection by clicking on the 
+                    appropriate icon.<br/><br/>
+                    Show Numbers<br/>
+                    Mark this check box if you want the 
+                    expression values to be shown as numbers on top of the bars.
+                </div>
+                <div style="left:207;height:318;width:420;top:7" class="Label" avq="show:.Step1.ChartType:ModeStraighttable">
+                    Style<br/>
+                    Select a table style from the drop-down box.
+                </div>
+                <div style="left:207;height:318;width:420;top:7" class="Label" avq="show:.Step1.ChartType:ModeLine">
+                    Style<br/>
+                    Select a line chart style by clicking on one of the icons.<br/><br/>
+                    Orientation<br/>
+                    Line charts can be shown vertically or horizontally. Make your selection by clicking on the appropriate icon.<br/><br/>
+                    Mode<br/>
+                    Choose whether you want to show lines only, or symbols at the datapoints, or a combination of lines and symbols in the line chart.<br/><br/>
+                    Show Numbers<br/>Mark this check box if you want the expression values to be shown as numbers on top of the data points.
+                </div>
+                <div style="left:207;height:318;width:420;top:7" class="Label" avq="show:.Step1.ChartType:ModePivottable">
+                    Style<br/>
+                    Select a table style from the drop-down box.<br/><br/>
+                    Mode<br/>
+                    If you want a pivot table with all dimensions to the left, click on the left icon. If you want a cross-table with dimensions spread to the left and on the top, click on the right icon.<br/><br/>
+                    Always Fully Expanded<br/>Mark this check box if you don't want the expand and collapse functionality typical to QlikView pivot table. In this mode all possible dimension values for all dimensions will be shown at all times.
+
+                </div>
+                <div style="left:207;height:318;width:420;top:7" class="Label" avq="show:.Step1.ChartType:ModePie">
+                    Style<br/>
+                    Select a pie chart style by clicking on one of the icons.<br/><br/>
+                    Max Number of Slices (2-50)<br/>Select the maximum number individual slices in the pie. Remaining data points will be collected in an 'Others' segment.<br/><br/>
+                    Show Numbers in Legend<br/>Mark this check box if you want the expression values to be shown as numbers in the chart legend.
+                </div>
+                <div style="left:207;height:318;width:420;top:7" class="Label" avq="show:.Step1.ChartType:ModeGauge">
+                    Gauge type<br/>
+                    Select a gauge type by clicking on one of the icons.<br/><br/>
+                    Number of Segments<br/>Select the number of segments you want in the chart, e.g. how many lights in a traffic light gauge.<br/><br/>
+                    Indicator Mode<br/>Select the way you want to indicate the current value in the gauge. There are different indicator modes available for each of the gauge types.<br/><br/>
+                    Style<br/>
+                    Select the style of the choosen gauge type. There are a number of different styles available for each of the gauge types.
+                </div>                
+            </div>
+        </div>
+        <div id="PageFooter" style="width:650">
+            <button id="PageBack" disabled="disabled" onclick="PrevPage()">&lt; Back</button>
+            <button id="PageNext" onclick="NextPage()">Next &gt;</button>
+            <button onclick="Finish()">Finish</button>
+            <button onclick="Qva.CloseModal()">Cancel</button>
+        </div>
+    </body>
+</html>

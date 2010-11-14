@@ -1,0 +1,142 @@
+<%@ MasterClass="Application.layouts.MainLayoutTreePlanung" Title="planlogIQ - Inputmask" %>
+
+<com:TContent ID="FIXHEADER">
+
+<com:TCallbackOptions ID="options">
+	<prop:ClientSide.RequestTimeOut>720000</prop:ClientSide.RequestTimeOut>
+</com:TCallbackOptions>
+
+    <com:XGlobalCallbackOptions>
+            <prop:ClientSide.OnLoading>
+                    dhxLayout.progressOn();
+            </prop:ClientSide.OnLoading>
+            <prop:ClientSide.OnComplete>
+                    dhxLayout.progressOff();
+            </prop:ClientSide.OnComplete>
+    </com:XGlobalCallbackOptions>
+
+<div style="background:#EBEEFA;">
+<div class="mytoolbar">
+        <com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/filesave.png"
+                                OnCallback="saveValues"
+                                Visible=<%= !$this->User->IsGuest %>/>
+        <com:TActiveButton OnCallback="saveValues"
+                           Text=<%[ speichern ]%>
+                           CssClass="windowcontent-button"
+                           Id="SaveButton"
+                           Visible=<%= !$this->User->IsGuest %>/>
+        <com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/settings.png"
+                                OnCallback="openFeldfunktionContainer"
+                                Visible=<%= $this->User->IsAdmin %>/>
+        <com:TActiveButton OnCallback="openFeldfunktionContainer"
+                           Text=<%[ Einstelltungen ]%>
+                           CssClass="windowcontent-button"
+                           Visible=<%= $this->User->IsAdmin %>/>
+        <com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/settings.png"
+                                OnCallback="openStrukturStrukturContainer"
+                                Visible=<%= $this->User->IsAdmin %>/>
+        <com:TActiveButton OnCallback="openStrukturStrukturContainer"
+                           Text=<%[ Treiber ]%>
+                           CssClass="windowcontent-button"
+                           Visible=<%= $this->User->IsAdmin %>/>
+        <com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/apps/bell.png"
+                                OnClick="openSaisonContainer"
+                                Visible=<%= $this->User->IsAdmin %>/>
+        <com:TActiveButton OnClick="openSaisonContainer"
+                           Text=<%[ Verteilung ]%>
+                           CssClass="windowcontent-button"
+                           Visible=<%= $this->User->IsAdmin %>/>
+
+        <com:Application.portlets.strukturportlet Visible=<%= !$this->User->IsGuest %> id="strukturportlet"/>
+</div>
+</div>
+</com:TContent>
+
+<com:TContent ID="Navigation">
+    
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<com:PWCWindow ID="mpnlFeldfunktionContainer"
+               AutoPosition="false"
+               Theme="alphacube"
+               Content="<%=$this->MyFeldfunktionContainer->ClientID%>"
+               Mode="Existing"
+               Width="700px"
+               Left="100"
+               Top="100"
+               Title="Feldfunktion">
+</com:PWCWindow>
+
+<com:TActivePanel ID="MyFeldfunktionContainer" Display="None">
+    <com:Application.pages.container.FeldfunktionContainer ID="FeldfunktionContainer"  />
+</com:TActivePanel>
+
+<com:PWCWindow ID="mpnlStrukturStrukturContainer"
+               AutoPosition="false"
+               Theme="alphacube"
+               Content="<%=$this->MyStrukturStrukturContainer->ClientID%>"
+               Mode="Existing"
+               Width="700px"
+               Left="100"
+               Top="100"
+               Title="Zuordnungen / Treiber">
+</com:PWCWindow>
+
+<com:TActivePanel ID="MyStrukturStrukturContainer" Display="None">
+    <com:Application.pages.container.StrukturStrukturContainer ID="StrukturStrukturContainer"  />
+</com:TActivePanel>
+
+
+<com:PWCWindow ID="mpnlSaisonalisierung"
+               AutoPosition="false"
+               Theme="alphacube"
+               Content="<%=$this->MySaisonContainer->ClientID%>"
+               Mode="Existing"
+               Width="700px"
+               Left="100"
+               Top="100"
+               Title="Saisonalisierung">
+</com:PWCWindow>
+
+<com:TActivePanel ID="MySaisonContainer" Display="None">
+    <com:Application.pages.container.SaisonContainer ID="SaisonContainer"  />
+</com:TActivePanel>
+
+<div id="dhxTabbar" style="width:600;height:400"></div>
+
+<div id="tabhtml_3" style="width:100%;height:100%;overflow:auto">
+        <div style="overflow:hidden">
+        </div>
+</div>
+
+<div id="tabhtml_1" style="width:100%;height:100%;overflow:auto;background:#EBEEFA">
+        <div style="overflow:hidden;background:#ffffff;">
+
+<com:TActiveTextBox id="idta_struktur_type" visible="false" />
+<com:TActiveTextBox id="idtm_struktur" visible="false" />
+
+<div id="infobox"><com:TActiveLabel Id="StrukturPfad" /> / Workflowstatus:  <com:TActiveDropDownList Id="wfl_status" /> Struktur: <com:TActiveLabel ID="id_struktur" /></div>
+<com:TActivePanel id="ACTPanel" >
+    <com:TTable id="resulttable" CssClass="resizable" width="100%" Cellpadding="0">
+    </com:TTable>
+</com:TActivePanel>
+<script src="/rliq/protected/3rdParty/tablekit/js/tablekit.js"></script>
+        </div>
+</div>
+<div id="tabhtml_2" style="width:100%;height:100%;overflow:auto;background:#EBEEFA">
+        <div style="overflow:hidden">
+
+<!-- The Part for the comments /-->
+<com:Application.pages.container.KommentarContainer ID="KommentarContainer"/>
+<com:TActiveTextBox id="ccom_modul" Text="tm_struktur" CssClass="hiddeninput" visible="false" />
+<com:TActiveTextBox id="cidtm_organisation" Text=<%=$this->User->GetUserOrgId($this->User->GetUserId($this->User->Name))%> CssClass="hiddeninput" visible="false" />
+<com:TActiveTextBox id="ccom_id" Text=<%=$_GET['idtm_struktur']%> CssClass="hiddeninput" visible="false" />
+<com:TActiveTextBox id="cidta_variante" Text=<%=$_GET['idta_variante']%> CssClass="hiddeninput" visible="false" />
+<com:TActiveTextBox id="cidta_periode" Text=<%=$_GET['periode']%> CssClass="hiddeninput" visible="false" />
+
+     </div>
+</div>
+
+</com:TContent>

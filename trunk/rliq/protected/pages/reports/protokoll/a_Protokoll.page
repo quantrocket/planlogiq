@@ -1,0 +1,99 @@
+<%@ MasterClass="Application.layouts.TextReportLayout" Title="Planlogiq" %>
+
+<com:TContent ID="Main">
+
+<h2>Besprechungsprotokoll</h2>
+
+<table width="100%"><tr><td>
+
+<h3>Stammdaten</h3>
+
+<table width="100%">
+<tr>
+<td><b>Thema / Typ:</b></td>
+<td><com:TLabel id="thema" /> / <com:TLabel id="prttyp" /></td>
+</tr>
+<tr>
+<td><b>Moderator:</b></td>
+<td><com:TLabel id="moderator" /></td>
+</tr>
+<tr>
+<td><b>Datum, Zeit, Dauer:</b></td>
+<td><com:TLabel id="datum" /></td>
+</tr>
+</table>
+
+<h3>Teilnehmer</h3>
+
+<table width="100%">
+<tr>
+<td class="portlet-title">Eingeladen</td>
+<td class="portlet-title">Anwesend</td>
+</tr>
+
+<tr>
+<td valign="top">
+<com:TActiveDataGrid ID="edTerminParticipant" AllowPaging="false" AllowSorting="false" AllowCustomPaging="true" PageSize="20" onSortCommand="dtgList_SortCommand"  OnPageIndexChanged="eddtgList_PageIndexChanged" OnEditCommand="edcmd_chooseActivity" OnUpdateCommand="addInvitedParticipant" OnCancelCommand="dtgList_CancelCommand" AutoGenerateColumns="false" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+<com:TActiveBoundColumn ID="edlstpart_org_name" DataField="org_name" HeaderText="Name" />
+<com:TActiveBoundColumn ID="edlstpart_user_role_name" DataField="user_role_name" HeaderText="Rolle" HeaderStyle.Width="200px" />
+</com:TActiveDataGrid>
+</td>
+<td valign="top">
+<com:TActiveDataGrid ID="ParticipantListe" AllowPaging="false" AllowSorting="false" AllowCustomPaging="true" PageSize="20" onSortCommand="dtgList_SortCommand"  OnPageIndexChanged="edparticipant_PageIndexChanged" OnEditCommand="load_participant" OnUpdateCommand="dtgList_UpdateCommand" OnCancelCommand="dtgList_CancelCommand" AutoGenerateColumns="false" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+<com:TActiveBoundColumn ID="lstpart_org_name" DataField="org_name" HeaderText="Name" />
+<com:TActiveBoundColumn ID="lstact_part_notiz" DataField="act_part_notiz" HeaderText="Notiz" HeaderStyle.Width="300px" />
+<com:TActiveBoundColumn ID="lstpart_act_anwesend" DataField="act_part_anwesend" HeaderText="Anwesend" />
+</com:TActiveDataGrid>
+</td>
+</tr>
+</table>
+
+<h3>Protokollpunkte</h3>
+
+<com:TRepeater ID="RepProtokollDetail"
+    AllowPaging="false"
+    AllowCustomPaging="true"
+    PageSize="1000"
+    EnableViewState="false">
+	
+	<prop:HeaderTemplate>
+		<table width="100%" border="1">
+		<thead>
+		<tr>
+		<td>TOP</td>
+		<td>Ergebnis</td>
+		<td>Beschluss</td>
+		<td>Empfänger</td>
+		<td>Datum bis</td>
+		<td>Erledigt am</td>
+		</tr>
+		</thead>
+	</prop:HeaderTemplate>
+	
+	<prop:ItemTemplate>
+		<tr style="background-color:#dedede">
+			<td rowspan="2" width="140px"><b><com:TLiteral Text="<%#$this->data->idtm_protokoll_detail_group%>" />:<com:TLiteral Text="<%#$this->data->idtm_protokoll_detail%>" /></b><br/> - <com:TLiteral Text="<%#$this->data->prtdet_topic%>" /></td>
+			<td><com:TLiteral Text="<%#$this->data->prtdet_descr%>" /></td>
+			<td rowspan="2"><com:TLiteral Text="<%#ProtokollErgebnistypeRecord::finder()->findByPK($this->data->idta_protokoll_ergebnistype)->prt_ergtype_name%>" /></td>
+			<td rowspan="2"><com:TLiteral Text="<%#$this->data->idta_protokoll_ergebnistype<3?OrganisationRecord::finder()->findByPK($this->data->idtm_organisation)->org_name:'-'%>" /></td>
+			<td rowspan="2"><com:TLiteral Text="<%#$this->data->idta_protokoll_ergebnistype<3?$this->data->auf_tdate:'-'%>" /></td>
+			<td rowspan="2"><com:TLiteral Text="<%#$this->data->auf_done==1?$this->data->auf_ddate:'-'%>" /></td>
+		</tr>
+		<tr><td style="background-color:#efefef">B/A: <com:TLiteral Text="<%#$this->page->prepareForHtml($this->data->auf_beschreibung)%>" /></td></tr>
+	</prop:ItemTemplate>
+
+<!-- Ende des Repeater Phasen /-->	
+	
+	<prop:FooterTemplate>
+		</table>
+	</prop:FooterTemplate>
+
+</com:TRepeater>
+<!-- Ende des Phaseabschnittes -->
+
+
+
+</td>
+</tr>
+</table>
+</com:TContent>

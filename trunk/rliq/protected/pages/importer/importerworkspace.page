@@ -1,0 +1,340 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="PlanlogIQ" %>
+
+<com:TContent ID="HeaderJavascript">
+
+function initDHTMLXTabbars(TabbarObject){
+    TabbarObject.addTab("a1","Import Salden",150);
+    TabbarObject.setContent("a1", "tabhtml_1");
+
+    TabbarObject.setTabActive("a1");
+}
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<div id="tabhtml_1" style="overflow:auto;height:100%">
+    <div style="overflow:hidden">
+
+<com:TWizard ID="ImporterWizzard"
+        BackColor="#ffffff"
+        Width="100%"
+        SideBarStyle.Width="200px"
+        SideBarStyle.BackColor="#dbe7e8"
+        StepStyle.BackColor="#ffffff"
+        OnCompleteButtonClick="ImportCSV"
+        EnableViewState="true" >
+
+    <prop:HeaderTemplate>
+        <p id="infobox"><%[ Step ]%> <%= $this->Parent->ActiveStepIndex+1 %> <%[ of ]%> 3</p>
+    </prop:HeaderTemplate>
+
+    <prop:SideBarTemplate>
+       <p id="infobox"><%[ Assistent ]%></p>
+        <com:TDataList ID="SideBarList">
+                <prop:ItemTemplate>
+                    <com:TButton ID="SideBarButton" Width="190px"/>
+                </prop:ItemTemplate>
+                <prop:SelectedItemTemplate>              
+                    <com:TButton ID="SideBarButton" Font.Bold="true" Width="190px"/>
+                </prop:SelectedItemTemplate>
+        </com:TDataList>
+       <p>&nbsp;</p>
+     </prop:SideBarTemplate>
+
+     <prop:StartNavigationTemplate>
+        <div class="mytoolbar">
+            <com:TLinkButton onClick="Page.NextStep" Text="Next &gt;" />
+        </div>
+     </prop:StartNavigationTemplate>
+
+    <prop:StepNavigationTemplate>
+        <div class="mytoolbar">
+            <com:TLinkButton CausesValidation="False" onClick="Page.PreviousStep" Text="&lt; Previous" />
+            <com:TLinkButton onClick="Page.NextStep" Text="Next &gt;" />
+        </div>
+    </prop:StepNavigationTemplate>
+
+
+
+  <com:TWizardStep Title=<%[ Choose CSV-Import-File ]%> Id="StepOne">
+    <table width="100%">
+        <tr><td colspan="3" class="portlet-title"><%[ load data ]%></td></tr>
+        <tr><td colspan="3">
+                <table>
+                    <tr><td valign="top"><%[ available mappings ]%>:</td><td rowspan="2" valign="top"><com:TActiveListBox Id="availableMappingName" OnSelectedIndexChanged="chooseMappingName" />
+                        <td valign="top"><%[ Store Fieldmapping ]%>:</td><td rowspan="2" valign="top"><com:TActiveTextBox Id="MappingName" Text="Standard Mapping" />
+                    </tr><tr><td></td><td></td></tr>
+                    <tr>
+                        <td colspan="1"><%[ Identifier ]%>:</td>
+                        <td colspan="3"><com:TActiveTextBox Id="NumberID" Text="1" CssClass="mandantorysmall" onTextChanged="Page.buildAutoMappingPullDown" />
+                         <%[ Start Node ]%>: <com:TActiveDropDownList Id="idtm_struktur" CssClass="mandantory" OnSelectedIndexChanged="Page.applyStartPoint" />
+                        </td>                        
+                    </tr>
+                </table>
+        </td></tr>
+        <tr><td colspan="3" class="portlet-title"><%[ import definitions ]%></td></tr>
+        <tr>
+            <td colspan="1"><%[ Seperator ]%>:</td>
+            <td colspan="1"><com:TActiveTextBox Id="FileSeperator" Text=";" CssClass="mandantorysmall"/>
+            </td>
+            <td id="infoboxsmall">
+            <%[ Please define the delimiter for the Inputfile ]%><br />
+            </td>
+        </tr>
+        <tr>
+            <td colspan="1"><%[ File ]%>:</td>
+            <td colspan="1">
+                <com:TFileUpload Id="CSVUploadFile" OnFileUpload="Page.fileUploaded" />
+                <com:TButton Text="Upload" /><br />
+            <com:TActiveLabel Id="Result"/>
+            </td>
+            <td id="infoboxsmall">
+            <%[ Here you add the file, that will be used as data import ]%>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="1"><%[ Name ]%>:</td>
+            <td colspan="1"><com:TActiveLabel Id="UploadFileName" /> / <com:TActiveLabel Id="UploadFileLocalName" />
+            </td>
+            <td id="infoboxsmall">
+            <%[ The Name of the File ]%>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="1"><%[ Type ]%>:</td>
+            <td colspan="1"><com:TActiveLabel Id="UploadFileType" />
+            </td>
+            <td id="infoboxsmall">
+            <%[ The Type of the File ]%>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="1"><%[ Size ]%>:</td>
+            <td colspan="1"><com:TActiveLabel Id="UploadFileSize" />
+            </td>
+            <td id="infoboxsmall">
+            <%[ The Size of the File ]%>
+            </td>
+        </tr>
+        <tr><td colspan="3" class="portlet-title"><%[ Preview ]%></td></tr>
+        <tr>
+            <td colspan="3">
+                <com:TActiveDataGrid PagerStyle.Mode="Numeric" PagerStyle.HorizontalAlign="Right" PagerStyle.CssClass="pager" Id="FilePreview" PageSize="15" AllowPaging="true" AutoGenerateColumns="true" CssClass="datagrid" AlternatingItemStyle.CssClass="alternating" onPageIndexChanged="FilePreview_changed" />
+            </td>
+        </tr>
+        <tr><td colspan="3" class="portlet-title"><%[ Fieldmapping - pIQ dbstructure ]%></td></tr>
+        <tr>
+            <td colspan="3">
+                <com:TActivePanel>
+                <com:TActiveRepeater Id="MappingPreview" CssClass="datagrid" EnableViewState="true">
+                    <prop:HeaderTemplate>
+                        <table width="100%">
+                            <thead>
+                                    <tr>
+                                            <td><%[ Field ]%></td>
+                                            <td><%[ PLIQ-Field ]%></td>
+                                            <td><%[ Function ]%></td>
+                                    </tr>
+                           </thead>
+                    </prop:HeaderTemplate>
+                    <prop:FooterTemplate>
+                        </table>
+                    </prop:FooterTemplate>
+                    <prop:ItemTemplate>
+                        <tr>
+                            <td><com:TActiveLabel ID="OriginalField" Text=<%# $this->DataItem['OriginalField'] %> visible="true" /></td>
+                            <td><com:TActiveDropDownList ID="TargetField" /></td>
+                            <td><com:TActiveTextBox ID="FieldFunction" />::<com:TActiveTextBox ID="FieldFunctionValue" /></td>
+                        </tr>
+                    </prop:ItemTemplate>
+                    <prop:AlternatingItemTemplate>
+                        <tr class="alternating">
+                            <td><com:TActiveLabel ID="OriginalField" Text=<%# $this->DataItem['OriginalField'] %> visible="true" /></td>
+                            <td><com:TActiveDropDownList ID="TargetField" /></td>
+                            <td><com:TActiveTextBox ID="FieldFunction" />::<com:TActiveTextBox ID="FieldFunctionValue" /></td>
+                        </tr>
+                    </prop:AlternatingItemTemplate>
+                </com:TActiveRepeater>
+                </com:TActivePanel>
+            </td>
+        </tr>
+        <tr><td colspan="3" class="portlet-title">
+            <com:TActiveButton Id="MappingApplyButton" Text=<%[ Apply Mapping ]%> onCallback="applyMapping" />
+        </td></tr>
+    </table>
+  </com:TWizardStep>
+
+  <com:TWizardStep Title=<%[ Map Data ]%>>
+     <table width="100%">
+        <tr><td colspan="2" class="portlet-title"><%[ Mapping ]%></td></tr>
+        <tr>
+            <td valign="top">
+            <!-- hier kommen die repeater -->
+                    <div class="mytoolbar">
+                        <%[ Select Level: ]%> <com:TActiveDropDownList Id="SelectAMLevel" OnSelectedIndexChanged="applyAutoMapFilter" />
+                        <%[ FF ]%>: <com:TActiveDropDownList Id="Selectidta_feldfunktion" />
+                        <com:TActiveLabel Id="applyto_idtm_stammdaten" Text="0" />
+                    </div>
+                    <com:TActivePanel CssClass="windowcontent">                        
+                    <com:TActiveRepeater Id="lstAutoMapping" CssClass="datagrid" PageSize="7" AllowPaging="true" EnableViewState="true">
+                        <prop:HeaderTemplate>
+                            <table width="100%">
+                                <thead>
+                                        <tr>                                             
+                                             <td><%[ actions ]%></td>
+                                             <td><%[ Id ]%></td>
+                                             <td><%[ IdK ]%></td>
+                                             <td><%[ Label ]%></td>
+                                             <td><%[ Dimension ]%></td>
+                                             <td><%[ Field ]%></td>
+                                             <td><%[ Factor ]%></td>
+                                             <td><%[ Run ]%></td>
+                                             <td><%[ Source ]%></td>
+                                        </tr>
+                               </thead>
+                        </prop:HeaderTemplate>
+                        <prop:FooterTemplate>
+                            </table>
+                        </prop:FooterTemplate>
+                        <prop:ItemTemplate>
+                            <tr>
+                                <td><com:TActiveButton Text=<%[ cd ]%> visible="true" CssClass="windowcontent-button" onClick="page.createDimension" CommandName="createDimension" CommandParameter=<%#$this->DataItem->idta_automapping%> />
+                                    <com:TActiveButton Text=<%[ gff ]%> visible="true" CssClass="windowcontent-button" onClick="page.getFeldfunktion" CommandName="getFeldfunktion" CommandParameter=<%#$this->DataItem->idta_automapping%> /></td>
+                                <td><com:TActiveLabel ID="lst_idta_automapping" Text=<%# $this->DataItem->idta_automapping %> visible="true" /></td>
+                                <td><com:TActiveLabel ID="lst_ti_id" Text=<%# $this->DataItem->ti_id %> visible="true" /></td>
+                                <td><com:TActiveLabel ID="lst_ti_label" Text=<%# $this->DataItem->ti_label %> visible="true" /></td>
+                                <td><com:TActiveButton Text=<%#$this->DataItem->idtm_stammdaten%> visible="true" CssClass="windowcontent-button" onClick="page.FieldapplyDimension" CommandName="FieldapplyDimension" CommandParameter=<%#$this->DataItem->idta_automapping%> /></td>
+                                <td><com:TActiveTextBox ID="lst_idta_feldfunktion" Text=<%#$this->DataItem->idta_feldfunktion%> visible="true" AutoPostBack="true" onTextChanged="page.SaveCurrentAutoMapping" CssClass="mandantorysmall" /></td>
+                                <td><com:TActiveTextBox ID="lst_ama_faktor" Text=<%#$this->DataItem->ama_faktor%> visible="true" AutoPostBack="true" onTextChanged="page.SaveCurrentAutoMapping" CssClass="mandantorysmall" /></td>
+                                <td><com:TActiveTextBox ID="lst_ama_lauf" Text=<%#$this->DataItem->ama_lauf%> visible="true" AutoPostBack="true" onTextChanged="page.SaveCurrentAutoMapping" CssClass="mandantorysmall" /></td>
+                                <td><com:TActiveTextBox ID="lst_ama_source" Text=<%#$this->DataItem->ama_source%> visible="true" AutoPostBack="true" onTextChanged="page.SaveCurrentAutoMapping" CssClass="mandantorysmall" /></td>
+                            </tr>
+                        </prop:ItemTemplate>
+                        <prop:AlternatingItemTemplate>
+                            <tr class="alternating">
+                                <td><com:TActiveButton Text=<%[ cd ]%> visible="true" CssClass="windowcontent-button" onClick="page.createDimension" CommandName="createDimension" CommandParameter=<%#$this->DataItem->idta_automapping%> />
+                                    <com:TActiveButton Text=<%[ gff ]%> visible="true" CssClass="windowcontent-button" onClick="page.getFeldfunktion" CommandName="getFeldfunktion" CommandParameter=<%#$this->DataItem->idta_automapping%> /></td>
+                                <td><com:TActiveLabel ID="lst_idta_automapping" Text=<%# $this->DataItem->idta_automapping %> visible="true" /></td>
+                                <td><com:TActiveLabel ID="lst_ti_id" Text=<%# $this->DataItem->ti_id %> visible="true" /></td>
+                                <td><com:TActiveLabel ID="lst_ti_label" Text=<%# $this->DataItem->ti_label %> visible="true" /></td>
+                                <td><com:TActiveButton Text=<%#$this->DataItem->idtm_stammdaten%> visible="true" CssClass="windowcontent-button" onClick="page.FieldapplyDimension" CommandName="FieldapplyDimension" CommandParameter=<%#$this->DataItem->idta_automapping%> /></td>
+                                <td><com:TActiveTextBox ID="lst_idta_feldfunktion" Text=<%#$this->DataItem->idta_feldfunktion%> visible="true" AutoPostBack="true" onTextChanged="page.SaveCurrentAutoMapping" CssClass="mandantorysmall" /></td>
+                                <td><com:TActiveTextBox ID="lst_ama_faktor" Text=<%#$this->DataItem->ama_faktor%> visible="true" AutoPostBack="true" onTextChanged="page.SaveCurrentAutoMapping" CssClass="mandantorysmall" /></td>
+                                <td><com:TActiveTextBox ID="lst_ama_lauf" Text=<%#$this->DataItem->ama_lauf%> visible="true" AutoPostBack="true" onTextChanged="page.SaveCurrentAutoMapping" CssClass="mandantorysmall" /></td>
+                                <td><com:TActiveTextBox ID="lst_ama_source" Text=<%#$this->DataItem->ama_source%> visible="true" AutoPostBack="true" onTextChanged="page.SaveCurrentAutoMapping" CssClass="mandantorysmall" /></td>
+                            </tr>
+                        </prop:AlternatingItemTemplate>
+                    </com:TActiveRepeater>
+                        || <%[ Fold ]%> <com:TActivePager ID="PagerAutoMapping" ControlToPaginate="lstAutoMapping" PageButtonCount="3" Mode="Numeric" OnPageIndexChanged="page.AutoMappingListeChanged"/>
+                    </com:TActivePanel>
+            </td>
+            <td valign="top">
+                <div class="mytoolbar">
+                    <%[ Dimension ]%>:<com:TActiveDropDownList Id="idta_stammdaten_group" OnSelectedIndexChanged="Page.bindListStammdatenValue" />
+                    <com:TActiveLabel Id="select_idtm_stammdaten" Text="0" />
+                </div>
+                <com:TActiveDataGrid PagerStyle.Mode="Numeric" PagerStyle.HorizontalAlign="Right" ID="StammdatenListe" AllowPaging="true" AllowSorting="false" PageSize="7" OnPageIndexChanged="StammdatenList_PageIndexChanged" AutoGenerateColumns="false" OnEditCommand="load_Stammdaten" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+                    <com:TActiveBoundColumn ID="dimlst_idtm_stammdaten" DataField="idtm_stammdaten" HeaderText="ID" SortExpression="idtm_stammdaten" />
+                    <com:TActiveBoundColumn ID="dimlst_stammdaten_name" DataField="stammdaten_name" HeaderText="Bezeichnung" />
+                    <com:TActiveTemplateColumn>
+                        <prop:HeaderTemplate><%[ Map ]%></prop:HeaderTemplate>
+                        <prop:ItemTemplate>
+                            <com:TActiveButton Text=<%[ apply map ]%> onClick="page.applyDimension" CommandName="applyDimension" CommandParameter=<%#$this->parent->DataItem->idtm_stammdaten%> CssClass="windowcontent-button" />
+                        </prop:ItemTemplate>
+                    </com:TActiveTemplateColumn>
+                </com:TActiveDataGrid>
+            </td>
+        </tr>
+        <tr><td colspan="2" class="mytoolbar"><com:TActiveButton Text=<%[ apply automap ]%> onClick="page.applyAutoMap" CssClass="windowcontent-button" />
+        <com:TActiveButton Text=<%[ refresh ]%> onClick="page.bindListImportMapping" CssClass="windowcontent-button" /></td></tr>
+        <tr><td colspan="2" class="portlet-title"><%[ Mapping ]%> <%[ Structure ]%></td></tr>
+        <tr><td valign="top" colspan="2">
+              <com:TActivePanel CssClass="windowcontent">
+                  || <%[ Fold ]%> <com:TActivePager ID="PagerImportMapping" ControlToPaginate="lstImportMapping" PageButtonCount="3" Mode="Numeric" OnPageIndexChanged="page.ImportMappingListeChanged"/>
+                <com:TActiveRepeater Id="lstImportMapping" CssClass="datagrid" PageSize="10" AllowPaging="true" EnableViewState="true">
+                        <prop:HeaderTemplate>
+                            <table width="100%">
+                                <thead>
+                                        <tr>
+                                             <td><%[ actions ]%></td>
+                                             <td><%[ Id ]%></td>
+                                             <td colspan="10"><%[ IdK ]%></td>
+                                             <td><%[ Structure ]%></td>
+                                             <td><%[ Field ]%></td>
+                                             <td><%[ Factor ]%></td>
+                                             <td><%[ Run ]%></td>
+                                             <td><%[ Source ]%></td>
+                                        </tr>
+                               </thead>
+                        </prop:HeaderTemplate>
+                        <prop:FooterTemplate>
+                            </table>
+                        </prop:FooterTemplate>
+                        <prop:ItemTemplate>
+                            <tr>
+                                <td><com:TActiveButton Text="gff" visible="true" CssClass="windowcontent-button" onClick="page.getFeldfunktion" CommandName="getFeldfunktion" CommandParameter=<%#$this->DataItem->idtm_importmapping%> /></td>
+                                <td><com:TActiveLabel ID="lstm_idtm_importmapping" Text=<%#$this->DataItem->idtm_importmapping %> visible="true" /></td>
+                                <td><com:TActiveLabel ID="lstm_ima_id1" Text=<%#$this->DataItem->ima_id1 %> visible="true" /></td>
+                                <td><com:TActiveLabel ID="lstm_ima_id2" Text=<%#$this->DataItem->ima_id2 %> visible="true" /></td>
+                                <td><com:TActiveLabel ID="lstm_ima_id3" Text=<%#$this->DataItem->ima_id3 %> visible="true" /></td>
+                                <td><com:TActiveLabel ID="lstm_ima_id4" Text=<%#$this->DataItem->ima_id4 %> visible="true" /></td>
+                                <td><com:TActiveLabel ID="lstm_ima_id5" Text=<%#$this->DataItem->ima_id5 %> visible="true" /></td>
+                                <td><com:TActiveLabel ID="lstm_ima_id6" Text=<%#$this->DataItem->ima_id6 %> visible="true" /></td>
+                                <td><com:TActiveLabel ID="lstm_ima_id7" Text=<%#$this->DataItem->ima_id7 %> visible="true" /></td>
+                                <td><com:TActiveLabel ID="lstm_ima_id8" Text=<%#$this->DataItem->ima_id8 %> visible="true" /></td>
+                                <td><com:TActiveLabel ID="lstm_ima_id9" Text=<%#$this->DataItem->ima_id9 %> visible="true" /></td>
+                                <td><com:TActiveLabel ID="lstm_ima_id10" Text=<%#$this->DataItem->ima_id10 %> visible="true" /></td>
+                                <td><com:TActiveButton Text=<%#$this->DataItem->idtm_struktur%> visible="true" CssClass="windowcontent-button" onClick="page.FieldapplyStruktur" CommandName="FieldapplyStruktur" CommandParameter=<%#$this->DataItem->idtm_struktur%> /></td>
+                                <td><com:TActiveTextBox ID="lstm_idta_feldfunktion" Text=<%#$this->DataItem->idta_feldfunktion%> visible="true" AutoPostBack="true" onTextChanged="page.SaveCurrentImportMapping" CssClass="mandantorysmall" /></td>
+                                <td><com:TActiveTextBox ID="lstm_ima_faktor" Text=<%#$this->DataItem->ima_faktor%> visible="true" AutoPostBack="true" onTextChanged="page.SaveCurrentImportMapping" CssClass="mandantorysmall" /></td>
+                                <td><com:TActiveTextBox ID="lstm_ima_lauf" Text=<%#$this->DataItem->ima_lauf%> visible="true" AutoPostBack="true" onTextChanged="page.SaveCurrentImportMapping" CssClass="mandantorysmall" /></td>
+                                <td><com:TActiveTextBox ID="lstm_ima_source" Text=<%#$this->DataItem->ima_source%> visible="true" AutoPostBack="true" onTextChanged="page.SaveCurrentImportMapping" CssClass="mandantorysmall" /></td>
+                            </tr>
+                        </prop:ItemTemplate>
+                        <prop:AlternatingItemTemplate>
+                            <tr class="alternating">
+                                <td><com:TActiveButton Text="gff" visible="true" CssClass="windowcontent-button" onClick="page.getFeldfunktion" CommandName="getFeldfunktion" CommandParameter=<%#$this->DataItem->idtm_importmapping%> /></td>
+                                <td><com:TActiveLabel ID="lstm_idtm_importmapping" Text=<%#$this->DataItem->idtm_importmapping %> visible="true" /></td>
+                                <td><com:TActiveLabel ID="lstm_ima_id1" Text=<%#$this->DataItem->ima_id1 %> visible="true" /></td>
+                                <td><com:TActiveLabel ID="lstm_ima_id2" Text=<%#$this->DataItem->ima_id2 %> visible="true" /></td>
+                                <td><com:TActiveLabel ID="lstm_ima_id3" Text=<%#$this->DataItem->ima_id3 %> visible="true" /></td>
+                                <td><com:TActiveLabel ID="lstm_ima_id4" Text=<%#$this->DataItem->ima_id4 %> visible="true" /></td>
+                                <td><com:TActiveLabel ID="lstm_ima_id5" Text=<%#$this->DataItem->ima_id5 %> visible="true" /></td>
+                                <td><com:TActiveLabel ID="lstm_ima_id6" Text=<%#$this->DataItem->ima_id6 %> visible="true" /></td>
+                                <td><com:TActiveLabel ID="lstm_ima_id7" Text=<%#$this->DataItem->ima_id7 %> visible="true" /></td>
+                                <td><com:TActiveLabel ID="lstm_ima_id8" Text=<%#$this->DataItem->ima_id8 %> visible="true" /></td>
+                                <td><com:TActiveLabel ID="lstm_ima_id9" Text=<%#$this->DataItem->ima_id9 %> visible="true" /></td>
+                                <td><com:TActiveLabel ID="lstm_ima_id10" Text=<%#$this->DataItem->ima_id10 %> visible="true" /></td>
+                                <td><com:TActiveButton Text=<%#$this->DataItem->idtm_struktur%> visible="true" CssClass="windowcontent-button" onClick="page.FieldapplyStruktur" CommandName="FieldapplyStruktur" CommandParameter=<%#$this->DataItem->idtm_struktur%> /></td>
+                                <td><com:TActiveTextBox ID="lstm_idta_feldfunktion" Text=<%#$this->DataItem->idta_feldfunktion%> visible="true" AutoPostBack="true" onTextChanged="page.SaveCurrentImportMapping" CssClass="mandantorysmall" /></td>
+                                <td><com:TActiveTextBox ID="lstm_ima_faktor" Text=<%#$this->DataItem->ima_faktor%> visible="true" AutoPostBack="true" onTextChanged="page.SaveCurrentImportMapping" CssClass="mandantorysmall" /></td>
+                                <td><com:TActiveTextBox ID="lstm_ima_lauf" Text=<%#$this->DataItem->ima_lauf%> visible="true" AutoPostBack="true" onTextChanged="page.SaveCurrentImportMapping" CssClass="mandantorysmall" /></td>
+                                <td><com:TActiveTextBox ID="lstm_ima_source" Text=<%#$this->DataItem->ima_source%> visible="true" AutoPostBack="true" onTextChanged="page.SaveCurrentImportMapping" CssClass="mandantorysmall" /></td>
+                            </tr>
+                        </prop:AlternatingItemTemplate>
+                    </com:TActiveRepeater>                        
+                  </com:TActivePanel>
+            </td>
+        </tr>
+    </table>
+  </com:TWizardStep>
+
+  <com:TWizardStep Title=<%[ Import Data ]%>>
+    <table>
+        <tr>
+            <td colspan="1"><%[ File ]%>:</td>
+            <td colspan="1">
+            </td>
+            <td id="infoboxsmall">
+            <%[ Here you add the file, that will be used as data import ]%>
+            </td>
+        </tr>
+    </table>
+  </com:TWizardStep>
+
+</com:TWizard>
+
+</div></div>
+
+</com:TContent>

@@ -1,0 +1,81 @@
+<%@ MasterClass="Application.layouts.ManualLayout" Title="ProLogIQ - Handbuch - Intro" %>
+
+<com:TContent ID="Navigation">
+	<com:Application.portlets.handbuchportlet Visible="true" />
+</com:TContent>
+
+<com:TContent ID="Main">
+<div id="content">
+
+<h2>Benutzerhandbuch ProLogIQ - ToDo's</h2>
+
+<h3>Offene Punkte</h3>
+
+<p id="2001" class="block-content">
+<ol>
+<li>Ressourcen</li>
+<ul>
+<li>Active Record erzeugen - DONE</li>
+<li>Ansicht erstellen - DONE</li>
+<li>Testen - DONE</li>
+<li>Dokumentation</li>
+<li>Zeiterfassung IST - Die Zeiterfassung erfolgt von jedem User auf Basis der Arbeitspakete, die Buchung auf Aufgaben wird nicht realisiert, da hier einfach zu viel Zeit für die Administration verloren gehen. Daher die Zuweisung auf das jeweilige AP...</li>
+</ul>
+<li>Organisation und Ressourcen</li>
+<ul>
+<li>idtm_ressource auf tm_organisation zufügen und einbinden</li>
+<li>Ansicht erweitern</li>
+<li>Testen</li>
+<li>Dokumentation</li>
+</ul>
+<li>Planung und Struktur</li>
+<ul>
+<li>Daten werden in einem Array zwischengespeichert, dabei wird mit jeder Eingabe ein neuer Zähler im Array genommen, so kann der User vor und zurück navigieren. Am Ende müssen die neuen Werte durch speichern in die Datenbank geschrieben werden.</li>
+</ul>
+<li>Ziele</li>
+<ul>
+<li>Nutzen als statistische Kennzahl einbinden (Skala: 0-100)</li>
+<li>Einrichten einer Ziel-Portfolio Darstellung</li>
+</ul>
+<li>Nachrichten</li>
+<ul>
+    <li>tt_message einrichten, CRUD</li>
+</ul>
+<li>Projektstrukturplan</li>
+<ul>
+    <li>Einrichten der Kosten</li>
+</ul>
+<li>I18N</li>
+<ul>
+    <li>Aufpassen auf Katalog, bei neuer Erstellung messages.en doppelt, 7er zählt</li>
+</ul>
+<li>Importmanager</li>
+<ul>
+    <li>Definition des Importmanager, siehe weasy-importer</li>
+</ul>
+
+<li>Termine</li>
+<ul>
+    <li>Erweiterung der Termine um den Termintyp</li>
+    <li>idta_termin_type in ActiveRecord berücksichtigen</li>
+</ul>
+
+<li>Request for Change</li>
+<ul>
+    <li>tm_changerequest einrichten, CRUD - DONE</li>
+    <li>Verknüpfung auf Dauer bei tm_activity (PSP-Codes)</li>
+</ul>
+<li>Struktur</li>
+<ul>
+    <li>neuen Typ einbinden. calc one way -> bei diesem erfolgt keine Rückrechnung evtl. per ausblenden lösen</li>
+    <li>umstellen des Speichers auf Array, dann mit Schrittzähler und der Möglichkeit "zurück" zu blättern.
+    Am Ende wird dann das Einlesen der Werte durch drücken des speicherns abgeschlossen.</li>
+    <li>Um den Cash-Flow berechnen zu können, benötige ich einen Elementyp mit Anfangsbestand, Zuordnungen und Endbestand. Dort können dann auch noch Zahlungsspektren hinterlegt werden.</li>
+    <li>Cash-Flow-Schema errechnen</li>
+</ul>
+</ol>
+</p>
+
+</div>
+
+<div class="last-modified">$Id: introduction.page 20090206 philipp $</div></com:TContent>

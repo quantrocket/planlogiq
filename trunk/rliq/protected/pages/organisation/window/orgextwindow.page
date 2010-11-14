@@ -1,0 +1,71 @@
+<%@ MasterClass="Application.layouts.WindowLayout" Title="Adressen" %>
+
+<com:TContent ID="MainWindow">
+
+<com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/Kp_neu_small.jpg"/><br/>
+<fieldset class="alternating">
+    <legend><small>Filter</small></legend>
+<table>
+<tr>
+        <td class="FormLabel"><%[ Suchkriterium ]%>: </td>
+        <td><com:TActiveTextBox Id="WINOrgaorg_name" Text="" AutoPostback="true" OnCallback="bindListOrgListe" CssClass="inputnormal" /></td>
+    </tr>
+<tr>
+        <td class="FormLabel">Typ: </td>
+        <td><com:TActiveDropDownList Id="WINOrgaidta_organisation_type" AutoPostback="true" OnCallback="bindListOrgListe" CssClass="inputnormal" /></td>
+    </tr>
+</table>
+</fieldset>
+<div class="mytoolbar"><%[ Organisationen ]%>
+<%[ Blättern ]%>: <com:TActivePager
+                ID="PagerOrgListe"
+                ControlToPaginate="OrgListe"
+                PageButtonCount="7"
+                CssClass="pager"
+                Mode="Numeric"
+                OnPageIndexChanged="dtgList_PageIndexChanged"/>
+</div>
+    <com:TActiveRepeater DataKeyField="idtm_organisation"
+                         ID="OrgListe"
+                         AllowPaging="true"
+                         PageSize="25"
+                         CssClass="datagrid">
+        
+        <prop:HeaderTemplate>
+            <table width="100%">
+                <tr class="thead">
+                    <td>Action</td>
+                    <td>I-Key</td>
+                    <td>Anrede</td>
+                    <td>Name</td>
+                    <td>Vorname</td>
+                    <td>Status</td>
+                    <td>Done</td>
+                 </tr>
+        </prop:HeaderTemplate>
+        
+        <prop:ItemTemplate>
+            <tr onMouseOver="setRowBackground(this,'#c3e3ef')" 
+                onMouseOut="setRowBackground(this,this.style.backgroundColor)"
+                ondblclick="pass_value_to_parent('<%#$this->getRequest()->constructUrl('page','organisation.orgworkspace').'&idtm_organisation='.$this->Data->idtm_organisation%>')"
+                class="<%# $this->ItemIndex%2?'alternating':'nonealternating' %>">
+                <td width="30px">
+                    <a href="javascript:pass_value_to_parent('<%#$this->getRequest()->constructUrl('page','organisation.orgworkspace').'&idtm_organisation='.$this->Data->idtm_organisation%>')">view</a>
+                </td>
+                <td width="60px"><com:TActiveLabel Text=<%#$this->Data->org_fk_internal%>/></td>
+                <td width="60px"><com:TActiveLabel Text=<%#$this->Data->org_anrede%>/></td>
+                <td><com:TActiveLabel Text=<%#$this->Data->org_name%>/></td>
+                <td><com:TActiveLabel Text=<%#$this->Data->org_vorname%>/></td>
+                <td><com:TActiveLabel Text=<%#$this->Data->org_status%>/></td>
+                <td><com:TActiveCheckBox/></td>
+            </tr>
+         </prop:ItemTemplate>
+
+        <prop:FooterTemplate>
+            </table>
+        </prop:FooterTemplate>
+
+
+    </com:TActiveRepeater>
+
+</com:TContent>

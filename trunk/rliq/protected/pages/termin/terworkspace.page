@@ -1,0 +1,272 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="RiskLogIQ" %>
+
+<com:TContent ID="HeaderJavascript">
+
+function initDHTMLXTabbars(TabbarObject){
+    TabbarObject.addTab("a1","Kalender",150);
+    TabbarObject.setContent("a1", "tabhtml_1");
+
+    TabbarObject.addTab("a2","Terminliste",150);
+    TabbarObject.setContent("a2", "tabhtml_2");
+
+    TabbarObject.addTab("a3","Ressourcen",150);
+    TabbarObject.setContent("a3", "tabhtml_3");
+
+    TabbarObject.setTabActive("a1");
+
+    dhxLayout.cells("b").setText("Termin Details");
+    dhxLayout.cells("b").setWidth(390);
+}
+
+</com:TContent>
+
+<com:TContent ID="Navigation">
+
+<div id="custom_form" style="display:auto;">
+
+<div class="mytoolbar">
+|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" OnCallback="TNewButtonClicked"/><com:TActiveButton OnCallback="TNewButtonClicked" Text=<%[ neu ]%> CssClass="windowcontent-button" />
+|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/filesave.png" OnCallback="TSavedButtonClicked"/><com:TActiveButton OnCallback="TSavedButtonClicked" Text=<%[ speichern ]%> CssClass="windowcontent-button" />
+|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/editdelete.png" OnCallback="TDeleteButtonClicked"/><com:TActiveButton OnCallback="TDeleteButtonClicked" Text=<%[ entfernen ]%> CssClass="windowcontent-button" />
+</div>
+
+
+<fieldset width="98%">
+    <legend>Termin Optionen</legend>
+<table width="100%">
+
+<tr>
+<td class="FormLabel">Betreff:</td>
+<td><com:TActiveTextBox Id="ter_betreff" CssClass="mandantorylarge"/>
+<com:TTooltip forControl="ter_betreff">
+        <prop:Text>
+                Thema?
+        </prop:Text>
+</com:TTooltip>
+</td>
+</tr>
+<tr>
+<td class="FormLabel">
+    Ort:
+</td>
+<td>
+<com:TActiveTextBox Id="ter_ort" CssClass="mandantorylarge"/>
+<com:TTooltip forControl="ter_ort">
+        <prop:Text>
+                Wo?
+        </prop:Text>
+</com:TTooltip>
+</td>
+</tr>
+
+<tr>
+<td valign="top" class="FormLabel">Start um:</td>
+<td valign="top">
+<com:TActiveDatePicker Id="ter_startdate"
+    Mode="ImageButton"
+    DateFormat="yyyy-MM-dd"
+    InputMode="TextBox"
+    onCallback="StartDateChanged"/>
+Zeit(00:00):<com:PTimeSelection Id="ter_starttime"/>
+<com:TTooltip forControl="ter_starttime">
+        <prop:Text>
+                Wann?
+        </prop:Text>
+</com:TTooltip>
+</td>
+</tr>
+<tr>
+<td class="FormLabel">PSP Element:</td>
+<td valign="top">
+    <com:PActivitySelection Id="idtm_activity" StartPunkt="2" StartKnoten="0"/>
+</td>
+</tr>
+
+<tr>
+<td class="FormLabel" valign="top">Ende um:</td>
+<td valign="top"><com:TActiveDatePicker Id="ter_enddate"
+    Mode="ImageButton"
+    DateFormat="yyyy-MM-dd"
+    InputMode="TextBox" />
+Zeit(00:00):<com:PTimeSelection Id="ter_endtime"/>
+<com:TTooltip forControl="ter_endtime">
+        <prop:Text>
+                Bis?
+        </prop:Text>
+</com:TTooltip>
+</td>
+</tr>
+
+<tr>
+<td class="FormLabel">Beschreibung:</td>
+<td><com:TActiveTextBox Id="ter_descr" TextMode="MultiLine" Width="250px"/>
+<com:TTooltip forControl="ter_descr">
+        <prop:Text>
+                Beschreibung...
+        </prop:Text>
+</com:TTooltip>
+</td>
+</tr>
+
+</table>
+
+</fieldset>
+</div>
+
+<div class="mytoolbar">
+        Teilnehmer: <com:POrganisationSelection Id="ttidtm_organisation" />
+        <com:TActiveImageButton Id="addParticipant" ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" onClick="addParticipant"/>
+</div>
+
+<table border="0" cellpadding="0" cellspacing="0" width="100%" style="background-color:#ffffff;">
+
+<tr><td>
+<com:TActiveDataGrid ID="ParticipantListe" AllowPaging="false" AllowSorting="false" PageSize="50" OnPageIndexChanged="participant_PageIndexChanged" OnEditCommand="removeParticipant" AutoGenerateColumns="false" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+    <com:TActiveBoundColumn ID="lstpart_idtm_termin_organisation" DataField="idtm_termin_organisation" HeaderText="ID" SortExpression="idtm_termin_organisation" />
+    <com:TActiveBoundColumn ID="lstpart_idtm_organisation" DataField="idtm_organisation" HeaderText="OID" />
+    <com:TActiveBoundColumn ID="lstpart_org_name" DataField="org_name" HeaderText="Name" />
+    <com:TActiveBoundColumn ID="lstpart_org_vorname" DataField="org_vorname" HeaderText="PreName" />
+    <com:TActiveEditCommandColumn HeaderText="SELECT" HeaderStyle.Width="70px" UpdateText="Save" EditText="remove" CancelText="Cancel"/>
+</com:TActiveDataGrid>
+</td></tr>
+
+</table>
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<div id="tabhtml_1" style="overflow:auto;height:100%;width:100%;">
+        <div id="scheduler_here" class="dhx_cal_container" style='width:100%; height:100%;'>
+                <div class="dhx_cal_navline">
+			<div class="dhx_cal_prev_button">&nbsp;</div>
+			<div class="dhx_cal_next_button">&nbsp;</div>
+			<div class="dhx_cal_today_button"></div>
+			<div class="dhx_cal_date"></div>
+			<div class="dhx_cal_tab" name="day_tab" style="right:204px;"></div>
+			<div class="dhx_cal_tab" name="week_tab" style="right:140px;"></div>
+			<div class="dhx_cal_tab" name="month_tab" style="right:76px;"></div>
+		</div>
+		<div class="dhx_cal_header">
+		</div>
+		<div class="dhx_cal_data">
+		</div>
+        </div>
+
+<script type="text/javascript">
+    scheduler.config.xml_date="%Y-%m-%d %H:%i";
+    scheduler.config.prevent_cache = true;
+    scheduler.config.first_hour=6;
+    scheduler.init('scheduler_here',null,'month');
+    scheduler.load('<%=$this->getRequest()->constructUrl('page','termin.TerminConnector')%>');
+</script>
+</div>
+
+<div id="tabhtml_2" style="overflow:auto;height:100%;background:#EBEEFA">
+    <div style="overflow:hidden">
+
+<fieldset>
+    <legend>Termine</legend>
+
+        <div class="mytoolbar">
+            Projektfilter: <com:TActiveDropDownList Id="FFidtm_activity"
+                CssClass="mandantory"
+                OnCallBack="bindListTermin"/>
+            Suchen: <com:TActiveTextBox Id="find_termin" />
+            <com:TImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/about_kde.png" /><com:TActiveButton Text="search" OnClick="searchTermin" CssClass="windowcontent-button"/>
+            <com:TActivePager
+                ID="CCPagerTerminRepeater"
+                ControlToPaginate="TerminListe"
+                PageButtonCount="5"
+                CssClass="pager"
+                Mode="Numeric"
+                OnPageIndexChanged="terminList_PageIndexChanged"/>
+        </div>
+
+<table width="100%" style="background-color:#ffffff;" border="0" cellpadding="0" cellspacing="0">
+
+<tr>
+<td colspan="4">
+<com:TActiveRepeater ID="TerminListe"
+    PageSize="5"
+    AllowPaging="true"
+    DataKeyField="idtm_termin">
+	<prop:HeaderTemplate>
+		<table width="100%">
+	</prop:HeaderTemplate>
+
+	<prop:FooterTemplate>
+		</table>
+	</prop:FooterTemplate>
+
+	<prop:ItemTemplate>
+                <tr>
+                    <td class="datesheader" style="width:200px"><%[ Dates ]%>: <%# $this->DataItem->ter_betreff %></td>
+                    <td class=<%# $this->ItemIndex%2?'alternating':'nonealternating' %>>&nbsp;</td>
+                </tr>
+		<tr>
+                   <td colspan="2">
+                     <table width="100%" border="0" cellpadding="0" cellspacing="0"><tr>
+                        <td width="120" class=<%#$this->DataItem->ter_startdate<date('Y-m-d')?'PSPFAZ':'PSPFEZ' %>>
+                            <table><tr><td><small>Von - Bis</small></td></tr>
+                                <tr><td><strong><com:TActiveLabel ID="ter_starttime" Text=<%# $this->DataItem->ter_starttime %> /> - <com:TActiveLabel ID="ter_endtime" Text=<%# $this->DataItem->ter_endtime %> /></strong></td></tr>
+                                <tr><td><com:TActiveLabel ID="ter_startdate" Text=<%# $this->DataItem->ter_startdate %> /></td></tr>
+                            </table>
+                        </td>
+                        <td style="width:90px">
+                            <com:TActiveLinkButton CssClass="wcbutton" Text="anzeigen" OnClick="page.load_termin" CommandParameter=<%# $this->DataItem->idtm_termin %> />
+                            <br/><br/><span class="wcbutton">
+                                <com:TActiveHyperLink NavigateUrl="javascript:win_organisation_openwin('<%=$this->getRequest()->constructUrl('page','iCalendar.PFCalendarEntry')%>&idtm_termin=<%#$this->DataItem->idtm_termin%>')" id="icalExport" Text=<%[ iCal ]%> />
+                            </span>
+                        </td>
+                        <td colspan="2" valign="top" class=<%# $this->ItemIndex%2?'alternating':'nonealternating' %>><com:TActiveTextBox ID="idtm_termin" Text=<%# $this->DataItem->idtm_termin %> CssClass="hiddeninput" visible="false" />
+                        <com:TActiveLabel ID="ter_descr" Text=<%# $this->DataItem->ter_descr %> /></td>
+                      </tr>
+                     </table>
+                    </td>
+		</tr>
+	</prop:ItemTemplate>
+
+</com:TActiveRepeater>
+
+
+<com:TActiveTextBox id="termin_edit_status" Text="0" CssClass="hiddeninput" visible="false" />
+<com:TActiveTextBox id="idtm_termin" CssClass="hiddeninput" visible="false" />
+<com:TActiveTextBox id="idta_termin_type" CssClass="hiddeninput" visible="false" Text="1" />
+</td>
+</tr>
+
+</table>
+
+</fieldset>
+</div></div><!--ende tab1/-->
+
+<div id="tabhtml_3" style="overflow:auto;height:100%">
+    <div style="overflow:hidden">
+
+<!-- Hier startet die Auswahl der Ressourcen -->
+<table width="100%">
+
+<tr>
+<td>
+    <div class="mytoolbar">
+        Ressourcen:
+        <com:TActiveDropDownList Id="ttidtm_ressource" /><com:TActiveImageButton Id="addRessource" ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" onClick="addRessource" />
+    </div>
+</td>
+</tr>
+
+<tr><td>
+<com:TActiveDataGrid ID="RessourceListe" AllowPaging="true" AllowSorting="false" PageSize="10" onSortCommand="dtgList_SortCommand"  OnPageIndexChanged="ressource_PageIndexChanged" OnEditCommand="removeRessource" OnUpdateCommand="dtgList_UpdateCommand" OnCancelCommand="dtgList_CancelCommand" AutoGenerateColumns="false" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+    <com:TActiveBoundColumn ID="lstpart_idtm_termin_ressource" DataField="idtm_termin_ressource" HeaderText="ID" SortExpression="idtm_termin_ressource" />
+    <com:TActiveBoundColumn ID="lstpart_idtm_ressource" DataField="idtm_ressource" HeaderText="Res. ID" />
+    <com:TActiveBoundColumn ID="lstpart_res_name" DataField="res_name" HeaderText="Name" />
+    <com:TActiveEditCommandColumn HeaderText="SELECT" HeaderStyle.Width="100px" UpdateText="Save" EditText="remove" CancelText="Cancel"/>
+</com:TActiveDataGrid>
+</td></tr>
+
+</table>
+<!-- Hier endet die Auswahl der Ressourcen -->
+</div></div>
+
+</com:TContent>

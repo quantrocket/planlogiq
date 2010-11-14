@@ -1,0 +1,8 @@
+.defaultTooltip {
+        position: relative;
+	padding: 5px;
+	background-color: #ffffcc;
+	border: 1px solid black;
+	font: normal 10px Verdana;
+	-moz-opacity: 0.8;
+}

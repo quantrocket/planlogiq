@@ -1,0 +1,162 @@
+<%@ Title="GSProcurement - Waren neu" %>
+ 
+<com:TContent ID="Main">
+
+<com:TMultiView ID="viewPanel" ActiveViewIndex="0">
+
+<com:TView ID="neu_Waren"> 
+<com:TTabPanel>
+<com:TTabView id="NEWTAB" Caption="Neue Ware">
+
+<p id="infobox">Hier legen Sie neue Waren an, bitte beachten Sie, dass Sie jede Ware als Einzelposition anlegen müssen. Zur Vorbereitung der Logitikausschreibung haben Sie später die Möglichkeit einen Warenkorb zu füllen.</p>
+
+<table>
+
+<tr>
+<td>Artikelnummer/ Bezeichnung:</td>
+<td><com:TActiveTextBox Id="waren_artikelnummer" />
+<com:TActiveTextBox Id="waren_bezeichnung" /></td>
+<td>EAN:</td>
+<td><com:TActiveTextBox Id="waren_ean" /></td>
+</tr>
+
+<tr>
+<td>Beschreibung:</td>
+<td><com:TActiveTextBox Id="waren_beschreibung" TextMode="MultiLine" /></td>
+<td>Kategorie:</td>
+<td><com:TActiveDropDownList Id="idtm_waren_kategorie" /></td>
+</tr>
+
+<tr>
+<td>Menge/Gewicht:</td>
+<td><com:TActiveTextBox Id="waren_menge" />/<com:TActiveTextBox Id="waren_gewicht" /></td>
+<td>Preis:</td>
+<td><com:TActiveTextBox Id="waren_preis" /> Typ: <com:TActiveDropDownList Id="idtm_preis_kategorie" /><com:TActiveImage ID="TT1_PIC" ImageUrl="/gsprocurement/themes/basic/gfx/16x16/actions/info.png" /></td>
+</tr>
+
+<tr>
+<td colspan="1">Gültig bis:</td>
+<td colspan="3"><com:TDatePicker Id="waren_dat_lb" Mode="ImageButton" DateFormat="yyyy-MM-dd" InputMode="DropDownList" /></td>
+</tr>
+
+<tr>
+<td colspan="1">B/A</td>
+<td colspan="3">
+<com:TActiveDropDownList Id="waren_typ">
+	<com:TListItem Value="1" Text="Bedarf" />
+  	<com:TListItem Value="2" Text="Angebot" Selected="true" />
+</com:TActiveDropDownList>
+</td>
+</tr>
+
+</table>
+
+<p id="infobox">Bitte wählen Sie den Standort aus, an dem die Ware liegt oder an dem die Ware benötigt wird.</p>
+
+<com:XActiveDataGrid ID="AdresseListe" AllowPaging="true" AllowSorting="false" AllowCustomPaging="true" PageSize="5" onSortCommand="dtgList_SortCommand"  OnPageIndexChanged="dtgList_PageIndexChanged" OnEditCommand="dtgList_EditCommand" OnUpdateCommand="dtgList_UpdateCommand" OnCancelCommand="dtgList_CancelCommand" AutoGenerateColumns="false" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+	<com:XActiveBoundColumn ID="lst_idta_adresse" DataField="idta_adresse" HeaderText="ID" SortExpression="idta_adresse" />
+	<com:XActiveBoundColumn ID="lst_adresse_zip" DataField="adresse_zip" HeaderText="PLZ" />
+	<com:XActiveBoundColumn ID="lst_adresse_street" DataField="adresse_street" HeaderText="Strasse" />
+	<com:XActiveBoundColumn ID="lst_adresse_town" DataField="adresse_town" HeaderText="Stadt" />
+	<com:XActiveEditCommandColumn HeaderText="SELECT" HeaderStyle.Width="100px" UpdateText="Save" EditText="Select" CancelText="Cancel"/>
+</com:XActiveDataGrid>
+
+Ausgewählt: <b><com:TActiveLabel Id="idta_adresse_label" /></b>
+<com:TActiveLabel Id="idta_adresse" />
+<br />
+
+<com:THiddenField id="idta_waren" />
+<com:TButton Text="Save" OnClick="insertButtonClicked" CssClass="submit"/>
+</com:TTabView>
+</com:TTabPanel>
+</com:TView>
+
+<com:TView ID="edit_Waren"> 
+<com:TTabPanel>
+<com:TTabView id="EDITTAB" Caption="Ware editieren">
+
+<p id="infobox">Hier können Sie die Informationen zur angebotenen oder benötigten Ware ändern...</p>
+
+<table>
+
+<tr>
+<td>Artikelnummer/ Bezeichnung:</td>
+<td><com:TActiveTextBox Id="edwaren_artikelnummer" />
+<com:TActiveTextBox Id="edwaren_bezeichnung" /></td>
+<td>EAN:</td>
+<td><com:TActiveTextBox Id="edwaren_ean" /></td>
+</tr>
+
+<tr>
+<td>Beschreibung:</td>
+<td><com:TActiveTextBox Id="edwaren_beschreibung" TextMode="MultiLine" /></td>
+<td>Kategorie:</td>
+<td><com:TActiveDropDownList Id="edidtm_waren_kategorie" /></td>
+</tr>
+
+<tr>
+<td>Menge/Gewicht:</td>
+<td><com:TActiveTextBox Id="edwaren_menge" />/<com:TActiveTextBox Id="edwaren_gewicht" /></td>
+<td>Preis:</td>
+<td><com:TActiveTextBox Id="edwaren_preis" /> Typ: <com:TActiveDropDownList Id="edidtm_preis_kategorie" /><com:TActiveImage ID="edTT1_PIC" ImageUrl="/gsprocurement/themes/basic/gfx/16x16/actions/info.png" /></td>
+</tr>
+
+<tr>
+<td colspan="1">Gültig bis:</td>
+<td colspan="3"><com:TDatePicker Id="edwaren_dat_lb" Mode="ImageButton" DateFormat="yyyy-MM-dd" InputMode="DropDownList" /></td>
+</tr>
+
+<tr>
+<td colspan="1">B/A</td>
+<td colspan="3">
+<com:TActiveDropDownList Id="edwaren_typ">
+	<com:TListItem Value="1" Text="Bedarf" />
+  	<com:TListItem Value="2" Text="Angebot" Selected="true" />
+</com:TActiveDropDownList>
+</td>
+</tr>
+
+</table>
+
+<p id="infobox">Bitte wählen Sie den Standort aus, an dem die Ware liegt oder an dem die Ware benötigt wird.</p>
+
+<com:XActiveDataGrid ID="edAdresseListe" AllowPaging="true" AllowSorting="false" AllowCustomPaging="true" PageSize="5" onSortCommand="eddtgList_SortCommand"  OnPageIndexChanged="eddtgList_PageIndexChanged" OnEditCommand="eddtgList_EditCommand" OnUpdateCommand="eddtgList_UpdateCommand" OnCancelCommand="eddtgList_CancelCommand" AutoGenerateColumns="false" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+	<com:XActiveBoundColumn ID="edlst_idta_adresse" DataField="idta_adresse" HeaderText="ID" SortExpression="idta_adresse" />
+	<com:XActiveBoundColumn ID="edlst_adresse_zip" DataField="adresse_zip" HeaderText="PLZ" />
+	<com:XActiveBoundColumn ID="edlst_adresse_street" DataField="adresse_street" HeaderText="Strasse" />
+	<com:XActiveBoundColumn ID="edlst_adresse_town" DataField="adresse_town" HeaderText="Stadt" />
+	<com:XActiveEditCommandColumn HeaderText="SELECT" HeaderStyle.Width="100px" UpdateText="Save" EditText="Select" CancelText="Cancel"/>
+</com:XActiveDataGrid>
+
+Ausgewählt: <b><com:TActiveLabel Id="edidta_adresse_label" /></b>
+<com:TActiveLabel Id="edidta_adresse" />
+<br />
+
+<com:THiddenField id="edidta_waren" />
+<com:TButton Text="Save" OnClick="editButtonClicked" CssClass="submit"/>
+</com:TTabView>
+</com:TTabPanel>
+</com:TView>
+
+
+
+</com:TMultiView>
+
+<com:TTooltip ID="edTT1_TT" forControl="TT1_PIC">
+<prop:Text>min = Mindestpreis<br>
+max = Maxpreis<br>
+fix = Fixpreis<br>
+vhb = nach Absprache
+</prop:Text>
+</com:TTooltip>
+
+<com:TTooltip ID="TT1_TT" forControl="TT1_PIC">
+<prop:Text>min = Mindestpreis<br>
+max = Maxpreis<br>
+fix = Fixpreis<br>
+vhb = nach Absprache
+</prop:Text>
+</com:TTooltip>
+ 
+
+</com:TContent>

@@ -1,0 +1,1 @@
+c:/xampp/php/php.exe wsdl2php.php http://127.0.0.1:8082/QVMailerExecutionService/QVMailerWS/WSDL

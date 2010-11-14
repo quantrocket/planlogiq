@@ -1,0 +1,83 @@
+<!--conf
+<sample>
+              <product version="1.0" edition="std"/>
+                     <modifications>
+                            <modified date="080318"/>
+                     </modifications>
+               </sample>
+ --> 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Open Mode</title>
+	
+	<link rel="stylesheet" type="text/css" href="../../codebase/skins/dhtmlxmenu_dhx_blue.css">
+	
+	<script  src="../../codebase/dhtmlxcommon.js"></script>
+	<script  src="../../codebase/dhtmlxmenu.js"></script>
+</head>
+<body onload="initMenu();">
+<link rel='STYLESHEET' type='text/css' href='../common/style.css'>
+<table cellspacing="0" cellpadding="0" class="sample_header" border="0">
+	<tr valign="middle">
+		<!-- COMPONENT ICON -->
+		<td width="40" align="center"><img src="../common/dhtmlxmenu_icon.gif" border="0"></td>
+		<!-- COMPONENT NAME -->
+		<td width="150" align="left" nowrap="true">Sample: dhtmlxMenu</td>
+		<!-- SAMPLE TITLE -->
+		<td width="0" align="left" nowrap><b>Open Mode</b></td>
+		<!-- LINK TO COMPONENT PAGE -->
+		<td width="0" align="right"><a href="http://www.dhtmlx.com/docs/products/dhtmlxMenu/index.shtml">dhtmlxMenu main page</a></td>
+		<!-- CLOSE BUTTON -->
+		<td width="50"><div class="sample_close"><a href="javascript:void(0);" onclick="self.close();"><img src="../common/sample_close.gif" width="14" height="14" border="0" alt="X"></a></div></td>
+	</tr>
+</table>
+<table border="0" cellspacing="0" cellpadding="0">
+	<th>Web Mode</th>
+	<th>&nbsp;</th>
+	<th>Win Mode</th>
+	<tr>
+		<td width="300"><div id="menuWeb"></div></td>
+		<td width="20">&nbsp;</td>
+		<td width="300"><div id="menuWin"></div></td>
+	</tr>
+</table>
+<div class='sample_code'><div class="hl-main"><pre><span class="hl-code"> 
+ 
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">script</span><span class="hl-brackets">&gt;</span><span class="hl-code"><div class="hl-main"><pre><span class="hl-code"> 
+    </span><span class="hl-comment">//</span><span class="hl-comment"> web mode</span><span class="hl-comment"></span><span class="hl-code">
+    </span><span class="hl-reserved">var</span><span class="hl-code"> </span><span class="hl-identifier">menuWeb</span><span class="hl-code"> = </span><span class="hl-reserved">new</span><span class="hl-code"> </span><span class="hl-identifier">dhtmlXMenuObject</span><span class="hl-brackets">(</span><span class="hl-quotes">&quot;</span><span class="hl-string">menuWeb</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">)</span><span class="hl-code">;
+    ...
+    </span><span class="hl-identifier">menuWeb</span><span class="hl-code">.</span><span class="hl-identifier">setOpenMode</span><span class="hl-brackets">(</span><span class="hl-quotes">&quot;</span><span class="hl-string">web</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">)</span><span class="hl-code">;
+    
+    </span><span class="hl-comment">//</span><span class="hl-comment"> win mode</span><span class="hl-comment"></span><span class="hl-code">
+    </span><span class="hl-reserved">var</span><span class="hl-code"> </span><span class="hl-identifier">menuWin</span><span class="hl-code"> = </span><span class="hl-reserved">new</span><span class="hl-code"> </span><span class="hl-identifier">dhtmlXMenuObject</span><span class="hl-brackets">(</span><span class="hl-quotes">&quot;</span><span class="hl-string">menuWin</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">)</span><span class="hl-code">;
+    ...
+    </span><span class="hl-identifier">menuWin</span><span class="hl-code">.</span><span class="hl-identifier">setOpenMode</span><span class="hl-brackets">(</span><span class="hl-quotes">&quot;</span><span class="hl-string">win</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">)</span><span class="hl-code">;</span></pre></div></span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">script</span><span class="hl-brackets">&gt;</span></pre></div></div>
+
+<br>
+
+<script>
+	var menu1, menu2;
+	function initMenu() {
+		// web mode
+		menu1 = new dhtmlXMenuObject("menuWeb");
+		menu1.setImagePath("../../codebase/imgs/");
+		menu1.setIconsPath("../images/");
+		menu1.setOpenMode("web");
+		menu1.loadXML("../common/dhtmlxmenu.xml?e="+new Date().getTime());
+		// win mode
+		menu2 = new dhtmlXMenuObject("menuWin");
+		menu2.setImagePath("../../codebase/imgs/");
+		menu2.setIconsPath("../images/");
+		menu2.setOpenMode("win");
+		menu2.loadXML("../common/dhtmlxmenu.xml?e="+new Date().getTime());
+	}
+</script>
+
+<!-- FOOTER -->
+<table callspacing="0" cellpadding="0" border="0" class="sample_footer"><tr><td style="padding-left: 8px;">&copy; <a href="http://www.dhtmlx.com">DHTMLX LTD</a>. All rights reserved</td></tr></table>
+<!-- FOOTER -->
+
+</body>

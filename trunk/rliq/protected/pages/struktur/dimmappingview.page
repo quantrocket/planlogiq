@@ -1,0 +1,122 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="planlogIQ - Dimensions Mapping" %>
+
+<com:TContent ID="HeaderJavascript">
+
+function initDHTMLXTabbars(TabbarObject){
+    TabbarObject.addTab("a1","Dimensionen",150);
+    TabbarObject.setContent("a1", "tabhtml_1");
+
+    dhxLayout.cells("b").collapse();
+
+    TabbarObject.setTabActive("a1");
+}
+
+</com:TContent>
+
+<com:TContent ID="Navigation">
+
+<com:Application.portlets.strukturportletsettings Visible="true" Id="strukturportletsettings"/>
+
+</com:TContent>
+
+<com:TContent ID="Main">
+<div id="tabhtml_1" style="overflow:auto;height:100%;background-color:#EBEEFA">
+    <div style="overflow:hidden">
+<div class="mytoolbar">
+|| Stammdaten Gruppe:<com:TActiveDropDownList id="dim_idta_stammdaten_group" 
+                        CssClass="mandantory"
+                        onCallBack="load_fields_mapped_idtm_stammdaten" />
+|| Stammdatensicht:<com:TActiveDropDownList id="dim_idta_stammdatensicht"
+                        DataTextField="sts_name"
+                        DataValueField="idta_stammdatensicht"
+                        DataGroupField="sts_aktiv"
+                        CssClass="mandantory"
+                        onCallBack="load_fields_mapped_idtm_stammdaten" />
+                     <com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/reload.png"
+                        OnCallback="Refresh_dim_idta_stammdaten_group"/>
+                     <%[ manage dimensions ]%>
+                        <com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/find.png"
+                            OnCommand="page.strukturportletsettings.OpenStammdatenGroupContainer"/>
+</div>
+
+<com:TActivePanel id="ACTPanel">
+
+<table><tr><td valign="top">
+
+<fieldset style="background-color:#ffffff;">
+    <legend>categories</legend>
+    <com:TTable id="MyBoxLayout" width="100%">
+        <com:TTableRow>
+            <com:TTableCell>
+                <com:TActiveTextBox id="add_fields_idtm_stammdaten" CssClass="inputnormal" />
+            </com:TTableCell>
+            <com:TTableCell>
+                <com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" OnCommand="AddFieldsButtonClicked" CssClass="windowcontent-button" />
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow>
+            <com:TTableCell VerticalAlign="Top">
+                <com:TActiveListBox ID="fields_idtm_stammdaten" Rows="14" OnSelectedIndexChanged="load_fields_mapped_idtm_stammdaten" CssClass="inputnormal"/>
+            </com:TTableCell>
+            <com:TTableCell VerticalAlign="Top">
+                <com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/remove.png" OnCommand="deleteFieldsButtonClicked" CssClass="windowcontent-button"/>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+</fieldset>
+</td><td valign="top">
+<fieldset style="background-color:#ffffff;">
+    <legend><%[ gewählte Werte ]%></legend>
+    <com:TTable>
+            <com:TTableRow>
+            <com:TTableCell>
+                <com:TActiveTextBox id="search_fields_selected_children_idtm_stammdaten" CssClass="inputnormal" />
+            </com:TTableCell>
+            <com:TTableCell>
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow>
+            <com:TTableCell VerticalAlign="Top">
+                <com:TActiveListBox ID="fields_mapped_idtm_stammdaten" Rows="14" SelectionMode="Multiple" EnableViewState="true" CssClass="inputnormal" AutoPostBack="false"/>
+            </com:TTableCell>
+            <com:TTableCell VerticalAlign="Top">
+                <com:TActiveButton id="addSingle" Text="< add" onCallBack="addSingleStammdatenRecord" CssClass="windowcontent-button" /><br />
+                <hr/>
+                <com:TActiveButton id="removeSingle" Text="rem >" onCallBack="removeSingleStammdatenRecord" CssClass="windowcontent-button" /><br />
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+</fieldset>
+</td><td valign="top">
+<fieldset style="background-color:#ffffff;">
+    <legend><%[ verfügbare Werte ]%>:<com:TActiveLabel ID="LABEL_AVAILABLE_VALUES" Text="..." /></legend>
+    <com:TTable>
+        <com:TTableRow>
+            <com:TTableCell>
+                <com:TActiveTextBox id="search_fields_children_idtm_stammdaten" CssClass="inputnormal" />
+            </com:TTableCell>
+            <com:TTableCell>
+            </com:TTableCell>
+        </com:TTableRow>
+        <com:TTableRow>
+            <com:TTableCell VerticalAlign="Top">
+                <com:TActiveListBox ID="fields_children_idtm_stammdaten" Rows="14" SelectionMode="Multiple" EnableViewState="true" CssClass="inputnormal" AutoPostBack="false"/>
+            </com:TTableCell>
+            <com:TTableCell VerticalAlign="Top">
+                <com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/remove.png" OnCommand="deleteDetailFieldsButtonClicked" CssClass="windowcontent-button"/>
+            </com:TTableCell>
+        </com:TTableRow>
+    </com:TTable>
+</fieldset>
+</td></tr></table>
+</com:TActivePanel>
+<p>
+Gruppe aus CSV-Importieren:
+<com:TFileUpload Id="CSVUploadFileMain" OnFileUpload="fileUploaded" /><com:TButton Text="Upload"  CssClass="windowcontent-button"/>
+</p>
+<p>
+Werte aus CSV-Importieren:
+<com:TFileUpload Id="CSVUploadFile" OnFileUpload="fileUploaded" /><com:TButton Text="Upload" CssClass="windowcontent-button"/>
+</p>
+</div></div>
+</com:TContent>

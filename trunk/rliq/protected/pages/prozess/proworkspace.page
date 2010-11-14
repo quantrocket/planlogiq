@@ -1,0 +1,91 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="planlogIQ" %>
+
+<com:TContent ID="HeaderJavascript">
+
+var IsAdministrator = <%=$this->User->isAdmin?'true':'false'%>;
+
+function initDHTMLXTabbars(TabbarObject){
+
+    TabbarObject.addTab("a1","Prozess",150);
+    TabbarObject.setContent("a1", "tabhtml_1");
+
+    TabbarObject.setTabActive("a1");
+}
+
+</com:TContent>
+
+<com:TContent ID="Navigation">
+
+<table width="100%">
+<tr>
+<td class="portlet-title">
+Werkzeuge
+</td>
+</tr>
+<tr><td>
+<com:TImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" />
+<com:InternalHyperLink id="NewRecord"/>
+</td></tr>
+<tr><td>
+<com:TImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" />
+<com:InternalHyperLink id="NewStepRecord"/>
+</td></tr>
+</table>
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<div id="tabhtml_1" style="overflow:auto;height:100%;background:#EBEEFA">
+        <div style="overflow:hidden">
+
+<table width="100%"><tr><td class="nonealternating">
+
+<%[ search ]%>: <com:TActiveTextBox Id="find_org" /><com:TImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/about_kde.png" /><com:TActiveButton Text="search" OnClick="searchOrg" CssClass="submit"/>
+<com:TActiveDataGrid DataKeyField="idtm_prozess" ID="OrgListe" AllowPaging="true" PagerStyle.Mode="Numeric" PagerStyle.HorizontalAlign="Right" AllowSorting="false" PageSize="25" OnPageIndexChanged="dtgList_PageIndexChanged" onEditCommand="dtgList_editCommand" AutoGenerateColumns="false" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+	<com:TActiveButtonColumn ID="viewDetail" ButtonType="ImageButton" ImageUrl="/rliq/themes/basic/gfx/16x16/actions/find.png" CommandName="update" HeaderText="." HeaderStyle.Width="30px" />
+	<com:TActiveBoundColumn ID="lst_pro_idtm_prozess" DataField="idtm_prozess" HeaderText="ID" SortExpression="idtm_prozess" />
+	<com:TActiveBoundColumn ID="lst_pro_name" DataField="pro_name" HeaderText="Bezeichnung" />
+	<com:TActiveBoundColumn ID="lst_pro_type_name" DataField="protype.pro_type_name" HeaderText="Type" />
+	<com:TActiveBoundColumn ID="lst_pro_parent" DataField="parent_idtm_prozess" HeaderText="P-ID" HeaderStyle.Width="40px" />
+	<com:TActiveEditCommandColumn HeaderText="Update" HeaderStyle.Width="100px" UpdateText="Save" EditText="Edit" CancelText="Cancel"/>
+</com:TActiveDataGrid>
+
+</td>
+</tr></table>
+
+<com:TTabPanel>
+<com:TTabView id="pozessdetail" Caption="Teilprozesse">
+
+<com:TActiveDataGrid ID="ProListe" AllowPaging="true" AllowSorting="false" AllowCustomPaging="true" PageSize="100" onUpdateCommand="bindListProStepListe" onSortCommand="proList_SortCommand" OnPageIndexChanged="proList_PageIndexChanged" onEditCommand="proList_editCommand" AutoGenerateColumns="false" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+	<com:TActiveButtonColumn ID="viewDetailPro" ButtonType="ImageButton" ImageUrl="/rliq/themes/basic/gfx/16x16/actions/next.png" CommandName="update" HeaderText="." Text="V" HeaderStyle.Width="30px" />
+	<com:TActiveBoundColumn ID="lst_propro_idtm_prozess" DataField="idtm_prozess" HeaderText="ID" SortExpression="idtm_prozess" />
+	<com:TActiveBoundColumn ID="lst_propro_name" DataField="pro_name" HeaderText="Bezeichnung" />
+	<com:TActiveBoundColumn ID="lst_propro_type_name" DataField="protype.pro_type_name" HeaderText="Type" />
+	<com:TActiveBoundColumn ID="lst_propro_step" DataField="pro_step" HeaderText="Order" />
+	<com:TActiveBoundColumn ID="lst_propro_parent" DataField="parent_idtm_prozess" HeaderText="P-ID" HeaderStyle.Width="40px" />
+	<com:TActiveEditCommandColumn HeaderText="Update" HeaderStyle.Width="100px" UpdateText="Save" EditText="Edit" CancelText="Cancel"/>
+</com:TActiveDataGrid>
+
+</com:TTabView>
+
+</com:TTabPanel>
+
+<com:TTabPanel>
+<com:TTabView id="pozessschrittdetail" Caption="Prozessschritte">
+
+<com:TActiveDataGrid ID="ProStepListe" AllowPaging="true" AllowSorting="false" AllowCustomPaging="true" PageSize="100" onSortCommand="prostepList_SortCommand" OnPageIndexChanged="prostepList_PageIndexChanged" onEditCommand="prostepList_editCommand" AutoGenerateColumns="false" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+	<com:TActiveBoundColumn ID="lst_prostep_idtm_prozess_step" DataField="idtm_prozess_step" HeaderText="ID" SortExpression="idtm_prozess" HeaderStyle.Width="30px" />
+	<com:TActiveBoundColumn ID="lst_prostep_name" DataField="prostep_name" HeaderText="Bezeichnung" />
+	<com:TActiveBoundColumn ID="lst_prostep_descr" DataField="prostep_descr" HeaderText="Text" HeaderStyle.Width="300px" />
+	<com:TActiveBoundColumn ID="lst_prostep_parent_idtm_prozess_step" DataField="parent_idtm_prozess_step" HeaderText="Order" HeaderStyle.Width="40px" />
+	<com:TActiveBoundColumn ID="lst_prostep_idtm_prozess" DataField="idtm_prozess" HeaderText="TP-ID" HeaderStyle.Width="40px" />
+	<com:TActiveEditCommandColumn HeaderText="Update" HeaderStyle.Width="100px" UpdateText="Save" EditText="Edit" CancelText="Cancel"/>
+</com:TActiveDataGrid>
+
+</com:TTabView>
+</com:TTabPanel>
+
+</div></div>
+
+</com:TContent>

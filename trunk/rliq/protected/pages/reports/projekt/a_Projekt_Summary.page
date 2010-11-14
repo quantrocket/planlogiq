@@ -1,0 +1,409 @@
+<%@ MasterClass="Application.layouts.TextReportLayout" Title="RiskLogIQ" %>
+
+<com:TContent ID="Main">
+
+<h1>Projektbericht</h1>
+
+<table width="100%"><tr><td>
+
+<h2>Projektorganisation</h2>
+
+<com:TRepeater ID="RepOrganisation"
+    AllowPaging="false"
+    AllowCustomPaging="true"
+    PageSize="1000"
+    EnableViewState="false"
+    OnItemDataBound="bindRepeaterOrganisation2">
+	
+	<prop:HeaderTemplate>
+		<table width="100%">
+	</prop:HeaderTemplate>
+	
+	<prop:ItemTemplate>
+		<tr style="background-color:#cdcdcd">
+			<td width="140px">Organisation:</td>
+			<td><com:TLiteral Text="<%#$this->data->org_name%>" /></td>
+			<td><com:TLiteral Text="<%#$this->data->idtm_organisation%>" /></td>
+		</tr>
+		<tr><td colspan="3">
+		
+	<!--Organisation Level2/-->
+	
+		<com:TRepeater ID="RepOrganisation2" OnItemDataBound="page.bindRepeaterOrganisation3" EnableViewState="false">
+		
+			<prop:HeaderTemplate>
+				<table width="100%">
+			</prop:HeaderTemplate>
+			
+			<prop:ItemTemplate>
+			<tr>
+				<td width="150px" style="background-color:#dedede"><com:TLiteral Text="<%#$this->data->org_name%>" /></td>
+				<td>
+			
+					<!-- Organisation Level3 /-->
+					
+				<com:TRepeater ID="RepOrganisation3" OnItemDataBound="page.bindRepeaterOrganisation4" EnableViewState="false">
+				
+					<prop:HeaderTemplate>
+						<table width="100%">
+					</prop:HeaderTemplate>
+					
+					<prop:ItemTemplate>
+						<tr style="background-color:#efefef">
+							<td width="180px">Team:</td>
+							<td><com:TLiteral Text="<%#$this->data->org_name%>" /></td>
+						</tr>
+					
+						<tr><td colspan="2">
+					
+					<!-- Organisation Level4 /-->				
+					
+						<com:TRepeater ID="RepOrganisation4" EnableViewState="false">
+						
+							<prop:HeaderTemplate>
+								<table width="100%">
+								<thead>
+									<tr>
+										<td width="180">Name</td>
+										<td width="180">Mail</td>
+										<td>Rolle</td>
+										<td>Esk. Stufe</td>
+									</tr>
+									<tr>
+										<td colspan="4">Kommunikationsziel</td>
+									</tr>
+								</thead>
+							</prop:HeaderTemplate>
+							
+							<prop:ItemTemplate>
+							
+							<tr style="background-color:#ffffff">
+								<td><com:TLiteral Text="<%#$this->data->org_name%>" /></td>
+								<td><com:TLiteral Text="<%#$this->data->org_mail%>" /></td>
+								<td><com:TLiteral Text="<%#UserRoleRecord::finder()->findByPK($this->data->org_idtm_user_role)->user_role_name%>" /></td>
+								<td><com:TLiteral Text="<%#$this->data->org_eskalation%>" /></td>
+							</tr>
+							<tr>
+								<td colspan="4" style="border-bottom:1px double grey;"><com:TLiteral Text="<%#$this->data->org_kommunikation%>" /></td>
+							</tr>
+							
+							</prop:ItemTemplate>
+							
+							<prop:FooterTemplate>
+								</table>
+							</prop:FooterTemplate>
+							
+						</com:TRepeater>
+							
+					<!-- Organisation Level4 /-->
+					
+					</td></tr>
+					
+					</prop:ItemTemplate>
+					
+					<prop:FooterTemplate>
+						</table>
+					</prop:FooterTemplate>
+					
+				</com:TRepeater>
+						
+			<!-- Organisation Level3 /-->
+			
+			<!-- Organisation Level5 nur falls es kein team gibt/-->
+												
+					
+						<com:TRepeater ID="RepOrganisation4" EnableViewState="false">
+						
+							<prop:HeaderTemplate>
+								<table width="100%">
+								<thead>
+									<tr>
+										<td width="180">Name</td>
+										<td width="180">Mail</td>
+										<td>Rolle</td>
+										<td>Esk. Stufe</td>
+									</tr>
+									<tr>
+										<td colspan="4">Kommunikationsziel</td>
+									</tr>
+								</thead>
+							</prop:HeaderTemplate>
+							
+							<prop:ItemTemplate>
+							
+							<tr style="background-color:#ffffff">
+								<td><com:TLiteral Text="<%#$this->data->org_name%>" /></td>
+								<td><com:TLiteral Text="<%#$this->data->org_mail%>" /></td>
+								<td><com:TLiteral Text="<%#UserRoleRecord::finder()->findByPK($this->data->org_idtm_user_role)->user_role_name%>" /></td>
+								<td><com:TLiteral Text="<%#$this->data->org_eskalation%>" /></td>
+							</tr>
+							<tr>
+								<td colspan="4" style="border-bottom:1px double grey;"><com:TLiteral Text="<%#$this->data->org_kommunikation%>" /></td>
+							</tr>
+							
+							</prop:ItemTemplate>
+							
+							<prop:FooterTemplate>
+								</table>
+							</prop:FooterTemplate>
+							
+						</com:TRepeater>
+							
+			<!-- Organisation Level5 /-->
+					
+			</td></tr>
+			
+			</prop:ItemTemplate>
+			
+			<prop:FooterTemplate>
+				</table>
+			</prop:FooterTemplate>
+			
+		</com:TRepeater>
+		<!-- Organisation Level2 /-->
+		
+		</td></tr>
+	
+	</prop:ItemTemplate>
+
+<!-- Ende des Repeater Organisation /-->	
+	
+	<prop:FooterTemplate>
+		</table>
+	</prop:FooterTemplate>
+
+</com:TRepeater>
+<!-- Ende des Organisationsabschnittes /-->	
+
+<!-- Anfang des Projektzielabschnittes -->
+
+<h2>Projektziele</h2>
+
+<com:TRepeater ID="RepZiele"
+    AllowPaging="false"
+    AllowCustomPaging="true"
+    PageSize="1000"
+    EnableViewState="false"
+    OnItemDataBound="bindRepeaterZiele2">
+	
+	<prop:HeaderTemplate>
+		<table width="100%">
+	</prop:HeaderTemplate>
+	
+	<prop:ItemTemplate>
+		<tr style="background-color:#bcbcbc">
+			<td width="140px">Globalziel:</td>
+			<td><com:TLiteral Text="<%#$this->data->zie_name%>" /></td>
+		</tr>
+		<tr>
+			<td colspan="2"><com:TLiteral Text="<%#$this->data->zie_descr%>" /></td>
+		</tr>
+		<tr><td colspan="2">
+		
+	<!--Ziele Level2/-->
+	
+		<com:TRepeater ID="RepZiele2" OnItemDataBound="page.bindRepeaterZiele3" EnableViewState="false">
+		
+			<prop:HeaderTemplate>
+				<table width="100%">
+			</prop:HeaderTemplate>
+			
+			<prop:ItemTemplate>
+			<tr style="background-color:#cdcdcd">
+				<td width="160px">Zielklasse:</td>
+				<td><com:TLiteral Text="<%#$this->data->zie_name%>" /></td>
+			</tr>
+			<tr><td colspan="2">
+			
+					<!-- Ziele Level3 /-->
+					
+				<com:TRepeater ID="RepZiele3" OnItemDataBound="page.bindRepeaterZiele4" EnableViewState="false">
+				
+					<prop:HeaderTemplate>
+						<table width="100%">
+					</prop:HeaderTemplate>
+					
+					<prop:ItemTemplate>
+						<tr>
+							<td width="150px" style="background-color:#efefef"><com:TLiteral Text="<%#$this->data->zie_name%>" /></td>
+							<td>
+					
+					<!-- Ziele Level4 /-->				
+					
+						<com:TRepeater ID="RepZiele4" OnItemDataBound="page.bindRepeaterAufgabenZiele" EnableViewState="false">
+						
+							<prop:HeaderTemplate>
+								<table width="100%">
+								<thead>
+									<tr>
+										<td>Name</td>
+									</tr>
+									<tr>
+										<td>Beschreibung</td>
+									</tr>
+								</thead>
+							</prop:HeaderTemplate>
+							
+							<prop:ItemTemplate>
+							
+							<tr style="background-color:#ffffff">
+								<td><b><com:TLiteral Text="<%#$this->data->ttzie_name%>" /></b></td>
+							</tr>
+							<tr>
+								<td style="border-bottom:1px double grey;"><com:TLiteral Text="<%#$this->data->ttzie_descr%>" /></td>
+							</tr>
+							
+							<tr><td>
+							
+									<!-- AufgabenZiele Level /-->				
+							
+								<com:TRepeater ID="RepAufZiele" EnableViewState="false">
+								
+									<prop:HeaderTemplate>
+										<table width="100%" border="0">
+										<thead>
+											<tr>
+												<td width="150">Name</td>
+												<td>Beschreibung</td>
+												<td>Wer</td>
+												<td>Prio</td>
+												<td>Bis</td>
+											</tr>
+										</thead>
+									</prop:HeaderTemplate>
+									
+									<prop:ItemTemplate>
+									
+									<tr style="background-color:#ffffff;border-bottom:1px dotted grey;">
+										<td><b><com:TLiteral Text="<%#$this->data->auf_name%>" /></b></td>
+										<td><com:TLiteral Text="<%#$this->data->auf_beschreibung%>" /></td>
+										<td><com:TLiteral Text="<%#OrganisationRecord::finder()->findByPK($this->data->idtm_organisation)->org_name%>" /></td>
+										<td><com:TLiteral Text="<%#$this->data->auf_priority%>" /></td>
+										<td><com:TLiteral Text="<%#$this->data->auf_tdate%>" /></td>
+									</tr>
+									
+									</prop:ItemTemplate>
+									
+									<prop:FooterTemplate>
+										</table>
+									</prop:FooterTemplate>
+									
+								</com:TRepeater>
+									
+								<!-- AufgabenZiele Level /-->
+									
+							</td></tr>
+							
+							</prop:ItemTemplate>
+							
+							<prop:FooterTemplate>
+								</table>
+							</prop:FooterTemplate>
+							
+						</com:TRepeater>
+							
+					<!-- Ziele Level4 /-->
+					
+					</td></tr>
+					
+					</prop:ItemTemplate>
+					
+					<prop:FooterTemplate>
+						</table>
+					</prop:FooterTemplate>
+					
+				</com:TRepeater>
+						
+			<!-- Ziele Level3 /-->
+					
+			
+			</td></tr>
+			
+			</prop:ItemTemplate>
+			
+			<prop:FooterTemplate>
+				</table>
+			</prop:FooterTemplate>
+			
+		</com:TRepeater>
+		<!-- Ziele Level2 /-->
+		
+		</td></tr>
+	
+	</prop:ItemTemplate>
+
+<!-- Ende des Repeater Ziele /-->	
+	
+	<prop:FooterTemplate>
+		</table>
+	</prop:FooterTemplate>
+
+</com:TRepeater>
+<!-- Ende des Zieleabschnittes -->
+
+
+<!-- Anfang des Phasenabschnittes -->
+
+<h2>Ablauf- und Terminplanung</h2>
+
+<com:TImage ID="PhasenImage" />
+
+<com:TRepeater ID="RepPhasen"
+    AllowPaging="false"
+    AllowCustomPaging="true"
+    PageSize="1000"
+    EnableViewState="false"
+    OnItemDataBound="bindRepeaterPhasen2">
+	
+	<prop:HeaderTemplate>
+		<table width="100%">
+	</prop:HeaderTemplate>
+	
+	<prop:ItemTemplate>
+		<tr style="background-color:#bcbcbc">
+			<td width="140px">Phase:</td>
+			<td><com:TLiteral Text="<%#$this->data->act_name%>" /></td>
+		</tr>
+		<tr><td colspan="2">
+		
+	<!--Phasen Level2/-->
+	
+		<com:TRepeater ID="RepPhasen2" EnableViewState="false">
+		
+			<prop:HeaderTemplate>
+				<table width="100%">
+			</prop:HeaderTemplate>
+			
+			<prop:ItemTemplate>
+			<tr style="background-color:#cdcdcd">
+				<td width="120px">Aufgabenteil:</td>
+				<td><com:TLiteral Text="<%#$this->data->act_name%>" /></td>
+			</tr>
+			</prop:ItemTemplate>
+			
+			<prop:FooterTemplate>
+				</table>
+			</prop:FooterTemplate>
+			
+		</com:TRepeater>
+		<!-- Phasen Level2 /-->
+		
+		</td></tr>
+	
+	</prop:ItemTemplate>
+
+<!-- Ende des Repeater Phasen /-->	
+	
+	<prop:FooterTemplate>
+		</table>
+	</prop:FooterTemplate>
+
+</com:TRepeater>
+<!-- Ende des Phaseabschnittes -->
+
+
+
+</td>
+</tr>
+</table>
+</com:TContent>

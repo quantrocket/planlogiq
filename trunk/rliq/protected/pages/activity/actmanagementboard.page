@@ -1,0 +1,25 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="RiskLogIQ" %>
+
+
+<com:TContent ID="Navigation">
+
+<com:Application.portlets.pspportlet Visible="true" />
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<h2><%[ Network ]%> <%[ Managementboard ]%></h2>
+
+<com:TTabPanel id="Master">
+
+<com:TTabView Caption=<%[ cost per activity ]%> >
+<p id="infobox"><%[ Managementboard ]%></p>
+
+<com:Application.pages.container.ActivityKostenContainer ID="ActivityKostenContainer"  />
+
+</com:TTabView>
+
+</com:TTabPanel>
+
+</com:TContent>

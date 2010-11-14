@@ -1,0 +1,56 @@
+<%@ MasterClass="Application.layouts.WindowLayout" Title="Adressen" %>
+
+<com:TContent ID="MainWindow">
+
+<com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/Kp_neu_small.jpg"/><br/>
+<fieldset class="alternating">
+    <legend><small>Suchbox</small></legend>
+<table><tr>
+        <td class="FormLabel">Suchbegriff: </td>
+        <td><com:TActiveTextBox Id="WINprtdet_topic" OnCallback="bindListPrtListe" CssClass="mandantorylarge" />
+            <com:TActiveButton CssClass="windowcontent-button" OnCallback="bindListPrtListe" Text="go"/></td>
+    </tr>
+</table>
+</fieldset>
+<div class="portlet-title"><%[ Liste der ]%> <%[ Treffer ]%></div>
+<br/>
+    <com:TActiveRepeater DataKeyField="idtm_protokoll_detail"
+                         ID="PrtListe"
+                         AllowPaging="true"
+                         PageSize="30"
+                         CssClass="datagrid">
+        
+        <prop:HeaderTemplate>
+            <table width="100%">
+        </prop:HeaderTemplate>
+        
+        <prop:ItemTemplate>
+            <tr onMouseOver="setRowBackground(this,'#c3e3ef')" 
+                onMouseOut="setRowBackground(this,this.style.backgroundColor)">
+                <td>
+                <table width="100%">
+                    <tr>
+                        <td>
+                            <a href="javascript:pass_value_to_parent('<%#$this->getRequest()->constructUrl('page','protokoll.prtview').'&modus=1&idtm_protokoll='.ProtokollDetailRecord::finder()->findByidtm_protokoll_detail($this->Data->idtm_protokoll_detail)->idtm_protokoll%>')" style="font-size:14px;">
+                            <com:TLiteral Text="<%#$this->Data->prtdet_topic%>" />
+                    </a>
+                        </td>
+                     </tr>
+                     <tr>
+                        <td>
+                            <com:TLiteral Text="<%#$this->Data->prtdet_descr%>" />
+                        </td>
+                    </tr>
+                </table>
+                </td>
+            </tr>
+         </prop:ItemTemplate>
+
+        <prop:FooterTemplate>
+            </table>
+        </prop:FooterTemplate>
+
+
+    </com:TActiveRepeater>
+
+</com:TContent>

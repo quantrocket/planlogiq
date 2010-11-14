@@ -1,0 +1,243 @@
+<%@ Title="Risklogiq - Prozess" %>
+
+<com:TContent ID="Navigation">
+
+<com:Application.portlets.pspportlet Visible="true" />
+
+</com:TContent>
+ 
+<com:TContent ID="Main">
+
+<com:TMultiView ID="viewPanel" ActiveViewIndex="0">
+
+<com:TView ID="neu_Organisation"> 
+<com:TTabPanel>
+<com:TTabView id="NEWTAB" Caption="Neues Ziel">
+
+<h2>Zielbeschreibung</h2>
+
+<p id="infobox">Hier legen Sie ein neues operationales Ziel an. Bitte nur Ziele definieren, die nachher auch "messbar" sind. Unter dem Reiter "Messung" k�nnen Sie entsprechende Bedingungen oder Referenzdateien definieren.</p>
+
+<table>
+
+<tr><td colspan="3" class="portlet-title">Ziel</td></tr>
+
+<tr>
+<td>Bezeichnung:</td>
+<td><com:TActiveTextBox Id="ttzie_name" />
+</td>
+<td id="infoboxsmall">
+Tragen Sie hier die Bezeichnung f�r das Ziel ein
+</td>
+</tr>
+<tr>
+<tr>
+<td>Beschreibung:</td>
+<td><com:THtmlArea Id="ttzie_descr" /></td>
+<td id="infoboxsmall">
+Beschreiben Sie hier das Ziel genauer
+</td>
+</tr>
+
+<tr><td colspan="3" class="portlet-title">Zuordnungen</td></tr>
+
+<tr>
+<td>Zielunterklasse:</td>
+<td><com:TActiveDropDownList Id="idtm_ziele" /></td>
+<td id="infoboxsmall">
+Zu welcher Zielunterklasse geh�rt dieses Ziel?
+</td>
+</tr>
+
+
+<tr>
+<td>Teilprozess:</td>
+<td><com:TActiveDropDownList Id="idtm_prozess" /></td>
+<td id="infoboxsmall">
+Zu welchem Teilprozess/Hilfsprozess/Prozess geh�rt dieser Schritt?
+</td>
+</tr>
+
+<tr>
+<td>Verantwortlich:</td>
+<td><com:TActiveDropDownList Id="idtm_organisation" /></td>
+<td id="infoboxsmall">
+Wer ist f�r das Ziel verantwortlich?
+</td>
+</tr>
+
+
+<tr><td colspan="3" class="portlet-title">Validation</td></tr>
+
+<tr>
+<td>G�ltig:</td>
+<td><com:TActiveCheckBox Id="prostep_valid" checked="true"/></td>
+<td id="infoboxsmall">
+Ist dieses Ziel noch aktiv?
+</td>
+</tr>
+
+
+</table>
+<com:THiddenField id="idtt_ziele" />
+<com:TButton Text="Save" OnClick="insertButtonClicked" CssClass="submit"/>
+</com:TTabView>
+
+</com:TTabPanel>
+
+</com:TView>
+
+<com:TView ID="edit_Org"> 
+<com:TTabPanel>
+<com:TTabView id="EDITTAB" Caption="Ziel editieren">
+
+<table>
+
+<tr><td colspan="3" class="portlet-title">Ziel</td></tr>
+
+<tr>
+<td>Bezeichnung:</td>
+<td><com:TActiveTextBox id="edttzie_name" />
+</td>
+<td id="infoboxsmall">
+Tragen Sie hier die Bezeichnung f�r das Ziel ein
+</td>
+</tr>
+<tr>
+<tr>
+<td>Beschreibung:</td>
+<td><com:THtmlArea Id="edttzie_descr" /></td>
+<td id="infoboxsmall">
+Beschreiben Sie hier das Ziel detaillierter
+</td>
+</tr>
+
+<tr><td colspan="3" class="portlet-title">Zuordnungen</td></tr>
+
+<tr>
+<td>Zielunterklasse:</td>
+<td><com:TActiveDropDownList Id="edidtm_ziele" /></td>
+<td id="infoboxsmall">
+Zu welcher Zielunterklasse geh�rt dieses Ziel?
+</td>
+</tr>
+
+<tr>
+<td>Teilprozess:</td>
+<td><com:TActiveDropDownList Id="edidtm_prozess" OnSelectedIndexChanged="update_ListBox" AutoPostBack="true" /></td>
+<td id="infoboxsmall">
+Zu welchem Teilprozess/Hilfsprozess/Prozess geh�rt dieser Schritt?
+</td>
+</tr>
+
+<tr>
+<td>Verantwortlich:</td>
+<td><com:TActiveDropDownList Id="edidtm_organisation" /></td>
+<td id="infoboxsmall">
+Wer ist f�r das Ziel verantwortlich?
+</td>
+</tr>
+
+<tr><td colspan="3" class="portlet-title">Ablaufplan</td></tr>
+
+<tr>
+<td>G�ltig:</td>
+<td><com:TActiveCheckBox Id="edprostep_valid" /></td>
+<td id="infoboxsmall">
+Ist dieses Ziel noch aktiv?
+</td>
+</tr>
+
+</table>
+
+<com:THiddenField id="edidtt_ziele" />
+<com:TActiveButton Text="Save" OnCallback="editButtonClicked" CssClass="submit"/>
+</com:TTabView>
+
+<!-- hier kommt der Part f�r die Aufgaben /-->
+
+<com:TTabView id="NEWEDTABAUFGABE" Caption="Aufgaben">
+
+<table>
+
+<tr><td colspan="3" class="portlet-title">Aufgaben</td></tr>
+
+<tr><td colspan="3" class="mytoolbar">
+|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" onCallback="ANewButtonClicked"/>new
+|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/filesave.png" onCallback="ASavedButtonClicked"/>save
+</td></tr>
+
+<tr>
+<td>Bezeichnung:</td>
+<td><com:TActiveTextBox id="Aedauf_name" />
+</td>
+<td id="infoboxsmall">
+Tragen Sie hier die Bezeichnung f�r die Aufgabe ein
+</td>
+</tr>
+
+<tr>
+<td>Beschreibung:</td>
+<td><com:TActiveTextBox Id="Aedauf_beschreibung" TextMode="MultiLine" /></td>
+<td id="infoboxsmall">
+Beschreiben Sie hier die Aufgabe
+</td>
+</tr>
+
+<tr>
+<td>Priorit�t:</td>
+<td><com:TActiveTextBox id="Aedauf_priority" />
+</td>
+<td id="infoboxsmall">
+Tragen Sie hier die Priorit�t f�r die Aufgabe ein
+</td>
+</tr>
+
+<tr>
+<td>Verantwortlich:</td>
+<td><com:TActiveDropDownList Id="Aedidtm_organisation" /></td>
+<td id="infoboxsmall">
+Wer f�hrt die Aufgabe durch?
+</td>
+</tr>
+
+<tr>
+<td colspan="1">G�ltig bis:</td>
+<td colspan="1"><com:TActiveDatePicker Id="Aedauf_tdate" Mode="ImageButton" DateFormat="yyyy-MM-dd" InputMode="DropDownList" /></td>
+<td id="infoboxsmall">
+Bis wann soll die Aufgabe geschlossen werden?
+</td>
+</tr>
+
+
+<tr><td colspan="3" class="portlet-title">Liste der Aufgaben</td></tr>
+
+<tr>
+<td colspan="3">
+<com:XActiveDataGrid ID="AufgabenListe" AllowPaging="true" AllowSorting="false" AllowCustomPaging="true" PageSize="10" OnPageIndexChanged="aufgabenList_PageIndexChanged" AutoGenerateColumns="false" OnEditCommand="load_aufgabe" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+	<com:XActiveBoundColumn ID="lst_aufgaben_idtm_aufgaben" DataField="idtm_aufgaben" HeaderText="ID" SortExpression="idtm_aufgaben" />
+	<com:XActiveBoundColumn ID="lst_auf_name" DataField="auf_name" HeaderText="Bezeichnung" />
+	<com:XActiveBoundColumn ID="lst_auf_tdate" DataField="auf_tdate" HeaderText="bis Datum" />
+	<com:XActiveEditCommandColumn HeaderText="SELECT" HeaderStyle.Width="100px" UpdateText="Save" EditText="Select" CancelText="Cancel"/>
+</com:XActiveDataGrid>
+</td>
+</tr>
+
+</table>
+
+<com:TActiveTextBox id="Aedaufgaben_edit_status" Text="0" CssClass="hiddeninput" visible="false" />
+<com:TActiveTextBox id="Aedauf_tabelle" Text="tm_prozess_step" CssClass="hiddeninput" visible="false" />
+<com:TActiveTextBox id="Aedauf_id" Text="0" CssClass="hiddeninput" visible="false" />
+<com:TActiveTextBox id="Aedidtm_aufgaben" CssClass="hiddeninput" visible="false" />
+
+</com:TTabView>
+
+<!-- hier endet der Part f�r die Aufgaben /-->
+
+
+</com:TTabPanel>
+</com:TView>
+
+</com:TMultiView> 
+
+</com:TContent>

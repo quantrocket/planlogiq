@@ -1,0 +1,84 @@
+<%@ MasterClass="Application.layouts.ManualLayout" Title="planlogIQ - Handbuch - Planung-Intro" %>
+
+<com:TContent ID="Navigation">
+	<com:Application.portlets.handbuchportlet Visible="true" />
+</com:TContent>
+
+<com:TContent ID="Main">
+<div id="content">
+
+<h2>Benutzerhandbuch planlogIQ - Planung</h2>
+
+<h3>Agenda</h3>
+<ul>
+    <li>Arbeitsplatz</li>
+    <li>Strukturen und Dimensionen</li>
+</ul>
+
+<h3>Arbeitsplatz</h3>
+
+<p id="p1001" class="pbox">
+Der Arbeitsplatz für das Planungsmodul startet in der folgenden Ansicht (Bsp. Einzelhändler, dezentral):<br/>
+<com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/manual/planung/pla_workspace.png" Width="600px"></com:TActiveImage><br/>
+Im linken Bereich befinden sich die Steuerungselement für das DWH und die Unternehmensstrukturen, die für die Planung genutzt werden. Auf der rechten Seite befindet sich der Arbeitsplatz für die Zahlen-Darstellung oder Erfassung.
+</p>
+
+<h3>Strukuren und Dimensionen</h3>
+
+<p id="p1002" class="pboxusertip">
+Planlogiq ist ein Stammdaten basierende Planungslösung. So werden Strukturen und Kennungen immer mit entsprechend zentral verwalteten Stammdaten auf Wunsch abgeglichen.
+Ein kleines Bsp. für ein besseres Verständnis: In unserem Bsp. gibt es 2 Profitcenter, Nord und Süd. In beiden Filialen werden die gleichen Produkte vertrieben. Für alle Produkte gelten die gleichen Preise.
+Soll jetzt z.B. der Preis ab einem bestimmten Zeitpunkt angepasst werden, so kann dies Zentral in den Stammdaten erfolgen und wird von dort auf alle Produkte weitergeschrieben. Dies erscheint bei 2 Regionen kein
+direkter Vorteil zu sein, ändert sich allerdings dramatisch mit der steigenden Anzahl von zusätzlichen Profitcentern. Die Lösung ist dabei so flexibel, dass abhängig von bestimmten Startpunkten, Zeit und Rechenlogik Werte geschrieben werden können!
+</p>
+
+<h4>Anlegen der Dimensionsgruppen</h4>
+<p id="p1003" class="pbox">
+Im Gegensatz zur klassischen OLAP-Planungswelt, benötigen wir eine etwas verfeinerte Betrachtungssicht auf einzelne Dimensionen. Dies liegt an der jeweiligen darunter liegenden Rechenlogik für einzelne Basiselement.
+Aus diesem Grund unterscheiden wir zwischen Dimensionsgruppen und den tatsächlichen Dimensionswerten. Um die Begriffe sauber abgrenzen zu können, hier ein paar Beispiele:<br />
+</p>
+<ul>
+    <li>Dimensionsgruppen</li>
+    <ol>
+        <li>Land</li>
+        <li>Region</li>
+        <li>Händler</li>
+        <li>Produktgruppe</li>
+        <li>Produkte</li>
+    </ol>
+    <li>Dimensionswerte</li>
+    <ol>
+        <li>(Land) - AT,DE,UK,FR,SP,IT,CH</li>
+        <li>(Region) - Nord, Mitte, Süd, West</li>
+        <li>(Händler) - BP One, BP Two</li>
+        <li>(Produktgruppe) - Brettspiele, Würfelspiele, Fantasy</li>
+        <li>(Produkte) - Würfelspiel 50, Die Syder</li>
+    </ol>
+</ul>
+Um jetzt also diese Dimensionen bearbeiten zu können, gibt es im linken Bereich des Arbeitsplatzes die beiden Punkte:
+<ul>
+    <li>Dimensions Kategorie</li>
+    <li>Dimensions Werte</li>
+</ul>
+<p id="p1004" class="pbox">
+Bei den Dimensionskategorien, müssen folgende Informationen ans System übergeben werden:<br/>
+<com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/manual/planung/pla_dimensions_gruppen.png"></com:TActiveImage><br/>
+Für jede Gruppe muss ein Name vergeben werden der nachher auch im System verwendet wird. Wichtig ist auch die Definition des Strukturtypen. Beim Strukturtyp handelt es sich entweder vom System vorgebene Typen oder eine vom Systemadministrator selber
+definierte logische Recheneinheit, die später im System für die Erfassung der Werte genutzt werden kann. Bsp.: Umsatz = Menge * Preis oder Umsatz_Spezial = Menge * Preis - Menge * Provisionssatz - Menge * Wareneinsatz.
+Das System erlaubt die Gestaltung eigener Rechenlogiken und diese werden über den Typen unterschieden. Um einen späteren möglichen automatischen Strukuraufbau zu starten, ist es wichtig die Vorgängerdimension zu bestimmen. Die oberste Gruppe hat als Vorgänger 0!
+Mit den Parametern Original Level und Group Seperator bekommt die Dimension noch eine weitere Komponente. Da im System verschiedene Aggregationen pro Knoten existieren können. Hat der Benutzer hier die Möglichkeit, diese Gruppen für spätere Aggregationen vorzubestimmen.
+Das ganze wird nachher am konkreten Beispiel klarer.
+</p>
+
+<h4>Anlegen der Dimensionswerte</h4>
+<p id="p1005" class="pbox">
+Für die Dimensionswerte, müssen folgende Informationen ans System übergeben werden:<br/>
+<com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/manual/planung/pla_dimensions_werte.png"></com:TActiveImage><br/>
+Mit dem Dimensionswerten beschreiben Sie die einzelnen Elemente, die in der Dimensionsgruppe vorhanden sind. So können z.B. Kostenarten zentral definiert werden und dann beliebig Strukturübergreifend analysiert werden. Zusätzlich können Basisannahmen wie z.B. der Preis für eine bestimmte Leistung und/oder Umsätze hinterlegt werden.
+In unserem Bsp. hinterlegen wir den Preis für die Brettspiele, der ab dem Jahr 2008 auf 60 geschrieben wird. Wird jetzt der Umsatzbereich "Brettspiele" beplant, bekommt der Benutzer den Preis vorgegeben.
+</p>
+
+
+</div>
+
+<div class="last-modified">$Id: introduction.page 20090806 philipp $</div></com:TContent>

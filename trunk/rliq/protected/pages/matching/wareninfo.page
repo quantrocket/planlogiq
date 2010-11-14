@@ -1,0 +1,100 @@
+<%@ Title="Market4Energy - Wareninformation" %>
+ 
+<com:TContent ID="Main">
+
+<com:TMultiView ID="viewPanel" ActiveViewIndex="0">
+
+<com:TView ID="waren_info"> 
+<com:TTabPanel>
+<com:TTabView id="wareninfo" Caption="Waren Details">
+
+<table>
+
+<tr>
+<td valign="top"><h1>Partner A:</h1></td>
+<td>
+<com:TActiveLabel Id="idta_partei" /> <com:TActiveLabel Id="partei_name" /><br />
+<com:TActiveLabel Id="partei_name2" /><br />
+<com:TActiveLabel Id="adresse_street" /><br />
+<com:TActiveLabel Id="adresse_zip" /> <com:TActiveLabel Id="adresse_town" /><br />
+<com:TActiveLabel Id="adresse_lat" /> / <com:TActiveLabel Id="adresse_long" />
+</td>
+
+<td valign="top"><h1>Partner B:</h1></td>
+<td>
+<table><tr><td>
+Strasse:</td><td><com:TActiveTextBox Id="partner_street" /></td>
+</tr><tr>
+<td>Zip / Stadt:</td><td><com:TActiveTextBox Id="partner_zip" /> / <com:TActiveTextBox Id="partner_town" /></td>
+</tr></table>
+</td>
+
+</tr>
+
+</table>
+
+<p id="infobox">Artikel Nr. / Bezeichnung: <com:TActiveLabel Id="waren_artikelnummer" /> / <com:TActiveLabel Id="waren_bezeichnung" /></p>
+
+<table>
+
+<tr>
+<td>Beschreibung:</td>
+<td><com:TActiveLabel Id="waren_beschreibung" /><td><com:TActiveLabel Id="waren_ean" /></td>
+
+
+</tr><tr>
+<td>Kategorie:</td>
+<td><com:TActiveDropDownList Id="idtm_waren_kategorie" /></td>
+</tr>
+
+<tr>
+<td>Menge/Gewicht:</td>
+<td><com:TActiveLabel Id="waren_menge" />/<com:TActiveLabel Id="waren_gewicht" /></td>
+</tr>
+
+<tr>
+<td>B/A</td>
+<td>
+<com:TActiveDropDownList Id="waren_typ">
+	<com:TListItem Value="1" Text="Bedarf" />
+  	<com:TListItem Value="2" Text="Angebot" Selected="true" />
+</com:TActiveDropDownList>
+</td>
+</tr>
+
+</table>
+<p id="infobox">Preis <com:TActiveDropDownList Id="idtm_preis_kategorie" /></p>
+
+<table>
+<tr>
+<td>Preis ohne Transport:</td>
+<td><com:TActiveLabel Id="waren_preis" /> EUR</td>
+</tr>
+
+<tr>
+<td>Preis mit Transport (ohne Gewähr):</td>
+<td><com:TActiveLabel Id="est_waren_preis" /> EUR <com:TActiveButton Text="berechnen" OnCommand="calcDistButtonClicked" CssClass="submit"/></td>
+</tr>
+
+<tr>
+<td>Gültig bis:</td>
+<td><com:TActiveLabel Id="waren_dat_lb" /></td>
+</tr>
+
+
+
+</table>
+
+<com:THiddenField Id="idta_adresse" />
+<br />
+
+<com:THiddenField id="idta_waren" />
+<com:TActiveButton Text="Kaufen" OnClick="buyButtonClicked" CssClass="submit"/>
+</com:TTabView>
+</com:TTabPanel>
+</com:TView>
+
+
+</com:TMultiView> 
+
+</com:TContent>

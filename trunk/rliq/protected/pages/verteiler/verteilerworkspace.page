@@ -1,0 +1,99 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="planlogIQ" %>
+
+
+<com:TContent ID="Navigation">
+
+<com:Application.portlets.organisationportlet Visible="true" />
+
+</com:TContent> 
+
+<com:TContent ID="Main">
+
+<h2><%[ mailing lists ]%></h2>
+
+<p id="infobox"><%[ All relevant mailing lists ]%></p>
+
+<table width="100%">
+
+<tr><td colspan="3" class="portlet-title"><%[ mailing lists ]%></td></tr>
+
+<tr><td colspan="3" class="mytoolbar">
+|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" OnCommand="TNewButtonClicked"/><%[ new ]%>
+|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/filesave.png" OnCommand="TSavedButtonClicked"/><%[ save ]%>
+|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/editdelete.png" OnCommand="TDeleteButtonClicked"/><%[ delete ]%>
+|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/mail_new.png" OnCommand="TSendButtonClicked"/><%[ send ]%>
+<com:TActiveLabel ID="PFMAILER" Text="warten..." />
+</td></tr>
+
+<tr>
+<td><%[ Name ]%>:</td>
+<td><com:TActiveTextBox Id="ver_name" CssClass="mandantorylarge"/>
+</td>
+<td id="infoboxsmall">
+<%[ The name of the mailing list ]%>
+</td>
+</tr>
+
+<tr>
+<td><%[ Description ]%>:</td>
+<td><com:TActiveTextBox Id="ver_descr" TextMode="MultiLine" /></td>
+<td id="infoboxsmall">
+<%[ short discription for mailinglist ]%>
+</td>
+</tr>
+
+<tr>
+<td><%[ Valid ]%>:</td><td><com:TActiveCheckBox Id="ver_valid" /></td>
+<td id="infoboxsmall">
+<%[ valid mailing list? ]%>
+</td>
+</tr>
+
+
+<!-- Hier startet die Auswahl der Teilnehmer -->
+<tr><td colspan="3"><table width="100%">
+<tr><td colspan="3" class="portlet-title"><%[ Participants ]%></td></tr>
+
+<tr>
+<td colspan="2"><%[ Participant ]%>:<com:TActiveDropDownList Id="ttidtm_organisation" /><com:TActiveImageButton Id="addParticipant" ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" onClick="addParticipant" /></td>
+<td id="infoboxsmall">
+<%[ Select participant and add with PLUS ]%>
+</td>
+</tr>
+
+<tr><td colspan="3">
+<com:TActiveDataGrid ID="ParticipantListe" AllowPaging="true" PagerStyle.Mode="Numeric" PagerStyle.HorizontalAlign="Right" AllowSorting="false" PageSize="5" OnPageIndexChanged="participantList_PageIndexChanged" OnEditCommand="removeParticipant" AutoGenerateColumns="false" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+    <com:TActiveBoundColumn ID="lstpart_idtm_verteiler_organisation" DataField="idtm_verteiler_organisation" HeaderText=<%[ ID ]%> SortExpression="idtm_verteiler_organisation" />
+    <com:TActiveBoundColumn ID="lstpart_idtm_organisation" DataField="idtm_organisation" HeaderText=<%[ OrgID ]%> />
+    <com:TActiveBoundColumn ID="lstpart_org_name" DataField="org_name" HeaderText=<%[ Name ]%> />
+    <com:TActiveBoundColumn ID="lstpart_user_role_name" DataField="user_role_name" HeaderText=<%[ Role ]%> />
+<com:TActiveEditCommandColumn HeaderText="SELECT" HeaderStyle.Width="100px" UpdateText=<%[ select ]%> EditText=<%[ remove ]%> CancelText="Cancel"/>
+</com:TActiveDataGrid>
+</td></tr>
+
+</table></td></tr>
+<!-- Hier endet die Auswahl der Teilnehmer -->
+
+<tr><td colspan="3" class="portlet-title"><%[ List ]%> <%[ of all mailing lists ]%></td></tr>
+
+<tr><td colspan="3"><%[ Search ]%>: <com:TActiveTextBox Id="find_verteiler" /><com:TImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/about_kde.png" /><com:TActiveButton Text="search" OnClick="searchVerteiler" CssClass="submit"/>
+</td></tr>
+
+<tr>
+<td colspan="3">
+<com:TActiveDataGrid ID="VerteilerListe" AllowPaging="true" PagerStyle.Mode="Numeric" PagerStyle.HorizontalAlign="Right" AllowSorting="false" PageSize="5" OnPageIndexChanged="verteilerList_PageIndexChanged" AutoGenerateColumns="false" OnEditCommand="load_verteiler" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+	<com:TActiveBoundColumn ID="lst_idtm_verteiler" DataField="idtm_verteiler" HeaderText=<%[ ID ]%> SortExpression="idtm_verteiler" />
+	<com:TActiveBoundColumn ID="lst_ver_name" DataField="ver_name" HeaderText=<%[ Name ]%> />
+	<com:TActiveBoundColumn ID="lst_ver_valid" DataField="ver_valid" HeaderText=<%[ Valid ]%> />
+	<com:TActiveEditCommandColumn HeaderText="SELECT" HeaderStyle.Width="100px" UpdateText="Save" EditText=<%[ select ]%> CancelText="Cancel"/>
+</com:TActiveDataGrid>
+
+<com:TActiveTextBox id="verteiler_edit_status" Text="0" CssClass="hiddeninput" visible="false" />
+<com:TActiveTextBox id="idtm_verteiler" CssClass="hiddeninput" visible="false" />
+</td>
+</tr>
+
+</table>
+
+
+</com:TContent>

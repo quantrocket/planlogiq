@@ -1,0 +1,3 @@
+Run index.php in your browser. Prado version 3.0.7 or later is required.
+
+Please install RICO JS-Libray into framework.web.javascipt...

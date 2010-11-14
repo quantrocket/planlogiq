@@ -1,0 +1,683 @@
+<%@ MasterClass="Application.layouts.MainLayoutTreeActivity" Title="planlogIQ" %>
+
+<com:TContent ID="HeaderJavascript">
+
+var IsAdministrator = <%=$this->User->isAdmin?'true':'false'%>;
+var IsRisikomanagement = <%=$this->User->getModulRights('mod_risiko')?'true':'false'%>;
+
+function initDHTMLXTabbars(TabbarObject){   
+
+    TabbarObject.addTab("a1","Projektstruktur",150);
+    TabbarObject.setContent("a1", "tabhtml_1");
+
+    TabbarObject.addTab("a2","Aktivitäten",150);
+    TabbarObject.setContent("a2", "tabhtml_4");
+
+    if(IsRisikomanagement){
+        TabbarObject.addTab("a3","Risiken",150);
+        TabbarObject.setContent("a3", "tabhtml_6");
+    }
+
+    TabbarObject.addTab("a4","Ziele",150);
+    TabbarObject.setContent("a4", "tabhtml_2");
+
+    if(IsAdministrator){
+        TabbarObject.addTab("a5","Benutzerrechte",150);
+        TabbarObject.setContent("a5", "tabhtml_5");
+    }
+
+    TabbarObject.setTabActive("a1");
+}
+
+function constructCollapsableFieldsets()
+    {
+        var allFsets = document.getElementsByTagName('fieldset');
+        var fset = null;
+        for (var i=0; i<allFsets.length; i++)
+        {
+            fset = allFsets[i];
+            if(fset.attributes['collapsed']!=null)
+                constructCollapsableFieldset(fset, fset.attributes['collapsed'].value);
+        }
+    }
+
+//for collapsable fieldset:
+function constructCollapsableFieldset(fset, collapsed)
+    {
+        //main content:
+        var divContent = fset.getElementsByTagName('div')[0];
+        if (divContent == null)
+            return;
+
+        if (collapsed == 'true')
+            divContent.style.display = 'none';
+
+        //+/- ahref:
+        var ahrefText = getAHrefForToogle(collapsed);
+
+        //legend:
+        var legend = fset.getElementsByTagName('legend')[0];
+        if (legend != null){
+            var tmpString = legend.innerHTML.replace(/<a.*\+<\/a>/g,'');
+            legend.innerHTML = ahrefText + tmpString;
+        }else{
+            fset.innerHTML = '<legend style="width:180px">' + ahrefText + '</legend>' + fset.innerHTML;
+        }
+    }
+
+function getAHrefForToogle(collapsed)
+    {
+        var ahrefText = "<a onClick='toogleFieldset(this.parentNode.parentNode);' style='text-decoration: none;'>";
+        ahrefText = ahrefText + getExpanderItem(collapsed) + "</a>";
+        return ahrefText;
+    }
+
+function getExpanderItem(collapsed)
+    {
+        var ecChar;
+        if (collapsed=='true')
+            ecChar='+';
+        else
+            ecChar='-';
+
+        return ecChar;
+    }
+
+function toogleFieldset(fset)
+    {
+        var ahref = fset.getElementsByTagName('a')[0];
+        var div = fset.getElementsByTagName('div')[0];
+
+        if (div.style.display != "none")
+        {
+            ahref.innerHTML=getExpanderItem('true');
+            div.style.display = 'none';
+        }
+        else
+        {
+            ahref.innerHTML=getExpanderItem('false');
+            div.style.display = '';
+        }
+    }
+
+
+</com:TContent>
+
+<com:TContent ID="Navigation">
+    <com:Application.portlets.pspportlet Visible="true" />
+</com:TContent>
+ 
+<com:TContent ID="Main">
+
+    <div id="tabhtml_1" style="overflow:auto;height:100%;background:#dedede">
+        <div style="overflow:hidden">
+
+<com:TActiveTextBox id="edidtm_activity" Visible="false"/>
+<com:TActiveTextBox id="edactivity_edit_status" Text="0" Visible="false"/>
+
+      <table width="100%">
+<tr>
+    <td colspan="4">
+        <div class="mytoolbar">
+            <com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" Visible="<%= $this->User->isInRole('Administrator') %>"/>
+            <com:TActiveButton OnCallback="NewButtonClicked" Text=<%[ new ]%> CssClass="windowcontent-button" Visible="<%= $this->User->isInRole('Administrator') %>"/>
+            <com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/filesave.png"/>
+            <com:TActiveButton OnCallback="SavedButtonClicked" Text=<%[ save ]%> CssClass="windowcontent-button"/>
+            <com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/cancel.png" Visible="<%= $this->User->isInRole('Administrator') %>"/>
+            <com:TActiveButton OnCallback="DeleteButtonClicked" Text=<%[ delete ]%> CssClass="windowcontent-button" Visible="<%= $this->User->isInRole('Administrator') %>"/>
+        </div>
+    </td>
+</tr>
+
+    </table>
+
+<table cellspacing="3" cellpadding="3">
+    <tr>
+        <td valign="top">
+
+                <fieldset>
+                          <legend style="width:180px">Projekt Stammdaten</legend>
+                <table align="center">
+                <tr>
+                    <td class="FormLabelMa"><%[ Type ]%>:</td>
+                    <td colspan="3">
+                    <com:TActiveRadioButtonList Id="edidta_activity_type" RepeatColumns="4" AutoPostBack="true" />
+                    <com:TTooltip forControl="edidta_activity_type">
+                        <prop:Text>
+                                Um was für eine Art von Element handelt es sich?
+                        </prop:Text>
+                    </com:TTooltip>
+                    </td>
+
+                </tr>
+
+                <tr>
+                    <td class="FormLabelMa"><%[ Bezeichnung ]%>:</td>
+                    <td colspan="3">
+                        <com:TActiveTextBox Id="edact_name" CssClass="mandantorylarge"/>
+                        <com:TTooltip forControl="edact_name">
+                            <prop:Text>
+                                    Vergeben Sie einen sprechenden Namen, erscheint in der Struktur und in Auswahlboxen.
+                            </prop:Text>
+                        </com:TTooltip>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="FormLabelMa"><%[ Verantwortlich ]%>:</td>
+                    <td colspan="3">
+                    <com:POrganisationSelection Id="edidtm_organisation"/>
+                        <com:TTooltip forControl="edidtm_organisation">
+                            <prop:Text>
+                                    Wer ist für dieses Element der Hauptverantwortliche?
+                            </prop:Text>
+                        </com:TTooltip>
+                    </td>
+
+                </tr>
+
+                <tr>
+
+                    <td class="FormLabel"><%[ Pro.Struktur-Code ]%>:</td>
+                    <td valign="top" colspan="3">
+                        <com:TActiveTextBox Id="edact_pspcode" CssClass="inputnormal"/>
+                        <com:TTooltip forControl="edact_pspcode">
+                            <prop:Text>
+                                    Der Projektstrukturcode soll eine Abkürzung sein, die nachher <br/> zur Identifikation im Projekt genutzt werden kann.
+                            </prop:Text>
+                        </com:TTooltip>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="FormLabelMa"><%[ Vorgänger ]%>:</td>
+                    <td valign="top" colspan="3">
+                        <com:PActivitySelection ID="edparent_idtm_activity"/>
+                        <com:TTooltip forControl="edparent_idtm_activity">
+                            <prop:Text>
+                                    Zu welchem Bereich gehört das Element in der Projektstruktur?
+                            </prop:Text>
+                        </com:TTooltip>
+                    </td>
+                </tr>
+
+                </table>
+                </fieldset>
+
+
+                <fieldset collapsed="true">
+                          <legend style="width:180px">Statistik</legend>
+                <div style="width:540px;height:250px;overflow:auto;">
+                <table width="100%">
+                <tr>
+                    <td width="50%">
+                        <div id="ActivityCookieImage" style=”width:200px;height:200px;"></div>
+                    </td>
+                    <td width="50%">
+                       <div id="ActivityTypeCookieImage" style=”width:200px;height:200px;"></div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td colspan="2">
+                        <div id="ActivityVerlaufImage" style=”width:500px;height:200px;"></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div id="ZeitVerlaufImage" style=”width:500px;height:200px;"></div>
+                    </td>
+                </tr>
+                </table>
+                </div>
+                </fieldset>
+
+
+                <fieldset>
+                          <legend style="width:180px">Info</legend>
+
+                <table width="540px">
+
+                <tr>
+                <td valign="top" class="FormLabel" width="70px"><com:TActiveHyperLink id="openDescrWindow" Text="<%[ Description ]%>"/></td>
+                <td><com:TActiveLabel Id="edact_descr"/></td>
+                </tr>
+
+                </table>
+        </fieldset>
+
+    </td>
+    <td valign="top">
+
+            <com:Application.pages.protokoll.prtAufgabenContainer ID="prtAufgabenContainer"/>
+            <com:TActiveTextBox id="Tedauf_tabelle" Text="tm_activity" visible="false" />
+            <com:TActiveTextBox id="Tedauf_id" Text="0" visible="false" />
+            <com:TActiveTextBox id="Tedauf_user_id" Text="0" visible="false" />
+            <com:TActiveTextBox id="Tedauf_visible" Text='Dynamic' visible="false" />
+            <%#$this->initPrtAufgaben()%>
+
+
+            <fieldset>
+                      <legend style="width:180px">Zeitmanagement</legend>
+<div>
+                        <table align="center" width="400px">
+
+            <tr>
+            <td class="FormLabel"><%[ Startdate ]%>:</td>
+            <td>
+                <com:TActiveDatePicker Id="edact_startdate" Mode="ImageButton" DateFormat="yyyy-MM-dd" InputMode="TextBox" />
+                <com:TTooltip forControl="edact_startdate">
+                    <prop:Text>
+                            Zu welchem Datum soll der Abschnitt gestartet werden.
+                    </prop:Text>
+                </com:TTooltip>
+            </td>
+            </tr><tr>
+            <td class="FormLabel">
+                <%[ Enddate ]%>:
+            </td>
+            <td>
+                <com:TActiveDatePicker Id="edact_enddate" Mode="ImageButton" DateFormat="yyyy-MM-dd" InputMode="TextBox" />
+                <com:TTooltip forControl="edact_enddate">
+                    <prop:Text>
+                            Zu welchem Datum soll der Abschnitt beendet werden.
+                    </prop:Text>
+                </com:TTooltip>
+            </td>
+            </tr>
+
+            <tr>
+
+                <td class="FormLabel"><%[ Dauer ]%>:</td>
+                <td>
+                    <com:TActiveTextBox Id="edact_dauer" CssClass="mandantory"/>
+                    <com:TTooltip forControl="edact_dauer">
+                        <prop:Text>
+                                Die geplante Dauer in Tagen
+                        </prop:Text>
+                    </com:TTooltip>
+                </td>
+            </tr><tr>
+                <td class="FormLabel"><%[ Fortschritt ]%>:</td>
+                <td>
+                    <com:TActiveTextBox Id="edact_fortschritt" CssClass="inputsmall"/>
+                </td>
+            </tr>
+
+
+                        </table>
+</div>
+            </fieldset>
+
+            <com:TActivePanel Id="displayOrgaPanel" Display="None">
+
+            <fieldset collapsed="true">
+                      <legend style="width:180px">Projektteilnehmer</legend>
+<div>
+                        <table align="center">
+                        <tr>
+                            <td class="FormLabel"><%[ Beteiligte ]%>:</td>
+                            <td><com:POrganisationSelection Id="edlinkidtm_organisation" /></td>
+                        </tr>
+                        <tr>
+                            <td class="FormLabel"><%[ Studensatz ]%>:</td>
+                            <td><com:TActiveTextBox Id="edlinkorg_stundensatz" CssClass="inputmedium"/> <com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" onClick="addActivityOrganisation"/></td>
+                        </tr>
+
+                            <tr><td colspan="2">
+                                <com:TActiveDataGrid ID="edActivityOrganisationListe" AllowPaging="true" AllowSorting="false" AllowCustomPaging="true" PageSize="5" onSortCommand="dtgList_SortCommand"  OnPageIndexChanged="edActivityOrganistion_PageIndexChanged" OnEditCommand="removeActivityOrganisation" OnUpdateCommand="dtgList_UpdateCommand" OnCancelCommand="dtgList_CancelCommand" AutoGenerateColumns="false" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+                                    <com:TActiveBoundColumn ID="lstlink_idtm_activity_has_tm_organisation" DataField="idtm_activity_has_tm_organisation" HeaderText="ID" SortExpression="idtm_activity_has_tm_organisation" HeaderStyle.Width="40px"/>
+                                    <com:TActiveBoundColumn ID="lstlink_org_name" DataField="org_name" HeaderText="Organisation" />
+                                    <com:TActiveBoundColumn ID="lstlinkorg_stundensatz" DataField="org_stundensatz" HeaderText="Stundensatz" />
+                                    <com:TActiveEditCommandColumn HeaderText="SELECT" HeaderStyle.Width="100px" UpdateText="Save" EditText="remove" CancelText="Cancel"/>
+                                </com:TActiveDataGrid>
+                            </td></tr>
+                        </table>
+</div>
+            </fieldset>
+
+            <fieldset collapsed="true">
+                      <legend style="width:180px">Info</legend>
+<div>
+            <table align="center">
+
+            <tr>
+                <td class="FormLabel"><%[ FarbCode ]%>:</td>
+                <td>
+                    <com:TActiveTextBox Id="edact_colorcode" CssClass="inputmedium"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="FormLabel"><%[ Rang ]%>:</td>
+                <td>
+                    <com:TActiveTextBox Id="edact_step" CssClass="inputsmall"/>
+                </td>
+            </tr>
+
+            </table>
+</div>
+            </fieldset>
+
+            </com:TActivePanel>
+
+            <com:TActivePanel Id="displayNetzplanPanel" Display="None">
+
+            <fieldset collapsed="true">
+                      <legend style="width:180px">Vorgänger</legend>
+<div>
+            <table align="center">
+
+            <tr>
+                <td class="FormLabel"><%[ Projektknoten ]%>:</td>
+                <td>
+                    <com:PActivitySelection Id="ttedidtm_activity"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="FormLabel"><%[ Folge ]%>:</td>
+                <td>
+                    <com:TActiveDropDownList Id="edactact_type" CssClass="inputnormal"/>
+                </td>
+            </tr>
+            <tr>
+                <td class="FormLabel"><%[ MinZ ]%>:</td>
+                <td><com:TActiveTextBox Id="edactact_minz" /></td>
+            </tr>
+            <tr>
+                <td class="FormLabel"><%[ MaxZ ]%>:</td>
+                <td>
+                    <com:TActiveTextBox Id="edactact_maxz" />
+                    <com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" onClick="addActivityActivity"/>
+                </td>
+            </tr>
+
+            <tr><td colspan="4">
+            <com:TActiveDataGrid ID="ActivityActivityListe" AllowPaging="true" AllowSorting="false" PageSize="5" OnPageIndexChanged="edActivityActivity_PageIndexChanged" OnEditCommand="removeActivityActivity" AutoGenerateColumns="false" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+                <com:TActiveBoundColumn ID="lstact_idta_activity_activity" DataField="idta_activity_activity" HeaderText="ID" SortExpression="idta_activity_activity" />
+                <com:TActiveBoundColumn ID="lstact_pre_idtm_activity" DataField="pre_act_name" HeaderText="Vorgänger" />
+                <com:TActiveBoundColumn ID="lstact_actact_minz" DataField="actact_minz" HeaderText="MinZ" />
+                <com:TActiveBoundColumn ID="lstact_actact_maxz" DataField="actact_maxz" HeaderText="MaxZ" />
+                <com:TActiveBoundColumn ID="lstact_actact_type" DataField="actact_type" HeaderText="Typ" />
+                <com:TActiveEditCommandColumn HeaderText="SELECT" HeaderStyle.Width="60px" UpdateText="Save" EditText="remove" CancelText="Cancel"/>
+            </com:TActiveDataGrid>
+            </td></tr>
+
+            <!-- Hier endet die Auswahl der Vorgaenger -->
+
+            </table>
+</div>
+            </fieldset>
+
+            <fieldset collapsed="true">
+                      <legend style="width:180px">Netzplan</legend>
+<div>
+            <table style="width:100%" align="center">
+
+                <tr>
+                    <td class="FormLabel">FAZ/FEZ:</td>
+                    <td>
+                        <com:TActiveTextBox Id="edact_faz" CssClass="inputsmall"/> /
+                        <com:TActiveTextBox Id="edact_fez" CssClass="inputsmall"/>
+                    </td>
+                </tr>
+
+                <tr>
+
+                    <td class="FormLabel">SAZ/SEZ:</td>
+                    <td>
+                        <com:TActiveTextBox Id="edact_saz" CssClass="inputsmall"/> /
+                        <com:TActiveTextBox Id="edact_sez" CssClass="inputsmall"/>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="FormLabel">GP/FP:</td>
+                    <td>
+                        <com:TActiveTextBox Id="edact_gp" CssClass="inputsmall"/> /
+                        <com:TActiveTextBox Id="edact_fp" CssClass="inputsmall"/>
+                    </td>
+                </tr>
+
+            </table>
+</div>
+            </fieldset>
+
+            </com:TActivePanel>
+
+        </td>
+    </tr>
+</table>
+
+</div></div>
+
+<div id="tabhtml_2" style="overflow:auto;height:100%">
+        <div style="overflow:hidden">
+
+<table width="100%">
+
+<!-- Hier startet die Auswahl der Ziele -->
+
+<tr><td colspan="3" class="portlet-title"><%[ Scope ]%>:</td></tr>
+
+<tr>
+<td colspan="2"><%[ Scope ]%>:<com:TActiveDropDownList Id="ttedidtt_ziele" /><com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" onClick="addActivityZiele"/>
+</td>
+<td id="infoboxsmall">
+<%[ Which scope(s) are linked to this description ]%>
+</td>
+</tr>
+
+<tr><td colspan="3">
+<com:TActiveDataGrid ID="ActivityZieleListe" AllowPaging="true" PageSize="5" OnPageIndexChanged="edActivityZiele_PageIndexChanged" OnEditCommand="removeActivityZiele" AutoGenerateColumns="false" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+<com:TActiveBoundColumn ID="lstact_idtm_activity_has_tt_ziele" DataField="idtm_activity_has_tt_ziele" HeaderText="ID" SortExpression="idtm_activity_has_tt_ziele" />
+<com:TActiveBoundColumn ID="lstact_idtt_ziele" DataField="idtt_ziele" HeaderText="ID Ziel" />
+<com:TActiveBoundColumn ID="lstact_ttzie_name" DataField="ttzie_name" HeaderText="Name Ziel" />
+<com:TActiveEditCommandColumn HeaderText="remove" HeaderStyle.Width="100px" UpdateText="Save" EditText="remove" CancelText="Cancel"/>
+</com:TActiveDataGrid>
+</td></tr>
+
+<!-- Hier endet die Auswahl der Ziele -->
+<!-- hier starten die Interfaces -->
+
+<tr><td colspan="3" class="portlet-title"><%[ Interfaces  ]%></td></tr>
+
+<!-- Hier startet die Auswahl der Inputs -->
+
+<tr><td colspan="3" class="portlet-title"><%[ Definition of Inputs ]%></td></tr>
+
+<tr>
+<td colspan="2">Inputs:<com:TActiveDropDownList Id="ttedidtm_inoutput" /><com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" onClick="addActivityInoutput"/>
+</td>
+<td id="infoboxsmall">
+<%[ Choose input and add with PLUS ]%>
+</td>
+</tr>
+
+<!-- Hier endet die Auswahl der Inputs -->
+
+<tr><td colspan="3" class="portlet-title"><%[ Definition of Outputs ]%></td></tr>
+
+<tr><td colspan="3" class="mytoolbar">
+|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" onCallback="INewButtonClicked"/><%[ new ]%>
+|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/filesave.png" onCallback="ISavedButtonClicked"/><%[ save ]%>
+|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/editdelete.png" onCallback="IDeleteButtonClicked"/><%[ delete ]%>
+
+
+<com:TActiveTextBox id="Iedino_edit_status" Text="0" CssClass="hiddeninput" visible="false" />
+<com:TActiveTextBox id="Iedino_tabelle" Text="tm_activity" CssClass="hiddeninput" visible="true" />
+<com:TActiveTextBox id="Iedino_id" Text="tm_activity" CssClass="hiddeninput" visible="true" />
+<com:TActiveTextBox id="Iedidtm_inoutput" Text="0" CssClass="hiddeninput" visible="false" />
+</td></tr>
+
+<tr>
+<td><%[ Label ]%> / <%[ Type ]%>:</td>
+<td><com:TActiveTextBox id="Iedino_name" />/<com:TActiveDropDownList id="Iedidta_inoutput_type" />
+</td>
+<td id="infoboxsmall">
+<%[ Label and Type of output ]%>
+</td>
+</tr>
+
+<tr>
+<td><%[ Description ]%>:</td>
+<td><com:TActiveTextBox Id="Iedino_descr" TextMode="MultiLine" /></td>
+<td id="infoboxsmall">
+<%[ Describe the output of this package ]%>
+</td>
+</tr>
+
+<tr>
+<td colspan="3">
+<table width="100%"><tr>
+<td id="infoboxsmall"><%[ Parent Inputs ]%></td>
+<td id="infoboxsmall"><%[ Parent Outputs ]%></td>
+</tr>
+<tr>
+
+<td>
+<com:TActiveDataGrid ID="ActivityInoutputListe" AllowPaging="true" AllowSorting="false" PageSize="5" onSortCommand="dtgList_SortCommand"  OnPageIndexChanged="edActivityInoutput_PageIndexChanged" OnEditCommand="removeActivityInoutput" AutoGenerateColumns="false" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+<com:TActiveBoundColumn ID="lstact_idtm_activity_has_tm_inoutput" DataField="idtm_inoutput_has_tm_activity" HeaderText="ID" SortExpression="idtm_activity_has_tt_ziele" />
+<com:TActiveBoundColumn ID="lstact_idtm_inoutput" DataField="idtm_inoutput" HeaderText="ID" />
+<com:TActiveBoundColumn ID="lstact_ino_name" DataField="ino_name" HeaderText="Bezeichnung" />
+<com:TActiveEditCommandColumn HeaderText="remove" HeaderStyle.Width="100px" UpdateText="Save" EditText="remove" CancelText="Cancel"/>
+</com:TActiveDataGrid>
+</td>
+
+<td>
+<com:TActiveDataGrid ID="InterfaceListe" AllowPaging="true" AllowSorting="false" PageSize="5" OnPageIndexChanged="interfaceList_PageIndexChanged" AutoGenerateColumns="false" OnEditCommand="load_interface" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+	<com:TActiveBoundColumn ID="lst_idtm_inoutput_has_tm_activity" DataField="idtm_inoutput_has_tm_activity" HeaderText="ID" SortExpression="idtm_inoutput_has_tm_activity" />
+	<com:TActiveBoundColumn ID="lst_idtm_inoutput" DataField="idtm_inoutput" HeaderText="ID" />
+	<com:TActiveBoundColumn ID="lst_ino_name" DataField="ino_name" HeaderText="Bezeichnung" />
+	<com:TActiveEditCommandColumn HeaderText="SELECT" HeaderStyle.Width="100px" UpdateText="Save" EditText="Select" CancelText="Cancel"/>
+</com:TActiveDataGrid>
+</td>
+
+</tr></table>
+</td>
+</tr>
+
+
+<!-- hier enden die Interfaces -->
+
+
+    </table>
+
+</div></div>
+
+<div id="tabhtml_4" style="overflow:auto;height:100%;background:#EBEEFA">
+    <div style="overflow:hidden">
+
+<div class="mytoolbar">
+        Pager:
+        <com:TActivePager
+                    ID="CCPagerActivityProtokollListe"
+                    ControlToPaginate="ActivityProtokollListe"
+                    PageButtonCount="3"
+                    Mode="Numeric"
+                    CssClass="pager"
+                    OnPageIndexChanged="ActivityProtokollListe_PageIndexChanged"/>
+        Anzahl: <com:TActiveDropDownList Id="CCProtokollDetailGroupListPageSize" CssClass="mandantory" OnSelectedIndexChanged="renewActivityProtokollListe"/>
+        Status: <com:TActiveDropDownList OnCallback="renewActivityProtokollListe" Text="2" id="CBAufgabeDone" CssClass="mandantory"/>
+        Art: <com:TActiveDropDownList
+            OnCallback="renewActivityProtokollListe"
+            Text="-1"
+            id="CBidta_organisation_art"
+            CssClass="mandantory"/>
+    </div>
+
+        <com:TActiveDataList Id="ActivityProtokollListe"
+                             AllowPaging="true"
+                             AllowCustomPaging="true"
+                             onEditCommand="page.lstCCProtokollRepeaterEdit"
+                             onCancelCommand="page.lstCCProtokollRepeaterCancel"
+                             onUpdateCommand="page.lstCCProtokollRepeaterSave"
+                             ItemRenderer="Application.pages.activity.listen.ActivityProtokollRenderer"
+                             EditItemRenderer="Application.pages.activity.listen.ActivityProtokollRendererEdit"
+                             CssClass="datagrid">
+        </com:TActiveDataList>
+    </div>
+</div>
+
+<div id="tabhtml_5" style="overflow:auto;height:100%">
+
+        <table width="100%">
+            <tr>
+                <td colspan="3" class="mytoolbar">
+                    <com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" OnCallback="XXRNewClicked"/><com:TActiveButton OnCallback="XXRNewClicked" Text=<%[ new ]%> CssClass="windowcontent-button"/>
+                    <com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/filesave.png" OnCallback="XXRSaveClicked"/><com:TActiveButton OnCallback="XXRSaveClicked" Text=<%[ save ]%> CssClass="windowcontent-button"/>
+                    <com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/cancel.png" OnCallback="XXRDeleteClicked"/><com:TActiveButton OnCallback="XXRDeleteClicked" Text=<%[ delete ]%> CssClass="windowcontent-button"/>
+                    <com:TActiveTextBox id="idxx_berechtigung" Text="" CssClass="hiddeninput" visible="false" />
+                    <com:TActiveTextBox id="xx_id" Text="" CssClass="hiddeninput" visible="false" />
+                    <com:TActiveTextBox id="xx_modul" Text="tm_activity" CssClass="hiddeninput" visible="false" />
+                    <com:TActiveTextBox id="berechtigung_edit_status" Text="0" CssClass="hiddeninput" visible="false" />
+                </td>
+            </tr>
+            <tr>
+                <td><%[ User ]%></td>
+                <td><com:TActiveListBox ID="idtm_user" Rows="4" CssClass="inputnormal" /></td>
+                <td id="infoboxsmall"><%[ please choose the user, the rights are given ]%></td>
+            </tr>
+            <tr>
+                <td><%[ Rights ]%></td>
+                <td>
+                    Read:<com:TActiveCheckBox ID="xx_read" />
+                    Write:<com:TActiveCheckBox ID="xx_write" />
+                    Create:<com:TActiveCheckBox ID="xx_create" />
+                    Delete:<com:TActiveCheckBox ID="xx_delete" />
+                </td>
+                <td id="infoboxsmall"><%[ Please add the rights for the selected user ]%></td>
+            </tr>
+            <tr><td colspan="3" class="portlet-title"><%[ List of ]%> <%[ User rights ]%></td></tr>
+            <tr>
+                <td colspan="3">
+                    <com:TActiveDataGrid ID="lstBerechtigung" PageSize="20" AllowPaging="true" onPageIndexChanged="lstBerechtigung_pageIndexChanged" AutoGenerateColumns="false" onEditCommand="editlstBerechtigung" PagerStyle.Mode="Numeric" PagerStyle.HorizontalAlign="Right" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+                        <com:TActiveBoundColumn HeaderText=<%[ Key ]%> DataField="idxx_berechtigung" ID="lst_idxx_berechtigung" />
+                        <com:TActiveBoundColumn HeaderText=<%[ Modul ]%> DataField="xx_modul" ID="lst_xx_modul" />
+                        <com:TActiveBoundColumn HeaderText=<%[ StrID ]%> DataField="xx_id" ID="lst_xx_id" />
+                        <com:TActiveBoundColumn HeaderText=<%[ UserID ]%> DataField="idtm_user" ID="lst_idtm_user" />
+                        <com:TActiveTemplateColumn>
+                            <prop:HeaderTemplate><%[ User ]%></prop:HeaderTemplate>
+                            <prop:ItemTemplate>
+                                <com:TActiveLabel Text=<%#UserRecord::finder()->findByidtm_user($this->Parent->DataItem->idtm_user)->user_name%> />
+                            </prop:ItemTemplate>
+                        </com:TActiveTemplateColumn>
+                        <com:TActiveTemplateColumn>
+                            <prop:HeaderTemplate><%[ R ]%></prop:HeaderTemplate>
+                            <prop:ItemTemplate>
+                                <com:TActiveImage ImageUrl=<%#"/rliq/themes/basic/gfx/16x16/actions/".$this->Parent->DataItem->xx_read.".png"%> />
+                            </prop:ItemTemplate>
+                        </com:TActiveTemplateColumn>
+                        <com:TActiveTemplateColumn>
+                            <prop:HeaderTemplate><%[ U ]%></prop:HeaderTemplate>
+                            <prop:ItemTemplate>
+                                <com:TActiveImage ImageUrl=<%#"/rliq/themes/basic/gfx/16x16/actions/".$this->Parent->DataItem->xx_write.".png"%> />
+                            </prop:ItemTemplate>
+                        </com:TActiveTemplateColumn>
+                        <com:TActiveTemplateColumn>
+                            <prop:HeaderTemplate><%[ C ]%></prop:HeaderTemplate>
+                            <prop:ItemTemplate>
+                                <com:TActiveImage ImageUrl=<%#"/rliq/themes/basic/gfx/16x16/actions/".$this->Parent->DataItem->xx_create.".png"%> />
+                            </prop:ItemTemplate>
+                        </com:TActiveTemplateColumn>
+                        <com:TActiveTemplateColumn>
+                            <prop:HeaderTemplate><%[ D ]%></prop:HeaderTemplate>
+                            <prop:ItemTemplate>
+                                <com:TActiveImage ImageUrl=<%#"/rliq/themes/basic/gfx/16x16/actions/".$this->Parent->DataItem->xx_delete.".png"%> />
+                            </prop:ItemTemplate>
+                        </com:TActiveTemplateColumn>
+                        <com:TActiveEditCommandColumn HeaderText=<%[ actions ]%> />
+                    </com:TActiveDataGrid>
+                </td>
+            </tr>
+        </table>
+
+</div> <!--ende tab /-->
+
+<div id="tabhtml_6" style="overflow:auto;height:100%;background:#EBEEFA">
+        
+        <com:Application.pages.risiko.RiskValueContainer ID="RiskValueContainer"  />
+        <com:TActiveTextBox id="RCedrcv_tabelle" Text="tm_activity" CssClass="hiddeninput" visible="false" />
+        <com:TActiveTextBox id="RCedrcv_id" Text="0" CssClass="hiddeninput" visible="false" />
+
+</div>
+
+</com:TContent>

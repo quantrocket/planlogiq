@@ -1,0 +1,1 @@
+c:/xampp/php/php.exe c:/WORKSPACE/prado/framework/prado-cli shell .

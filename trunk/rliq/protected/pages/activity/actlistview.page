@@ -1,0 +1,136 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="RiskLogIQ" %>
+
+<com:TContent ID="HeaderJavascript">
+
+var notIsGuest = <%=!$_GET['modus']?'true':'false'%>;
+
+function initDHTMLXTabbars(TabbarObject){
+
+    TabbarObject.addTab("a1","Netzplan",150);
+    TabbarObject.setContent("a1", "tabhtml_1");
+    TabbarObject.addTab("a2","Graphisch",150);
+    TabbarObject.setContent("a2", "tabhtml_2");
+    
+
+    if(notIsGuest){
+        TabbarObject.setTabActive("a1");
+    }
+
+    dhxLayout.cells("b").collapse();
+}
+
+</com:TContent>
+
+<com:TContent ID="Navigation">
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<div id="tabhtml_1" style="overflow:auto;height:100%">
+        <div style="overflow:hidden;background:#ffffff">
+
+<table width="100%">
+
+<tr><td colspan="3" class="mytoolbar">
+<com:TDropDownList id="idtm_activity" CssClass="inputnormal" AutoPostback="true" onSelectedIndexChanged="loadGridValues"/>
+|<com:TActiveButton onCallback="RCNewButtonClicked" Text="<%[ new ]%>" CssClass="windowcontent-button"/>
+|<com:TActiveButton onCallback="TSavedButtonClicked" Text="<%[ accept ]%>" CssClass="windowcontent-button"/>
+</td></tr>
+
+</table>
+
+<com:TActiveRepeater ID="RepActListe">
+
+	<prop:EmptyTemplate>
+		<%[ no entries available ]%><br/>
+	</prop:EmptyTemplate>
+	
+	<prop:HeaderTemplate>	
+		<table width="100%">
+		<thead>
+			<tr>
+				<th rowspan="2"><%[ View ]%></th>
+				<th rowspan="2"><%[ Name ]%></th>
+				<th rowspan="2"><%[ Duration ]%></th>
+				<th rowspan="2">GP</th>
+				<th rowspan="2">FP</th>
+				<th rowspan="2">PRE</th>
+				<th colspan="4"><%[ Netzplan ]%> <%[ IST ]%></th>
+				<th colspan="4"><%[ Netzplan ]%> <%[ PLAN ]%></th>
+				<th rowspan="1">OK</th>
+			</tr>
+			<tr>
+				<th>FAZ</th>
+				<th>FEZ</th>
+				<th>SAZ</th>
+				<th>SEZ</th>
+				<!-- Plan -->
+				<th>FAZ</th>
+				<th>FEZ</th>
+				<th>SAZ</th>
+				<th>SEZ</th>
+                                <th><com:TActiveCheckBox ID="edanwendenall" OnCheckedChanged="page.selectAll" /></th>
+			</tr>
+		</thead>
+	</prop:HeaderTemplate>
+	
+	<prop:FooterTemplate>
+		</table>
+	</prop:FooterTemplate>
+	
+	<prop:ItemTemplate>
+	<tr>
+            <td><com:TActiveLabel id="idtm_activity" Text=<%# $this->DataItem->idtm_activity %> /></td>
+		<td><%# $this->DataItem->act_name %></td>
+		<td><com:TActiveTextBox ID="edact_dauer" Text=<%# $this->DataItem->act_dauer %> CssClass="mandantorysmall" /></td>
+                <td><com:TActiveTextBox ID="edttact_gp" Text=<%# $this->DataItem->ttact_gp %> CssClass="mandantorysmall" /></td>
+                <td><com:TActiveTextBox ID="edttact_fp" Text=<%# $this->DataItem->ttact_fp %> CssClass="mandantorysmall" /></td>
+                <td><%# $this->DataItem->ttact_hasPrevious %></td>
+		<td><com:TActiveLabel ID="act_faz" Text="<%# $this->DataItem->act_faz %>" /></td>
+		<td><com:TActiveLabel ID="act_fez" Text="<%# $this->DataItem->act_fez %>" /></td>
+		<td><com:TActiveLabel ID="act_saz" Text="<%# $this->DataItem->act_saz %>" /></td>
+		<td><com:TActiveLabel ID="act_sez" Text="<%# $this->DataItem->act_sez %>" /></td>
+		<!-- Plan -->
+		<td><com:TActiveTextBox ID="edttact_faz" Text=<%# $this->DataItem->ttact_faz %> CssClass="mandantorysmall" /></td>
+		<td><com:TActiveTextBox ID="edttact_fez" Text=<%# $this->DataItem->ttact_fez %> CssClass="mandantorysmall" /></td>
+		<td><com:TActiveTextBox ID="edttact_saz" Text=<%# $this->DataItem->ttact_saz %> CssClass="mandantorysmall" /></td>
+		<td><com:TActiveTextBox ID="edttact_sez" Text=<%# $this->DataItem->ttact_sez %> CssClass="mandantorysmall" /></td>
+		<!-- Anwenden -->
+		<td><com:TActiveCheckBox ID="edanwenden" /></td>
+	</tr>
+	</prop:ItemTemplate>
+	
+	<prop:AlternatingItemTemplate>
+	<tr bgcolor="#efefef">
+                <td><com:TActiveLabel id="idtm_activity" Text=<%# $this->DataItem->idtm_activity %> /></td>
+		<td><%# $this->DataItem->act_name %></td>
+		<td><com:TActiveTextBox ID="edact_dauer" Text=<%# $this->DataItem->act_dauer %> CssClass="mandantorysmall" /></td>
+                <td><com:TActiveTextBox ID="edttact_gp" Text=<%# $this->DataItem->ttact_gp %> CssClass="mandantorysmall" /></td>
+                <td><com:TActiveTextBox ID="edttact_fp" Text=<%# $this->DataItem->ttact_fp %> CssClass="mandantorysmall" /></td>
+                <td><%# $this->DataItem->ttact_hasPrevious %></td>
+		<td><com:TActiveLabel ID="act_faz" Text="<%# $this->DataItem->act_faz %>" /></td>
+		<td><com:TActiveLabel ID="act_fez" Text="<%# $this->DataItem->act_fez %>" /></td>
+		<td><com:TActiveLabel ID="act_saz" Text="<%# $this->DataItem->act_saz %>" /></td>
+		<td><com:TActiveLabel ID="act_sez" Text="<%# $this->DataItem->act_sez %>" /></td>
+		<!-- Plan -->
+		<td><com:TActiveTextBox ID="edttact_faz" Text=<%# $this->DataItem->ttact_faz %> CssClass="mandantorysmall" /></td>
+		<td><com:TActiveTextBox ID="edttact_fez" Text=<%# $this->DataItem->ttact_fez %> CssClass="mandantorysmall" /></td>
+		<td><com:TActiveTextBox ID="edttact_saz" Text=<%# $this->DataItem->ttact_saz %> CssClass="mandantorysmall" /></td>
+		<td><com:TActiveTextBox ID="edttact_sez" Text=<%# $this->DataItem->ttact_sez %> CssClass="mandantorysmall" /></td>
+		<!-- Anwenden -->
+		<td><com:TActiveCheckBox ID="edanwenden" /></td>
+	</tr>
+	</prop:AlternatingItemTemplate>
+	
+
+</com:TActiveRepeater>
+</div></div>
+<div id="tabhtml_2" style="overflow:auto;height:100%">
+        <div style="overflow:hidden;background:#ffffff">
+
+    <com:TTable id="resulttable" width="100%"></com:TTable>
+
+</div></div>
+
+</com:TContent>

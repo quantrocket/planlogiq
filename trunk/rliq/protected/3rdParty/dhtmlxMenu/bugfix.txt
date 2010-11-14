@@ -1,0 +1,10 @@
+13.10.2008 context menu fixed in opera (called by ctrl+click)
+15.10.2008 context menu hiding by body click fixed in case of manual showing
+30.10.2008 IE6 combo overlap fix for standard skin added
+03.11.2008 top-level image rendering fixed
+12.11.2008 critical bug with redistribing top level positions fixed
+21.11.2008 critical IE6 fix for xhtml doctype
+11.12.2008 setOverflowHeigth() with doctype fixed
+20.01.2009 body events improved (autoshow/autohide features are included)
+09.02.2009 positioning of context menu with scrolls updated
+11.02.2009 xml config: <item ... enabled="false"> to disable item from xml

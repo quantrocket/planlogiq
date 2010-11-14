@@ -1,0 +1,57 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="planlogIQ - Import Immo" %>
+
+<com:TContent ID="HeaderJavascript">
+
+function initDHTMLXTabbars(TabbarObject){
+    TabbarObject.addTab("a1","Import Tasks",150);
+    TabbarObject.setContent("a1", "tabhtml_1");
+
+    TabbarObject.setTabActive("a1");
+}
+
+</com:TContent>
+
+<com:TContent ID="Navigation">
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<div id="tabhtml_1" style="overflow:auto;height:100%">
+    <div style="overflow:hidden">
+
+<fieldset>
+    <legend>Import Template</legend>
+
+<table>
+    <tr class="thead">
+        <td>idta_variante</td>
+        <td>w_jahr</td>
+        <td>w_monat</td>
+        <td>idtm_stammdaten</td>
+        <td>idta_feldfunktion</td>
+        <td>to_idtm_stammdaten</td>
+        <td>w_wert</td>
+    </tr>
+    <tr>
+        <td>2</td>
+        <td>10001</td>
+        <td>1</td>
+        <td>79 {DIMid der Wechseldimension}</td>
+        <td>1 {Feldfunktion}</td>
+        <td>120 {DIMid der Orginaldimension}</td>
+        <td>1 {Wert der Importiert wird}</td>
+    </tr>
+</table>
+
+</fieldset>
+
+<%[ File ]%>:<com:TFileUpload Id="CSVUploadFile" OnFileUpload="fileUploaded" MaxFileSize="5000000" /><com:TButton Text="Upload" />
+<br />
+<p><com:TActiveLabel Id="UploadFileName" /> / <com:TActiveLabel Id="UploadFileLocalName" /></p
+<p><com:TActiveLabel Id="UploadFileError" /></p>
+
+
+</div></div>
+    
+</com:TContent>

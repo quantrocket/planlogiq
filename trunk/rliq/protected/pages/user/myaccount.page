@@ -1,0 +1,96 @@
+<%@ Title="planlogIQ - my account" %>
+
+<com:TContent ID="HeaderJavascript">
+
+function initDHTMLXTabbars(TabbarObject){
+    TabbarObject.addTab("a1","My Account",150);
+    TabbarObject.setContent("a1", "tabhtml_1");
+
+    TabbarObject.setTabActive("a1");
+}
+
+</com:TContent>
+ 
+<com:TContent ID="Main">
+
+<div id="tabhtml_1" style="overflow:auto;height:100%">
+    <div style="overflow:hidden">
+<div id="infobox"><%[ Account ]%>: <com:TLabel ID="Username" /></div>
+
+    <table width="100%">
+
+       <tr><td colspan="3" class="portlet-title"><%[ my Account ]%></td></tr>
+
+        <tr>
+            <td><%[ Password ]%>:</td>
+            <td>
+                <com:TTextBox ID="Password" TextMode="Password" CssClass="mandantory" />
+
+                <com:TCompareValidator
+                ControlToValidate="Password"
+                ControlToCompare="Password2"
+                ErrorMessage="Your password entries did not match."
+                Display="Dynamic" />
+                <%[ Re-Type ]%>:<com:TTextBox ID="Password2" TextMode="Password" CssClass="mandantory" />
+            </td>
+            <td id="infoboxsmall">
+                <%[ Please enter you password ]%>
+            </td>
+        </tr>
+
+        <tr>
+            <td><%[ User Role ]%>:</td>
+            <td>
+                <com:TDropDownList ID="Role" CssClass="inputnormal"></com:TDropDownList>
+            </td>
+            <td id="infoboxsmall">
+                <%[ Please enter you prefered username ]%></td>
+        </tr>        
+
+        <tr><td colspan="3" class="portlet-title"><%[ my personal data ]%></td></tr>
+
+        <tr>
+            <td><%[ First Name ]%>:</td>
+            <td>
+                <com:TTextBox ID="FirstName" CssClass="inputnormal" /> <%[ Last Name ]%>:<com:TTextBox ID="LastName" CssClass="inputnormal" />
+            </td>
+            <td id="infoboxsmall">
+            Tragen Sie hier ihren Vor- und Nachnamen ein...
+            </td>
+        </tr>
+
+        <tr>
+            <td><%[ EMail ]%>:</td>
+            <td>
+                <com:TRequiredFieldValidator
+                ControlToValidate="Email"
+                ErrorMessage="Please provide your email address."
+                Display="Dynamic" />
+            <com:TEmailAddressValidator
+                ControlToValidate="Email"
+                ErrorMessage="You entered an invalid email address."
+                Display="Dynamic" />
+            <com:TTextBox ID="Email" CssClass="mandantorylarge" />
+            </td>
+            <td id="infoboxsmall">
+            Tragen Sie hier ihre Mail-Adresse ein...
+            </td>
+        </tr>
+     </table>
+
+<com:TTextBox ID="idta_partei" Visible="false"/>
+<com:TActiveDataGrid onUpdateCommand="lstAdressSave" onEditCommand="lstAdressEdit" onCancelCommand="lstAdressCancel" onPageIndexChanged="lstAdress_pageIndexChanged" DataKeyField="idta_adresse" style.width="100%" ID="lstAdress" AutoGenerateColumns="false" PageSize="10" AllowPaging="true" AlternatingItemStyle.CssClass="alternating">
+    <com:TActiveBoundColumn HeaderText=<%[ Id ]%> DataField="idta_adresse" ID="lst_idta_adresse" />
+    <com:TActiveBoundColumn HeaderText=<%[ Street ]%> DataField="adresse_street" ID="lst_adresse_street" />
+    <com:TActiveBoundColumn HeaderText=<%[ Zip ]%> DataField="adresse_zip" ID="lst_adresse_zip" />
+    <com:TActiveBoundColumn HeaderText=<%[ Town ]%> DataField="adresse_town" ID="lst_adresse_town" />
+    <com:TActiveEditCommandColumn HeaderText=<%[ actions ]%> />
+</com:TActiveDataGrid>
+
+<p class="mytoolbar">
+    <com:TActiveButton Text="save" OnCallback="saveButtonClicked" CssClass="windowcontent-button" />
+
+</p>
+</div></div><!--ende tab/-->
+
+</com:TContent>

@@ -1,0 +1,28 @@
+<%@ MasterClass="Application.layouts.ManualLayout" Title="ProLogIQ - Handbuch - Intro" %>
+
+<com:TContent ID="Navigation">
+	<com:Application.portlets.handbuchportlet Visible="true" />
+</com:TContent>
+
+<com:TContent ID="Main">
+<div id="content">
+
+<h2>Benutzerhandbuch ProLogIQ - Ziele</h2>
+
+<h1>Organisation</h1>
+
+<h3>Zeiterfassung</h3>
+
+<p class="pbox">
+    Die Zeiterfassung dient dazu, geleistete Zeiten nach Verrechenbarkeit und Umfang zu dokumentieren. Dabei wir die Erfassung der Zeit immer gezielt auf ein bestimmtes Arbeitspaket zugeordnet. Auf Wunsch kann die Zuordnung noch weiter verfeinert werden und auf die einzelne Aufgabe herabgebrochen.
+</p>
+
+<p class="pboxuseraction">
+Durch klicken auf den Menüpunkt "Zeiterfassung" gelangen Sie zur Maske, wo die Daten erfasst werden können. Auf Wunsch kann der Benutzer noch einen Kommentar hinzufügen.
+</p>
+
+<p class="pbox"><com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/manual/organisation_zeiterfassung.jpg" ></com:TActiveImage></p>
+
+</div>
+
+<div class="last-modified">$Id: introduction.page 20090206 philipp $</div></com:TContent>

@@ -1,0 +1,153 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="planlogIQ" %>
+
+<com:TContent ID="HeaderJavascript">
+
+function initDHTMLXTabbars(TabbarObject){
+    TabbarObject.addTab("a1","Verteilung",150);
+    TabbarObject.setContent("a1", "tabhtml_1");
+
+    TabbarObject.setTabActive("a1");
+
+    dhxLayout.cells("b").expand();
+    dhxLayout.cells("b").setWidth(330);
+}
+
+</com:TContent>
+
+<com:TContent ID="Navigation">
+
+    <com:TCallbackOptions ID="options">
+	<prop:ClientSide.RequestTimeOut>720000</prop:ClientSide.RequestTimeOut>
+</com:TCallbackOptions>
+
+<table width="100%" cellpadding="0" cellspacing="0" style="background:#ffffff">
+
+<tr><td class="mytoolbar">
+|| <com:TButton OnCommand="TNewButtonClicked" Text=<%[ neu ]%> CssClass="windowcontent-button" />
+<com:TButton OnCommand="TSavedButtonClicked" Text=<%[ speichern ]%> CssClass="windowcontent-button" />
+<com:TButton OnCommand="TDeleteButtonClicked" Text=<%[ entfernen ]%> CssClass="windowcontent-button" />
+<com:TLinkButton OnCommand="RecalcYearSplasher" Text=<%[ RC Year ]%> CssClass="wcbutton" />
+</td></tr>
+
+<tr><td>
+    <com:TDataGrid Id="SplasherListe"
+                         AutogenerateColumns="false"
+                         CssClass="datagrid"
+                         onEditCommand="load_splasher"
+                         AlternatingItemStyle.CssClass="alternating">
+        <com:TBoundColumn id="lst_idta_splasher"
+                                HeaderText="ID"
+                                HeaderStyle.Width="50px"
+                                DataField="idta_splasher"/>
+        <com:TBoundColumn id="lst_spl_name"
+                                DataField="spl_name"
+                                HeaderText="Name"/>
+        <com:TEditCommandColumn HeaderText="SELECT"
+                                      HeaderStyle.Width="100px"
+                                      UpdateText="Save"
+                                      EditText="Select"
+                                      CancelText="Cancel"/>
+    </com:TDataGrid>
+</td></tr>
+
+
+<tr><td>
+<fieldset width="95%">
+    <legend>Stammdaten</legend>
+        <table>
+
+<tr>
+<td class="FormLabel" style="background:#efefef;">Beschriftung:</td>
+<td colspan="3"><com:TActiveTextBox Id="spl_name" CssClass="mandantorylarge"/></td>
+</tr>
+
+<tr>
+<td class="FormLabel" style="background:#efefef;height:20px;">Von Dimen.:</td>
+<td>
+    <com:TDropDownList Id="from_idta_stammdaten_group" CssClass="inputnormal" AutoPostback="false"/>
+</td>
+</tr><tr>
+<td class="FormLabel" style="background:#efefef;height:20px;">Auf Dimen.:</td>
+<td>
+    <com:TDropDownList Id="to_idta_stammdaten_group" CssClass="inputnormal" AutoPostback="false"/>
+</td>
+</tr>
+
+<tr>
+<td class="FormLabel" style="background:#efefef;height:20px;">Von Feld:&nbsp;</td>
+<td>
+    <com:TDropDownList Id="from_idta_feldfunktion" CssClass="inputnormal" AutoPostback="false"/>
+</td>
+</tr><tr>
+<td class="FormLabel" style="background:#efefef;height:20px;">Auf Feld:&nbsp;</td>
+<td>
+    <com:TDropDownList Id="to_idta_feldfunktion" CssClass="inputnormal" AutoPostback="false"/>
+</td>
+</tr>
+        </table>
+</fieldset>
+</td></tr>
+
+<tr><td colspan="2" class="portlet-title">
+    Vorhandene Werte aus Ausgangssituation
+</td></tr>
+
+<tr><td valign="top" style="background:#ffffff;" colspan="2">
+
+        <com:TDataGrid Id="From_StammdatenGroupListe"
+                             AutogenerateColumns="false"
+                             onEditCommand="load_splasher_table"
+                             CssClass="datagrid"
+                             AlternatingItemStyle.CssClass="alternating">
+            <com:TBoundColumn id="lst_idtm_stammdaten"
+                                HeaderText="ID"
+                                HeaderStyle.Width="20px"
+                                DataField="idtm_stammdaten"/>
+            <com:TBoundColumn id="lst_stammdaten_name"
+                                HeaderText="Bezeichnung"
+                                DataField="stammdaten_name"/>
+            <com:TEditCommandColumn HeaderText="SELECT"
+                              HeaderStyle.Width="30px"
+                              UpdateText="Save"
+                              EditText="Select"
+                              CancelText="Cancel"/>
+        </com:TDataGrid>
+
+</td></tr>
+
+</table>
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<div id="tabhtml_1" style="overflow:auto;height:100%;background:#EBEEFA">
+    <div style="overflow:hidden;background:#ffffff;">
+
+        <table class="datagrid" cellpadding="0" cellspacing="0">
+
+<tr>
+<td valign="top" colspan="2">
+    <div class="mytoolbar">
+        <com:TTextBox Id="From_idtm_stammdaten" Text="0"/>
+        <com:TImageButton Id="SplasherSaveImageButton" ImageUrl="/rliq/themes/basic/gfx/16x16/actions/filesave.png" OnCommand="saveSplashingValue" Visible="1"/>
+        <com:TActiveButton Id="SplasherSaveButton" Text="<%[ save ]%>" onCallback="saveSplashingValue" CssClass="windowcontent-button" Visible="1"/>
+        <com:TImage ImageUrl="/rliq/themes/basic/gfx/16x16/apps/kalarm.png" />Zeit:<com:TDropDownList id="DWH_idta_perioden" CssClass="mandantory" AutoPostback="true" OnSelectedIndexChanged="PeriodeChanged"/>
+        <com:TImage ImageUrl="/rliq/themes/basic/gfx/16x16/apps/kdisknav.png" />Variante:<com:TDropDownList id="DWH_idta_variante" CssClass="mandantory" AutoPostback="true" OnSelectedIndexChanged="VarianteChanged" />
+    </div>
+    <com:TActivePanel id="ACTPanel">
+            <com:TTable id="resulttable" width="100%" CssClass="resizable" GridLines="Both" CellPadding="0" CellSpacing="0" />
+            <script src="/rliq/protected/3rdParty/tablekit/js/tablekit.js"></script>
+    </com:TActivePanel>
+</td>
+</tr>
+
+</td></tr></table><!--ende des subcontainer /-->
+
+
+<com:TActiveTextBox id="splasher_edit_status" Text="0" CssClass="hiddeninput" visible="false" />
+<com:TActiveTextBox id="idta_splasher" CssClass="hiddeninput" visible="false" />
+
+
+</div></div><!--Ende Tab1/-->
+</com:TContent>

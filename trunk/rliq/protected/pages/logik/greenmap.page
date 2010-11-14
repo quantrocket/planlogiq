@@ -1,0 +1,17 @@
+<%@ Title="GSProcurement - Standort" %>
+ 
+<com:TContent ID="Main">
+ 
+<h2>
+<com:TLabel ID="Username" Text="Kartenansicht" />
+</h2>
+
+<p id="infobox">Auf dieser Karte sehen Sie alle Ihre Standorte mit den entsprechenden Waren, Mengen und Verfügbarkeiten.</p>
+
+<com:BActiveGoogleMap ID="GoogleMap" Width="700px" Height="400px"
+         ZoomLevel="12" ScrollWheelZoom="TRUE"
+         MapControls="('GLargeMapControl','GOverviewMapControl','GScaleControl')"
+         ApiKey="ABQIAAAAgJKACr6hV9VnZre_lHeXiRTL8EBq4gV43hNu5yuHITF-ghX2NRRWV1CCkYRRTXrmfLtoa209_TQB6w">
+     
+</com:BActiveGoogleMap>
+</com:TContent>

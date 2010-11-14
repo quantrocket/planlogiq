@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<sqlMapConfig>
+    <select id="SelectYearUmsatz" resultClass="ReportsUmsatz">
+        SELECT struktur_name,SUM(w_wert) AS JAHRESWERT FROM tt_werte INNER JOIN tm_struktur on tm_struktur.idtm_struktur = tt_werte.idtm_struktur WHERE idta_struktur_type = 4 AND w_monat &lt; 10000 GROUP BY struktur_name
+    </select>
+</sqlMapConfig>

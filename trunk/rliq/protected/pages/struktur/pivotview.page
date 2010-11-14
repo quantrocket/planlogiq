@@ -1,0 +1,50 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="planlogIQ - Pivot Reports" %>
+
+<com:TContent ID="HeaderJavascript">
+
+function initDHTMLXTabbars(TabbarObject){
+    TabbarObject.addTab("a1","Pivots",200);
+    TabbarObject.setContent("a1", "tabhtml_1");
+
+    TabbarObject.setTabActive("a1");
+}
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<div id="tabhtml_1" style="overflow:auto;height:100%;background:#EBEEFA;">
+    <div style="overflow:hidden">
+
+    <div id="test" style="border:solid 1px #660000; min-height:300px; width: 650px; background-color: #ffffff; padding:5px; ">
+        <com:Application.pages.container.PivotBerichtContainer ID="PivotBerichtContainer"  />
+    </div>
+
+    <div id="test" style="border:solid 1px #660000; min-height:420px; width: 650px; background-color: #ffffff; padding:5px; ">
+        <com:Application.pages.container.PivotContainer ID="PivotContainer"  />
+    </div>
+
+<com:TActivePanel id="ACTPanel" >
+
+<com:TActiveDropDownList id="DWH_idta_perioden" CssClass="mandantory" AutoPostback="true" OnCallBack="PeriodenChanged"/>
+<com:TActiveTextBox id="pivot_bericht_name" visible="true" />
+
+<table width="100%">
+    <tr>
+        <td>
+
+<com:TTable id="mastertable" width="100%">
+</com:TTable>
+
+        </td>
+      </tr>
+
+<tr><td align="center"><com:TActiveImage ID="DBImage" width="600" height="300" /></td></tr>
+
+</table>
+</com:TActivePanel>
+
+<com:TActiveTextBox id="idta_pivot_bericht" visible="false" />
+
+</div></div>
+</com:TContent>

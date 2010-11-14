@@ -1,0 +1,215 @@
+<%@ MasterClass="Application.layouts.TextReportLayout" Title="RiskLogIQ" %>
+
+<com:TContent ID="Main">
+
+<h1>Arbeitspaketbeschreibung</h1>
+
+<table width="100%"><tr><td>
+
+<h2>Stammdaten</h2>
+
+<table>
+<tr>
+<td>Name / PSP-Code:</td>
+<td><com:TLabel id="act_name" /> <com:TLabel id="act_pspcode" /></td>
+</tr>
+<tr>
+<td>Verantwortlicher:</td>
+<td><com:TLabel id="idtm_organisation" /></td>
+</tr>
+<tr>
+<td>Datum von ... bis:</td>
+<td><com:TLabel id="act_startdate" /> -> <com:TLabel id="act_enddate" /></td>
+</tr>
+<tr>
+<td>Dauer Plan/Ist :</td>
+<td><com:TLabel id="act_dauer" /> / <com:TLabel id="act_dauerIST" /></td>
+</tr>
+</table>
+
+<h2>Details</h2>
+
+<table>
+<tr>
+<td valign="top">Beschreibung:</td>
+<td>
+<com:TLiteral id="act_descr" />
+</td>
+</tr>
+<tr>
+<td valign="top">Ziel(e):</td>
+<td>
+<com:TRepeater ID="RepZieleListe" AllowPaging="false" AllowCustomPaging="true" PageSize="1000" EnableViewState="false">
+	
+	<prop:HeaderTemplate>
+		<table width="100%">
+	</prop:HeaderTemplate>
+	
+	<prop:ItemTemplate>
+		<tr style="background-color:#ffffff">
+			<td><com:TLiteral Text="<%#$this->data->ttzie_name%>" /></td>
+		</tr>
+	</prop:ItemTemplate>
+	
+	<prop:FooterTemplate>
+		</table>
+	</prop:FooterTemplate>
+
+</com:TRepeater>
+</td>
+</tr>
+<tr>
+<td valign="top">Aufgabe(n):</td>
+<td>
+<com:TRepeater ID="RepAufgabenListe" AllowPaging="false" AllowCustomPaging="true" PageSize="1000" EnableViewState="false">
+	
+	<prop:HeaderTemplate>
+		<table>
+			<thead>
+				<tr>
+					<td>Name</td>
+					<td>Beschreibung</td>
+					<td>Verantwortlich</td>
+					<td>Datum</td>
+				</tr>
+			</thead>
+	</prop:HeaderTemplate>
+	
+	<prop:ItemTemplate>
+		<tr style="background-color:#ffffff">
+			<td><com:TLiteral Text="<%#$this->data->auf_name%>" /></td>
+			<td><com:TLiteral Text="<%#$this->data->auf_beschreibung%>" /></td>
+			<td><com:TLiteral Text="<%#OrganisationRecord::finder()->findbyPk($this->data->idtm_organisation)->org_name%>" /></td>
+			<td><com:TLiteral Text="<%#$this->data->auf_tdate%>" /></td>
+		</tr>
+	</prop:ItemTemplate>
+	
+	<prop:AlternatingItemTemplate>
+		<tr style="background-color:#efefef">
+			<td><com:TLiteral Text="<%#$this->data->auf_name%>" /></td>
+			<td><com:TLiteral Text="<%#$this->data->auf_beschreibung%>" /></td>
+			<td><com:TLiteral Text="<%#OrganisationRecord::finder()->findbyPk($this->data->idtm_organisation)->org_name%>" /></td>
+			<td><com:TLiteral Text="<%#$this->data->auf_tdate%>" /></td>
+		</tr>
+	</prop:AlternatingItemTemplate>
+	
+	<prop:FooterTemplate>
+		</table>
+	</prop:FooterTemplate>
+
+</com:TRepeater>
+</td>
+</tr>
+<tr>
+<td colspan="2">
+<table width="100%">
+<tr>
+<td valign="top">Inputs:</td>
+<td valign="top">
+<com:TRepeater ID="RepInputListe" AllowPaging="false" AllowCustomPaging="true" PageSize="1000" EnableViewState="false">
+	
+	<prop:HeaderTemplate>
+		<table>
+	</prop:HeaderTemplate>
+	
+	<prop:EmptyTemplate>
+		<table><tr style="background-color:#ffffff">
+			<td>aktuell keine Inputs definiert</td>
+		</tr></table>
+	</prop:EmptyTemplate>
+	
+	<prop:ItemTemplate>
+		<tr style="background-color:#ffffff">
+			<td><com:TLiteral Text="<%#$this->data->ino_name%>" /></td>
+		</tr>
+	</prop:ItemTemplate>
+	
+	<prop:AlternatingItemTemplate>
+		<tr style="background-color:#efefef">
+			<td><com:TLiteral Text="<%#$this->data->ino_name%>" /></td>
+		</tr>
+	</prop:AlternatingItemTemplate>
+	
+	<prop:FooterTemplate>
+		</table>
+	</prop:FooterTemplate>
+
+</com:TRepeater>
+</td>
+<td valign="top">Outputs:</td>
+<td valign="top">
+<com:TRepeater ID="RepOutputListe" AllowPaging="false" AllowCustomPaging="true" PageSize="1000" EnableViewState="false">
+	
+	<prop:HeaderTemplate>
+		<table>
+	</prop:HeaderTemplate>
+	
+	<prop:EmptyTemplate>
+		<table><tr style="background-color:#ffffff">
+			<td>aktuell keine Outputs definiert</td>
+		</tr></table>
+	</prop:EmptyTemplate>
+	
+	<prop:ItemTemplate>
+		<tr style="background-color:#ffffff">
+			<td><com:TLiteral Text="<%#$this->data->ino_name%>" /></td>
+		</tr>
+	</prop:ItemTemplate>
+	
+	<prop:AlternatingItemTemplate>
+		<tr style="background-color:#efefef">
+			<td><com:TLiteral Text="<%#$this->data->ino_name%>" /></td>
+		</tr>
+	</prop:AlternatingItemTemplate>
+	
+	<prop:FooterTemplate>
+		</table>
+	</prop:FooterTemplate>
+
+</com:TRepeater>
+</td></tr></table>
+
+</td>
+</tr>
+<tr>
+<td valign="top">Protokoll:</td>
+<td>
+<com:TRepeater ID="RepPrtDetailListe" AllowPaging="false" AllowCustomPaging="true" PageSize="1000" EnableViewState="false">	
+	<prop:HeaderTemplate>
+		<table>
+			<thead>
+				<tr>
+					<td>Punkt</td>
+					<td>Beschreibung</td>
+				</tr>
+			</thead>
+	</prop:HeaderTemplate>
+	
+	<prop:ItemTemplate>
+		<tr style="background-color:#ffffff">
+			<td><com:TLiteral Text="<%#$this->data->prtdet_topic%>" /></td>
+			<td><com:TLiteral Text="<%#$this->data->prtdet_descr%>" /></td>
+		</tr>
+	</prop:ItemTemplate>
+	
+	<prop:AlternatingItemTemplate>
+		<tr style="background-color:#efefef">
+			<td><com:TLiteral Text="<%#$this->data->prtdet_topic%>" /></td>
+			<td><com:TLiteral Text="<%#$this->data->prtdet_descr%>" /></td>
+		</tr>
+	</prop:AlternatingItemTemplate>
+	
+	<prop:FooterTemplate>
+		</table>
+	</prop:FooterTemplate>
+
+</com:TRepeater>
+</td>
+</tr>
+</table>
+
+
+</td>
+</tr>
+</table>
+</com:TContent>

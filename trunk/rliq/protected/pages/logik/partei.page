@@ -1,0 +1,95 @@
+<%@ Title="GSProcurement - Standort" %>
+ 
+<com:TContent ID="Main">
+ 
+<h2>
+<com:TLabel ID="Username" Text="WORKSPACE" />
+</h2>
+
+<com:TTabPanel>
+	<com:TTabView Caption="Firma / Standorte">
+
+<p id="infobox">Hier regestrieren Sie einzelne Firmen oder Personen, die über Ihren Account verwaltet werden sollen.
+Für jede Firma/Person können mehrere Adressen angelegt werden. Diese Adressen werden auf der Platform genutzt,
+um den Ort des Bedarfs oder des Angebots zu definieren. Eine neue Firma/Person legen Sie durch den "new"-Button an.</p>
+<com:TButton Text="New" OnClick="newButtonClicked" CssClass="submit" />
+
+
+<com:TRepeater ID="Repeater"
+    ItemRenderer="Application.pages.logik.listen.ParteiRenderer"
+    AllowPaging="true"
+    AllowCustomPaging="true"
+    PageSize="5"
+    OnItemDataBound="dataBindRepeater2">
+
+	<prop:HeaderTemplate>
+		<table width="100%">
+		<thead><tr><td>Name</td><td>Name 2</td><td>Name 3</td><td>Vorname</td><td>Actions</td></tr></thead>
+	</prop:HeaderTemplate>
+	
+	<prop:FooterTemplate>
+	<tr><td colspan="5">&nbsp;</td></tr>
+		</table>
+	</prop:FooterTemplate>
+	
+</com:TRepeater>
+ 
+<com:TPager ControlToPaginate="Repeater" OnPageIndexChanged="pageChanged" />
+
+</com:TTabView>
+
+<com:TTabView Caption="Waren">
+
+<p id="infobox">Hier erfassen Sie einzelne Waren, die an einer Ihrer Adressen abgeholt werden können.
+Für jede Adresse können mehrere Waren angelegt werden. Diese Waren werden auf der Platform genutzt,
+um die Menge, den Ort des Angebots zu definieren. Eine neue Ware legen Sie durch den "new"-Button an. Bitte beachten Sie, dass bei 
+Zustandekommen eines Geschäfts noch weitere Angaben in Bezug auf die Frachtenbörse erforderlich werden.</p>
+
+<com:TButton Text="New" OnClick="newButtonWarenClicked" CssClass="submit" />
+
+<com:TRepeater ID="RepeaterWaren"
+    ItemRenderer="Application.pages.logik.listen.WarenRenderer"
+    AlternatingItemRenderer="Application.pages.logik.listen.WarenRendererAlt"
+    AllowPaging="true"
+    AllowCustomPaging="true"
+    PageSize="5">
+
+	<prop:HeaderTemplate>
+		<table width="100%">
+		<thead><tr><td>ID</td>
+		<td>Bez.</td>
+		<td>Artikelnummer</td>
+		<td>Menge</td>
+		<td>Preis</td>
+		<td>Typ</td>
+		<td>Erstellt am</td>
+		<td>Actions</td></tr></thead>
+	</prop:HeaderTemplate>
+	
+	<prop:FooterTemplate>
+	<tr><td colspan="5">&nbsp;</td></tr>
+		</table>
+	</prop:FooterTemplate>
+	
+</com:TRepeater>
+ 
+<com:TPager ControlToPaginate="RepeaterWaren" OnPageIndexChanged="pageChangedWaren" />
+
+
+</com:TTabView>
+
+<com:TTabView Caption="Transport Auschreibungen">
+
+<p id="infobox">Hier fassen Sie die Informationen zusammen, die benötigt werden um die Waren an die Logistikdienstleister zu verteiben.</p>
+
+<com:TButton Text="New" OnClick="newButtonFrachtClicked" CssClass="submit" />
+
+
+
+</com:TTabView>
+
+
+
+</com:TTabPanel>
+
+</com:TContent>

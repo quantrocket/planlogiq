@@ -1,0 +1,20 @@
+<%@ MasterClass="Application.layouts.ManualLayout" Title="ProLogIQ - Handbuch - Intro" %>
+
+<com:TContent ID="Navigation">
+	<com:Application.portlets.handbuchportlet Visible="true" />
+</com:TContent>
+
+<com:TContent ID="Main">
+<div id="content">
+
+<h2>Benutzerhandbuch ProLogIQ - Ziele</h2>
+
+<h3>Ziele</h3>
+
+<p class="pbox">
+    Ziele oder in PM-Sprache, der Scope, stellen eine extrem wichtige Rolle im alltälichen Projektmanagement dar. Im folgenden Video, sehen Sie die Anlage von Projektzielen.
+</p>
+
+</div>
+
+<div class="last-modified">$Id: introduction.page 20090206 philipp $</div></com:TContent>

@@ -1,0 +1,102 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="RiskLogIQ" %>
+
+<com:TContent ID="HeaderJavascript">
+
+function initDHTMLXTabbars(TabbarObject){
+    TabbarObject.addTab("a1","Ziele",150);
+    TabbarObject.setContent("a1", "tabhtml_1");
+
+    TabbarObject.setTabActive("a1");
+}
+
+</com:TContent>
+
+<com:TContent ID="Navigation">
+
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<div id="tabhtml_1" style="overflow:auto;height:100%">
+        <div style="overflow:hidden">
+
+<table width="100%"><tr><td>
+
+<%[ Set Focus ]%>: <com:TActiveDropDownList Id="idtm_ziele" onCallBack="applyTargetFilter" CssClass="mandantory" />
+<%[ Find ]%>: <com:TActiveTextBox Id="find_org" /><com:TImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/about_kde.png" /><com:TActiveButton Text="search" OnCallBack="searchOrg" CssClass="submit"/><com:TActiveLabel Id="selected_idtm_ziele" Text="0" />
+<com:TActiveDataGrid ID="OrgListe" AllowPaging="true" PagerStyle.Mode="Numeric" PagerStyle.HorizontalAlign="Right" AllowSorting="false" PageSize="15" onUpdateCommand="dtgList_viewChildren" onSortCommand="dtgList_SortCommand" OnPageIndexChanged="dtgList_PageIndexChanged" onEditCommand="dtgList_editCommand" AutoGenerateColumns="false" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+	<com:TActiveButtonColumn ID="viewDetail" ButtonType="ImageButton" ImageUrl="/rliq/themes/basic/gfx/16x16/actions/find.png" CommandName="update" HeaderText="." HeaderStyle.Width="30px" />
+	<com:TActiveBoundColumn ID="lst_zie_idtm_ziele" DataField="idtm_ziele" HeaderText="ID" SortExpression="idtm_ziele" />
+	<com:TActiveTemplateColumn HeaderStyle.Width="20px">
+            <prop:HeaderTemplate><%[ Type ]%></prop:HeaderTemplate>
+            <prop:ItemTemplate>
+                <com:TActiveImage ImageUrl=<%#'/rliq/themes/basic/gfx/16x16/filesystems/'.ZieleRecord::finder()->findByidtm_ziele($this->Parent->DataItem['idtm_ziele'])->idta_ziele_type.'.png'%> />
+            </prop:ItemTemplate>
+        </com:TActiveTemplateColumn>
+        <com:TActiveBoundColumn ID="lst_zie_name" DataField="zie_name" HeaderText="Bezeichnung" />
+        <com:TActiveTemplateColumn>
+            <prop:HeaderTemplate><%[ add ]%></prop:HeaderTemplate>
+            <prop:ItemTemplate>             
+                <com:TActiveTextBox CssClass="inputxsmall" Id="TBNewTarget" Text="0"/>
+            </prop:ItemTemplate>
+        </com:TActiveTemplateColumn>
+	<com:TActiveEditCommandColumn HeaderText="Ed" HeaderStyle.Width="100px" UpdateText="Save" EditText="Edit" CancelText="Cancel"/>
+</com:TActiveDataGrid>
+
+</td>
+
+<td class="werkzeuge">
+<table width="100%">
+<tr>
+<td class="portlet-title">
+<%[ Tools ]%>
+</td>
+</tr>
+<tr><td id="welcomebox1">
+<com:TImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" />
+<com:InternalHyperLink id="NewRecord"/>
+</td></tr>
+<tr><td id="welcomebox1">
+<com:TImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" />
+<com:InternalHyperLink id="NewStepRecord"/>
+</td></tr>
+</table>
+
+</td></tr></table>
+
+<com:TTabPanel>
+<com:TTabView id="pozessschrittdetail" Caption="Operationale Ziele">
+|| <%[ Fold ]%> <com:TActivePager ID="PagerProStepListe" ControlToPaginate="ProStepListe" PageButtonCount="3" Mode="Numeric" OnPageIndexChanged="page.ProStepListeChanged"/>
+<com:TActiveRepeater ID="ProStepListe" AllowPaging="true" PageSize="6">
+    <prop:HeaderTemplate>
+		<table>	
+    </prop:HeaderTemplate>
+
+    <prop:FooterTemplate>
+            </table>
+    </prop:FooterTemplate>
+
+    <prop:ItemTemplate>
+            <tr>
+                    <td><h3><%#$this->DataItem->ttzie_name%></h3></td>
+                    <td><com:TActiveTextBox ID="lsta_idtt_ziele" Text=<%# $this->DataItem->idtt_ziele %> CssClass="hiddeninput" visible="false" />
+                    <com:TActiveLinkButton Text=<%[ edit ]%> OnClick="page.ziestepList_editCommand" CommandName="idtt_ziele" CommandParameter=<%# $this->DataItem->idtt_ziele %> /></td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div class="pboxuseraction">
+                        <com:TActiveLabel ID="lstattzie_descr" Text=<%# $this->DataItem->ttzie_descr %> />
+                    </div>
+                </td>
+            </tr>
+    </prop:ItemTemplate>
+
+</com:TActiveRepeater>
+
+</com:TTabView>
+</com:TTabPanel>
+
+</div></div>
+
+</com:TContent>

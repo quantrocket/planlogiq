@@ -1,0 +1,19 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="RiskLogIQ" %>
+
+
+<com:TContent ID="Navigation">
+
+<com:Application.pages.navigation.nav_main Visible=<%= $this->User->isInRole('Administrator') %> />
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<h2>Prozess</h2>
+
+<p id="infobox">Die Prozesskarte</p>
+
+
+
+
+</com:TContent>

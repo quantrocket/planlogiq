@@ -1,0 +1,104 @@
+<%@ MasterClass="Application.layouts.MainLayoutTreePlanung" Title="planlogIQ" %>
+
+
+<com:TContent ID="FIXHEADER">
+
+<com:TCallbackOptions ID="options">
+	<prop:ClientSide.RequestTimeOut>720000</prop:ClientSide.RequestTimeOut>
+</com:TCallbackOptions>
+
+    <com:XGlobalCallbackOptions>
+            <prop:ClientSide.OnLoading>
+                    dhxLayout.progressOn();
+            </prop:ClientSide.OnLoading>
+            <prop:ClientSide.OnComplete>
+                    dhxLayout.progressOff();
+            </prop:ClientSide.OnComplete>
+    </com:XGlobalCallbackOptions>
+
+<div style="background:#EBEEFA;">
+<div class="mytoolbar">
+    <com:Application.portlets.strukturportlet Visible=<%= !$this->User->IsGuest %> id="strukturportlet"/>
+    <com:TActiveImage Id="StrukturBerichtSaveImageButton" ImageUrl="/rliq/themes/basic/gfx/16x16/actions/filesave.png" Visible="0"/>
+    <com:TActiveButton Id="StrukturBerichtSaveButton" Text="<%[ speichern ]%>" onClick="saveStrukturBericht" CssClass="windowcontent-button" Visible="0" ActiveControl.CallbackOptions="options"/>
+    <com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/settings.png" Visible=<%= $this->User->isInRole('Administrator') %>/>
+    <com:TActiveButton Id="StrukturBerichtButton" Text="<%[ Einstellungen ]%>" onClick="openStrukturBerichtContainer" CssClass="windowcontent-button"Visible=<%= $this->User->isInRole('Administrator') %>/>
+    <com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/16x16/apps/bell.png" Visible=<%= $this->User->isInRole('Administrator') %>/>
+    <com:TActiveButton OnClick="openFortschreibungContainer" Text=<%[ Fortschreibung ]%> CssClass="windowcontent-button" Visible=<%= $this->User->isInRole('Administrator') %>/>
+    <com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/16x16/apps/ooo-calc.png" />
+    <com:TActiveButton OnCallback="generateExcel2007" Text=<%[ XLS Export ]%> CssClass="windowcontent-button" />
+</div>
+</div>
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<com:PWCWindow ID="mpnlStrukturBerichtContainer"
+               AutoPosition="false"
+               Theme="alphacube"
+               Content="<%=$this->MyStrukturBerichtContainer->ClientID%>"
+               Mode="Existing"
+               Width="700px"
+               Left="100"
+               Top="100"
+               Title="Stuktur Einstellungen">
+</com:PWCWindow>
+
+<com:TActivePanel ID="MyStrukturBerichtContainer" Display="None">
+        <com:Application.pages.container.StrukturBerichtContainer ID="StrukturBerichtContainer"  />
+</com:TActivePanel>
+
+
+<com:PWCWindow ID="mpnlFortschreibungContainer"
+               AutoPosition="false"
+               Theme="alphacube"
+               Content="<%=$this->MyFortschreibungContainer->ClientID%>"
+               Mode="Existing"
+               Width="700px"
+               Left="100"
+               Top="100"
+               Title="Struktur Fortschreibung">
+</com:PWCWindow>
+
+<com:TActivePanel ID="MyFortschreibungContainer" Display="None">
+    <com:Application.pages.container.FortschreibungContainer ID="FortschreibungContainer"  />
+</com:TActivePanel>
+
+    <div id="tabhtml_3" style="width:100%;height:100%;overflow:auto">
+        <div style="overflow:hidden">
+        <com:TInlineFrame
+            ID="QlikViewInline"
+            ShowBorder="false"
+            Width="100%"
+            Height="600px"
+            MarginWidth="25"
+            Align="Left"
+            FrameUrl="#"/>
+         </div>
+    </div>
+
+    <div id="tabhtml_1" style="width:100%;height:100%;overflow:auto">
+        <div style="overflow:hidden;background:#ffffff">           
+            <h2><com:TLabel ID="ttpivot_struktur_name" /> <b><com:TLabel ID="StrukturPfad" Text="-" /></b></h2>
+            <com:TActivePanel id="ACTPanel">
+                <com:TTable id="resulttable" Width="100%" CssClass="resizable">
+                </com:TTable>
+            </com:TActivePanel>
+            <script src="/rliq/protected/3rdParty/tablekit/js/tablekit.js"></script>
+        </div>
+    </div>
+
+    <div id="tabhtml_2" style="width:100%;height:100%;overflow:auto;background:#EBEEFA">
+        <div style="overflow:hidden">
+         <!-- The Part for the comments /-->
+            <com:Application.pages.container.KommentarContainer ID="KommentarContainer"/>
+            <com:TActiveTextBox id="ccom_modul" Text="tm_struktur" CssClass="hiddeninput" visible="false" />
+            <com:TActiveTextBox id="cidtm_organisation" Text=<%=$this->User->GetUserOrgId($this->User->GetUserId($this->User->Name))%> CssClass="hiddeninput" visible="false" />
+            <com:TActiveTextBox id="ccom_id" CssClass="hiddeninput" visible="false" />
+            <com:TActiveTextBox id="cidta_variante" CssClass="hiddeninput" visible="false" />
+            <com:TActiveTextBox id="cidta_periode" CssClass="hiddeninput" visible="false" />
+        </div>
+     </div>
+
+
+</com:TContent>

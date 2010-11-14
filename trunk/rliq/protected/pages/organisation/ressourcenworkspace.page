@@ -1,0 +1,243 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="planlogIQ" %>
+
+
+<com:TContent ID="HeaderJavascript">
+
+function initDHTMLXTabbars(TabbarObject){
+    TabbarObject.addTab("a1","Ressourcen",150);
+    TabbarObject.setContent("a1", "tabhtml_1");
+
+    TabbarObject.addTab("a2","Kalendar",150);
+    TabbarObject.setContent("a2", "tabhtml_2");
+
+    TabbarObject.setTabActive("a1");
+}
+
+</com:TContent>
+
+<com:TContent ID="Navigation">
+
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<div id="tabhtml_1" style="overflow:auto;height:100%">
+        <div style="overflow:hidden">
+
+<p id="infobox">Erfassen Sie hier alle Ressourcen nach Art (Mensch, Material, Maschine, Raum) und erlauben Sie so dem System im Hintergrund
+zu ermittlen, wie die Auslastung der jeweiligen ist. Dabei hinterlegen Sie an dieser Stelle die Kosten pro Leistungseinheit.</p>
+
+<table width="100%">
+
+<tr><td colspan="3" class="portlet-title">Ressourcen</td></tr>
+
+<tr><td colspan="3" class="mytoolbar">
+|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" OnCommand="RSTNewButtonClicked"/>new
+|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/filesave.png" OnCommand="RSTSavedButtonClicked"/>save
+|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/editdelete.png" OnCommand="RSTDeleteButtonClicked"/>delete
+</td></tr>
+
+<tr>
+<td>Name:</td>
+<td><com:TActiveTextBox Id="RSres_name" CssClass="mandantorylarge"/>
+</td>
+<td id="infoboxsmall">
+Tragen Sie hier den Namen für die Ressource/Art ein?
+</td>
+</tr>
+
+<tr>
+<td>Code:</td>
+<td><com:TActiveTextBox Id="RSres_code" CssClass="mandantory"/>
+</td>
+<td id="infoboxsmall">
+Tragen Sie hier einen Code für die Ressource ein?
+</td>
+</tr>
+
+<tr>
+<td>Type/Produktivit&auml;t:</td>
+<td><com:TActiveDropDownList Id="RSidta_ressource_type" /> / <com:TActiveTextBox Id="RSres_produktivitaet" />
+</td>
+<td id="infoboxsmall">
+Wählen Sie hier den Typ der Ressource aus?
+</td>
+</tr>
+
+<tr>
+<td>Kalendar:</td>
+<td><com:TActiveDropDownList Id="RSidta_rescalendar" />
+</td>
+<td id="infoboxsmall">
+W�hlen Sie hier den Kalender der Ressource aus?
+</td>
+</tr>
+
+<tr>
+<td>Kosten/Einheit:</td>
+<td><com:TActiveTextBox Id="RSres_kosten" CssClass="mandantory"/> / <com:TActiveDropDownList Id="RSidta_einheit" />
+</td>
+<td id="infoboxsmall">
+Tragen Sie hier die Kosten pro Einheit der Ressource aus?
+</td>
+</tr>
+
+<tr>
+<td>Notizen:</td>
+<td><com:TActiveTextBox Id="RSres_note" TextMode="MultiLine" /></td>
+<td id="infoboxsmall">
+Sonstige Notizen zur Ressource.
+</td>
+</tr>
+
+<tr><td colspan="3" class="portlet-title">Liste aller Ressourcen</td></tr>
+
+<tr><td colspan="3">Suchen: <com:TActiveTextBox Id="find_ressource" /><com:TImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/about_kde.png" /><com:TActiveButton Text="search" OnClick="searchRessource" CssClass="submit"/>
+</td></tr>
+
+<tr>
+<td colspan="3">
+<com:TActiveDataGrid ID="RessourceListe" AllowPaging="true" AllowSorting="false" AllowCustomPaging="true" PageSize="10" OnPageIndexChanged="ressourceList_PageIndexChanged" AutoGenerateColumns="false" OnEditCommand="load_ressource" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+	<com:TActiveBoundColumn ID="lst_idtm_ressource" DataField="idtm_ressource" HeaderText="ID" SortExpression="idtm_ressource" />
+	<com:TActiveBoundColumn ID="lst_res_code" DataField="res_code" HeaderText="Code" />
+	<com:TActiveBoundColumn ID="lst_res_name" DataField="res_name" HeaderText="Name" />
+	<com:TActiveBoundColumn ID="lst_res_kosten" DataField="res_kosten" HeaderText="Kosten" />
+	<com:TActiveEditCommandColumn HeaderText="SELECT" HeaderStyle.Width="100px" UpdateText="Save" EditText="Select" CancelText="Cancel"/>
+</com:TActiveDataGrid>
+
+<com:TActiveTextBox id="ressource_edit_status" Text="0" CssClass="hiddeninput" visible="false" />
+<com:TActiveTextBox id="idtm_ressource" CssClass="hiddeninput" visible="false" />
+</td>
+</tr>
+
+
+</table>
+
+</div></div>
+
+<div id="tabhtml_2" style="overflow:auto;height:100%">
+        <div style="overflow:hidden">
+
+<p id="infobox">Damit Sie Ihre Ressourcen besser steuern k�nnen, haben Sie hier die M�glichkeit verschiedene "standard" Arbeitszeiten vorzubelegen.
+Diese werden dann den jeweiligen Ressourcen zugeordnet und f�r die Auslastungsplanung herangezogen.</p>
+
+<table width="100%">
+
+<tr><td colspan="3" class="portlet-title">Kalenderdetails</td></tr>
+
+<tr><td colspan="3" class="mytoolbar">
+|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" OnCommand="TNewButtonClicked"/>new
+|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/filesave.png" OnCommand="TSavedButtonClicked"/>save
+|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/editdelete.png" OnCommand="TDeleteButtonClicked"/>delete
+</td></tr>
+
+<tr>
+<td>Name:</td>
+<td><com:TActiveTextBox Id="rescal_name" CssClass="mandantorylarge"/>
+</td>
+<td id="infoboxsmall">
+Tragen Sie hier den Namen für die Arbeitszeitenbelegung ein?
+</td>
+</tr>
+
+<tr>
+<td>Beschreibung:</td>
+<td><com:TActiveTextBox Id="rescal_descr" TextMode="MultiLine" /></td>
+<td id="infoboxsmall">
+Sonstige Informationen zu den Arbeitszeiten.
+</td>
+</tr>
+
+<tr>
+<td id="infoboxsmall" colspan="3">
+Tragen Sie hier die Arbeitszeiten ein -Bsp.: 08:00-12:00;13:00-17:00 (8 Stunden)
+</td>
+</tr>
+
+<tr>
+<td>Arbeitszeiten / Stunden:</td>
+<td>Mo: <com:TActiveTextBox Id="rescal_t1" CssClass="mandantory" />: <com:TActiveTextBox Id="rescal_h1" CssClass="mandantorysmall"/>h
+</td>
+<td id="infoboxsmall">
+siehe Muster
+</td>
+</tr>
+
+<tr>
+<td>Arbeitszeiten / Stunden:</td>
+<td>Di: <com:TActiveTextBox Id="rescal_t2" CssClass="mandantory" />: <com:TActiveTextBox Id="rescal_h2" CssClass="mandantorysmall"/>h
+</td>
+<td id="infoboxsmall">
+siehe Muster
+</td>
+</tr>
+
+<tr>
+<td>Arbeitszeiten / Stunden:</td>
+<td>Mi: <com:TActiveTextBox Id="rescal_t3" CssClass="mandantory" />: <com:TActiveTextBox Id="rescal_h3" CssClass="mandantorysmall"/>h
+</td>
+<td id="infoboxsmall">
+siehe Muster
+</td>
+</tr>
+
+<tr>
+<td>Arbeitszeiten / Stunden:</td>
+<td>Do: <com:TActiveTextBox Id="rescal_t4" CssClass="mandantory" />: <com:TActiveTextBox Id="rescal_h4" CssClass="mandantorysmall"/>h
+</td>
+<td id="infoboxsmall">
+siehe Muster
+</td>
+</tr>
+
+<tr>
+<td>Arbeitszeiten / Stunden:</td>
+<td>Fr: <com:TActiveTextBox Id="rescal_t5" CssClass="mandantory" />: <com:TActiveTextBox Id="rescal_h5" CssClass="mandantorysmall"/>h
+</td>
+<td id="infoboxsmall">
+siehe Muster
+</td>
+</tr>
+
+<tr>
+<td>Arbeitszeiten / Stunden:</td>
+<td>Sa: <com:TActiveTextBox Id="rescal_t6" CssClass="mandantory" />: <com:TActiveTextBox Id="rescal_h6" CssClass="mandantorysmall"/>h
+</td>
+<td id="infoboxsmall">
+siehe Muster
+</td>
+</tr>
+
+<tr>
+<td>Arbeitszeiten / Stunden:</td>
+<td>So: <com:TActiveTextBox Id="rescal_t7" CssClass="mandantory" />: <com:TActiveTextBox Id="rescal_h7" CssClass="mandantorysmall"/>h
+</td>
+<td id="infoboxsmall">
+siehe Muster
+</td>
+</tr>
+
+<tr><td colspan="3" class="portlet-title">Liste aller Kalender</td></tr>
+
+<tr><td colspan="3">Suchen: <com:TActiveTextBox Id="find_termin" /><com:TImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/about_kde.png" /><com:TActiveButton Text="search" OnClick="searchTermin" CssClass="submit"/>
+</td></tr>
+
+<tr>
+<td colspan="3">
+<com:TActiveDataGrid ID="ResCalendarListe" AllowPaging="true" AllowSorting="false" AllowCustomPaging="true" PageSize="10" OnPageIndexChanged="rescalendarList_PageIndexChanged" AutoGenerateColumns="false" OnEditCommand="load_rescalendar" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+	<com:TActiveBoundColumn ID="lst_idta_rescalendar" DataField="idta_rescalendar" HeaderText="ID" SortExpression="idta_rescalendar" />
+	<com:TActiveBoundColumn ID="lst_rescal_name" DataField="rescal_name" HeaderText="Name" />
+	<com:TActiveEditCommandColumn HeaderText="SELECT" HeaderStyle.Width="100px" UpdateText="Save" EditText="Select" CancelText="Cancel"/>
+</com:TActiveDataGrid>
+
+<com:TActiveTextBox id="rescalendar_edit_status" Text="0" CssClass="hiddeninput" visible="false" />
+<com:TActiveTextBox id="idta_rescalendar" CssClass="hiddeninput" visible="false" />
+</td>
+</tr>
+
+</table>
+
+</div></div>
+
+</com:TContent>

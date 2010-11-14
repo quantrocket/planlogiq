@@ -1,0 +1,140 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="RiskLogIQ" %>
+
+
+<com:TContent ID="Navigation">
+
+<com:Application.portlets.risikoportlet Visible="true" />
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<h2>Risikonavigator</h2>
+
+<table width="100%"><tr><td>
+
+<com:TRepeater ID="Repeater"
+    AllowPaging="true"
+    AllowCustomPaging="true"
+    PageSize="50"
+    EnableViewState="false"
+    OnItemDataBound="bindRepeater2">
+
+	<prop:HeaderTemplate>
+		<table width="100%">
+		<thead><tr><td colspan="2">Risikoart</td></tr></thead>
+	</prop:HeaderTemplate>
+	
+	<prop:ItemTemplate>
+	
+	<tr style="background-color:#efefef">
+	<td><com:TLiteral Text="<%#$this->data->ris_name%>" /> - <small>Hauptrisiko</small></td>
+	<td><com:TLiteral Text="<%#$this->data->idtm_risiko%>" /></td>
+</tr>
+<tr><td colspan="2">
+
+<!-- ------------------------------------------------------------------------------------------------------------ /-->
+
+<com:TRepeater ID="Repeater4" EnableViewState="false">
+    	
+    <prop:HeaderTemplate>
+    <table cellspacing="1" width="100%" id="subrepeater3" border="0">
+    <thead><tr><td colspan="2">Risiken</td><td></td></tr></thead>
+    </prop:HeaderTemplate>
+
+		<prop:ItemTemplate>
+    		<tr>
+    			<td><com:TImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" /><com:TLiteral Text="<%#$this->data->rcv_comment%>" /></td>
+				<td><com:TLiteral Text="<%#$this->data->rcv_type%>" /></td>
+				<td width="30">
+    				<com:TImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/pencil.png" />
+    			</td>
+    		</tr>
+    	</prop:ItemTemplate>
+    
+    	
+    <prop:FooterTemplate>
+    </table>
+    </prop:FooterTemplate>
+ 
+</com:TRepeater>
+
+<!-- ------------------------------------------------------------------------------------------------------------ /-->
+
+</td>
+</tr>
+<tr><td colspan="2">
+
+<!-- ------------------------------------------------------------------------------------------------------------ /-->
+
+<com:TRepeater ID="Repeater2" onItemDataBound="page.bindRepeater3" EnableViewState="false">
+
+	<prop:HeaderTemplate>
+    <table cellspacing="1" width="100%" id="subrepeater2" border="0">
+    </prop:HeaderTemplate>
+ 
+ <!--default-->
+    
+    <prop:ItemTemplate>
+    <tr bgcolor="#cdcdcd">
+    	<td>&nbsp;&nbsp;&nbsp;<com:TLiteral Text="<%#$this->data->ris_name%>" /> - <small>Risikoart</small></td>
+		<td width="40"><com:TLiteral Text="<%#$this->data->idtm_risiko%>" /></td>
+		</tr>
+    	
+    	<tr><td colspan="2">
+    	
+<!-- ------------------------------------------------------------------------------------------------------------ /-->
+
+<com:TRepeater ID="Repeater3" EnableViewState="false">
+    	
+    <prop:HeaderTemplate>
+    <table cellspacing="1" width="100%" id="subrepeater3" border="0">
+    <thead><tr><td class="portlet-title" colspan="2">Risiken</td><td></td></tr></thead>
+    </prop:HeaderTemplate>
+
+		<prop:ItemTemplate>
+    		<tr>
+    			<td><com:TImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" /><com:TLiteral Text="<%#$this->data->rcv_comment%>" /></td>
+				<td><com:TLiteral Text="<%#$this->data->rcv_type%>" /></td>
+				<td width="30">
+    				<com:TImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/pencil.png" />
+    			</td>
+    		</tr>
+    	</prop:ItemTemplate>
+    
+    	
+    <prop:FooterTemplate>
+    </table>
+    </prop:FooterTemplate>
+ 
+</com:TRepeater>
+
+<!-- ------------------------------------------------------------------------------------------------------------ /-->
+
+    	</td></tr>
+    	
+    </prop:ItemTemplate> 
+ 
+    <prop:FooterTemplate>
+    </table>
+    </prop:FooterTemplate>
+ 
+</com:TRepeater>
+
+<!-- ------------------------------------------------------------------------------------------------------------ /-->
+</td></tr>
+	
+	</prop:ItemTemplate>
+	
+	<prop:FooterTemplate>
+	<tr><td colspan="2">&nbsp;</td></tr>
+		</table>
+	</prop:FooterTemplate>
+	
+</com:TRepeater>
+ 
+<com:TPager ControlToPaginate="Repeater" OnPageIndexChanged="pageChanged" />
+
+</td></tr></table>
+
+</com:TContent>

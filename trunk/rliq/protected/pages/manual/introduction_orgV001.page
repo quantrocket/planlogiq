@@ -1,0 +1,70 @@
+<%@ MasterClass="Application.layouts.ManualLayout" Title="ProLogIQ - Handbuch - Intro" %>
+
+<com:TContent ID="Navigation">
+	<com:Application.portlets.handbuchportlet Visible="true" />
+</com:TContent>
+
+<com:TContent ID="Main">
+<div id="content">
+
+<h2>Benutzerhandbuch ProLogIQ</h2>
+
+<h3>Intro</h3>
+
+<p id="1" class="block-content">
+Herzlich Willkommen im Handbuch f�r Prologiq - Projektmanagement, Risikomanagement und Kommunikationsmanagement.</p>
+
+<p id="2" class="block-content">
+Prologiq unterst�tzt Sie bei allen Prozessen, die im Rahmen eines Einzelprojektes auftreten. Ob es um die Zeitplanung, die Protokollierung und Dokumentation oder die Definition von Zielen und deren Messgr��en geht - prologIQ ist ihr Helfer. Dabei w�chst die Funktionalit�t t�glich und wir Ihnen nach sorgreichen Testst direkt zur Verf�gung gestellt.</p>
+
+<h3>Projekt-Prozessablauf innerhalb Prologiq</h3>
+<p id="3" class="block-content">
+<ol>
+<li><a href="<%= $this->getRequest()->constructUrl('page','manual.ziele.ziele') %>">
+Definition der Ziele</a></li>
+<li>Stakeholer und Organisation</li>
+<li>Phasenplan</li>
+<li>Risikoanalyse</li>
+<li>Projektorganisation</li>
+<ul>
+<li>Besprechungswesen</li>
+<li>Berichtswesen</li>
+<li>�nderungsmanagement</li>
+<li>Projektdokumentation</li>
+</ul>
+<li>PSP/Arbeitspakete</li>
+<li>Ablauf- und Terminplanung</li>
+<li>Einsatzmittelplanung</li>
+<li>Kostenplanung</li>
+</ol>
+</p>
+
+</div>
+
+<com:TImage ImageUrl="/rliq/themes/basic/gfx/16x16/apps/ooo-calc.png" /><a href="<%= $this->getRequest()->constructUrl('page','reports.workbook.Test') %>" style="textdecoration:none;">TEST</a>
+
+<com:TActivePanel Height="100px" ScrollBars="Auto">
+<h1>Welcome to PRADO!</h1>
+<p> This is a demonstration of CContextMenu</p>
+<p> Right click on the link below to test </p>
+<com:TLinkButton Text="Click me to do normal postback, Right-click me to open a context menu" Id="link" OnClick="ClickButton"/>
+<com:CContextMenu ForControl="link" CssClass="menu desktop" OnMenuItemSelected="clickMenu">
+	<com:CContextMenuItem id="first" Text="First Item" CommandName="Menu1"/>
+	<com:CContextMenuItem id="second" Text="Second Item" CommandName="Menu2" Enabled="false"/>
+	<com:CContextMenuItemSeparator/>
+	<com:CContextMenuItem id="third" Text="Toggle Second Item" CommandName="CommandMenu3"/>
+</com:CContextMenu>
+<p><com:TActiveLabel id="lblResult"/></p>
+
+<h1>Active Version</h1>
+<p id="element1" class="ctxMenu">Right Click Me 1</p>
+<p id="element2" class="ctxMenu">Right Click Me 2</p>
+<p id="element3" class="ctxMenu">Right Click Me 3</p>
+<com:CActiveContextMenu CssSelector=".ctxMenu" CssClass="menu desktop" OnMenuItemSelected="clickMenu">
+	<com:CContextMenuItem  Text="Active First Item" CommandName="Menu1"/>
+	<com:CContextMenuItem  Text="Active Second Item" CommandName="Menu2" Enabled="true"/>
+	<com:CContextMenuItemSeparator/>
+	<com:CContextMenuItem  Text="Toggle Second Item on Callback" CommandName="CommandMenu3"/>
+</com:CActiveContextMenu>
+</com:TActivePanel>
+<div class="last-modified">$Id: introduction.page 20090206 philipp $</div></com:TContent>

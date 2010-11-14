@@ -1,0 +1,17 @@
+<%@ MasterClass="Application.layouts.CustomLayout" Title="planlogIQ - ReportViewer" %>
+
+<com:TContent ID="Main">
+
+<div id="tabhtml_1" style="width:100%;height:100%;overflow:auto">
+        <div style="overflow:hidden;background:#898989">
+            <h2><com:TLabel ID="ttpivot_struktur_name" /> <b><com:TLabel ID="StrukturPfad" Text="-" /></b></h2>
+            <com:TActivePanel id="ACTPanel">
+                <com:TTable id="resulttable" Width="100%" CssClass="resizable">
+                </com:TTable>
+            </com:TActivePanel>
+            <script src="/rliq/protected/3rdParty/tablekit/js/tablekit.js"></script>
+        </div>
+</div>
+
+
+</com:TContent>

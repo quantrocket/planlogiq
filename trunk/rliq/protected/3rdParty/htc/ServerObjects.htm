@@ -1,0 +1,114 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Server Objects</title>
+    <link rel="stylesheet" type="text/css" media="screen" href="Wizard.css" />
+    <link href="styles.css" type="text/css" rel="stylesheet" />
+
+    <script language="javascript" type="text/javascript" src="/QvAjaxZfc/htc/QvAjax.js"></script>
+    <script language="javascript" type="text/javascript" src="/QvAjaxZfc/htc/QvAjaxBaseMgr.js"></script>
+    <script language="javascript" type="text/javascript" src="/QvAjaxZfc/htc/QvAjaxTableMgr.js"></script>
+    <script language="javascript" type="text/javascript" src="/QvAjaxZfc/htc/QvAjaxScan.js"></script>
+    <script language="javascript" type="text/javascript" src="/QvAjaxZfc/htc/QvAjaxTrace.js"></script>
+
+    <script type="text/javascript">
+        var first = true;
+        var qva = new Qva.PageBinding();
+        function Start() {
+            m_avqdisablepopup = true;
+            qva.SetModalTitle(document.title);       
+            qva.Kind = "SheetObjectInfoPane_obj";
+            qva.Ident ="new:";
+            qva.Remote = "/QvAJAXZfc/QvsViewClient.asp";
+            qva.OnUpdateComplete = OnAnswer;
+            qva.Trace = new Qva.Trace(qva);
+            new Qva.Scanner(qva);
+            Qva.Start();
+        }
+        function Finish() {
+            qva.Set ('.CreateFromActiveObject', 'action', '', true);
+        }
+        function OnAnswer() {
+            var node = qva.Select('SheetObjectInfoPane.CreateFromActiveObject');
+            if (node == null) {
+                if (first) alert('Server Objects not availbale');
+                qva.CloseModal();
+            }
+            first = false;
+        }
+    </script>
+</head>
+<body onload="Start();" onunload="qva.CloseModal()" avqscope="SheetObjectInfoPane">
+    <div id="PageContainer" style="height:490; width:inherit; border:solid 1pt #778; padding:10 10 10 10;">
+        <div style="height:460; width:inherit; overflow-x:hidden; overflow-y:auto; position:relative;">
+            <table border="1" style="width:99%;">
+                <thead style="background-color: Silver" class="Header">
+                    <tr>
+                        <td>
+                            Show
+                        </td>
+                        <td>
+                            Id
+                        </td>
+                        <td>
+                            Sheet
+                        </td>
+                        <td>
+                            Type
+                        </td>
+                        <td>
+                            Caption
+                        </td>
+                        <td>
+                            My
+                        </td>
+                        <td>
+                            User
+                        </td>
+                        <td>
+                            Modified
+                        </td>
+                        <td>
+                            Share
+                        </td>
+                    </tr>
+                </thead>
+                <tbody avq="table" avqgroup="SheetObjectInfoPane.InfoArray.List" style="background-color:White;">
+                    <tr>
+                        <td avqcol="check:Enabled">
+                            Show
+                        </td>
+                        <td avqcol="text:Id">
+                            Id
+                        </td>
+                        <td avqcol="text:SheetId">
+                            Sheet
+                        </td>
+                        <td avqcol="text:ObjectType">
+                            Type
+                        </td>
+                        <td avqcol="text:Caption">
+                            Caption
+                        </td>
+                        <td avqcol="check:My">
+                            My
+                        </td>
+                        <td avqcol="text:OwnerDisplayName">
+                            User
+                        </td>
+                        <td avqcol="text:UtcModifyTime">
+                            Modified
+                        </td>
+                        <td avqcol="check:Shared">
+                            Share
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div id="PageFooter" style="height:30; position:relative">
+            <button onclick="Finish()">OK</button>
+            <button onclick="Qva.CloseModal()">Cancel</button>
+        </div>
+    </div>
+</body>
+</html>

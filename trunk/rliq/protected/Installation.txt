@@ -1,0 +1,10 @@
+KOOLPHPSUITE - INSTALL INSTRUCTION
+
+1. Unzip KoolPHPSuite.zip file.
+2. Copy KoolPHPSuite folder inside unzipped directory to your localhost folder.
+3. Start browsing the suite in web browser with url "http://localhost/KoolPHPSuite/index.php".
+
+Note:
+(1) KoolPHPSuite works excellently in PHP5
+(2) If you have any difficulty of installing or using our products, please contact our support team at support@koolphp.net
+(3) If you have any question regarding our products licences, please contact our sale team at sales@koolphp.net

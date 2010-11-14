@@ -1,0 +1,29 @@
+<%@ MasterClass="" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<com:THead />
+<body>
+<com:TForm>
+
+<!-- create a new instance of ImageManager (change the path to suite) -->
+
+<com:Application.pages.ImageManager.ImageManager
+	OnCreateNewFolder="create_new_folder"
+	OnFileUpload="upload"
+	OnFileDelete="delete_file"
+	onFileAccessed="check_files"
+	EnableNewFolder="true"
+	EnableUpload="true"
+	EnableDelete="true"
+	AssetBaseUrl="images"
+	AssetPath="images"
+	/>
+
+<!--
+	AssetBaseUrl: url relative to the index.php to access the "images" directory
+	AssetPath: directory path relative to index.php for the "images" asset
+-->
+
+</com:TForm>
+</body>
+</html>

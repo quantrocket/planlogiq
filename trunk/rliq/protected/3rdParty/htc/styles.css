@@ -1,0 +1,141 @@
+body
+{
+    border:none;
+    margin:10 10 10 10; 
+    overflow:hidden;
+}
+
+body, select, input 
+{
+    font-size:10pt; font-family:Tahoma; 
+}
+
+#PageHeader
+{
+    width:100%; 
+    height:18pt;
+    overflow:visible; 
+	color: black;
+	background-color: #E9E9E9;
+	padding-left: 10px;
+    padding-bottom: 3pt;
+    padding-top: 3pt;
+    top:4pt;
+    font-weight:bold;
+	z-index:2;
+}
+
+.selectedborder
+{
+    border: solid thin #FF9900
+}
+
+.unselectedborder
+{
+    border: solid thin darkgray
+}
+
+#PageNavigation
+{
+    width:100%; 
+    height:18pt;
+    overflow:visible; 
+}
+
+#PageNavigation a
+{
+    position: relative;
+	color: darkgray;
+	background: lightgrey url(left-tab.gif) left top no-repeat;
+	text-decoration: none;
+	padding-left: 10px;
+    top:5pt;
+    font-size:10pt; font-family:Tahoma; 
+    text-align:left;
+	cursor: pointer;
+	z-index:0;
+} 
+
+#PageNavigation a span
+{
+	background: url(right-tab.gif) right top no-repeat;
+	padding-right: 10px
+} 
+
+#PageNavigation a.selected
+{
+	color: black;
+	background: #E9E9E9 url(left-tab.gif) left top no-repeat;
+	padding-left: 10px;
+    padding-bottom: 3pt;
+    top:4pt;
+    border-bottom:none;
+    font-weight:bold;
+	z-index:2;
+}
+
+#PageNavigation a.selected span
+{
+	background: url(right-tab.gif) right top no-repeat;
+	padding-right: 10px;
+}
+
+#PageNavigation a:hover span
+{
+    color:Black;
+    font-weight:bold;
+}
+
+#PageContainer
+{
+    border-top:solid 1pt #778;
+    border-bottom:solid 1pt #778;
+    position:relative;
+	z-index:1;
+    background-color: #E9E9E9;
+    font-size:8pt; font-family:Tahoma; 
+}
+
+#PageContainer div 
+{
+    position:absolute;
+}
+
+#PageFooter
+{
+    padding:8 4 0 4;
+    text-align:right;
+}
+#PageFooter button
+{
+    width:80;
+}
+
+.Label, .Text, .CheckBox, .Button 
+{
+}
+
+.Spin
+{
+    display:none;
+}
+
+.Group
+{
+    border: solid 1px silver;
+}
+
+.Group span
+{
+    padding: 4 0 0 4;
+    font-weight:bold;
+}
+
+
+.Select
+{
+}
+
+.Radio
+{
+}

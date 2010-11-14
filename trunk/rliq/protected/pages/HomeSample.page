@@ -1,0 +1,75 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="RiskLogIQ" %>
+
+
+<com:TContent ID="Navigation">
+
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<h2>WILLKOMMEN bei RiskLogIQ</h2>
+
+<p id="infobox">Risklogiq unterstützt Sie bei der Erfassung und Dokumentation Ihrer Prozesse und der entsprechenden Risikobetrachtung.</p>
+
+
+<com:TActiveLinkButton ID="btnShow" Text="Show (on active control, no postback)" OnClick="btnShow_OnClick" />
+        <br/><br/>
+        <com:TLinkButton ID="btnShow1" Text="Show (on postback)" OnClick="btnShow_OnClick" />
+        <br/>
+        <com:NModalPanel ID="mpnlTest" >
+            <div id="test" style="border:solid 1px #660000; height:250px; width: 300px; background-color: #cccccc; padding:5px; ">
+                Modal box
+                <br/><br/><br/><br/>
+                <com:TActiveLinkButton ID="btnClose" Text="Close (on active control, no postback)" OnClick="btnClose_OnClick" />
+                <br/>
+                <com:TLinkButton ID="btnClose1" Text="Close (on postback)" OnClick="btnClose_OnClick" />
+            </div>
+        </com:NModalPanel>
+
+<com:TTabPanel>
+<com:TTabView id="tasklist" Caption="Meine Aufgaben">
+
+Suchen: <com:TActiveTextBox Id="find_aufgabe" /><com:TImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/about_kde.png" /><com:TActiveButton Text="search" OnClick="searchOffer" CssClass="submit"/>
+
+<com:XActiveDataGrid ID="AufgabenListe" AllowPaging="true" AllowSorting="false" AllowCustomPaging="false" PageSize="10" onSortCommand="dtgList_SortCommand"  OnPageIndexChanged="dtgList_PageIndexChanged" OnEditCommand="ButtonWarenClicked" OnUpdateCommand="dtgList_UpdateCommand" OnCancelCommand="dtgList_CancelCommand" AutoGenerateColumns="false" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+	<com:XActiveBoundColumn ID="lstauf_idtm_aufgaben" DataField="idtm_aufgaben" HeaderText="ID" SortExpression="idtm_aufgaben" />
+	<com:XActiveBoundColumn ID="lstauf_auf_name" DataField="auf_beschreibung" HeaderText="Name" />
+	<com:XActiveBoundColumn ID="lstauf_auf_tdate" DataField="auf_tdate" HeaderText="PLZ" />
+	<com:XActiveEditCommandColumn HeaderText="SELECT" HeaderStyle.Width="100px" UpdateText="Save" EditText="Details" CancelText="Cancel"/>
+</com:XActiveDataGrid>
+
+</com:TTabView>
+
+<com:TTabView id="newgoodsneeded" Caption="Waren Gesuche">
+
+<com:XActiveDataGrid ID="GesucheListe" AllowPaging="true" AllowSorting="false" AllowCustomPaging="false" PageSize="10" onSortCommand="dtgList_SortCommand"  OnPageIndexChanged="dtgList_PageIndexChanged" OnEditCommand="ButtonWarenClicked" OnUpdateCommand="dtgList_UpdateCommand" OnCancelCommand="dtgList_CancelCommand" AutoGenerateColumns="false" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+	<com:XActiveBoundColumn ID="lstges_idta_waren" DataField="idta_waren" HeaderText="ID" SortExpression="idta_waren" />
+	<com:XActiveBoundColumn ID="lstges_waren_bezeichnung" DataField="waren_bezeichnung" HeaderText="Bezeichnung" />
+	<com:XActiveBoundColumn ID="lstges_adresse_zip" DataField="warenadresse.adresse_zip" HeaderText="PLZ" />
+	<com:XActiveBoundColumn ID="lstges_waren_menge" DataField="waren_menge" HeaderText="Menge" />
+	<com:XActiveBoundColumn ID="lstges_waren_gewicht" DataField="waren_gewicht" HeaderText="Gew. in kg" />
+	<com:XActiveBoundColumn ID="lstges_waren_preis" DataField="waren_preis" HeaderText="Preis" />
+	<com:XActiveBoundColumn ID="lstges_waren_dat_lb" DataField="waren_dat_lb" HeaderText="Gültig bis" />
+	<com:XActiveEditCommandColumn HeaderText="SELECT" HeaderStyle.Width="100px" UpdateText="Save" EditText="Details" CancelText="Cancel"/>
+</com:XActiveDataGrid>
+
+</com:TTabView>
+
+<com:TTabView id="newtransport" Caption="Logistik Angebote">
+
+<com:XActiveDataGrid ID="LogistikListe" AllowPaging="true" AllowSorting="false" AllowCustomPaging="false" PageSize="5" onSortCommand="dtgList_SortCommand"  OnPageIndexChanged="dtgList_PageIndexChanged" OnEditCommand="dtgList_EditCommand" OnUpdateCommand="dtgList_UpdateCommand" OnCancelCommand="dtgList_CancelCommand" AutoGenerateColumns="false" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+	<com:XActiveBoundColumn ID="lst_idta_adresse" DataField="idta_adresse" HeaderText="ID" SortExpression="idta_adresse" />
+	<com:XActiveBoundColumn ID="lst_adresse_zip" DataField="adresse_zip" HeaderText="PLZ" />
+	<com:XActiveBoundColumn ID="lst_adresse_town" DataField="adresse_town" HeaderText="Stadt" />
+	<com:XActiveEditCommandColumn HeaderText="SELECT" HeaderStyle.Width="100px" UpdateText="Save" EditText="Select" CancelText="Cancel"/>
+</com:XActiveDataGrid>
+
+</com:TTabView>
+
+</com:TTabPanel>
+
+
+
+
+</com:TContent>

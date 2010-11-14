@@ -1,0 +1,181 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="planlogIQ - Protokolle" %>
+
+<com:TContent ID="HeaderJavascript">
+
+function initDHTMLXTabbars(TabbarObject){
+    TabbarObject.addTab("a1","Protokolle",150);
+    TabbarObject.setContent("a1", "tabhtml_1");
+
+    TabbarObject.setTabActive("a1");
+
+    dhxLayout.cells("b").setText("Filter");
+    dhxLayout.cells("b").setWidth(315);
+}
+
+</com:TContent>
+
+<com:TContent ID="Navigation">
+
+<fieldset>
+    <legend>Erweiterte Filter</legend>
+<table width="100%">
+
+<tr>
+    <td class="FormLabel">
+        Art:
+    </td>
+    <td>
+        <com:TActiveDropDownList
+            OnCallback="bindListOrgListe"
+            Text="-1"
+            id="CBidta_organisation_art"
+            CssClass="mandantory"/>
+    </td>
+</tr>
+<tr>
+    <td class="FormLabel">
+        Orga:
+    </td>
+    <td>
+        <com:POrganisationSelection
+            id="CBidtm_organisation"/>
+    </td>
+</tr>
+<tr>
+    <td class="FormLabel">
+        Status:
+    </td>
+    <td>
+        <com:TActiveDropDownList OnCallback="bindListOrgListe" Text="2" id="CBAufgabeDone" CssClass="mandantory"/>
+    </td>
+</tr>
+
+<tr>
+    <td colspan="2">
+        <span class="wcbutton" style="width:200px;">
+            <com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/find.png" />
+                <a href="javascript:win_organisation_openwin('<%=$this->getRequest()->constructUrl('page','protokoll.window.prtsearchwindow')%>')" Title="PrtWindow"><%[ Volltextsuche ]%></a></span>
+    </td>
+</tr>
+</table>
+
+</fieldset>
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<div id="tabhtml_1" style="overflow:auto;height:100%;background:#cdcdcd">
+    <div style="overflow:hidden">
+
+<div class="mytoolbar">
+    <span class="windowcontent-button">
+        <com:TImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" /><com:InternalHyperLink id="NewRecord"/>
+    </span>
+    &nbsp; Projektfilter: <com:TActiveDropDownList Id="FFidtm_activity" CssClass="mandantory" OnCallBack="bindListOrgListe"/>
+    | <com:TActivePager
+                  Id="OrgListePager"
+                  ControlToPaginate="OrgListe" 
+                  OnPageIndexChanged="dtgList_PageIndexChanged"
+                  PageButtonCount="5"
+                  Mode="Numeric"
+                  CssClass="pager" />
+</div>
+
+<com:TActiveRepeater ID="OrgListe"
+                     AllowPaging="true"
+                     PageSize="5"
+                     onItemDataBound="load_prttopics"
+                     CssClass="datagrid">
+    <prop:HeaderTemplate>
+         
+    </prop:HeaderTemplate>
+
+    <prop:FooterTemplate>
+        
+    </prop:FooterTemplate>
+
+    <prop:ItemTemplate>
+      <fieldset width="95%">
+        <legend>
+                Projekt: <b><com:TLiteral Text="<%=ActivityRecord::finder()->findByidtm_activity(TerminRecord::finder()->findByidtm_termin($this->Data->idtm_termin)->idtm_activity)->act_name%>"/></b>
+                Datum: <b><com:TLiteral Text="<%=TerminRecord::finder()->findByidtm_termin($this->Data->idtm_termin)->ter_startdate%>"/></b>
+                Termin: <b><com:TLiteral Text="<%=TerminRecord::finder()->findByidtm_termin($this->Data->idtm_termin)->ter_betreff%>"/></b>
+                Thema: <b><com:TLiteral Text="<%=$this->Data->prt_name%>"/></b>
+        </legend>
+        <table width="100%" border="0" cellpadding="0" cellspacing="1">
+            <tr>
+            <td valign="top" colspan="2">
+                <div class="mytoolbar">
+                    <com:TActiveLinkButton ID="editRepeaterItem" onCallback="page.dtgList_editCommand" CommandParameter="<%=$this->Data->idtm_protokoll%>" CssClass="wcbutton" ToolTip="edit" Text="bearbeiten"/>
+                    <com:TActiveHyperLink NavigateUrl="javascript:win_organisation_openwin('<%=$this->page->CreatePDFLink($this->data->idtm_protokoll)%>')" Text="Export PDF" ToolTip="export PDF" CssClass="wcbutton"/>
+                </div>
+            </td>
+            </tr>
+            <tr>
+            <td width="100%">
+                <table width="100%">
+                    <tr>
+                        <td width="80px" class="FormLabel">Moderator:</td>
+                        <td width="120px" valign="top"><com:TLiteral Text="<%=OrganisationRecord::finder()->findByidtm_organisation($this->Data->idtm_organisation)->org_name%>"/></td>
+
+                    <td rowspan="3" valign="top">
+                        <com:TActiveDataGrid Id="CCProtokollTops"
+                                             AutogenerateColumns="false"
+                                             CssClass="datagrid"
+                                             PagerStyle.CssClass="pager"
+                                             AlternatingItemStyle.CssClass="protokollpunkt">
+                            <com:TActiveBoundColumn ID="infolst_idtm_protokoll_detail_group" DataField="idtm_protokoll_detail_group" HeaderText="TOP" SortExpression="idtm_termin" HeaderStyle.Width="30px"/>
+                            <com:TActiveBoundColumn ID="infolst_prtdet_topic" DataField="prtdet_topic" HeaderText="Thema" />
+                            <com:TActiveTemplateColumn HeaderStyle.Width="140px">
+                                <prop:HeaderTemplate><%[ Wer ]%></prop:HeaderTemplate>
+                                <prop:ItemTemplate>
+                                    <a href="javascript:win_orgstb_openwin('<%=$this->getRequest()->constructUrl('page','organisation.window.orgstbwindow&idtm_organisation='.$this->parent->data->idtm_organisation)%>')" Title="OrgStbWindow">
+                                        <com:TActiveLabel Text="<%=$this->parent->data->idta_protokoll_ergebnistype<3&&$this->parent->data->auf_done==0?$this->parent->data->org_name:'-'%>" />
+                                    </a>
+                                </prop:ItemTemplate>
+                            </com:TActiveTemplateColumn>
+                             <com:TActiveTemplateColumn HeaderStyle.Width="70px">
+                                <prop:HeaderTemplate><%[ Art ]%></prop:HeaderTemplate>
+                                <prop:ItemTemplate>
+                                    <com:TActiveLabel Text="<%=$this->parent->data->idta_protokoll_ergebnistype<3&&$this->parent->data->auf_done==0?$this->page->idta_organisation_art[OrganisationRecord::finder()->findByPK($this->parent->data->idtm_organisation)->idta_organisation_art]:'-'%>" />
+                                </prop:ItemTemplate>
+                            </com:TActiveTemplateColumn>
+                            <com:TActiveTemplateColumn HeaderStyle.Width="70px">
+                                <prop:HeaderTemplate><%[ Bis ]%></prop:HeaderTemplate>
+                                <prop:ItemTemplate>
+                                    <com:TActiveLabel Text="<%=$this->parent->data->idta_protokoll_ergebnistype<3&&$this->parent->data->auf_done==0?$this->parent->data->auf_tdate:'-'%>" />
+                                </prop:ItemTemplate>
+                            </com:TActiveTemplateColumn>
+                            <com:TActiveTemplateColumn HeaderStyle.Width="40px">
+                                <prop:HeaderTemplate><%[ Status ]%></prop:HeaderTemplate>
+                                <prop:ItemTemplate>
+                                    <com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/<%=$this->parent->data->idta_protokoll_ergebnistype<3&&$this->parent->data->auf_done==0?0:1%>tt.png" Id="status_image"/>                     
+                                </prop:ItemTemplate>
+                            </com:TActiveTemplateColumn>
+                        </com:TActiveDataGrid>
+                    </td>
+
+                    </tr>
+                    <tr><td class="FormLabel">Typ:</td>
+                        <td valign="top"><com:TLiteral Text="<%=ProtokollTypeRecord::finder()->findByidta_protokoll_type($this->Data->idta_protokoll_type)->prt_type_name%>"/></td></tr>
+                    <tr><td class="FormLabel">Ort:</td>
+                        <td valign="top"><com:TLiteral Text="<%=$this->Data->prt_location%>"/></td></tr>
+                </table>
+            </td>
+            <td valign="top">
+                <table width="70px">
+                    <tr><td width="30px" class="FormLabel">TOPs:</td>
+                        <td width="20px"><b><com:TLiteral Text="<%=ProtokollDetailRecord::finder()->count('idtm_protokoll = ?',$this->Data->idtm_protokoll)%>"/></b></td></tr>
+                    <tr><td class="FormLabel" style="background:#efefef;">Offen:</td><td class="<%#ProtokollDetailAufgabeView::finder()->count('idtm_protokoll = ? AND idta_protokoll_ergebnistype < 3 AND auf_done=0',$this->Data->idtm_protokoll)==0?'PSPFAZ':'PSPSAZ'%>"><b><com:TLiteral Text="<%=ProtokollDetailAufgabeView::finder()->count('idtm_protokoll = ? AND idta_protokoll_ergebnistype < 3 AND auf_done=0',$this->Data->idtm_protokoll)%>"/></b></td></tr>
+                </table>
+            </td>
+            </tr>
+        </table>
+       </fieldset>
+    </prop:ItemTemplate>
+</com:TActiveRepeater>
+
+    </div>
+</div>
+</com:TContent>

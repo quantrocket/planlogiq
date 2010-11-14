@@ -1,0 +1,662 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>dhtmlxLayout Guide</title>
+	<link rel="STYLESHEET" type="text/css" href="common/styles.css">
+</head>
+   
+<body>
+ <h2><a name='cc_lezars'>
+ dhtmlxConnector guide and code samples
+</a></h2>
+<br>
+<h2><a name='cc_3493n'>
+ 1. Introduction
+</a></h2>
+<h3><a name='cc_c:1zd5rs'>
+ 1.1. Scope of the Document
+</a></h3>
+<br>
+This document describes <b id="s0c4">dhtmlxConnector </b>class set, defines its methods and global parameters. This documentation is created to give users full understanding of every feature of this class set, and also to enable users to implement <b id="s0c4">dhtmlxConnector</b> quickly and easily.<br>
+<h3><a name='cc_x32j_a'>
+ 1.2 Target Readers
+</a></h3>
+Target readers are users (developers).<br>
+<br>
+<h2><a name='cc_n775:09n'>
+ 2. What is dhtmlxConnector
+</a></h2>
+<b>dhtmlxConnector</b> is a set of PHP classes which helps to simplify server side operations related to dhtmlx library components (<b>dhtmlxGrid/TreeGrid, dhtmlxTree, dhtmlxCombo</b>).<br>
+<br>
+ The following operations are available in <b>dhtmlxConnector</b> :<br>
+<br>
+<ul>
+ <li>
+  data loading for all above-mentioned components (dynamical loading for <b>dhtmlxTree</b> and <b>TreeGrid,</b> smart rendering with dynamical loading for <b>dhtmlxGrid</b> included)
+ </li>
+ <li>
+  inserting, deleting, updating <span style="background-color: rgb(255, 0, 0);"></span>for <b>dhtmlxGrid/TreeGrid, dhtmlxTree</b>
+ </li>
+ <li style="background-color: rgb(255, 255, 255);">
+  filtering for <b>dhtmlxGrid/TreeGrid</b>
+ </li>
+ <li style="background-color: rgb(255, 255, 255);">
+  autocomplete for <b>dhtmlxCombo </b>
+ </li>
+ <li>
+  sorting for <b>dhtmlxGrid/TreeGrid</b>
+ </li>
+</ul>
+<div>
+ <br>
+ Wide range of events provided by <b>dhtmlxConnector</b> gives to developer the ability to implement server side functionality <span style="background-color: rgb(255, 255, 255);">of any level of complexity as for loading data, as for update operations.</span><br>
+ <br>
+</div>
+<div>
+ 
+<h2><a name='cc_8x2689e'>
+ 3. Initialization of dhtmlxConnector
+ </a></h2>
+ <br>
+ 
+<h3><a name='cc_v2h896f'>
+ 3.1 Client side code
+ </a></h3>
+ 
+ No modifications on client side are required for regular data loading. In other cases you should  include the <b>connector.js</b> file (located in dhtmlxConnector_php/codebase) into your page. To perform any update operations you have to use dhtmlxDataProcessor, which has been already included in both Professional and Standard editions of dhtmlx library<span style="background-color: rgb(255, 255, 255);">. </span><span class="writely-comment" id="writely-comment-id-dhhqnnw2" style="background-color: rgb(255, 255, 255);"></span><span style="background-color: rgb(255, 229, 153);"></span><br>
+ <br>
+ For data loading you need to point load (or loadXML) method of dhtmlx component to connector file:<br>
+ <br>
+ 
+<blockquote>
+     myGrid = new dhtmlXGridObject("pObjId");<br>
+     ... //grid configuration commands<br>
+     myGrid.load("myconnector.php");<br>
+ </blockquote>
+ <br>
+ To perform insert/update/delete operations you should add dhtmlxDataProcessor (for more details about dhtmlxDataProcessor see related documentation):<br>
+ <br>
+ 
+<blockquote>
+     myDP = new dataProcessor("myconnector.php");<br>
+     myDP.init(myGrid);<br>
+ </blockquote>
+ <br>
+</div>
+<div>
+ 
+<h3><a name='cc_m65c:x2'>
+ 3.2 Server side code
+ </a></h3>
+ <span style="background-color: rgb(255, 255, 255);">If you need to use <b>dhtmlxConnector</b> on server side we strongly recommend to use internal objects for getting/setting data values</span> (to avoid any confusions do not use GET or POST variables directly).<br>
+</div>
+<div>
+ <br>
+ To start operating with <b>dhtmlxConnector</b>  you should do the following:<br>
+ <br>
+ 
+<ul>
+ <li>
+ include appropriate connector file into the page (Here and after we'll use <b>dhtmlxGrid connector</b> for code samples. All differences between connectors of other components will be described additionally. When using sample code with appropriate components, all files or function names which contain component name "grid" should be changed to "tree", "treegrid" or "combo" accordingly.)<br>
+ </li>
+ </ul>
+ 
+<blockquote style="background-color: rgb(255, 255, 255);">
+     require("connector/grid_connector.php");<br>
+ </blockquote>
+ <br>
+ 
+<ul>
+ <li>
+  create Database connection (v.1.0 of connector supports MySQL and PosgreSQL):
+ </li>
+ </ul>
+ <br>
+ 
+<blockquote>
+     $res=mysql_connect("localhost","root","");<br>
+     mysql_select_db("myDatabase");<br>
+ </blockquote>
+ <br>
+   After have implemented these operations you are ready to <span style="background-color: rgb(255, 255, 255);">instantiate </span>connector object. The only database connection link variable is mandatory parameter in all constructors.  Optionally, you can specify database type ("MySQL" by default. Other possible: "Postgre")<br>
+ <br>
+ 
+<blockquote>
+    $gridConn = new GridConnector($res,"MySQL");<br>
+ </blockquote>
+ <br>
+ <br>
+ 
+<h2><a name='cc_h8b_'>
+ 4. Loading/Editing data
+ </a></h2>
+ 
+<h3><a name='cc_871x3yl'>
+ 4.1 Single table operations
+ </a></h3>
+ Once you get connection object you are ready to decide what data should take part in load/update operations. Where all necessary data is placed in one database table you should use the <b>render_table</b> method:<br>
+</div>
+<div>
+ <br>
+ 
+<blockquote>
+    $gridConn->render_table("mytable","item_id","item_nm,item_cd",["parent_id"]);<br>
+ </blockquote>
+ <br>
+   The parameters of this method are:<br>
+ <br>
+ 
+<ul>
+ <li>
+   database table name
+ </li>
+ <li>
+   name of identity field <span style="background-color: rgb(255, 255, 255);">*</span>
+ </li>
+ <li>
+   list of fields which should be used as values of component item (cells of grid, item label in tree, text of option in combo) <span style="background-color: rgb(255, 255, 255);">*</span>
+ </li>
+ <li>
+   parent ID field name for hierarchical structures (required for tree and treegrid)<span style="background-color: rgb(255, 255, 255);"> *</span>
+ </li>
+ </ul>
+ <br>
+ <span style="background-color: rgb(255, 255, 255);">This is all you need to make connector implement select, insert, update and delete operations.</span><br>
+ <br>
+ * You are allowed to use alias names for fields.<br>
+ The syntax is:<br>
+ 
+<blockquote>
+ 
+<p>
+ field_name{alias_name}
+ </p>
+ </blockquote>
+ 
+<p style="background-color: rgb(255, 255, 255);">
+ If you set alias, you'll have to refer to this field using alias in other operations as well.
+ </p>
+ 
+<h3><a name='cc_6jl895'>
+ 4.2 Joint tables and complex queries operations
+ </a></h3>
+ You are allowed to use any SQL statements to populate any dhtmlx component through <b>dhtmlxConnector</b>. This is possible with the <b>render_sql </b>method:<br>
+</div>
+<div>
+ <br>
+ 
+<blockquote>
+     $gridConn->render_sql("Select * from tableA, tableB  where  tableA.id=tableB.id", "a.id","name,price","parent_id");<br>
+ </blockquote>
+ The parameters of the <b>render_sql </b>method are the following:<br>
+     <br>
+ 
+<ul>
+ <li>
+     sql statement
+ </li>
+ <li>
+     field to use as identifier *
+ </li>
+ <li>
+     list of fields which should be used as values of component item (cells for grid, item label for tree, text of option for combo) *
+ </li>
+ <li>
+     parent ID field name for hierarchical structures (required for tree and treegrid) *
+ </li>
+ </ul>
+ <br>
+ * You are allowed to use <span style="background-color: rgb(255, 229, 153);"></span><span style="background-color: rgb(255, 229, 153);"></span>aliases for fields.<br>
+  The syntax is:<br>
+ 
+<blockquote>
+  field_name{alias_name}<br>
+ </blockquote>
+ If you set alias, you'll have to refer to this field using alias in other operations as well.<br>
+ <br>
+ In case your SQL query was against single table, it is quite<span style="background-color: rgb(255, 255, 255);"> probable t</span>hat insert/update/delete operations do not require any additional code. <b>dhtmlxConnector</b> will parse your SQL and generate insert/update/delete statements based on used table and fields names.<br>
+ <br>
+ If your SQL statement contains more than one table, you should choose one of two ways to implement insert/update/delete operations correctly:<br>
+ <br>
+ 
+<ul>
+ <li>
+   Using the <b>render_table</b> method. In this case you should define for which table  insert/update/delete operations will be applied, then provide connector with details about this table using the following code snippet:
+ </li>
+ </ul>
+ <br>
+ 
+<blockquote>
+ if($gridConn->is_select_mode()){//code for loading data<br>
+     $gridConn->render_sql("Select * from tableA, tableB  where  tableA.id=tableB.id", "a.id","name,price");<br>
+ }else{//code for other operations - i.e. update/insert/delete<br>
+     $gridConn->render_table("tableA","id","name,price");<br>
+ }<br>
+ </blockquote>
+ <br>
+ 
+<ul>
+ <li>
+ Using event handlers. In case the logic of update operations is more complex you should use events handlers to define update/insert/delete statements accordingly.
+ </li>
+ </ul>
+ 
+<h2><a name='cc_344j'>
+ 5. Formatting/Changing Data before Loading
+ </a></h2>
+ In case you need to update values which were returned from database table or set some specific formatting before sending them to client side, you should use the "<b>beforeRender</b>" event handler. For more details see Events System chapter of this manual.<br>
+ 
+<h2><a name='cc_tl_63n'>
+ 6. Dynamical Loading
+ </a></h2>
+ <b>dhtmlxConnector </b>supports <b>dhtmlxGrid</b> "Smart Rendring with Dynamical Loading" mode, <b>dhtmlxTree</b> and <b>dhtmlxTreeGrid</b> "Dynamical Loading" modes, dynamical loading for <b>dhtmlxCombo</b> autocomplete mode.<br>
+ <br>
+ 
+<blockquote>
+ &amp;nbsp;  &amp;nbsp;$gridConn->dynamic_loading([$rowsNum]);<br>
+ </blockquote>
+ <br>
+   The parameter(s) are:<br>
+ <br>
+ 
+<ul>
+ <li>
+  <span style="background-color: rgb(255, 255, 255);"> </span><span style="color: rgb(0, 0, 0); background-color: rgb(255, 229, 153);"><span style="background-color: rgb(255, 255, 255);">no parameters for tree, treegrid and combo are required. </span><br>
+ </span>
+ </li>
+ <li>
+ <span style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">  number of rows which should be initially loaded (the value should be more than number of rows visible in grid, or at least any positive number) for grid.</span></li>
+ </ul>
+ <br>
+ 
+<h2><a name='cc_7qu2__q'>
+ 7. Sorting 
+ </a></h2>
+ This functionality is available for <b>dhtmlxGrid/TreeGrid</b>. Server side sorting with <b>dhtmlxTreeGrid</b> doesn't support open states.<br>
+ <br>
+ Using "<b>beforeSort</b>" event you can define SQL for "order" statement. For more details see Events System chapter of this manual.<br>
+ <br>
+ 
+<h2><a name='cc_rs0957'>
+ 8. Filtering
+ </a></h2>
+ This functionality is available for <b>dhtmlxGrid/TreeGrid</b>. Server side filtering with <b>dhtmlxTreeGrid</b> doesn't<span style="background-color: rgb(255, 255, 255);"> maintain </span>open states.<br>
+ <br>
+ To enable server side filtering you should use one of the following in-header filter types while configuring <b>dhtmlxGrid</b>:<br>
+     <br>
+ 
+<ul>
+ <li>
+      #connector_text_filter - searches for values which contain mask defined through text field
+ </li>
+ </ul>
+ 
+<ul>
+ <li>
+     #connector_select_filter - searches for values which contain mask defined through list of possible values
+ </li>
+ </ul>
+ <br>
+ To change filtering rule you can define related part of "where" statement using "<b>beforeFilter</b>" event.<br>
+ <br>
+ <span style="background-color: rgb(255, 255, 255);">In case of #connector_select_filter</span> you can define which options will be shown in list (usefull for dyn. loading , when full list of options may be not available on client side) with "<b>beforeFilterOptions</b>" event.<br>
+ <br>
+ For more details see Events System chapter of this manual.<br>
+ <br>
+ 
+<h2><a name='cc__nb1:1'>
+ 9. Complex updates
+ </a></h2>
+ For update operations which require their own logic, you can use custom sql statements or event handlers.<br>
+ <br>
+ Using custom SQL statements you can define your own SQL for specific action (Insert, Update or Delete) as follows:<br>
+ <br>
+ 
+<blockquote>
+     $gridConn->sql->attach("Update","Update tableA set name='{name}', price={price} where id={a.id}");<br>
+ </blockquote>
+ <br>
+ The parameters are the following:<br>
+ <br>
+ 
+<ul>
+ <li>
+    action name. Possible values are: "Update", "Insert", "Delete"
+ </li>
+ <li>
+    SQL statement. It can use fields or aliases which were mentioned in render_sql or render_table method used for loading data.
+ </li>
+ </ul>
+ <br>
+ <br>
+ In case custom SQL is unsufficient (for example you need to process values before using them in SQL) you should use events handlers. For more details see Events System chapter of this manual.<br>
+ 
+<h2><a name='cc_gp71'>
+ 10. Validating Data
+ </a></h2>
+ To implement server side validation of incoming data you should use "<b>beforeUpdat<span style="background-color: rgb(255, 255, 255);">e"</span>, "beforeInsert", "beforeDelete</b>" events . For more details see Events System chapter of this manual.<br>
+ 
+<h2><a name='cc_f1x2'>
+ 11. Error Handling and Logging
+ </a></h2>
+ We strongly recommend to log all operations.  <br>
+ <br>
+ 
+<blockquote>
+     $gridConn->enable_log("path to log file");<br>
+ </blockquote>
+ <br>
+ In the code string above you should specify only one parameter:<br>
+     <br>
+ 
+<ul>
+ <li>
+   absolute or relative path to text file <span style="background-color: rgb(255, 255, 255);">where log will be written </span></li>
+ </ul>
+ <br>
+ If any error occurs during data processing client side data processor object will receive "error"  action, which will contain short info about the problem (full info will be written in the log )<br>
+ If you want to show full error info on client side you should use the following code string (useful for debug, not recommended for production )<br>
+ <br>
+ 
+<blockquote>
+     $gridConn->enable_log("path to log file",true);<br>
+ </blockquote>
+ 
+<h2><a name='cc_v52zwaq'>
+ 12. Security
+ </a></h2>
+ <b>dhtmlxConnector </b>is open to external access of another programs<span style="background-color: rgb(255, 229, 153);"></span> that's why any external user is allowed to change data in DB, thus adding some kind of session based autentification is strongly recommended.<br>
+ Built in security manager allows to limit connector for certain operations only.<br>
+ <br>
+ 
+<blockquote>
+ $gridConn->access->deny("read"); //blocks Select action <span style="background-color: rgb(255, 255, 0);"></span><br>
+ $gridConn->access->deny("add"); //blocks Insert action<br>
+ $gridConn->access->deny("edit"); //blocks Update action<br>
+ $gridConn->access->deny("delete"); //blocks Delete action<br>
+ <br>
+ $gridConn->allow($some) can be used to revert denied call<br>
+ </blockquote>
+ 
+<h2><a name='cc_:61uk'>
+ 13. Events System
+ </a></h2>
+ Available events:<br>
+     <br>
+ 
+<ul>
+ <li>
+   beforeSort
+ </li>
+ <li>
+   beforeFilter
+ </li>
+ <li>
+   beforeFilterOptions
+ </li>
+ <li>
+   beforeUpdat<span style="background-color: rgb(255, 255, 255);">e</span>
+ </li>
+ <li>
+   beforeInsert    
+ </li>
+ <li>
+   beforeDelete   
+ </li>
+ <li>
+   beforeProcess
+ </li>
+ <li>
+   afterProcessing
+ </li>
+ <li>
+   beforeRender
+ </li>
+ </ul>
+ <br>
+ <br>
+</div>
+<div>
+ 
+<h3><a name='cc_v90uf'>
+ 13.1 beforeSort
+ </a></h3>
+ This event occurs before sorting on server side. Returned value replaces sorting rule used by default.<br>
+</div>
+<div>
+ <br>
+ 
+<blockquote>
+     $gridConn->event->attach("beforeSort",handlerFunc);<br>
+ </blockquote>
+ <br>
+  handlerFunc gets the following arguments:<br>
+     <br>
+ 
+<ul>
+ <li>
+   $column - name of column (<span style="background-color: rgb(255, 255, 255);">table column name or aliase</span>)
+ </li>
+ <li>
+   $order - order of sorting <span style="background-color: rgb(255, 255, 0);"><span style="background-color: rgb(255, 255, 255);">(ASC, DESC</span></span>)
+ </li>
+ </ul>
+ <br>
+returned value must be valid SQL string, which will be added to select query, you can use any SQL commands here <br>
+ <br>
+ Sample of usage:<br>
+ <br>
+ 
+<blockquote>
+     function handlerFunc($column,$order){<br>
+         return " LENGTH(".$column.") ".$order;<br>
+     }<br>
+     $gridConn->event->attach("beforeSort",handlerFunc);<br>
+ <br>
+     //sorts by length of $column<br>
+ <br>
+ </blockquote>
+ <br>
+ 
+<h3 id="5ck6">
+ 13.2 beforeFilter
+ </h3>
+ The <b>beforeFilter</b> event occurs before filtering on sever side. Returned value replaces default part of "where" statement related to filtered column.<br>
+  <br>
+ 
+<blockquote>
+    $gridConn->event->attach("beforeFilter",handlerFunc);<br>
+ </blockquote>
+ <br>
+ In this event handlerFunc gets the following arguments:<br>
+ <br>
+ 
+<ul>
+ <li>
+   $column - name of column
+ </li>
+ <li>
+   $mask - current filtering mask
+ </li>
+ </ul>
+ <br>
+ returned value must be a valid SQL rule, you can use any SQL commands here <br>
+ <br>
+ Sample of usage:<br>
+ <br>
+ 
+<blockquote>
+     function handlerFunc($column,$mask){<br>
+         return $column." LIKE '".$mask."%'";<br>
+     }<br>
+     $gridConn->event->attach("beforeFilter",handlerFunc);<br>
+ <br>
+     //filters grid by $column searching for values which begin with $mask<br>
+ </blockquote>
+ <br>
+ <br>
+ 
+<h3 id="ucfi8_">
+ 13.3 beforeUpdat<span style="background-color: rgb(255, 255, 255);">e</span>
+ </h3>
+ 
+<h3 id="ef4c8b">
+ <span style="background-color: rgb(255, 255, 255);"></span>
+ </h3>
+ <span style="background-color: rgb(255, 255, 255);">This event occurs before updating values in database and can cancel default update statement (see <b>error, invalid</b> and <b>success</b> methods below).  It can be used  also to validate  incoming values (see i<b>nvalid() method</b> below).<br>
+ <br>
+ </span>
+ 
+<blockquote>
+ <span style="background-color: rgb(255, 255, 255);">     </span>$gridConn->event->attach("beforeUpdate",myUpdate);<br>
+ </blockquote>
+ <br>
+In the code string above myUpdate function gets $action object as incoming argument.<br>
+$action is an instance of DataAction object, details can be checked <a title="here" href="api.html" id="rwom">here</a> <br>
+    <br>
+   <br>
+ Samples of usage:<br>
+ <br>
+ 
+<blockquote>
+     function myUpdate($action){<br>
+         mysql_query("UPDATE Countries SET item_nm='{$action->get_data('name')}' WHERE item_id='{$action->get_id()}'");<br>
+         $action->success();<br>
+     }<br>
+ </blockquote>
+ <br>
+ //creates and runs own update statement using values came in request, cancels default update<br>
+ <br>
+ 
+<blockquote>
+     function myUpdate($action){<br>
+         if($action->get_value("name")=="")<br>
+             $action->invalid();<br>
+     }<br>
+ </blockquote>
+ //checks if value of name is empty, then cancel update. Otherwise proceed with default update.<br>
+ <br>
+ 
+<blockquote>
+     function myUpdate($action){<br>
+         $new_value = rand(0,100);<br>
+         $action->set_value("name",$new_value);<br>
+     }<br>
+ </blockquote>
+ //sets new value for name and proceeds with default update.<br>
+ <br>
+ 
+<h3 id="i5p74">
+ 13.4 beforeInsert<span style="background-color: rgb(255, 255, 255);"></span>
+ </h3>
+ 
+<h3 id="dbiqmt5rs">
+ <span style="background-color: rgb(255, 255, 255);"></span>
+ </h3>
+ <span style="background-color: rgb(255, 255, 255);">This event occurs before inserting values in database and can cancel default insert statement.  It can be used also to validate incoming values. For more details see "beforeUpdate" event description.<br>
+ <br>
+ </span>
+ 
+<h3 id="x166dwy">
+ 13.5 beforeDelete<span style="background-color: rgb(255, 255, 255);"></span>
+ </h3>
+ 
+<h3 id="d5::tc">
+ <span style="background-color: rgb(255, 255, 255);"></span>
+ </h3>
+ <span style="background-color: rgb(255, 255, 255);">The <b>beforeDelete</b> event occurs before deleting record in database and can cancel default delete statement.  </span><span style="background-color: rgb(255, 255, 255);">For more details</span><span style="background-color: rgb(255, 255, 255);"> see "beforeUpdate" event description .<br>
+ <br>
+ </span>
+ 
+<h3 id="md01">
+ 13.6 beforeProcessing
+ </h3>
+ 
+<h3 id="p:mrs91">
+ </h3>
+ This event occurs before <b>beforeInsert, beforeUpdate, beforeDelete</b> events occur. <span style="background-color: rgb(255, 255, 255);">The <b>beforeProcessing</b> method occurs for all these operations</span>. It can be cancelled in the same way as the aforementioned events. <span style="background-color: rgb(255, 255, 255);">For more details</span><span style="background-color: rgb(255, 255, 255);"> see "beforeUpdate" event description .</span><br>
+ 
+<h3 id="2311xd">
+ 13.7 afterProcessing
+ </h3>
+ This event occurs after insert, update, delete actions. It can be used to pass additional values to client side<span style="background-color: rgb(255, 255, 255);">.<br>
+ <br>
+ </span>
+ 
+<div>
+ Example of usage:
+ </div>
+ 
+<div>
+ <br>
+ </div>
+ 
+<blockquote>
+ 
+<div>
+   function doAfterProcessing($action){<br>
+              $action->set_response_xml("&lt;guid>some value&lt;/guid>")<br>
+     }<br>
+ 
+ $gridConn->event->attach("afterProcessing",doAfterProcessing);
+ </div>
+ 
+<div>
+ <br>
+ </div>
+ 
+<div>
+ //adds new xml as a child of default &lt;action> tag which is passed to client side as response
+ </div>
+ </blockquote>
+ 
+<div>
+ 
+<h3 id="1bbl5q">
+ 13.8 beforeRender
+ </h3>
+ The <b>beforeRender</b> event occurs after data has been selected from the database but before its outputting to client.<br>
+ <br>
+ 
+<blockquote>$gridConn->event->attach("beforeRender",myFunction);<br>
+ </blockquote>
+ <br>
+   In this event myFunction gets data item object as incoming argument. This object has different methods for different client side components. Details can be checked <a title="here" href="View?docid=dhhqnnw2_88cm84z4dd" id="z0dy">here</a> <br>
+ <br>
+ <b><br>
+</b></div>
+<div>  <br>
+     function my_code2($column){<br>
+         if ($column=="item_cd")<br>
+             return array("dummy","838","known");<br>
+         return true;<br>
+     }<br>
+     $gridConn->event->attach("DataFilterOptions",my_code2);</div>
+<div><br>
+</div>
+<h3 id="_o780b">13.9 beforeFilterOptions<br>
+</h3>
+<div><br>
+</div>
+<div><span style="background-color: rgb(255, 255, 255); ">In case of #connector_select_filter</span> you can define which options will be shown in list ( usefull for dyn. loading , when full list of options may be not available on client side ) <br>
+<br>
+<blockquote>    function createMyOptions($column){<br>
+        if ($column=="item_cd")<br>
+            return array("dummy","838","known");<br>
+        return true;<br>
+    }<br>
+    $gridConn->event->attach("beforeFilterOptions",createMyOptions);</blockquote>
+ <br>
+  <br>
+ <br>
+ <br>
+ <br>
+ </div>
+ <br>
+</div>
+<br>
+
+	
+</body>
+</html>

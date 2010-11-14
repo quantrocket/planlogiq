@@ -1,0 +1,103 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="planlogIQ - Administrator - manage Useraccounts" %>
+
+<com:TContent ID="HeaderJavascript">
+
+function initDHTMLXTabbars(TabbarObject){
+    TabbarObject.addTab("a1","User Accounts",150);
+    TabbarObject.setContent("a1", "tabhtml_1");
+
+    TabbarObject.addTab("a2","Benutzerrechte",150);
+    TabbarObject.setContent("a2", "tabhtml_2");
+
+    TabbarObject.setTabActive("a1");
+}
+
+</com:TContent>
+
+<com:TContent ID="Navigation">
+
+</com:TContent>
+
+<com:TContent ID="Main" Visible=<%= $this->User->isInRole('Administrator') %>>
+
+<div id="tabhtml_1" style="overflow:auto;height:100%">
+    <div style="overflow:hidden">
+
+<p class="mytoolbar">
+    <com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" Height="10px" />
+        <com:TActiveButton onCallback="createNewUser" CssClass="windowcontent-button" Text=<%[ new ]%> />
+</p>
+
+<com:TActiveTextBox Id="idtm_user" Visible="false" />
+
+<com:TActiveDataGrid onUpdateCommand="lstUserSave" onEditCommand="loadUserSettings" onCancelCommand="lstUserCancel" onPageIndexChanged="lstUser_pageIndexChanged" DataKeyField="idtm_user" style.width="100%" ID="lstUser" AutoGenerateColumns="false" PageSize="10" AllowPaging="true" AlternatingItemStyle.CssClass="alternating" PagerStyle.Mode="Numeric" PagerStyle.HorizontalAlign="Right" PagerStyle.CssClass="pager">
+    <com:TActiveBoundColumn HeaderText=<%[ Id ]%> DataField="idtm_user" ID="lst_idtm_user" />
+    <com:TActiveBoundColumn HeaderText=<%[ Christian Name ]%> DataField="user_vorname" ID="lst_user_vorname" />
+    <com:TActiveBoundColumn HeaderText=<%[ Name ]%> DataField="user_name" ID="lst_user_name" />
+    <com:TActiveBoundColumn HeaderText=<%[ Username ]%> DataField="user_username" ID="lst_user_username" />
+    <com:TActiveBoundColumn HeaderText=<%[ Mail ]%> DataField="user_mail" ID="lst_user_mail" />
+    <com:TActiveEditCommandColumn HeaderText=<%[ actions ]%> />
+</com:TActiveDataGrid>
+
+</div></div><!--ende tab/-->
+<div id="tabhtml_2" style="overflow:auto;height:100%">
+    <div style="overflow:hidden">
+
+        <div id="infobox"><%[ User-Settings ]%> <strong><com:TActiveLabel Id="UserSettingsUser" Text="-" /></strong></div>
+
+<com:TActiveDataGrid 
+    onUpdateCommand="lstUserSettingsSave"
+    onEditCommand="lstUserSettingsEdit"
+    onCancelCommand="lstUserSettingsCancel"
+    onPageIndexChanged="lstUserSettings_pageIndexChanged"
+    DataKeyField="idxx_berechtigung"
+    style.width="100%" ID="lstUserSettings" AutoGenerateColumns="false" PageSize="20" AllowPaging="true" AlternatingItemStyle.CssClass="alternating" PagerStyle.Mode="Numeric" PagerStyle.HorizontalAlign="Right" PagerStyle.CssClass="pager">
+    <com:TActiveBoundColumn HeaderText=<%[ ID ]%> DataField="idxx_berechtigung" ID="lst_idxx_berechtigung" />
+    <com:TActiveBoundColumn HeaderText=<%[ Modul ]%> DataField="xx_modul" ID="lst_xx_modul" />
+    <com:TActiveBoundColumn HeaderText=<%[ Related ID ]%> DataField="xx_id" ID="lst_xx_id" />
+    <com:TActiveTemplateColumn ID="lst_xx_read">
+        <prop:HeaderTemplate><%[ Read ]%></prop:HeaderTemplate>
+        <prop:ItemTemplate>
+            <com:TActiveImage ImageUrl=<%#"/rliq/themes/basic/gfx/16x16/actions/".$this->Parent->DataItem->xx_read.".png"%> />
+        </prop:ItemTemplate>
+        <prop:EditItemTemplate>
+            <com:TActiveCheckBox Id="ATB_lst_xx_read" Checked=<%#$this->Parent->DataItem->xx_read%>
+                 AutoPostBack="False"/>
+        </prop:EditItemTemplate>
+    </com:TActiveTemplateColumn>
+    <com:TActiveTemplateColumn ID="lst_xx_write">
+        <prop:HeaderTemplate><%[ U ]%></prop:HeaderTemplate>
+        <prop:ItemTemplate>
+            <com:TActiveImage ImageUrl=<%#"/rliq/themes/basic/gfx/16x16/actions/".$this->Parent->DataItem->xx_write.".png"%> />
+        </prop:ItemTemplate>
+        <prop:EditItemTemplate>
+            <com:TActiveCheckBox Id="ATB_lst_xx_write" Checked=<%#$this->Parent->DataItem->xx_write%>
+                AutoPostBack="False"/>
+        </prop:EditItemTemplate>
+    </com:TActiveTemplateColumn>
+    <com:TActiveTemplateColumn ID="lst_xx_create">
+        <prop:HeaderTemplate><%[ C ]%></prop:HeaderTemplate>
+        <prop:ItemTemplate>
+            <com:TActiveImage ImageUrl=<%#"/rliq/themes/basic/gfx/16x16/actions/".$this->Parent->DataItem->xx_create.".png"%> />
+        </prop:ItemTemplate>
+        <prop:EditItemTemplate>
+            <com:TActiveCheckBox Id="ATB_lst_xx_create" Checked=<%#$this->Parent->DataItem->xx_create%>
+                 AutoPostBack="False"/>
+        </prop:EditItemTemplate>
+    </com:TActiveTemplateColumn>
+    <com:TActiveTemplateColumn ID="lst_xx_delete">
+        <prop:HeaderTemplate><%[ D ]%></prop:HeaderTemplate>
+        <prop:ItemTemplate>
+            <com:TActiveImage ImageUrl=<%#"/rliq/themes/basic/gfx/16x16/actions/".$this->Parent->DataItem->xx_delete.".png"%> />
+        </prop:ItemTemplate>
+        <prop:EditItemTemplate>
+            <com:TActiveCheckBox Id="ATB_lst_xx_delete" Checked=<%#$this->Parent->DataItem->xx_delete%>
+                 AutoPostBack="False"/>
+        </prop:EditItemTemplate>
+    </com:TActiveTemplateColumn>
+    <com:TActiveEditCommandColumn HeaderText=<%[ actions ]%> />
+</com:TActiveDataGrid>
+        
+</div></div><!--ende tab/-->
+
+</com:TContent>
