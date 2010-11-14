@@ -1,0 +1,7 @@
+vpn 
+passwort:ctlwartung*
+
+remotedesktop
+ip: 10.1.12.215
+user: Stocki01
+pw: k1k9k8o4hd

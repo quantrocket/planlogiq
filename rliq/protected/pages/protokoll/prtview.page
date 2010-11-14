@@ -1,0 +1,283 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="planlogIQ - Protokoll" %>
+
+<com:TContent ID="HeaderJavascript">
+
+var notIsGuest = <%=!$_GET['modus']?'true':'false'%>;
+
+function initDHTMLXTabbars(TabbarObject){
+
+    TabbarObject.addTab("a1","Protokolle",150);
+    TabbarObject.setContent("a1", "tabhtml_1");
+
+    TabbarObject.addTab("a2","Protokollpunkte",150);
+    TabbarObject.setContent("a2", "tabhtml_2");
+    if(notIsGuest){
+        TabbarObject.setTabActive("a1");
+    }else{
+        TabbarObject.setTabActive("a2");
+    }
+
+    dhxLayout.cells("b").collapse();
+}
+
+</com:TContent>
+
+
+<com:TContent ID="Navigation">
+
+</com:TContent>
+ 
+<com:TContent ID="Main">
+
+<div id="tabhtml_1" style="overflow:auto;height:100%;background:#cdcdcd">
+
+    <div class="mytoolbar">
+        <com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/filesave.png"/>
+	<com:TActiveButton Text="Save" OnClick="editButtonClicked" CssClass="windowcontent-button"/>
+	<com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/cancel.png"/>
+	<com:TActiveButton Text="Delete" OnClick="deleteButtonClicked" CssClass="windowcontent-button"/>
+        Typ: <com:TActiveDropDownList Id="edidta_protokoll_type" AutoPostBack="false"/>
+        <div style="display:none"><com:TActiveTextBox id="edidtm_protokoll"/></div>
+    </div>
+
+<table><tr><td valign="top">
+<fieldset>
+    <legend>Auf welchen Termin bezieht sich das Protokoll?</legend>
+    <com:TActiveDataGrid ID="edActListe"
+                         AllowPaging="true"
+                         AllowSorting="false"
+                         AllowCustomPaging="true"
+                         PageSize="10"
+                         PagerStyle.PageButtonCount="5"
+                         PagerStyle.Mode="Numeric"
+                         PagerStyle.CssClass="pager"
+                         OnPageIndexChanged="eddtgList_PageIndexChanged"
+                         OnEditCommand="edcmd_chooseActivity"
+                         OnUpdateCommand="dtgList_UpdateCommand"
+                         OnCancelCommand="dtgList_CancelCommand"
+                         AutoGenerateColumns="false"
+                         CssClass="datagrid"
+                         AlternatingItemStyle.CssClass="alternating">
+        <com:TActiveEditCommandColumn HeaderText="SELECT" HeaderStyle.Width="80px" UpdateText="Save" EditText="selektieren" CancelText="Cancel"/>
+        <com:TActiveBoundColumn ID="edlst_idtm_termin" DataField="idtm_termin" HeaderText="ID" SortExpression="idtm_termin" HeaderStyle.Width="40px" />
+        <com:TActiveBoundColumn ID="edlst_ter_startdate" DataField="ter_startdate" HeaderText="Datum" />
+        <com:TActiveBoundColumn ID="edlst_ter_betreff" DataField="ter_betreff" HeaderText="Name" />
+        <com:TActiveBoundColumn ID="edlst_ter_ort" DataField="ter_ort" HeaderText="Ort" />
+    </com:TActiveDataGrid>
+</fieldset>
+
+</td>
+</tr>
+<tr>
+<td valign="top">
+
+<fieldset style="width:100%;">
+    <legend>Stammdaten</legend>
+<table width="100%">
+
+<tr><td id="infoboxsmall" colspan="4">
+Ausgewählt: <b><com:TActiveTextBox Id="edidtm_termin" CssClass="inputsmall"/></b>
+</td></tr>
+
+<tr>
+<td class="FormLabel">Bezeichnung:</td>
+<td width="40%">
+<com:TActiveTextBox Id="edprt_name" CssClass="inputnormal"/>
+</td>
+<td class="FormLabel">Datum: </td>
+<td>
+    <com:TActiveDatePicker Id="edprt_cdate" Mode="ImageButton" DateFormat="yyyy-MM-dd" InputMode="DropDownList" />
+</td>
+</tr>
+
+<tr>
+<td class="FormLabel">Ort:</td>
+<td><com:TActiveTextBox Id="edprt_location" CssClass="inputnormal" /></td>
+<td class="FormLabel">Moderator:</td>
+<td><com:POrganisationSelection Id="edidtm_organisation" /></td>
+</tr>
+
+</table>
+</fieldset>
+
+
+<fieldset style="width:95%;">
+    <legend>Teilnehmer</legend>
+<div>
+<table width="100%">
+
+<tr><td id="infoboxsmall" colspan="3">
+    <com:TActiveLabel Id="edidtm_termin_label" /> - Eingeladene Teilnehmer:
+</td></tr>
+
+<tr>
+<td colspan="3">
+<com:TActiveDataGrid ID="edTerminParticipant"
+                     AllowPaging="false"
+                     AllowSorting="false"
+                     AllowCustomPaging="false"
+                     PageSize="20"
+                     onSortCommand="dtgList_SortCommand"
+                     OnPageIndexChanged="eddtgList_PageIndexChanged"
+                     OnEditCommand="edcmd_chooseActivity"
+                     OnUpdateCommand="addInvitedParticipant"
+                     OnCancelCommand="dtgList_CancelCommand"
+                     AutoGenerateColumns="false"
+                     CssClass="datagrid"
+                     PagerStyle.CssClass="pager"
+                     ItemStyle.CssClass="nonealternating"
+                     AlternatingItemStyle.CssClass="alternating">
+    <com:TActiveButtonColumn ID="viewDetail" ButtonType="ImageButton" ImageUrl="/rliq/themes/basic/gfx/16x16/actions/view_bottom.png" CommandName="update" HeaderText="add" HeaderStyle.Width="30px" />
+    <com:TActiveBoundColumn ID="edlstpart_idtm_termin_organisation" DataField="idtm_termin_organisation" HeaderText="ID" SortExpression="idtm_termin_organisation" />
+    <com:TActiveBoundColumn ID="edlstpart_org_name" DataField="org_name" HeaderText="Name" />
+    <com:TActiveBoundColumn ID="edlstpart_user_role_name" DataField="user_role_name" HeaderText="Rolle" />
+    <com:TActiveBoundColumn ID="edlstpart_idtm_organisation" DataField="idtm_organisation" HeaderText="OrgID" />
+</com:TActiveDataGrid>
+</td>
+</tr>
+
+<!-- Hier startet die Auswahl der Teilnehmer -->
+
+<tr><td id="infoboxsmall" colspan="3">
+Anwesende Teilnehmer mit Ergänzung:
+</td></tr>
+
+<tr><td colspan="3" class="mytoolbar">
+|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/filenew.png" OnCallback="PPNewButtonClicked"/><com:TActiveButton Text="new" onCallback="PPNewButtonClicked" CssClass="windowcontent-button"/>
+|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" OnCallback="PPSavedButtonClicked"/><com:TActiveButton Text="add/save" onCallback="PPSavedButtonClicked" CssClass="windowcontent-button"/>
+|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/editdelete.png" OnCallback="PPDeleteButtonClicked"/><com:TActiveButton Text="delete" onCallback="PPDeleteButtonClicked" CssClass="windowcontent-button"/>
+<com:TActiveTextBox id="activity_termin_edit_status" Text="0" CssClass="hiddeninput" visible="false" />
+<com:TActiveTextBox id="idtm_activity_participant" CssClass="hiddeninput" visible="false" />
+</td></tr>
+
+<tr>
+<td valign="top">Teilnehmer/Anw.:<com:POrganisationSelection Id="edttidtm_organisation" />  <com:TActiveCheckBox ID="act_part_anwesend" />
+</td>
+<td>Notizen:</td>
+<td><com:TActiveTextBox Id="act_part_notiz" /></td>
+</tr>
+
+
+<tr><td colspan="3">
+<com:TActiveDataGrid ID="ParticipantListe" 
+        AllowPaging="false"
+        AllowSorting="false"
+        PageSize="50"
+        onSortCommand="dtgList_SortCommand"
+        OnPageIndexChanged="edparticipant_PageIndexChanged"
+        OnEditCommand="load_participant"
+        OnUpdateCommand="dtgList_UpdateCommand"
+        OnCancelCommand="dtgList_CancelCommand"
+        AutoGenerateColumns="false"
+        CssClass="datagrid"
+        PagerStyle.CssClass="pager"
+        ItemStyle.CssClass="nonealternating"
+        AlternatingItemStyle.CssClass="alternating">
+    <com:TActiveEditCommandColumn HeaderText="SELECT" HeaderStyle.Width="80px" UpdateText="Save" EditText="selektieren" CancelText="Cancel"/>
+    <com:TActiveBoundColumn ID="lstpart_idtm_activity_participant" DataField="idtm_activity_participant" HeaderText="ID" SortExpression="idtm_activity_participant" />
+    <com:TActiveBoundColumn ID="lstpart_idtm_organisation" DataField="idtm_organisation" HeaderText="Org ID" />
+    <com:TActiveBoundColumn ID="lstpart_org_name" DataField="org_name" HeaderText="Name" />
+    <com:TActiveBoundColumn ID="lstpart_user_role_name" DataField="user_role_name" HeaderText="Rolle" />
+    <com:TActiveBoundColumn ID="lstpart_act_anwesend" DataField="act_part_anwesend" HeaderText="Anwesend" />
+</com:TActiveDataGrid>
+</td></tr>
+
+<!-- Hier endet die Auswahl der Teilnehmer -->
+
+</table>
+</div>
+</fieldset>
+
+</td></tr></table>
+
+</div>
+
+<div id="tabhtml_2" style="overflow:auto;height:100%;">
+        
+<div class="mytoolbar">
+    <com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/filenew.png"/>
+    <com:TActiveButton Text="neues Thema" OnCommand="propertyAction" CommandName="add" CssClass="windowcontent-button" />
+    | <%[ Pager ]%>: <com:TActivePager
+                ID="CCPagerProtokollDetailGroupList"
+                ControlToPaginate="edProtokollDetailGroupList"
+                PageButtonCount="5"
+                CssClass="pager"
+                Mode="Numeric"
+                OnPageIndexChanged="edProtokollDetailGroupList_PageIndexChanged"/>
+     Anzahl: <com:TActiveDropDownList Id="CCProtokollDetailGroupListPageSize" CssClass="mandantory" OnSelectedIndexChanged="load_prtdetailsgroup"/>
+     Status: <com:TActiveDropDownList OnCallback="load_prtdetailsgroup" Text="2" id="CBAufgabeDone" CssClass="mandantory"/>
+</div>
+
+<com:TActiveRepeater Id="edProtokollDetailGroupList"
+                     AllowPaging="true"
+                     AllowCustomPaging="true"
+                     onItemDataBound="load_prtdetails"
+                     EnableViewState="true">
+
+        <prop:ItemTemplate>
+            <table width="100%" border="0" cellspacing="1">
+                <tr>
+                    <td class="PSPFEZ" style="width:15px" rowspan="2">&nbsp;</td>
+                    <td width="200px">
+                        <div id="infoboxsmall">
+                            <span style="color:#343434;font-size:14px"><b>TOP ||</b></span>
+                            <com:TActiveLinkButton Text="neuer Punkt" onCallback="page.addNewDetailGroup" ActiveControl.CallbackParameter="<%#$this->data->idtm_protokoll_detail_group%>" CssClass="wcbutton"/>                            
+                            <com:TActivePager
+                                    ID="CCPagerProtokollRepeater"
+                                    ControlToPaginate="CCPrtRep"
+                                    PageButtonCount="5"
+                                    Mode="Numeric"
+                                    CssClass="pagersmall"
+                                    OnPageIndexChanged="page.CCPrtRep_PageIndexChanged"
+                                    ToolTip="<%=$this->data->idta_protokoll_detail_group%>"
+                                    />
+                        </div>
+                     </td>
+                     <td>
+                        &nbsp;
+                     </td>
+                  </tr>
+                  <tr>
+                    <td colspan="2">
+                        <com:TActiveDataList
+                            EnableViewState="true"
+                            AllowPaging="false"
+                            RepeatColumns="1"
+                            RepeatDirection="Vertical"
+                            onEditCommand="page.lstCCPrtRepEdit"
+                            onCancelCommand="page.lstCCPrtRepCancel"
+                            onUpdateCommand="page.lstCCPrtRepSave"
+                            ID="CCPrtRep"
+                            ItemRenderer="Application.pages.protokoll.listen.ProtokollRenderer"
+                            EditItemRenderer="Application.pages.protokoll.listen.ProtokollRendererEdit"
+                            width="100%">
+
+                            <prop:HeaderTemplate>
+                            </prop:HeaderTemplate>
+
+                            <prop:FooterTemplate>                              
+                            </prop:FooterTemplate>
+
+                        </com:TActiveDataList>             
+                    </td>
+                </tr>
+            </table>
+	</prop:ItemTemplate>
+    
+</com:TActiveRepeater>
+
+<div class="mytoolbar">
+        <com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/filenew.png"/>
+        <com:TActiveButton Text="neues Thema" OnCommand="propertyAction" CommandName="add" CssClass="windowcontent-button" />
+        <%[ Pager ]%>: <com:TActivePager
+                ID="CCPagerProtokollDetailGroupListBottom"
+                ControlToPaginate="edProtokollDetailGroupList"
+                PageButtonCount="5"
+                CssClass="pager"
+                Mode="Numeric"
+                OnPageIndexChanged="edProtokollDetailGroupList_PageIndexChanged"/>
+</div>
+
+</div>
+
+</com:TContent>

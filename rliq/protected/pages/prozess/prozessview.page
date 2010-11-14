@@ -1,0 +1,145 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="planlogIQ" %>
+
+<com:TContent ID="HeaderJavascript">
+
+var IsAdministrator = <%=$this->User->isAdmin?'true':'false'%>;
+
+function initDHTMLXTabbars(TabbarObject){
+
+    TabbarObject.addTab("a1","Prozess",150);
+    TabbarObject.setContent("a1", "tabhtml_1");
+
+    TabbarObject.setTabActive("a1");
+}
+
+</com:TContent>
+
+<com:TContent ID="Main">
+<div id="tabhtml_1" style="overflow:auto;height:100%;background:#EBEEFA">
+        <div style="overflow:hidden">
+
+<com:TMultiView ID="viewPanel" ActiveViewIndex="0">
+
+<com:TView ID="neu_Organisation"> 
+<com:TTabPanel>
+<com:TTabView id="NEWTAB" Caption="Neue Prozess">
+
+<h2>Prozess Detail</h2>
+
+<p id="infobox">Hier legen Sie neue Prozessen an, bitte beachten Sie, dass Sie jede Ware als Einzelposition anlegen m�ssen. Zur Vorbereitung der Logitikausschreibung haben Sie sp�ter die M�glichkeit einen Warenkorb zu f�llen.</p>
+
+<table>
+
+<tr><td colspan="3" class="portlet-title">Prozess</td></tr>
+
+<tr>
+<td>Bezeichnung:</td>
+<td><com:TActiveTextBox Id="pro_name" />
+</td>
+<td id="infoboxsmall">
+Tragen Sie hier die Bezeichnung f�r den Prozesssteil ein
+</td>
+</tr>
+<tr>
+<td>Kategorie:</td>
+<td><com:TActiveDropDownList Id="idta_prozess_type" /></td>
+<td id="infoboxsmall">
+Um welche Kategorie handelt es sich - Unternehmen, Profitcenter, Umsatz
+</td>
+</tr>
+<tr>
+<td>Beschreibung:</td>
+<td><com:TActiveTextBox Id="pro_descr" TextMode="MultiLine" /></td>
+<td id="infoboxsmall">
+Freier Text Ihrer Wahl
+</td>
+</tr>
+
+<tr><td colspan="3" class="portlet-title">Hierarchie und Reihenfolge</td></tr>
+
+<tr>
+<td>Vorg&auml;nger:</td>
+<td><com:TActiveDropDownList Id="parent_idtm_prozess" /></td>
+<td id="infoboxsmall">
+Der Vorg�nger, definiert den Knoten �berhalb des neuen Elementes
+</td>
+</tr>
+
+<tr>
+<td>Reihenfolge:</td>
+<td><com:TActiveTextBox Id="pro_step" /></td>
+<td id="infoboxsmall">
+Die Reihenfolge, definiert die Reihenfolge, in der die Prozessschritte erscheinen.
+</td>
+</tr>
+
+
+</table>
+<com:THiddenField id="idtm_prozess" />
+<div class="mytoolbar"><com:TButton Text="Save" OnClick="insertButtonClicked" CssClass="submit"/></div>
+</com:TTabView>
+</com:TTabPanel>
+</com:TView>
+
+<com:TView ID="edit_Org"> 
+<com:TTabPanel>
+<com:TTabView id="EDITTAB" Caption="Prozess editieren">
+
+<table>
+
+<tr><td colspan="3" class="portlet-title">Prozess</td></tr>
+
+<tr>
+<td>Bezeichnung:</td>
+<td><com:TActiveTextBox Id="edpro_name" />
+</td>
+<td id="infoboxsmall">
+Tragen Sie hier die Bezeichnung f�r den Prozesssteil ein
+</td>
+</tr>
+<tr>
+<td>Kategorie:</td>
+<td><com:TActiveDropDownList Id="edidta_prozess_type" /></td>
+<td id="infoboxsmall">
+Um welche Kategorie handelt es sich - Organisation, Abteilung, Team, Mitarbeiter
+</td>
+</tr>
+<tr>
+<td>Beschreibung:</td>
+<td><com:TActiveTextBox Id="edpro_descr" TextMode="MultiLine" /></td>
+<td id="infoboxsmall">
+Freier Text Ihrer Wahl
+</td>
+</tr>
+
+<tr><td colspan="3" class="portlet-title">Hierarchie und Reihenfolge</td></tr>
+
+<tr>
+<td>Vorg&auml;nger:</td>
+<td><com:TActiveDropDownList Id="edparent_idtm_prozess" /></td>
+<td id="infoboxsmall">
+Der Vorg�nger, definiert den Knoten �berhalb des neuen Elementes
+</td>
+</tr>
+
+<tr>
+<td>Reihenfolge:</td>
+<td><com:TActiveTextBox Id="edpro_step" /></td>
+<td id="infoboxsmall">
+Die Reihenfolge, definiert die Reihenfolge, in der die Prozessschritte erscheinen.
+</td>
+</tr>
+
+</table>
+
+
+<com:THiddenField id="edidtm_prozess" />
+<div class="mytoolbar"><com:TButton Text="Save" OnClick="editButtonClicked" CssClass="submit"/>
+<com:TActiveButton Text="Delete" OnClick="deleteButtonClicked" CssClass="submit"/></div>
+</com:TTabView>
+</com:TTabPanel>
+</com:TView>
+
+</com:TMultiView> 
+</div></div>
+</com:TContent>

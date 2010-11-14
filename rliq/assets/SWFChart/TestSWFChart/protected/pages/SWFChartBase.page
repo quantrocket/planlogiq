@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" >
+
+<head>
+	 <meta content="text/html; charset=UTF-8" http-equiv="content-type">
+  	 <title>SWFChart base charts page</title>
+</head>
+
+<body>
+<com:TForm>
+<center>
+<com:SWFChart ID="Chart1" ChartType="3d column" BackColor="#8800ff"
+	Transparent="true" Height="300" Width="600" /><br />
+<com:SWFChart ID="Chart2" ChartType="stacked 3d column" BackColor="#556677"
+	Transparent="true" Height="300" Width="600" /><br />
+<com:SWFChart ID="Chart3" ChartType="3d pie" BackColor="#223344"
+	Transparent="true" Height="300" Width="600" /><br />
+<com:SWFChart ID="Chart4" ChartType="stacked area" BackColor="#0088ff"
+	Transparent="false" Height="300" Width="600" /><br />
+<com:SWFChart ID="Chart5" ChartType="line" BackColor="#ff5533"
+	Transparent="true" Height="300" Width="600" /><br />
+<com:SWFChart ID="Chart6" ChartType="scatter" BackColor="#88ff22"
+	Transparent="false" Height="300" Width="600" /><br />
+<com:SWFChart ID="Chart7" ChartType="polar" BackColor="#8855ff"
+	Transparent="false" Height="300" Width="600" /><br />
+</center>
+</com:TForm>
+</body>
+</html>

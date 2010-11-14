@@ -1,0 +1,138 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="planlogIQ" %>
+
+<com:TContent ID="HeaderJavascript">
+
+var notIsGuest = <%=!$_GET['modus']?'true':'false'%>;
+
+function initDHTMLXTabbars(TabbarObject){
+
+    TabbarObject.addTab("a1","Terminplan",150);
+    TabbarObject.setContent("a1", "tabhtml_1");
+    TabbarObject.addTab("a2","GANTT IST",150);
+    TabbarObject.setContent("a2", "tabhtml_2");
+    TabbarObject.addTab("a3","GANTT PLAN",150);
+    TabbarObject.setContent("a3", "tabhtml_3");
+
+    if(notIsGuest){
+        TabbarObject.setTabActive("a1");
+    }
+
+    dhxLayout.cells("b").collapse();
+}
+
+</com:TContent>
+
+<com:TContent ID="Navigation">
+
+
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<h2><% [ Planning the timeschedule ]%></h2>
+
+<div id="tabhtml_1" style="overflow:auto;height:100%">
+        <div style="overflow:hidden;background:#ffffff">
+            
+
+<table width="100%">
+
+<tr><td colspan="3" class="mytoolbar">
+<com:TDropDownList id="idtm_activity" CssClass="inputnormal" AutoPostback="true" onSelectedIndexChanged="bindTerminListe"/>
+|<com:TActiveButton onCallback="RCNewButtonClicked" Text=<%[ new ]%> CssClass="windowcontent-button"/>
+|<com:TActiveButton onCallback="TSavedButtonClicked" Text=<%[ accept ]%> CssClass="windowcontent-button"/>
+</td></tr>
+
+</table>
+
+<com:TActiveRepeater ID="RepActListe">
+
+	<prop:EmptyTemplate>
+		<%[ no entries available ]%><br/>
+	</prop:EmptyTemplate>
+	
+	<prop:HeaderTemplate>	
+		<table width="100%">
+		<thead>
+			<tr>
+				<th rowspan="2">View</th>
+				<th rowspan="2" style="width:120px">Name</th>
+				<th rowspan="2">d</th>
+				<th colspan="2"><[% Netzplan ]%> <[% IST ]%></th>
+				<th colspan="2"><[% Netzplan ]%> <[% ACT ]%></th>
+				<th rowspan="1">OK</th>
+			</tr>
+			<tr>
+				<th>StartDate</th>
+				<th>EndDate</th>
+				<!-- Plan -->
+				<th>StartDate</th>
+				<th>EndDate</th>
+				<th><com:TActiveCheckBox ID="edanwendenall" OnCheckedChanged="page.selectAll" /></th>
+			</tr>
+		</thead>
+	</prop:HeaderTemplate>
+	
+	<prop:FooterTemplate>
+		</table>
+	</prop:FooterTemplate>
+	
+	<prop:ItemTemplate>
+	<tr>
+        <td><com:TActiveLabel id="idtm_activity" Text=<%# $this->DataItem->idtm_activity %> /></td>
+		<td><%# $this->DataItem->act_name %></td>
+		<td><com:TLabel ID="edact_dauer" Text=<%# $this->DataItem->act_dauer %> /></td>
+        <td><com:TActiveLabel ID="act_startdate" Text="<%# $this->DataItem->act_startdate %>" /></td>
+		<td><com:TActiveLabel ID="act_enddate" Text="<%# $this->DataItem->act_enddate %>" /></td>
+		<!-- Plan -->
+		<td><com:TActiveDatePicker Id="edttact_startdate" Mode="ImageButton" DateFormat="yyyy-MM-dd" InputMode="TextBox" Text=<%# $this->DataItem->ttact_startdate %> /></td>
+		<td><com:TActiveDatePicker Id="edttact_enddate" Mode="ImageButton" DateFormat="yyyy-MM-dd" InputMode="TextBox" Text=<%# $this->DataItem->ttact_enddate %> /></td>
+		<!-- Anwenden -->
+		<td><com:TActiveCheckBox ID="edanwenden" /></td>
+	</tr>
+	</prop:ItemTemplate>
+
+        <prop:AlternatingItemTemplate>
+	<tr class="alternating">
+        <td><com:TActiveLabel id="idtm_activity" Text=<%# $this->DataItem->idtm_activity %> /></td>
+		<td><%# $this->DataItem->act_name %></td>
+		<td><com:TLabel ID="edact_dauer" Text=<%# $this->DataItem->act_dauer %> /></td>
+        <td><com:TActiveLabel ID="act_startdate" Text="<%# $this->DataItem->act_startdate %>" /></td>
+		<td><com:TActiveLabel ID="act_enddate" Text="<%# $this->DataItem->act_enddate %>" /></td>
+		<!-- Plan -->
+		<td><com:TActiveDatePicker Id="edttact_startdate" Mode="ImageButton" DateFormat="yyyy-MM-dd" InputMode="TextBox" Text=<%# $this->DataItem->ttact_startdate %> /></td>
+		<td><com:TActiveDatePicker Id="edttact_enddate" Mode="ImageButton" DateFormat="yyyy-MM-dd" InputMode="TextBox" Text=<%# $this->DataItem->ttact_enddate %> /></td>
+		<!-- Anwenden -->
+		<td><com:TActiveCheckBox ID="edanwenden" /></td>
+	</tr>
+	</prop:AlternatingItemTemplate>
+	
+
+</com:TActiveRepeater>
+
+</div></div>
+<div id="tabhtml_3" style="overflow:auto;height:100%">
+        <div style="overflow:hidden;background:#ffffff">
+
+<table width="100%>
+    <tr class="mytoolbar">
+        <td><%[ Start ]%>:<com:TActiveDatePicker Id="gantt_datestart" Mode="ImageButton" DateFormat="yyyy-MM-dd" InputMode="DropDownList" OnTextChanged="TSavedButtonClicked" /></td>
+        <td><%[ End ]%>:<com:TActiveDatePicker Id="gantt_dateende" Mode="ImageButton" DateFormat="yyyy-MM-dd" InputMode="DropDownList" OnTextChanged="TSavedButtonClicked" /></td>
+    </tr>
+    <tr>
+        <td colspan="2">
+            <com:TActiveImage id="ImgUnterphasenGantt" width="100%"/>
+        </td>
+    </tr>
+</table>
+
+</div></div>
+<div id="tabhtml_2" style="overflow:auto;height:100%">
+        <div style="overflow:hidden;background:#ffffff">
+
+<com:TActiveImage id="ImgUnterphasenGanttIst" width="100%"/>
+
+</div></div>
+
+</com:TContent>

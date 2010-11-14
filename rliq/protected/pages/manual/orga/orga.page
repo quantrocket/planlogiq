@@ -1,0 +1,38 @@
+<%@ MasterClass="Application.layouts.ManualLayout" Title="ProLogIQ - Handbuch - Intro" %>
+
+<com:TContent ID="Navigation">
+	<com:Application.portlets.handbuchportlet Visible="true" />
+</com:TContent>
+
+<com:TContent ID="Main">
+<div id="content">
+
+<h2>Benutzerhandbuch ProLogIQ - Ziele</h2>
+
+<h1>Organisation</h1>
+
+<h3>Übersicht</h3>
+
+<p class="pbox">
+    Sich einen Überblick über die Projektorganisation zu verschaffen, ist bereits zu Beginn eines Projektes sehr wichtig. So gilt es, dem kompletten Projektteam einen Überblick zu verschaffen, welche Personen zu welchen disziplinarischen Einheiten gehören.
+</p>
+
+<p class="pboxuseraction">
+Durch klicken auf den Menüpunkt "Organisation" kommen Sie auf die aktuelle Orga-Struktur. Sollte der Baum leer sein, so können Sie durch klicken auf "neues Element anlegen" neue Orgastrukturen und Mitglieder hinzufügen.
+</p>
+
+<p class="pbox"><com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/manual/organisation_overview.jpg" ></com:TActiveImage></p>
+
+<p class="pbox">
+    Nachdem Sie auf "neues Element anlegen" geklickt haben, eröffnet sich Ihnen eine Maske, in der die folgenden Werte erfasst werden können. Besonders wichtig ist hierbei der Bereich für Kommunikation, hier wird auch die Mail-Adresse des Benutzers definiert, an die das System benachrichtigungen und andere Hinweise sendet.
+    </p>
+
+<h3>Erfassen und bearbeiten der Organisation</h3>
+
+<p class="pbox"><com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/manual/organisation_new.jpg" ></com:TActiveImage></p>
+
+<p class="pboxusertip">Durch zuordnen der Internen-ID wird dem User ein Account zugeordnet. Die Mailadresse wird vom System genutzt um dem User automatisch Nachrichten zu übermitteln.</p>
+
+</div>
+
+<div class="last-modified">$Id: introduction.page 20090206 philipp $</div></com:TContent>

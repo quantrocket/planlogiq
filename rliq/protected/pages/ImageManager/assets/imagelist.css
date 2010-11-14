@@ -1,0 +1,140 @@
+body
+{
+	margin: 0;
+	padding: 0;
+	width: 100% !important;
+}
+.image-list img
+{
+	border: 0 none;
+}
+
+.image-list .file
+{
+	float: left;
+	width: 96px;
+	height: 114px;
+	margin: 5px 5px 20px 12px;
+	cursor: pointer;
+	text-align: center;
+	background-color: White;
+	border: 2px solid White;
+	padding: 2px;
+}
+
+.image-list .selected
+{
+	border-color: #4169E1;
+}
+
+.image-list .file .thumbnail
+{
+	display:table-cell;
+	border: 1px solid #eee;
+	vertical-align:middle;
+	width: 96px;
+	height: 96px;
+}
+
+.image-list .thumbnail img
+{
+	margin-top: expression((96 - this.height)/2);
+}
+
+.image-list a
+{
+	text-decoration: none;
+	color: #333;
+}
+.image-list a:hover .thumbnail
+{
+	background-color: #FFFACD;
+}
+
+
+.image-list .caption
+{
+	font-size: 8pt;
+	display: block;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	margin-top: 4px;
+	overflow: hidden;
+}
+
+.image-list .no-files
+{
+	text-align: center;
+	position: absolute;
+	top: 40%;
+	width: 99%;
+}
+
+.image-list .no-files .caption
+{
+	font-size: 1.3em;
+	font-weight: bold;
+	color: #ccc;
+}
+
+.dialog-panel 
+{
+	clear: both;
+	border: 2px solid #F0E68C;
+	background-color: White;
+	position: fixed;
+	width: 350px;
+	top: 80px;
+	margin-left: 24%;
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+	padding: 0;
+}
+
+.dialog-panel h3.title
+{
+	background-color: #FAFAD2;
+	border-bottom: 1px solid #F0E68C;
+	padding: 5px 15px;
+	font-weight: bold;
+	font-size: 10pt;
+	color: #333;
+	margin: 0;
+}
+
+.dialog-panel .content-frame
+{
+	padding: 3px;
+}
+.dialog-panel .content
+{
+	padding: 10px;
+}
+
+.dialog-panel .buttons
+{
+	text-align: right;
+	border-top: 1px solid #F0E68C;
+	padding: 10px;
+}
+
+.dialog-panel .buttons input
+{
+	width: 6em;
+	margin-left: 1em;
+}
+
+.upload-images .upload
+{
+	margin: 5px 0;
+}
+
+div.upload-images
+{
+	top: 50px;
+}
+
+
+.delete-file code
+{
+	font-weight: bold;
+}

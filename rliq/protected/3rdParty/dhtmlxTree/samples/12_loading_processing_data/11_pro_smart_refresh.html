@@ -1,0 +1,136 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<title> Refreshing Items</title>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<meta name="title" content="Samples" />
+		<meta name="keywords" content="" />
+		<meta name="description" content="" />
+		<link rel="icon" href="../common/favicon.ico" type="image/x-icon" />
+		<link rel="shortcut icon" href="../common/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="../common/css/style.css" type="text/css" media="screen" />
+
+	</head>
+	<body onLoad="doOnLoad()">
+        <div class="header">
+            <a class="logo" href="http://www.dhtmlx.com" title="DHTMLX homepage"></a>
+            <div class="tittle-dhtmlx">DHTMLX Docs & Samples Explorer</div>
+            <div class="search-field">
+                <input type="text" title="Search"/>
+                <input class="button" type="submit" value=""/>
+            </div>
+            <div class="buttons">
+                <a class="doc_inact" href="../../../docsExplorer/index.html" title="DHTMLX Documentation homepage"></a>
+                <a class="sample"></a>
+            </div>
+        </div>
+        <div class="content">
+            <div class="navigation-div">
+                <a href="../../../docsExplorer/samples.html" class="navigation"><img src="../common/icons/file.gif" alt="" >All components</a>
+                <div class="arrow"></div>
+                <a href="../index.html" class="navigation"><img height="22" src="../common/icons/tree.gif" alt="" >dhtmlxTree</a>
+                <div class="arrow"></div>
+                <a href="./index.html" class="navigation"><img src="../common/icons/none.gif" alt="" >Loading/Processing data</a>
+            </div>
+            <div style="display:block;">
+                <h3> Refreshing Items</h3>
+            </div>
+            <div class="navigation-div">
+                <a href="#code" class="navigation view-source"><img src="../common/icons/source.gif" alt="" >View page source</a>
+            </div>
+            <link rel="STYLESHEET" type="text/css" href="../../codebase/dhtmlxtree.css">
+	
+	<script  src="../../codebase/dhtmlxcommon.js"></script>
+	<script  src="../../codebase/dhtmlxtree.js"></script>
+
+
+	
+	
+	<script>
+		var tree;
+		function doOnLoad(){
+			tree=new dhtmlXTreeObject("treeboxbox_tree","100%","100%",0);
+
+			tree.setSkin('dhx_skyblue');
+			tree.setImagePath("../../codebase/imgs/csh_winstyle/");
+            tree.enableDragAndDrop(true);
+            tree.setXMLAutoLoadingBehaviour("id");
+            tree.setChildCalcMode("child");
+			
+            tree.setXMLAutoLoading("php/xml.php");
+		    tree.enableSmartXMLParsing(true);
+			tree.loadXML("php/xml.php");
+		}
+	</script>
+<div style="position:absolute;top:50px;left:300px;">
+	<a href="javascript:void(0)" onClick="tree.deleteItem(tree.getSelectedItemId(),true)">Delete</a> Selected Node<br>
+	<a href="javascript:void(0)" onClick="tree.setItemText(tree.getSelectedItemId(),document.getElementById('newlabel').value)">Set</a> selected Node Lable to <input id="newlabel">
+</div>
+<div id="treeboxbox_tree" style="width:260px;height:200px"></div>
+
+
+<p>Refresh Item and the entire tree from server</p>
+
+	These operations get tree structure (of the entire tree or starting from the specified level)
+	from server to syncronize client and server nodes.
+	<br>
+	<a  href="javascript:void(0)" onClick="tree.refreshItem(tree.getSelectedItemId())">Refresh selected Item</a>
+	<br>
+	<a  href="javascript:void(0)" onClick="tree.refreshItem(0)">Refresh root (Entire tree)</a></div>
+</div>
+
+
+<p>Refresh Item in the smart mode</p>
+
+	Refreshing items in the smart mode keeps opened and selected items state when it is possible.
+<br>
+	<a  href="javascript:void(0)" onClick="tree.smartRefreshItem(tree.getSelectedItemId())">Refresh selected Item (smart mode)</a>
+			
+			
+         </div>
+    <div class="source">
+        <div class="teg">Source</div>
+        <div class="code" id="code">
+		<div class="hl-main"><pre><span class="hl-brackets">&lt;</span><span class="hl-reserved">link</span><span class="hl-code"> </span><span class="hl-var">rel</span><span class="hl-code">=</span><span class="hl-quotes">&quot;</span><span class="hl-string">STYLESHEET</span><span class="hl-quotes">&quot;</span><span class="hl-code"> </span><span class="hl-var">type</span><span class="hl-code">=</span><span class="hl-quotes">&quot;</span><span class="hl-string">text/css</span><span class="hl-quotes">&quot;</span><span class="hl-code"> </span><span class="hl-var">href</span><span class="hl-code">=</span><span class="hl-quotes">&quot;</span><span class="hl-string">../../codebase/dhtmlxtree.css</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">&gt;</span><span class="hl-code">
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">script</span><span class="hl-code">  </span><span class="hl-var">src</span><span class="hl-code">=</span><span class="hl-quotes">&quot;</span><span class="hl-string">../../codebase/dhtmlxcommon.js</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">&gt;</span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">script</span><span class="hl-brackets">&gt;</span><span class="hl-code">
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">script</span><span class="hl-code">  </span><span class="hl-var">src</span><span class="hl-code">=</span><span class="hl-quotes">&quot;</span><span class="hl-string">../../codebase/dhtmlxtree.js</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">&gt;</span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">script</span><span class="hl-brackets">&gt;</span><span class="hl-code">
+ 
+ 
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">script</span><span class="hl-brackets">&gt;</span><span class="hl-code"><div class="hl-main"><pre><span class="hl-reserved">var</span><span class="hl-code"> </span><span class="hl-identifier">tree</span><span class="hl-code">;
+</span><span class="hl-reserved">function</span><span class="hl-code"> </span><span class="hl-identifier">doOnLoad</span><span class="hl-brackets">(</span><span class="hl-brackets">)</span><span class="hl-code"> </span><span class="hl-brackets">{</span><span class="hl-code">
+    </span><span class="hl-identifier">tree</span><span class="hl-code"> = </span><span class="hl-reserved">new</span><span class="hl-code"> </span><span class="hl-identifier">dhtmlXTreeObject</span><span class="hl-brackets">(</span><span class="hl-quotes">&quot;</span><span class="hl-string">treeboxbox_tree</span><span class="hl-quotes">&quot;</span><span class="hl-code">, </span><span class="hl-quotes">&quot;</span><span class="hl-string">100%</span><span class="hl-quotes">&quot;</span><span class="hl-code">, </span><span class="hl-quotes">&quot;</span><span class="hl-string">100%</span><span class="hl-quotes">&quot;</span><span class="hl-code">, </span><span class="hl-number">0</span><span class="hl-brackets">)</span><span class="hl-code">;
+    </span><span class="hl-identifier">tree</span><span class="hl-code">.</span><span class="hl-identifier">setSkin</span><span class="hl-brackets">(</span><span class="hl-quotes">'</span><span class="hl-string">dhx_skyblue</span><span class="hl-quotes">'</span><span class="hl-brackets">)</span><span class="hl-code">;
+    </span><span class="hl-identifier">tree</span><span class="hl-code">.</span><span class="hl-identifier">setImagePath</span><span class="hl-brackets">(</span><span class="hl-quotes">&quot;</span><span class="hl-string">../../codebase/imgs/csh_winstyle/</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">)</span><span class="hl-code">;
+    </span><span class="hl-identifier">tree</span><span class="hl-code">.</span><span class="hl-identifier">enableDragAndDrop</span><span class="hl-brackets">(</span><span class="hl-reserved">true</span><span class="hl-brackets">)</span><span class="hl-code">;
+    </span><span class="hl-identifier">tree</span><span class="hl-code">.</span><span class="hl-identifier">setXMLAutoLoadingBehaviour</span><span class="hl-brackets">(</span><span class="hl-quotes">&quot;</span><span class="hl-string">id</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">)</span><span class="hl-code">;
+    </span><span class="hl-identifier">tree</span><span class="hl-code">.</span><span class="hl-identifier">setChildCalcMode</span><span class="hl-brackets">(</span><span class="hl-quotes">&quot;</span><span class="hl-string">child</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">)</span><span class="hl-code">;
+    </span><span class="hl-identifier">tree</span><span class="hl-code">.</span><span class="hl-identifier">setXMLAutoLoading</span><span class="hl-brackets">(</span><span class="hl-quotes">&quot;</span><span class="hl-string">php/xml.php</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">)</span><span class="hl-code">;
+    </span><span class="hl-identifier">tree</span><span class="hl-code">.</span><span class="hl-identifier">enableSmartXMLParsing</span><span class="hl-brackets">(</span><span class="hl-reserved">true</span><span class="hl-brackets">)</span><span class="hl-code">;
+    </span><span class="hl-identifier">tree</span><span class="hl-code">.</span><span class="hl-identifier">loadXML</span><span class="hl-brackets">(</span><span class="hl-quotes">&quot;</span><span class="hl-string">php/xml.php</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">)</span><span class="hl-code">;
+</span><span class="hl-brackets">}</span></pre></div></span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">script</span><span class="hl-brackets">&gt;</span><span class="hl-code">
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">div</span><span class="hl-code"> </span><span class="hl-var">style</span><span class="hl-code">=</span><span class="hl-quotes">&quot;</span><span class="hl-string">position:absolute;top:50px;left:300px;</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">&gt;</span><span class="hl-code">
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">a</span><span class="hl-code"> </span><span class="hl-var">href</span><span class="hl-code">=</span><span class="hl-quotes">&quot;</span><span class="hl-string">javascript:void(0)</span><span class="hl-quotes">&quot;</span><span class="hl-code"> </span><span class="hl-var">onClick</span><span class="hl-code">=</span><span class="hl-quotes">&quot;</span><span class="hl-string">tree.deleteItem(tree.getSelectedItemId(),true)</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">&gt;</span><span class="hl-code">Delete</span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">a</span><span class="hl-brackets">&gt;</span><span class="hl-code"> Selected Node</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">br</span><span class="hl-brackets">&gt;</span><span class="hl-code">
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">a</span><span class="hl-code"> </span><span class="hl-var">href</span><span class="hl-code">=</span><span class="hl-quotes">&quot;</span><span class="hl-string">javascript:void(0)</span><span class="hl-quotes">&quot;</span><span class="hl-code"> </span><span class="hl-var">onClick</span><span class="hl-code">=</span><span class="hl-quotes">&quot;</span><span class="hl-string">tree.setItemText(tree.getSelectedItemId(),document.getElementById('newlabel').value)</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">&gt;</span><span class="hl-code">Set</span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">a</span><span class="hl-brackets">&gt;</span><span class="hl-code"> selected Node Lable to </span><span class="hl-brackets">&lt;</span><span class="hl-reserved">input</span><span class="hl-code"> </span><span class="hl-var">id</span><span class="hl-code">=</span><span class="hl-quotes">&quot;</span><span class="hl-string">newlabel</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">&gt;</span><span class="hl-code">
+</span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">div</span><span class="hl-brackets">&gt;</span><span class="hl-code">
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">div</span><span class="hl-code"> </span><span class="hl-var">id</span><span class="hl-code">=</span><span class="hl-quotes">&quot;</span><span class="hl-string">treeboxbox_tree</span><span class="hl-quotes">&quot;</span><span class="hl-code"> </span><span class="hl-var">style</span><span class="hl-code">=</span><span class="hl-quotes">&quot;</span><span class="hl-string">width:260px;height:200px</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">&gt;</span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">div</span><span class="hl-brackets">&gt;</span><span class="hl-code">
+ 
+ 
+These operations get tree structure (of the entire tree or starting from the specified level)
+from server to syncronize client and server nodes.
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">br</span><span class="hl-brackets">&gt;</span><span class="hl-code">
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">a</span><span class="hl-code">  </span><span class="hl-var">href</span><span class="hl-code">=</span><span class="hl-quotes">&quot;</span><span class="hl-string">javascript:void(0)</span><span class="hl-quotes">&quot;</span><span class="hl-code"> </span><span class="hl-var">onClick</span><span class="hl-code">=</span><span class="hl-quotes">&quot;</span><span class="hl-string">tree.refreshItem(tree.getSelectedItemId())</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">&gt;</span><span class="hl-code">Refresh selected Item</span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">a</span><span class="hl-brackets">&gt;</span><span class="hl-code">
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">br</span><span class="hl-brackets">&gt;</span><span class="hl-code">
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">a</span><span class="hl-code">  </span><span class="hl-var">href</span><span class="hl-code">=</span><span class="hl-quotes">&quot;</span><span class="hl-string">javascript:void(0)</span><span class="hl-quotes">&quot;</span><span class="hl-code"> </span><span class="hl-var">onClick</span><span class="hl-code">=</span><span class="hl-quotes">&quot;</span><span class="hl-string">tree.refreshItem(0)</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">&gt;</span><span class="hl-code">Refresh root (Entire tree)</span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">a</span><span class="hl-brackets">&gt;</span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">div</span><span class="hl-brackets">&gt;</span><span class="hl-code">
+</span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">div</span><span class="hl-brackets">&gt;</span><span class="hl-code">
+ 
+ 
+Refreshing items in the smart mode keeps opened and selected items state when it is possible.
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">br</span><span class="hl-brackets">&gt;</span><span class="hl-code">
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">a</span><span class="hl-code">  </span><span class="hl-var">href</span><span class="hl-code">=</span><span class="hl-quotes">&quot;</span><span class="hl-string">javascript:void(0)</span><span class="hl-quotes">&quot;</span><span class="hl-code"> </span><span class="hl-var">onClick</span><span class="hl-code">=</span><span class="hl-quotes">&quot;</span><span class="hl-string">tree.smartRefreshItem(tree.getSelectedItemId())</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">&gt;</span><span class="hl-code">Refresh selected Item (smart mode)</span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">a</span><span class="hl-brackets">&gt;</span></pre></div>
+        </div>
+    <div class="footer">
+        <div class="footer-logo"></div>
+        <div class="copyright">Copyright &copy; 1998-2009 DHTMLX LTD.<br />All rights reserved.</div>
+    </div>
+	</body>
+</html>

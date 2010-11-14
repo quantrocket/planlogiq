@@ -1,0 +1,770 @@
+<%@ MasterClass="Application.layouts.MainLayoutTreeOrganisation" Title="planlogIQ" %>
+
+<com:TContent ID="Navigation">
+
+<com:Application.portlets.organisationportlet Visible=<%= !$this->User->IsGuest %> Id="organisationportlet" />
+
+</com:TContent>
+
+<com:TContent ID="FIXHEADER">
+
+<table width="100%" cellpadding="0" cellspacing="0">
+    <tr>
+        <td class="PSPFEZ" style="font-size:13px;height:26px;">
+            <com:XGlobalCallbackOptions>
+                        <prop:ClientSide.OnLoading>
+                                dhxLayout.progressOn();
+                        </prop:ClientSide.OnLoading>
+                        <prop:ClientSide.OnComplete>
+                                dhxLayout.progressOff();
+                        </prop:ClientSide.OnComplete>
+                </com:XGlobalCallbackOptions>
+                
+            &nbsp;<span class="windowcontent-button" style="width:100px;"><com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/find.png" /><a href="javascript:win_organisation_openwin('<%=$this->getRequest()->constructUrl('page','organisation.window.orgextwindow')%>')" Title="OrgWindow"><%[ suchen ]%></a></span>
+            <span class="windowcontent-button" style="width:100px;"><com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/16x16/apps/acroread.png" /><com:TActiveHyperLink id="PDFSteckbrief" Text=<%[ PDF Steckbrief ]%> /></span>
+            : <b><com:TActiveLabel Id="laborg_name" /></b> - <com:TActiveLinkButton onCallback="dtgList_editCommand" Id="labparentorg_name" Text=""/>
+            - <b><com:TActiveLabel Id="laborg_adresse" /></b>
+        </td>
+    </tr>
+</table>
+    <com:TActiveDataList
+                    RepeatColumns="4"
+                    RepeatDirection="Horizontal"
+                    onUpdateCommand="lstKomSave"
+                    onEditCommand="lstKomEdit"
+                    onCancelCommand="lstKomCancel"
+                    DataKeyField="idta_kommunikation"
+                    ID="lstKom">
+                    <prop:ItemTemplate>
+                        <table>
+                            <tr><td><com:TActiveImage ImageUrl=<%#"/rliq/themes/basic/gfx/16x16/apps/kom".$this->DataItem->kom_type.".png"%> /></td>
+                            <td class="tablerow" style="width:190px">  <com:TActiveLabel Text=<%#$this->DataItem->kom_information%> /></td>
+                            <td class="tablerow"><com:TActiveImage ImageUrl=<%#"/rliq/themes/basic/gfx/16x16/actions/".$this->DataItem->kom_ismain.".png"%> /></td>
+                            <td><com:TActiveLinkButton Text=<%[ bearbeiten ]%> CommandName="edit" CssClass="wcbutton"/></td></tr>
+                        </table>
+                    </prop:ItemTemplate>
+
+                    <prop:EditItemTemplate>
+                        <table>
+                        <tr><td class="tablerow"><com:TActiveDropDownList AutoPostBack="false" Id="ATB_lst_kom_type" Text=<%#$this->DataItem->kom_type%>>
+                           <com:TListItem Value="1" Text="Telefon"/>
+                           <com:TListItem Value="2" Text="Fax"/>
+                           <com:TListItem Value="3" Text="Mail"/>
+                        </com:TActiveDropDownList></td>
+                        <td class="tablerow"><com:TActiveTextBox CssClass="inputnormal" Id="ATB_lst_kom_information" Text=<%#$this->DataItem->kom_information%> /></td>
+                        <td class="tablerow"><com:TActiveCheckBox AutoPostBack="false" Id="ATB_lst_kom_ismain" Checked=<%#$this->DataItem->kom_ismain%> /></td>
+                        <td class="tablerow"><com:TActiveLinkButton Text=<%[ abbrechen ]%> CommandName="cancel" />  <com:TActiveLinkButton Text=<%[ save ]%> CommandName="update" /></td></tr>
+                        </table>
+                    </prop:EditItemTemplate>
+                </com:TActiveDataList>
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<com:PWCWindow ID="mpnlApplyToDimensionContainer"
+               AutoPosition="false"
+               Theme="alphacube"
+               Content="<%=$this->MyApplyToDimensionContainer->ClientID%>"
+               Mode="Existing"
+               Width="400px"
+               Left="100"
+               Top="100"
+               Title="DIM SYNC">
+</com:PWCWindow>
+
+<com:TActivePanel ID="MyApplyToDimensionContainer" Display="None">
+        <com:Application.pages.container.ApplyToDimensionContainer ID="ApplyToDimensionContainer"  />
+</com:TActivePanel>
+
+<div id="tabhtml_1" style="width:100%;height:100%;overflow:auto;background:#dedede">
+    <div style="overflow:hidden">
+            <com:Application.pages.container.AufgabenContainerOrganisation ID="AufgabenContainerOrganisation"/>
+            <com:TActiveTextBox id="Tedauf_tabelle" Text="tm_organisation" visible="false" />
+            <com:TActiveTextBox id="Tedauf_id" Text="0" visible="false" />
+            <com:TActiveTextBox id="Tedauf_user_id" Text="0" visible="false" />
+     </div>
+</div>
+<div id="tabhtml_2" style="width:100%;height:100%;overflow:auto;background:#dedede">
+        <div style="overflow:hidden;background:#dedede">
+    <table width="100%" cellpadding="0" cellspacing="0">
+        <tr><td colspan="4">
+                <div class="mytoolbar">
+                    <com:TActiveButton OnCallback="RCSavedButtonClicked" Text=<%[ speichern ]%> CssClass="windowcontent-button"/>
+                    ||
+                    <com:TActiveButton OnCallback="RCNewButtonClicked" Text=<%[ neue Organisation ]%> CssClass="windowcontent-button"/>
+                    <com:TActiveButton Id="newChild" OnCallback="RCNewButtonClicked" Text=<%[ neuer Nachfolger ]%> CssClass="windowcontent-button"/>
+                    <com:TActiveButton OnCallback="RCDeleteButtonClicked" Text=<%[ entfernen ]%> CssClass="windowcontent-button"/>
+                    <com:TActiveButton OnCallback="OpenSyncWindow" Text=<%[ DIM SYNC ]%> CssClass="windowcontent-button" Visible=<%= $this->User->isInRole('Administrator') %> />
+                </div>
+            <com:TActiveTextBox id="RCedorganisation_edit_status" Text="0" CssClass="hiddeninput" visible="false" />
+            <com:TActiveTextBox id="RCedidtm_organisation" CssClass="hiddeninput" visible="false" />
+
+            <com:TActiveTextBox id="Tedsend_tabelle" Text="tm_organisation" visible="false" />
+            <com:TActiveTextBox id="Tedsend_id" visible="false" />
+            <com:TActiveTextBox id="Tedsend_field" Text="org_ntuser" visible="false" />
+
+            
+            </td>
+        </tr>
+      </table>
+
+      <table cellspacing="3" cellpadding="3">
+        <tr>
+            <td>
+
+      <fieldset>
+          <legend>Stammdaten</legend>
+      <table align="center" cellspacing="0" cellpadding="0" border="0">
+
+        <tr>
+            <td class="FormLabel"><%[ Anrede ]%>:</td>
+            <td><com:TActiveTextBox Id="RCedorg_anrede" CssClass="inputsmall" />
+                <com:TTooltip forControl="RCedorg_anrede">
+                    <prop:Text>
+                        Wie wird die Orga angesprochen - Herr, Frau, Firma...
+                    </prop:Text>
+                </com:TTooltip>
+                <b><%[ Titel ]%>:</b>
+                <com:TActiveTextBox Id="RCedorg_titel" CssClass="inputsmall"/>
+                <com:TTooltip forControl="RCedorg_titel">
+                    <prop:Text>
+                        Welchen Titel hat der Kontakt - Dr., Mag.
+                    </prop:Text>
+                </com:TTooltip>
+            </td><td class="FormLabel"><%[ Briefanrede ]%>:
+            </td>
+            <td>
+            <com:TActiveTextBox Id="RCedorg_briefanrede" CssClass="inputnormal" />
+                <com:TTooltip forControl="RCedorg_briefanrede">
+                    <prop:Text>
+                        Text bei schriftlichem Anschreiben...
+                    </prop:Text>
+                </com:TTooltip>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="FormLabelMa"><%[ Name ]%>:</td>
+            <td><com:TActiveTextBox Id="RCedorg_name" CssClass="mandantorylarge" />
+                <com:TTooltip forControl="RCedorg_name">
+                    <prop:Text>
+                        Mit welchem Namen wird der Kontakt angezeigt
+                    </prop:Text>
+                </com:TTooltip>
+            </td><td class="FormLabel"><%[ Vorname ]%>:
+            </td>
+            <td>
+                <com:TActiveTextBox Id="RCedorg_vorname" CssClass="inputnormal"/>
+                <com:TTooltip forControl="RCedorg_vorname">
+                    <prop:Text>
+                        Vorname bei Personen
+                    </prop:Text>
+                </com:TTooltip>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="FormLabel"><%[ Matchcode ]%>:</td>
+            <td><com:TActiveTextBox Id="RCedorg_matchkey" CssClass="inputnormal" />
+                <com:TTooltip forControl="RCedorg_matchkey">
+                    <prop:Text>
+                        Frei wählbarer Schlüssel, nach dem gesucht werden kann.
+                    </prop:Text>
+                </com:TTooltip>
+            </td><td class="FormLabel"><%[ Kundennr. ]%>:
+            </td>
+            <td>
+                <com:TActiveTextBox Id="RCedorg_fk_internal" CssClass="inputnormal" />
+                <com:TTooltip forControl="RCedorg_fk_internal">
+                    <prop:Text>
+                        ID oder Schlüssel als Verbindung zu einem Fremdsystem.
+                    </prop:Text>
+                </com:TTooltip>
+            </td>
+        </tr>
+
+        <tr>
+            <td class="FormLabel"><%[ Name 1 ]%>:</td>
+            <td><com:TActiveTextBox Id="RCedorg_name1" CssClass="inputnormal" />
+                <com:TTooltip forControl="RCedorg_name1">
+                    <prop:Text>
+                        Falls es einen weiteren Namen gibt...
+                    </prop:Text>
+                </com:TTooltip>
+            </td>
+            <td class="FormLabelMa"><%[ Vorgänger ]%>:</td>
+            <td>
+                <com:POrganisationSelection Id="RCedparent_idtm_organisation" />
+                <com:TTooltip forControl="RCedparent_idtm_organisation">
+                    <prop:Text>
+                        Die hierarchisch übergeordnete Organisationseinheit
+                    </prop:Text>
+                </com:TTooltip>
+            </td>
+        </tr>
+</table>
+</fieldset>
+<fieldset>
+    <legend>Parameter I</legend>
+      <table align="center" cellspacing="0" cellpadding="0" border="0">
+        <tr>
+            <td class="FormLabel"><%[ Zusatzinfo ]%>:
+            </td>
+            <td>
+                <com:TActiveTextBox Id="RCedorg_name2" CssClass="inputnormal" />
+                <com:TTooltip forControl="RCedorg_name2">
+                    <prop:Text>
+                        Sonstige Zusatzinfos, die frei belegbar sind...
+                    </prop:Text>
+                </com:TTooltip>
+            </td>
+            <td class="FormLabel"><%[ NT-User ]%>:
+                <com:TActiveTextBox Id="RCedorg_mail" Visible="false" />
+            </td>
+            <td>
+                <com:TActiveTextBox Id="RCedorg_ntuser" CssClass="inputnormal" />
+            </td>
+        </tr>
+
+
+        <tr>
+            <td class="FormLabel"><%[ Benutzer-Rolle ]%>:</td>
+            <td><com:TActiveDropDownList AutoPostBack="false" Id="RCedorg_idtm_user_role"
+                                         CssClass="inputnormal" />
+            </td><td class="FormLabel"><%[ Ressource ]%>:                
+            </td>
+            <td>
+                <com:TActiveDropDownList AutoPostBack="false" Id="RCedidtm_ressource"
+                                         CssClass="inputnormal" />
+            </td>
+        </tr>
+     </table>
+    </fieldset>
+        </td>
+
+        <td valign="top">
+    <fieldset style="background-color:#ffffff;width:98%;">
+          <legend>Info</legend>
+      <table align="center" cellspacing="0" cellpadding="0" border="0">
+
+        <tr>
+            </td><td class="FormLabel"><%[ Datum ]%>:
+            </td>
+            <td>
+                <com:TActiveDatePicker Id="RCedorg_status_date" Mode="ImageButton" DateFormat="yyyy-MM-dd" InputMode="TextBox" width="80px"/>
+            </td>
+        </tr>
+        <tr>
+            </td><td class="FormLabel"><%[ Status ]%>:
+            </td>
+            <td>
+                <com:TActiveDropDownList AutoPostBack="false" Id="RCedorg_status" CssClass="inputnormal" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FormLabelMa"><%[ Aktiv ]%>:</td>
+            <td>
+                <com:TActiveCheckBox Id="RCedorg_aktiv" CssClass="mandantory" AutoPostback="false"/>
+            </td>
+        </tr>
+        <tr>
+            <td class="FormLabelMa"><%[ Kategorie ]%>:
+            </td>
+            <td>
+                <com:TActiveDropDownList AutoPostBack="false" Id="RCedidta_organisation_type" CssClass="mandantorylarge" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FormLabelMa"><%[ Art ]%>:
+            </td>
+            <td>
+                <com:TActiveDropDownList AutoPostBack="false" Id="RCedidta_organisation_art" CssClass="mandantorylarge" />
+            </td>
+        </tr>
+        <tr>
+            <td class="FormLabel"><%[ Branche ]%>:</td>
+            <td>
+                <com:TActiveDropDownList AutoPostBack="false" Id="RCedidta_branche" CssClass="inputnormal" />
+            </td>
+        </tr>
+
+      </table>
+      </fieldset>
+            
+        </td>
+      </tr>
+     </table>
+
+
+<script src="/rliq/protected/3rdParty/dhtmlxTabbar/codebase/dhtmlxtabbar_start.js"></script>
+<script>
+    dhtmlx.skin = "dhx_web";
+</script>
+
+
+<div id="s_tabbar" class="dhtmlxTabBar" style="width:100%; height:320px;" imgpath="/rliq/protected/3rdParty/dhtmlxTabbar/codebase/imgs/">
+  <div id="s1" name=<%[ Adresse und Kommunikation ]%> style="width:100%;height:100%;overflow:auto;background:#EBEEFA">
+       
+<table><tr>
+<td valign="top">
+                   <fieldset style="width:100%;">
+                            <legend>Kommunikation</legend>
+                                <table width="100%" cellspacing="0">
+                        <tr>
+                            <td class="FormLabel"><%[ Type ]%>:</td>
+                            <td><com:TActiveDropDownList AutoPostBack="false" Id="RCedkom_type" />
+                            <com:TActiveTextBox Id="RCedkom_information" CssClass="inputnormal" />
+                            <com:TActiveCheckBox ID="RCedkom_ismain" AutoPostBack="false"/> <%[ Haupt ]%>
+                            <com:TActiveButton Text=<%[ hinzufügen ]%> onCallback="addKom" CssClass="windowcontent-button" />
+                            </td>
+                        </tr>
+                                </table>
+                        </fieldset>
+
+                        <fieldset style="width:100%;">
+                            <legend>Adresse</legend>
+                                <table width="100%" cellspacing="0">
+                        
+                        <tr>
+                            <td class="FormLabel"><%[ Strasse ]%>:</td>
+                            <td><com:TActiveTextBox Id="RCedadresse_street" CssClass="inputnormal" />
+                            <com:TActiveCheckBox ID="RCedadresse_ismain" AutoPostBack="false"/> <b><%[ Haupt ]%></b>
+                            </td>
+                            <td class="FormLabel"><%[ Land ]%>:</td>
+                            <td><com:TActiveDropDownList AutoPostBack="false" Id="RCedidtm_country" CssClass="input" />
+                            <%[ PLZ ]%>: <com:TActiveTextBox Id="RCedadresse_zip" CssClass="inputsmall" />
+                            <%[ Stadt ]%>: <com:TActiveTextBox Id="RCedadresse_town" CssClass="inputnormal" />
+                            <com:TActiveButton Text=<%[ hinzufügen ]%> onCallback="addAdresse" CssClass="windowcontent-button" /></td>                            
+                        </tr>
+
+                        <tr>
+                            <td colspan="4">
+                                <com:TActiveDataGrid
+                                    onUpdateCommand="lstAdressSave"
+                                    onEditCommand="lstAdressEdit"
+                                    onDeleteCommand="lstAdressDelete"
+                                    onCancelCommand="lstAdressCancel"
+                                    onPageIndexChanged="lstAdress_pageIndexChanged"
+                                    DataKeyField="idta_adresse"
+                                    ID="lstAdress"
+                                    AutoGenerateColumns="false"
+                                    PageSize="4"
+                                    AllowPaging="true"
+                                    AlternatingItemStyle.CssClass="alternating"
+                                    PagerStyle.Mode="Numeric"
+                                    PagerStyle.HorizontalAlign="Left"
+                                    PagerStyle.CssClass="pager"
+                                    CssClass="datagrid">
+                                    <com:TActiveBoundColumn
+                                        HeaderText=<%[ Id ]%>
+                                        DataField="idta_adresse"
+                                        ID="lst_idta_adresse"
+                                        HeaderStyle.Width="40px"/>
+                                    <com:TActiveBoundColumn
+                                        HeaderText=<%[ Strasse ]%>
+                                        DataField="adresse_street"
+                                        ID="lst_adresse_street"/>
+                                    <com:TActiveBoundColumn
+                                        HeaderText=<%[ PLZ ]%>
+                                        DataField="adresse_zip"
+                                        ID="lst_adresse_zip"
+                                        HeaderStyle.Width="60px"/>
+                                    <com:TActiveBoundColumn
+                                        HeaderText=<%[ Stadt ]%>
+                                        DataField="adresse_town"
+                                        ID="lst_adresse_town"
+                                        HeaderStyle.Width="150px"/>
+                                    <com:TActiveBoundColumn
+                                        HeaderText=<%[ Lat ]%>
+                                        DataField="adresse_lat"
+                                        ID="lst_adresse_lat"
+                                        HeaderStyle.Width="50px"/>
+                                    <com:TActiveBoundColumn
+                                        HeaderText=<%[ Long ]%>
+                                        DataField="adresse_long"
+                                        ID="lst_adresse_long"
+                                        HeaderStyle.Width="50px"/>
+                                    <com:TActiveTemplateColumn id="lst_adresse_ismain">
+                                        <prop:HeaderTemplate><%[ Haupt ]%></prop:HeaderTemplate>
+                                        <prop:ItemTemplate>
+                                            <com:TActiveImage ImageUrl=<%#"/rliq/themes/basic/gfx/16x16/actions/".$this->Parent->DataItem->adresse_ismain.".png"%> />
+                                        </prop:ItemTemplate>
+                                        <prop:EditItemTemplate>
+                                            <com:TActiveCheckBox Id="ATB_lst_adresse_ismain" Checked=<%#$this->Parent->DataItem->adresse_ismain%> />
+                                        </prop:EditItemTemplate>
+                                    </com:TActiveTemplateColumn>
+                                    <com:TActiveEditCommandColumn HeaderText=<%[ Aktionen ]%> HeaderStyle.Width="40px"/>
+                                    <com:TActiveButtonColumn HeaderText=<%[ entfernen ]%>
+                                         CommandName="delete"
+                                         Text="delete"
+                                         HeaderStyle.Width="40px"/>
+                                </com:TActiveDataGrid>
+                            </td>
+                        </tr>
+                     </table>
+                     </fieldset>
+
+</td></tr></table>
+
+</div>
+
+<div id="s2" name=<%[ Finanzen ]%> style="width:100%;height:100%;overflow:auto;background:#EBEEFA">
+        <div style="overflow:hidden">
+<table><tr><td>
+     <fieldset>
+        <legend>Konto</legend>
+            <table width="100%" style="background-color:#ffffff" cellspacing="1">
+                        <tr>
+                            <td class="FormLabel">
+                                <%[ Kontowortlaut ]%>:</td>
+                                <td>
+                                    <com:TActiveTextBox Id="RCedbak_kontowortlaut" CssClass="inputnormal" />
+                                </td>
+                                <td class="FormLabel">
+                                    <%[ Geldinstitut ]%>:
+                                </td>
+                                <td>
+                                    <com:TActiveTextBox Id="RCedbak_geldinstitut" CssClass="inputnormal" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="FormLabel"><%[ BLZ ]%>:</td>
+                                <td>
+                                    <com:TActiveTextBox Id="RCedbak_blz" CssClass="inputnormal" />
+                                </td>
+                                <td class="FormLabel">
+                                    <%[ Konto ]%>:
+                                </td>
+                                <td>
+                                    <com:TActiveTextBox Id="RCedbak_konto" CssClass="inputnormal" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="FormLabel"><%[ BIC ]%>:</td>
+                                <td>
+                                    <com:TActiveTextBox Id="RCedbak_bic" CssClass="inputnormal" />
+                                </td>
+                                <td class="FormLabel">
+                                    <%[ IBAN ]%>:
+                                </td>
+                                <td>
+                                    <com:TActiveTextBox Id="RCedbak_iban" CssClass="inputnormal" />
+                                </td>
+                            </tr>
+                       </table>
+    </fieldset>
+
+    <fieldset>
+        <legend>Finanzamt</legend>
+            <table width="100%" style="background-color:#ffffff" cellspacing="1">
+                        <tr>
+                            <td class="FormLabel"><%[ UID ]%>:</td>
+                                <td>
+                                    <com:TActiveTextBox Id="RCedorg_uid" CssClass="inputnormal" />
+                                </td>
+                                <td class="FormLabel">
+                                    <%[ Finanzamt ]%>:
+                                </td>
+                                <td>
+                                    <com:TActiveTextBox Id="RCedorg_finanzamt" CssClass="inputnormal" />
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="FormLabel"><%[ Steuernummer ]%>:</td>
+                                <td>
+                                    <com:TActiveTextBox Id="RCedorg_steuernummer" CssClass="inputnormal" />
+                                </td>
+                                <td class="FormLabel">
+                                    <%[ Referat ]%>:
+                                </td>
+                                <td>
+                                    <com:TActiveTextBox Id="RCedorg_referat" CssClass="inputnormal" />
+                                </td>
+                            </tr>
+                       </table>
+      </fieldset>
+</td></tr></table>
+</div></div>
+
+<div id="s3" name=<%[ Objekt ]%> style="width:100%;height:100%;overflow:auto;background:#EBEEFA">
+        <div style="overflow:hidden">
+<table><tr><td>
+     <fieldset>
+        <legend>Gemeinde</legend>
+            <table width="100%" style="background-color:#ffffff" cellspacing="1">
+                        <tr>
+                            <td class="FormLabel">
+                                <%[ Gemeinde ]%>:
+                            </td>
+                            <td>
+                                <com:TActiveTextBox Id="RCedorg_gemeinde" CssClass="inputnormal" />
+                            </td>
+                            <td class="FormLabel">
+                                <%[ Katastragemeinde ]%>:
+                            </td>
+                            <td>
+                                <com:TActiveTextBox Id="RCedorg_katastragemeinde" CssClass="inputnormal" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td class="FormLabel">
+                                <%[ Grundstücksnummer ]%>:
+                            </td>
+                            <td>
+                                <com:TActiveTextBox Id="RCedorg_grundstuecksnummer" CssClass="inputnormal" />
+                            </td>
+                            <td class="FormLabel">
+                                <%[ Einlagezahl ]%>:
+                            </td>
+                            <td>
+                                <com:TActiveTextBox Id="RCedorg_einlagezahl" CssClass="inputnormal" />
+                            </td>
+                        </tr>
+           </table>
+</fieldset>
+
+<fieldset>
+        <legend>Objekt</legend>
+            <table width="100%" style="background-color:#ffffff" cellspacing="0">
+                        <tr>
+                            <td class="FormLabel"><%[ Baujahr ]%>:</td>
+                            <td>
+                                <com:TActiveTextBox Id="RCedorg_baujahr" CssClass="inputsmall" />
+                            </td>
+                            <td class="FormLabel">
+                                <%[ Anzahl Wohneinheiten ]%>:
+                            </td>
+                            <td>
+                                <com:TActiveTextBox Id="RCedorg_wohnungen" CssClass="inputsmall" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="FormLabel"><%[ Nutzfläche ]%>:</td>
+                            <td>
+                                <com:TActiveTextBox Id="RCedobj_nutzflaeche" CssClass="inputsmall" />
+                            </td>
+                            <td class="FormLabel">
+                                <%[ Stand ]%>:
+                            </td>
+                            <td>
+                                <com:TActiveDatePicker Id="RCedobj_nutzflaeche_date" Mode="ImageButton" DateFormat="yyyy-MM-dd" InputMode="TextBox" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="FormLabel"><%[ Obj. Anteil ]%>:</td>
+                            <td>
+                                <com:TActiveTextBox Id="RCedobj_gbanteile" CssClass="inputsmall" />
+                            </td>
+                            <td class="FormLabel">
+                                <%[ Stand ]%>:
+                            </td>
+                            <td>
+                                <com:TActiveDatePicker Id="RCedobj_gbanteile_date" Mode="ImageButton" DateFormat="yyyy-MM-dd" InputMode="TextBox" />
+                            </td>
+                        </tr>
+            </table>
+</fieldset>
+
+</td></tr></table>
+
+</div></div>
+
+<div id="s5" name=<%[ Sonstiges ]%> style="width:100%;height:100%;overflow:auto;background:#EBEEFA">
+        <div style="overflow:hidden">
+                        <table width="100%">
+                            <tr>
+                                <td><%[ Kurzinfo ]%>:</td>
+                                <td><com:TActiveTextBox Id="RCedorg_descr" TextMode="MultiLine" Rows="2"/></td>
+                                <td id="infoboxsmall">
+                                Freier Text Ihrer Wahl
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><%[ Geburtstag ]%>:</td>
+                                <td><com:TActiveDatePicker Id="RCedorg_birthday_date" Mode="ImageButton" DateFormat="yyyy-MM-dd" InputMode="TextBox" />
+                                <%[ Hochzeitstag ]%>: <com:TActiveDatePicker Id="RCedorg_specialday_date" Mode="ImageButton" DateFormat="yyyy-MM-dd" InputMode="TextBox" />
+                                </td>
+                                <td id="infoboxsmall">
+                                <%[ Birthday and Special Day ]%>
+                                </td>
+                            </tr>
+                        </table>
+</div></div>
+<div id="s6" name=<%[ Projekt ]%> style="width:100%;height:100%;overflow:auto;background:#EBEEFA">
+        <div style="overflow:hidden">
+                    <table width="100%">
+                        
+                        <tr>
+                            <td>Eskalation:</td>
+                            <td><com:TActiveTextBox Id="RCedorg_eskalation" CssClass="inputsmall"/>
+                            </td>
+                            <td id="infoboxsmall">
+                            Die Eskalationsstufe von 0;1;2;3...
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Klima/Bedeutung:</td>
+                            <td><com:TActiveTextBox Id="RCedorg_klima" CssClass="inputsmall"/> / <com:TActiveTextBox Id="RCedorg_bedeutung"  CssClass="inputsmall"/>
+                            </td>
+                            <td id="infoboxsmall">
+                            Die Klima/Bedeutung von 0...5
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td>Kommunikationsstr.:</td>
+                            <td><com:TActiveTextBox Id="RCedorg_kommunikation" TextMode="MultiLine" />
+                            </td>
+                            <td id="infoboxsmall">
+                            Wie wird kommuniziert?
+                            </td>
+                        </tr>
+
+                    </table>
+</div></div>
+<div id="s7" name=<%[ Administrator ]%> style="width:100%;height:100%;overflow:auto;background:#EBEEFA" Visible=<%= $this->user->isInRole('Administrator') %>>
+        <div style="overflow:hidden">
+                <table width="100%">
+                        <tr>
+                            <td><%[ Interne Benutzer-ID ]%>:</td>
+                            <td>
+                            <com:TAutoComplete Id="suggest_idtm_user" OnSuggest="suggestUser" OnSuggestionSelected="suggestionSelected1" Suggestions.DataKeyField="idtm_user" ResultPanel.CssClass="acomplete" CssClass="inputnormal">
+                                        <prop:Suggestions.ItemTemplate>
+                                            <li><%# $this->Data['user_name'] %></li>
+                                        </prop:Suggestions.ItemTemplate>
+                            </com:TAutoComplete>
+
+                            <com:TActiveTextBox Id="RCedidtm_user" />
+                            </td>
+                            <td id="infoboxsmall">
+                            <%[ Link to the internal User-ID ]%>
+                            </td>
+                        </tr>
+
+                    </table>
+</div></div>
+<div id="s8" name=<%[ Mailer ]%> style="width:100%;height:100%;overflow:auto;background:#EBEEFA" Visible=<%= $this->user->isInRole('Administrator') %>>
+        <div style="overflow:hidden">
+                 <fieldset style="width:50%;">
+                    <legend>Bedingungen</legend>
+                      <com:TActiveDataGrid ID="BedingungenGrid" PagerStyle.Mode="Numeric" PagerStyle.HorizontalAlign="Right" AllowPaging="true" AllowSorting="true" PageSize="10" AutoGenerateColumns="false" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating" OnPageIndexChanged="page.ZeiterfassungContainer.rcvList_PageIndexChanged" OnEditCommand="load_rcvalue">
+                        <com:TActiveBoundColumn HeaderText=<%[ ID ]%> DataField="idtm_zeiterfassung" ID="lst_idtm_zeiterfassung" />
+                        <com:TActiveTemplateColumn>
+                            <prop:HeaderTemplate><%[ User ]%></prop:HeaderTemplate>
+                            <prop:ItemTemplate>
+                                <com:TActiveLabel Text=<%#OrganisationRecord::finder()->findByPK($this->Parent->DataItem->idtm_organisation)->org_name%> />
+                            </prop:ItemTemplate>
+                        </com:TActiveTemplateColumn>
+                        <com:TActiveTemplateColumn>
+                            <prop:HeaderTemplate><%[ Activity ]%></prop:HeaderTemplate>
+                            <prop:ItemTemplate>
+                                <com:TActiveLabel Text=<%#ActivityRecord::finder()->findByPK($this->Parent->DataItem->idtm_activity)->act_name%> />
+                            </prop:ItemTemplate>
+                        </com:TActiveTemplateColumn>
+                        <com:TActiveBoundColumn HeaderText=<%[ Date ]%> DataField="zeit_date" ID="lst_zeit_date" />
+                        <com:TActiveBoundColumn HeaderText=<%[ CT ]%> DataField="idta_kosten_status" ID="idta_kosten_status" />
+                        <com:TActiveBoundColumn HeaderText=<%[ S-time ]%> DataField="zeit_starttime" ID="lst_zeit_starttime" />
+                        <com:TActiveBoundColumn HeaderText=<%[ E-time ]%> DataField="zeit_endtime" ID="lst_zeit_endtime" />
+                        <com:TActiveBoundColumn HeaderText=<%[ Break ]%> DataField="zeit_break" ID="lst_zeit_break" />
+                        <com:TActiveBoundColumn HeaderText=<%[ Nettime ]%> DataField="zeit_dauer" ID="lst_zeit_dauer" />
+                        <com:tActiveEditCommandColumn HeaderText=<%[ Action ]%> EditText="view" />
+                    </com:TActiveDataGrid>
+                    </fieldset style="width:50%;">
+                    <fieldset style="width:50%;">
+                    <legend>Bedingung hinzuf&uuml;gen</legend>
+                       <table width="100%">
+
+                        <tr>
+                            <td class="FormLabel"><%[ Orgafeld ]%>:</td>
+                            <td><com:TActiveDropDownList AutoPostBack="false" Id="ER_Orgafield_type" /><com:TActiveTextBox AutoPostBack="false" Id="ER_ManualValue_type" Enabled="false"/></td>
+                            <td id="infoboxsmall">
+                            <%[ Dieses Feld aus der Organisationsstruktur ]%>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="FormLabel"><%[ Regel ]%>:</td>
+                            <td><com:TActiveDropDownList AutoPostBack="false" Id="ER_Regel_type" /></td>
+                            <td id="infoboxsmall">
+                            <%[ wird auf diese Art]%>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="FormLabel"><%[ Emailfeld ]%>:</td>
+                            <td><com:TActiveDropDownList AutoPostBack="false" Id="ER_Emailfeld_type" /><com:TActiveButton Text=<%[ hinzufügen ]%> onCallback="addEmailRule" CssClass="windowcontent-button" /></td>
+                            <td id="infoboxsmall">
+                            <%[ mit diesem Feld aus dem Email verglichen]%>
+                            </td>
+                        </tr>
+                    </table>
+                    </fieldset>
+    </div>
+</div>
+</div><!--ende Tabcontainer/-->
+
+   </div>
+</div>
+
+<div id="tabhtml_3" style="width:100%;height:100%;overflow:auto;background:#EBEEFA">
+        <div style="overflow:hidden;background:#ffffff">
+            <com:Application.pages.container.RechnungContainer ID="RechnungContainer" />
+   </div>
+</div>
+
+<div id="tabhtml_4" style="width:100%;height:100%;overflow:auto;background:#EBEEFA">
+        <div style="overflow:hidden;background:#ffffff">
+
+        <div class="mytoolbar">
+            Optionen: <com:TActiveCheckBox onCallback="bindListChildOrgListe" Checked="1" id="CBChildrenAktiv" /><b>Aktive</b>
+        </div>
+        <com:TActiveDataGrid DataKeyField="idtm_organisation"
+                                     ID="OrgChildListe"
+                                     AllowPaging="true"
+                                     AllowCustomPaging="true"
+                                     PagerStyle.Mode="Numeric"
+                                     PagerStyle.HorizontalAlign="Left"
+                                     AllowSorting="false"
+                                     PageSize="50"
+                                     OnPageIndexChanged="dtgList_PageIndexChanged"
+                                     onEditCommand="dtgList_editCommand"
+                                     AutoGenerateColumns="false"
+                                     CssClass="datagrid"
+                                     PagerStyle.CssClass="pager"
+                                     AlternatingItemStyle.CssClass="alternating">
+                    <com:TActiveBoundColumn ID="lstc_idtm_organisation" DataField="idtm_organisation" HeaderText="ID" SortExpression="idtm_organisation"  HeaderStyle.Width="20px"/>
+                    <com:TActiveEditCommandColumn HeaderText="Aktion" HeaderStyle.Width="40px" UpdateText="Save" EditText="selektieren" CancelText="Cancel"/>
+                    <com:TActiveTemplateColumn HeaderStyle.Width="20px">
+                        <prop:HeaderTemplate><%[ Type ]%></prop:HeaderTemplate>
+                        <prop:ItemTemplate>
+                            <com:TActiveImage ImageUrl=<%#'/rliq/themes/basic/imgs/s'.$this->Parent->DataItem->idta_organisation_type.'.gif'%> />
+                        </prop:ItemTemplate>
+                    </com:TActiveTemplateColumn>
+                    <com:TActiveTemplateColumn HeaderStyle.Width="40px">
+                        <prop:HeaderTemplate><%[ FK ID ]%></prop:HeaderTemplate>
+                        <prop:ItemTemplate>
+                            <com:TActiveLabel Text=<%#$this->parent->DataItem->org_fk_internal%> />
+                        </prop:ItemTemplate>
+                    </com:TActiveTemplateColumn>
+                    <com:TActiveTemplateColumn HeaderStyle.Width="20px">
+                        <prop:HeaderTemplate><%[ Anrede ]%></prop:HeaderTemplate>
+                        <prop:ItemTemplate>
+                            <com:TActiveLabel Text=<%#$this->parent->DataItem->org_anrede%> />
+                        </prop:ItemTemplate>
+                    </com:TActiveTemplateColumn>
+                    <com:TActiveBoundColumn ID="lstc_org_name" DataField="org_name" HeaderText="Name" HeaderStyle.Width="200px"/>
+                    <com:TActiveTemplateColumn HeaderStyle.Width="200px">
+                        <prop:HeaderTemplate><%[ Vorname ]%></prop:HeaderTemplate>
+                        <prop:ItemTemplate>
+                            <com:TActiveLabel Text=<%#$this->parent->DataItem->org_vorname%> />
+                        </prop:ItemTemplate>
+                    </com:TActiveTemplateColumn>
+            </com:TActiveDataGrid>
+    </div>
+</div>
+
+</com:TContent>

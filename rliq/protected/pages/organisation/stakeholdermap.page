@@ -1,0 +1,69 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="ProLogIQ - Risikomap" %>
+
+
+<com:TContent ID="Navigation">
+
+<com:Application.portlets.organisationportlet Visible="true" />
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<h2>Stakeholder-Map</h2>
+
+<table width="100%"><tr><td>
+
+	<com:TActiveImage id="ImgRiscMap" />
+
+</td></tr></table>
+
+<com:TTabPanel>
+
+<com:TTabView Caption="Stakeholder">
+
+<com:TRepeater id="staketabelle">
+
+    <prop:HeaderTemplate>
+        <table width="100%">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Name</td>
+                    <td>Macht</td>
+                    <td>Stimmung</td>
+                    <td>Rolle</td>
+                </tr>
+            </thead>
+    </prop:HeaderTemplate>
+
+    <prop:FooterTemplate>
+            </table>
+    </prop:FooterTemplate>
+
+    <prop:ItemTemplate>
+        <tr>
+               <td><com:TLiteral Text="<%#$this->data->idtm_organisation%>" /></td>
+               <td><com:TLiteral Text="<%#$this->data->org_name%>" /></td>
+               <td><com:TLiteral Text="<%#$this->data->org_bedeutung%>" /></td>
+               <td><com:TLiteral Text="<%#$this->data->org_klima%>" /></td>
+               <td><com:TLiteral Text="<%#UserRoleRecord::finder()->findByPK($this->data->org_idtm_user_role)->user_role_name%>" /></td>
+        </tr>
+    </prop:ItemTemplate>
+
+     <prop:AlternatingItemTemplate>
+        <tr class="alternating">
+               <td><com:TLiteral Text="<%#$this->data->idtm_organisation%>" /></td>
+               <td><com:TLiteral Text="<%#$this->data->org_name%>" /></td>
+               <td><com:TLiteral Text="<%#$this->data->org_bedeutung%>" /></td>
+               <td><com:TLiteral Text="<%#$this->data->org_klima%>" /></td>
+               <td><com:TLiteral Text="<%#UserRoleRecord::finder()->findByPK($this->data->org_idtm_user_role)->user_role_name%>" /></td>
+        </tr>
+    </prop:AlternatingItemTemplate>
+
+</com:TRepeater>
+
+</com:TTabView>
+
+</com:TTabPanel>
+
+</com:TContent>

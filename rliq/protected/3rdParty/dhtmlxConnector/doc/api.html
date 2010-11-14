@@ -1,0 +1,808 @@
+<head>
+<link rel="STYLESHEET" type="text/css" href="common/styles.css">
+</head>
+
+<body>
+<h3>
+ DataAction object
+</h3>
+<br>
+<span style="background-color: rgb(255, 255, 255);"><br>
+</span>
+<ul>
+ <li>
+     <b>get_value</b> method - returns value of named field ( name of column or alias):
+ </li>
+</ul>
+<blockquote>
+ $action->get_value($name)     <br>
+</blockquote>
+     The only parameter you should specify is the name of column or alias.<br>
+<br>
+<br>
+<div>
+ 
+<ul>
+ <li>
+ <b>    set_value</b> method - sets values of named field:<br>
+ </li>
+ </ul>
+</div>
+<blockquote>
+ 
+<div>
+ $action->set_value($name,$value)
+ </div>
+</blockquote>
+<div>
+     The parameters are the following:<br>
+ 
+<ul style="margin-left: 40px;">
+ <li>
+ $name - name or alias of the field<br>
+ </li>
+ <li>
+ $value - value of the field in question
+ </li>
+ </ul>
+</div>
+<div>
+ <br>
+</div>
+<div>
+ 
+<ul>
+ <li>
+ <b>    get_userdata_value</b> method returns extra data received from client side, related to updated element:
+ </li>
+ </ul>
+ 
+<blockquote>
+  $action->get_userdata_value($name,$value)<br>
+ </blockquote>
+      The parameters are the following:<br>
+ 
+<ul style="margin-left: 40px;">
+ <li>
+ $name - name or alias of the field<br>
+ </li>
+ <li>
+ $value - value of the field in question
+ </li>
+ </ul>
+    
+</div>
+<div>
+ 
+<ul>
+ <li>
+ <b>set_userdata_value</b> method allows to set user defined data for selected field:<br>
+ </li>
+ </ul>
+</div>
+<blockquote>
+ 
+<div>
+ $action->set_userdata_value($name,$value)
+ </div>
+</blockquote>
+<div>
+      The parameters are the following:<br>
+ 
+<ul style="margin-left: 40px;">
+ <li>
+ $name - name or alias of the field<br>
+ </li>
+ <li>
+ $value - value of the field in question
+ </li>
+ </ul>
+   
+</div>
+<div>
+ 
+<ul>
+ <li>
+  <b>    get_status </b>method returns action type of the item:<br>
+ </li>
+ </ul>
+</div>
+<blockquote>
+ 
+<div>
+   $action->get_status()
+ </div>
+</blockquote>
+<div>
+ 
+<ul>
+ <li>
+     <b>set_status</b> method allows to set the status of operation - <b>do not use it if you need to avoid using custom status:</b>
+ </li>
+ </ul>
+</div>
+<blockquote>
+ 
+<div>
+ $action->set_status($value) <br>
+ </div>
+</blockquote>
+<div>
+      The parameter of this method is :<br>
+ 
+<ul style="margin-left: 40px;">
+ <li>
+ $value- status of operation
+ </li>
+ </ul>
+</div>
+<div>
+ <br>
+</div>
+<div>
+ 
+<ul>
+ <li>
+    <b>get_id</b> method returns id of current record:<br>
+ </li>
+ </ul>
+ 
+<blockquote>
+   $action-  >get_id()<br>
+ </blockquote>
+ 
+<ul>
+ <li>
+    <b> get_data </b>method  returns hash of values:<br>
+ </li>
+ </ul>
+</div>
+<blockquote>
+ 
+<div>
+ $action->get_data()<br>
+ </div>
+</blockquote>
+<div>
+ 
+<ul>
+ <li>
+   <b> set_response_text</b> method:<br>
+ </li>
+ </ul>
+ 
+<blockquote>
+ $action->set_response_text($text);<br>
+ </blockquote>
+      The only parameter you should specify is:  <br>
+</div>
+<div>
+ 
+<div style="margin-left: 40px;">
+ 
+<ul>
+ <li>
+ $text - <span style="background-color: rgb(255, 255, 255);">any text value , which will be returned on client side with related action structure</span><br style="background-color: rgb(255, 255, 255);">
+ </li>
+ </ul>
+ <br>
+ </div>
+ 
+<ul>
+ <li>
+    <b>set_response_xml</b> method<span style="background-color: rgb(255, 229, 153);"></span> <span style="background-color: rgb(255, 255, 255);">allows to set xml-string , which will be included in response ( if you need to provide just a text - use the method mentioned above ): </span><br>
+ </li>
+ </ul>
+</div>
+<blockquote>
+ 
+<div>
+ $action->set_response_xml($text)  <br>
+ </div>
+</blockquote>
+<div>
+      The only parameter you should specify is:<br>
+  <br>
+ 
+<div style="margin-left: 40px;">
+ 
+<ul>
+ <li>
+ $text - <span style="background-color: rgb(255, 255, 255);">any text value , which will be returned on client side with related action structure</span>
+ </li>
+ </ul>
+ </div>
+</div>
+<div>
+  
+ 
+<ul>
+ <li>
+ <b>set_response_attribute</b> method marks operation as incorrect and cancels default update:<br>
+ </li>
+ </ul>
+ 
+<blockquote>
+ operation$action->set_response_attribute($name,$value)$action->error();<br>
+ </blockquote>
+ 
+<ul>
+ <li>
+    <b>invalid</b> method marks provided data as invalid and cancels default update operation:
+ </li>
+ </ul>
+</div>
+<blockquote>
+ 
+<div>
+ $action->invalid();
+ </div>
+</blockquote>
+<div>
+ <b>Note: </b>  <b>set_response_xml, </b> <b>set_response_attribute</b>, <b>invalid </b>methods can be used to transfer additional info for client side code, they are necessary only if you want to add some heavy customization to update process<br>
+ <br>
+</div>
+<div>
+ 
+<ul>
+ <li>
+    <b>success</b> method confirms that operation has been executed correctly and cancels default update operation:
+ </li>
+ </ul>
+</div>
+<blockquote>
+ 
+<div>
+ $action->success();
+ </div>
+</blockquote>
+<div>
+ 
+<ul>
+ <li>
+    <b>success($id)</b> method has almost the same functionality as the previous one, but forces ID update on client side (insert operation):
+ </li>
+ </ul>
+</div>
+<blockquote>
+ 
+<div>
+ $action->success($id);
+ </div>
+</blockquote>
+<div>
+ <br>
+ 
+<ul>
+ <li>
+ <b>add_field </b>method allows to register field for usage during update|insert|delete operation:
+ </li>
+ </ul>
+ 
+<blockquote>
+     $action->add_field($name,$value); <br>
+ </blockquote>
+      The parameters are the following:<br>
+ 
+<ul style="margin-left: 40px;">
+ <li>
+ $name - name or alias of the field<br>
+ </li>
+ <li>
+ $value - value of the field in question
+ </li>
+ </ul>
+</div>
+<div>
+ <br>
+</div>
+<div>
+ 
+<ul>
+ <li>
+ <b>remove_field</b> method allows to remove one of default fields from db operation:
+ </li>
+ </ul>
+ 
+<blockquote>
+     $action->remove_field($name,$value)
+ </blockquote>
+</div>
+<div>
+      The parameters are the following:<br>
+ 
+<ul style="margin-left: 40px;">
+ <li>
+ $name - name or alias of the field<br>
+ </li>
+ <li>
+ $value - value of the field in question
+ </li>
+ </ul>
+</div>
+<div>
+ <br>
+</div>
+<ul>
+ <li>
+ <b>get_new_id</b> method returns ID, received after insert operation ( valid for <i>afterProcessing </i>event only )
+ </li>
+</ul>
+<blockquote>
+      $action->get_new_id();<br>
+</blockquote>
+<br>
+<br>
+<h3>
+ <b>Shared for GridDataItem, TreeDataItem, ComboDataItem, TreeGridDataItem</b>
+</h3>
+<b><br>
+</b>
+<ul>
+ <li>
+ <b>get_value</b> method returns value for selected item:<br>
+ </li>
+</ul>
+<blockquote>
+ 
+<div>
+ $dataItem->get_value($name)
+ </div>
+</blockquote>
+<div>
+      The only parameter you should specify is:<br>
+</div>
+<div>
+ 
+<div style="margin-left: 40px;">
+ 
+<ul>
+ <li>
+ $name - name or alias of the item
+ </li>
+ </ul>
+ </div>
+ 
+<div style="margin-left: 40px;">
+ <br>
+ </div>
+ 
+<ul>
+ <li>
+ <b>set_value</b> method allows to set value of selected item:<br>
+ </li>
+ </ul>
+</div>
+<div>
+ 
+<div style="margin-left: 40px;">
+ 
+<blockquote>
+ $dataItem->set_value($name,$value)
+ </blockquote>
+ </div>
+</div>
+<div>
+ 
+<ul style="margin-left: 40px;">
+ <li>
+ $name - name or alias of the item<br>
+ </li>
+ <li>
+ $value - value of the item in question
+ </li>
+ </ul>
+</div>
+<div>
+ <br>
+</div>
+<div>
+ 
+<ul>
+ <li>
+ <b>get_id </b>method returns id of the item:<br>
+ </li>
+ </ul>
+ 
+<blockquote>
+ $dataItem->get_id();
+ </blockquote>
+ 
+<ul>
+ <li>
+ <b>set_id</b> method allows to set id of the item:<br>
+ </li>
+ </ul>
+ 
+<blockquote>
+ $dataItem->set_id($value);
+ </blockquote>
+</div>
+<div>
+      <span style="background-color: rgb(255, 255, 255);">The only parameter you should specify is:</span><br style="background-color: rgb(255, 255, 255);">
+ 
+<div style="margin-left: 40px; background-color: rgb(255, 255, 255);">
+ 
+<ul>
+ <li>
+ $value - id of the item
+ </li>
+ </ul>
+ </div>
+ 
+<div style="margin-left: 40px; background-color: rgb(255, 255, 255);">
+ <br>
+ </div>
+</div>
+<div>
+ 
+<ul>
+ <li>
+ <b>get_index</b> method returns index of current item ( for example, in grid , it will be an index of row:
+ </li>
+ </ul>
+</div>
+<blockquote>
+ 
+<div>
+ $dataItem->get_index();
+ </div>
+</blockquote>
+<div>
+ <br>
+ 
+<ul style="background-color: rgb(255, 255, 255);">
+ <li>
+  calling <b>skip</b><b> </b>method will result in ignoring current item while rendering output. It allows to define custom filtering rules:
+ </li>
+ </ul>
+ 
+<blockquote>
+ $dataItem->skip();<br>
+ </blockquote>
+</div>
+<div>
+ 
+<h3>
+ <b>GridDataItem</b><span style="background-color: rgb(255, 255, 255);">/</span><b>TreeGridDataItem</b><span style="background-color: rgb(255, 255, 255);"> specific</span><br>
+ </h3>
+ 
+<ul>
+ <li>
+ <b>set_row_color</b> method allows to set color for any row in the component:
+ </li>
+ </ul>
+ 
+<blockquote>
+ $dataItem->set_row_color($color)
+ </blockquote>
+</div>
+<div>
+ The only parameter you should specify is:<br>
+ 
+<div style="margin-left: 40px;">
+ 
+<ul>
+ <li>
+ $color - the color of the row<br>
+ </li>
+ </ul>
+ </div>
+ 
+<div style="margin-left: 40px;">
+ <br>
+ </div>
+</div>
+<div>
+ 
+<ul>
+ <li>
+ <b>set_row_style</b> method allows to set the style for any row<br>
+ </li>
+ </ul>
+ 
+<blockquote>
+ $dataItem->set_row_style<span style="background-color: rgb(255, 255, 255);">($style )</span>
+ </blockquote>
+</div>
+The only parameter you should specify is:<br>
+<div style="margin-left: 40px;">
+ 
+<ul>
+ <li>
+ $<span style="background-color: rgb(255, 255, 255);">style - style </span>of the row in question<br>
+ </li>
+ </ul>
+</div>
+<div style="margin-left: 40px;">
+ <br>
+</div>
+<div>
+ 
+<ul>
+ <li>
+ <b>set_cell_style</b> method allows to set style for any cell of the item:
+ </li>
+ </ul>
+ 
+<blockquote>
+ $dataItem->set_cell_style($name,$value)    
+ </blockquote>
+ <br>
+ 
+<div>
+ 
+<ul style="margin-left: 40px;">
+ <li>
+ $name - name or alias of the cell<br>
+ </li>
+ <li>
+ $value - style of the cell in question
+ </li>
+ </ul>
+ </div>
+ 
+<div>
+ <br>
+ </div>
+</div>
+<div>
+ 
+<ul>
+ <li>
+ <b>set_cell_class</b> method allows to set class for any cell of the item:<br>
+ </li>
+ </ul>
+ 
+<blockquote>
+ $dataItem->set_cell_class($name,$value)
+ </blockquote>
+</div>
+<div>
+ 
+<ul style="margin-left: 40px;">
+ <li>
+ $name - name or alias of the cell<br>
+ </li>
+ </ul>
+</div>
+<div style="margin-left: 40px;">
+ 
+<ul>
+ <li>
+ $value - class of the cell in question
+ </li>
+ </ul>
+</div>
+<div style="margin-left: 40px;">
+ <br>
+</div>
+<div>
+ 
+<ul>
+ <li>
+ set_row_attribute method allows to set attributes for any row of the component:<br>
+ </li>
+ </ul>
+ 
+<blockquote>
+ $dataItem->set_row_attribute($attr,$value)
+ </blockquote>
+ The parameters are the following:<br>
+ 
+<div style="margin-left: 40px; background-color: rgb(255, 255, 255);">
+ 
+<ul>
+ <li>
+ $attr - name of attribute<br>
+ </li>
+ <li>
+ $value - value of attribute
+ </li>
+ </ul>
+ </div>
+ <br>
+ 
+<ul>
+ <li>
+ <b>set_cell_attribute </b>method allows to set attributes for any cell of the item:<br>
+ </li>
+ </ul>
+ 
+<blockquote>
+ $dataItem->set_cell_attribute($name,$attr,$value)
+ </blockquote>
+ <br>
+ <span style="background-color: rgb(255, 255, 255);">The parameters of this method are the following:</span><br style="background-color: rgb(255, 255, 255);">
+ 
+<div style="margin-left: 40px; background-color: rgb(255, 255, 255);">
+ 
+<ul>
+ <li>
+ $name - name of alias of the cell in question
+ </li>
+ <li>
+ $attr - name of attribute<br>
+ </li>
+ <li>
+ $value - value of attribute<br>
+ </li>
+ </ul>
+ </div>
+ 
+<div style="margin-left: 40px; background-color: rgb(255, 255, 255);">
+ <br>
+ </div>
+ 
+<h4 style="background-color: rgb(255, 255, 255);">
+ <br>
+ </h4>
+ 
+<h3>
+ <b><b>TreeGridDataItem </b></b>
+ </h3>
+ 
+<ul>
+ <li>
+ <b>get_parent_id</b> method returns parent id of selected item: </li>
+ </ul>
+ 
+<blockquote>
+ $dataItem->get_parent_id();
+ </blockquote>
+ 
+<ul>
+ <li>
+ <b>get_check_state</b> method returns the state of selected item:
+ </li>
+ </ul>
+ 
+<blockquote>
+ $dataItem->get_check_state();
+ </blockquote>
+</div>
+<div style="background-color: rgb(255, 255, 255);">
+      The only parameter you should specify is:<br>
+ 
+<div style="margin-left: 40px;">
+ 
+<ul>
+ <li>
+ $value -returns state of checkbox related to the item:<br>
+ </li>
+ </ul>
+ </div>
+ 
+<div style="margin-left: 40px;">
+ <br>
+ </div>
+</div>
+<div>
+ 
+<ul>
+ <li>
+ <b style="background-color: rgb(255, 255, 255);">set_check_state</b><span style="background-color: rgb(255, 255, 255);"> </span>method allows to set state of checkbox related to the item:<br>
+ </li>
+ </ul>
+ 
+<blockquote>
+ $dataItem->set_check_state($value);
+ </blockquote>
+</div>
+<div>
+     The only parameter you should specify is:<br>
+ 
+<div style="margin-left: 40px;">
+ 
+<ul>
+ <li>
+ $value - state of the item, valid valus are "0" - unchecked, "1" - checked, "-1" - third state
+ </li>
+ </ul>
+ </div>
+ 
+<div style="margin-left: 40px;">
+ <br>
+ </div>
+</div>
+<div>
+ 
+<ul>
+ <li>
+ <b>set_image </b>method allows to set image for all check states of the node in tree:<br>
+ </li>
+ </ul>
+ 
+<blockquote>
+ $dataItem->set_image($img);
+ </blockquote>
+</div>
+<div>
+     The parameter is:<br>
+ 
+<div style="margin-left: 40px; background-color: rgb(255, 255, 255);">
+ 
+<ul>
+ <li>
+ $img - image which will be set for the item, path relative to icon's path of tree<br>
+ </li>
+ </ul>
+ </div>
+ 
+<div style="margin-left: 40px; background-color: rgb(255, 255, 255);">
+ <br>
+ </div>
+</div>
+<div>
+ 
+<ul style="background-color: rgb(255, 255, 255);">
+ <li>
+ The method below allows two options to set different images for each check state of item:<br>
+ </li>
+ </ul>
+</div>
+<div>
+ 
+<blockquote>
+ <span style="background-color: rgb(255, 255, 255);">$dataItem->set_image($img_folder_closed,$img_folder_open,$img_leaf); </span><br>
+ </blockquote>
+</div>
+The parameters you should specify are:<br>
+<div style="margin-left: 40px;">
+ 
+<ul>
+ <li>
+ <span style="background-color: rgb(255, 255, 255);">$img_folder_closed - image which will be set for the node with closed state<br>
+ </span>
+ </li>
+ <li>
+ <span style="background-color: rgb(255, 255, 255);">$img_folder_open - image which will be set for the node with open state</span>
+ </li>
+ <li>
+ <span style="background-color: rgb(255, 255, 255);">$img_leaf - image which will be set for the node without subitems<br>
+ </span>
+ </li>
+ </ul>
+</div>
+<h4>
+</h4>
+<h3>
+ <b><b>TreeDataItem</b></b><br>
+</h3>
+<ul>
+ <li>
+ <b>get_parent_id </b>method returns parent id of the selected item:<br>
+</li>
+</ul>
+<blockquote>
+ $dataItem->get_parent_id();
+</blockquote>
+<ul>
+ <li>
+ <b>set_image</b> method allows to set image for any item in tree:
+ </li>
+</ul>
+<blockquote>
+ $dataItem->set_image($img)
+</blockquote>
+<p>
+ You should specify the following parameter:
+</p>
+<ul style="margin-left: 40px;">
+ <li>
+ $img - image which will be set for selected item
+ </li>
+</ul>
+<h4>
+ <br>
+</h4>
+<h3>
+ <b>ComboDataItem</b>
+</h3>
+<ul>
+ <li>
+ $dataItem->select();<br>
+ </li>
+</ul>
+<br>
+</body>

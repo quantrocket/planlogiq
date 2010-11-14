@@ -1,0 +1,96 @@
+<!--conf
+<sample>
+              <product version="1.0" edition="std"/>
+                     <modifications>
+                            <modified date="080318"/>
+                     </modifications>
+               </sample>
+ --> 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Using UserData In Menu Items</title>
+	
+	<link rel="stylesheet" type="text/css" href="../../codebase/skins/dhtmlxmenu_dhx_blue.css">
+	
+	<script  src="../../codebase/dhtmlxcommon.js"></script>
+	<script  src="../../codebase/dhtmlxmenu.js"></script>
+</head>
+<body onload="initMenu();">
+<link rel='STYLESHEET' type='text/css' href='../common/style.css'>
+<table cellspacing="0" cellpadding="0" class="sample_header" border="0">
+	<tr valign="middle">
+		<!-- COMPONENT ICON -->
+		<td width="40" align="center"><img src="../common/dhtmlxmenu_icon.gif" border="0"></td>
+		<!-- COMPONENT NAME -->
+		<td width="150" align="left" nowrap="true">Sample: dhtmlxMenu</td>
+		<!-- SAMPLE TITLE -->
+		<td width="0" align="left" nowrap><b>Using UserData In Menu Items</b></td>
+		<!-- LINK TO COMPONENT PAGE -->
+		<td width="0" align="right"><a href="http://www.dhtmlx.com/docs/products/dhtmlxMenu/index.shtml">dhtmlxMenu main page</a></td>
+		<!-- CLOSE BUTTON -->
+		<td width="50"><div class="sample_close"><a href="javascript:void(0);" onclick="self.close();"><img src="../common/sample_close.gif" width="14" height="14" border="0" alt="X"></a></div></td>
+	</tr>
+</table>
+	<div id="menuObj"></div>
+	<div style="margin-top: 200px;">
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td>Select Item</td>
+				<td width="10">&nbsp;</td>
+				<td><div id="item">(Click menu item to select)</div></td>
+			</tr>
+			<tr>
+				<td>Current UserData ("data")</td>
+				<td>&nbsp;</td>
+				<td><div id="item_ud">&nbsp;</div></td>
+			</tr>
+			<tr>
+				<td>UserData Name</td>
+				<td>&nbsp;</td>
+				<td><select disabled><option>data</option></select></td>
+			</tr>
+			<tr>
+				<td>UserData Value</td>
+				<td>&nbsp;</td>
+				<td><input id="item_new_ud" type="text" value=""> <input type="button" value="Update" onclick="update();"></td>
+			</tr>
+		</table>
+	</div>
+<div class='sample_code'><div class="hl-main"><pre><span class="hl-code"> 
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">script</span><span class="hl-brackets">&gt;</span><span class="hl-code"><div class="hl-main"><pre><span class="hl-code"> 
+    </span><span class="hl-reserved">var</span><span class="hl-code"> </span><span class="hl-identifier">menu</span><span class="hl-code"> = </span><span class="hl-reserved">new</span><span class="hl-code"> </span><span class="hl-identifier">dhtmlXMenuObject</span><span class="hl-brackets">(</span><span class="hl-quotes">&quot;</span><span class="hl-string">menuObj</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">)</span><span class="hl-code">;
+    ...
+    </span><span class="hl-comment">//</span><span class="hl-comment"> getting item userdata</span><span class="hl-comment"></span><span class="hl-code">
+    </span><span class="hl-reserved">var</span><span class="hl-code"> </span><span class="hl-identifier">userData</span><span class="hl-code"> = </span><span class="hl-identifier">menu</span><span class="hl-code">.</span><span class="hl-identifier">getUserData</span><span class="hl-brackets">(</span><span class="hl-identifier">itemId</span><span class="hl-code">, </span><span class="hl-identifier">name</span><span class="hl-brackets">)</span><span class="hl-code">;
+    </span><span class="hl-comment">//</span><span class="hl-comment"> setting item userdata</span><span class="hl-comment"></span><span class="hl-code">
+    </span><span class="hl-identifier">menu</span><span class="hl-code">.</span><span class="hl-identifier">setUserData</span><span class="hl-brackets">(</span><span class="hl-identifier">itemId</span><span class="hl-code">, </span><span class="hl-identifier">name</span><span class="hl-code">, </span><span class="hl-identifier">value</span><span class="hl-brackets">)</span><span class="hl-code">;</span></pre></div></span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">script</span><span class="hl-brackets">&gt;</span></pre></div></div>
+
+<br>
+
+<script>
+	var menu, mid;
+	function initMenu() {
+		menu = new dhtmlXMenuObject("menuObj");
+		menu.setImagePath("../../codebase/imgs/");
+		menu.setIconsPath("../images/");
+		menu.attachEvent("onClick", menuClick);
+		menu.loadXML("../common/dhtmlxmenu.xml?e=" + new Date().getTime());
+	}
+	function menuClick(id) {
+		document.getElementById("item").innerHTML = id + " ("+menu.getItemText(id)+")";
+		document.getElementById("item_ud").innerHTML = menu.getUserData(id, "data");
+		mid = id;
+	}
+	function update() {
+		var data = document.getElementById("item_new_ud").value;
+		menu.setUserData(mid, "data", data);
+	}
+</script>
+
+<!-- FOOTER -->
+<table callspacing="0" cellpadding="0" border="0" class="sample_footer"><tr><td style="padding-left: 8px;">&copy; <a href="http://www.dhtmlx.com">DHTMLX LTD</a>. All rights reserved</td></tr></table>
+<!-- FOOTER -->
+
+</body>

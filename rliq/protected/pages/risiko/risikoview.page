@@ -1,0 +1,149 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="planlogIQ" %>
+
+
+<com:TContent ID="HeaderJavascript">
+
+var IsAdministrator = <%=$this->User->isAdmin?'true':'false'%>;
+
+function initDHTMLXTabbars(TabbarObject){
+
+    TabbarObject.addTab("a1","Risiken",150);
+    TabbarObject.setContent("a1", "tabhtml_1");
+
+    TabbarObject.addTab("a2","Risikoquantifizierung",150);
+    TabbarObject.setContent("a2", "tabhtml_2");
+
+    TabbarObject.setTabActive("a1");
+}
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<com:TMultiView ID="viewPanel" ActiveViewIndex="0">
+
+<com:TView ID="neu_Organisation"> 
+
+<div id="tabhtml_1" style="overflow:auto;height:100%;background:#EBEEFA">
+        <div style="overflow:hidden">
+
+<h2>Risiko Detail</h2>
+
+<p id="infobox">Hier legen Sie neue Risikoen an, bitte beachten Sie, dass Sie jede Ware als Einzelposition anlegen m�ssen. Zur Vorbereitung der Logitikausschreibung haben Sie sp�ter die M�glichkeit einen Warenkorb zu f�llen.</p>
+
+<table width="100%">
+
+<tr><td colspan="3" class="portlet-title">Risiko</td></tr>
+
+<tr>
+<td>Bezeichnung:</td>
+<td><com:TActiveTextBox Id="ris_name" CssClass="mandantorylarge" />
+</td>
+<td id="infoboxsmall">
+Tragen Sie hier die Bezeichnung für den Risikosteil ein
+</td>
+</tr>
+<tr>
+<td>Kategorie:</td>
+<td><com:TActiveDropDownList Id="idta_risiko_type" /></td>
+<td id="infoboxsmall">
+Um welche Kategorie handelt es sich - Unternehmen, Profitcenter, Umsatz
+</td>
+</tr>
+<tr>
+<td>Beschreibung:</td>
+<td><com:TActiveTextBox Id="ris_descr" TextMode="MultiLine" /></td>
+<td id="infoboxsmall">
+Freier Text Ihrer Wahl
+</td>
+</tr>
+
+<tr><td colspan="3" class="portlet-title">Hierarchie</td></tr>
+
+
+<tr>
+<td>Vorg&auml;nger:</td>
+<td><com:TActiveDropDownList Id="parent_idtm_risiko" /></td>
+<td id="infoboxsmall">
+Der Vorg�nger, definiert den Knoten überhalb des neuen Elementes
+</td>
+</tr>
+
+</table>
+<com:THiddenField id="idtm_risiko" />
+<div class="mytoolbar">
+<com:TButton Text="Save" OnClick="insertButtonClicked" CssClass="submit"/>
+</div>
+
+</div></div>
+
+</com:TView>
+
+<com:TView ID="edit_Org"> 
+
+<div id="tabhtml_1" style="overflow:auto;height:100%;background:#EBEEFA">
+        <div style="overflow:hidden">
+
+<table width="100%">
+
+<tr><td colspan="3" class="portlet-title">Risiko</td></tr>
+
+<tr>
+<td>Bezeichnung:</td>
+<td><com:TActiveTextBox Id="edris_name" CssClass="mandantorylarge" />
+</td>
+<td id="infoboxsmall">
+Tragen Sie hier die Bezeichnung für den Risikosteil ein
+</td>
+</tr>
+<tr>
+<td>Kategorie:</td>
+<td><com:TActiveDropDownList Id="edidta_risiko_type" /></td>
+<td id="infoboxsmall">
+Um welche Kategorie handelt es sich - Organisation, Abteilung, Team, Mitarbeiter
+</td>
+</tr>
+<tr>
+<td>Beschreibung:</td>
+<td><com:TActiveTextBox Id="edris_descr" TextMode="MultiLine" /></td>
+<td id="infoboxsmall">
+Freier Text Ihrer Wahl
+</td>
+</tr>
+
+<tr><td colspan="3" class="portlet-title">Hierarchie</td></tr>
+
+
+<tr>
+<td>Vorg&auml;nger:</td>
+<td><com:TActiveDropDownList Id="edparent_idtm_risiko" /></td>
+<td id="infoboxsmall">
+Der Vorg�nger, definiert den Knoten �berhalb des neuen Elementes
+</td>
+</tr>
+
+</table>
+
+
+<com:THiddenField id="edidtm_risiko" />
+<div class="mytoolbar">
+<com:TButton Text="Save" OnClick="editButtonClicked" CssClass="submit"/>
+<com:TActiveButton Text="Delete" OnClick="deleteButtonClicked" CssClass="submit"/>
+</div>
+
+</div></div>
+
+</com:TView>
+
+</com:TMultiView> 
+
+<div id="tabhtml_2" style="overflow:auto;height:100%;background:#EBEEFA">
+        <div style="overflow:hidden">
+
+        <com:Application.pages.risiko.RiskValueContainer ID="RiskValueContainer"  />
+        <com:TActiveTextBox id="RCedrcv_tabelle" Text="tm_risiko" CssClass="hiddeninput" visible="false" />
+        <com:TActiveTextBox id="RCedrcv_id" Text="0" CssClass="hiddeninput" visible="false" />
+
+</div></div>
+
+</com:TContent>

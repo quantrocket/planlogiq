@@ -1,0 +1,70 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="ProLogIQ - Risikomap" %>
+
+
+<com:TContent ID="Navigation">
+
+<com:Application.portlets.risikoportlet Visible="true" />
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<h2>Risk-Map</h2>
+
+<table width="100%"><tr><td>
+
+	<com:TActiveImage id="ImgRiscMap" />
+	
+<com:TTabPanel>
+
+<com:TTabView Caption="Risiken">
+
+<com:TRepeater id="risctabelle">
+
+    <prop:HeaderTemplate>
+        <table width="100%">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Name</td>
+                    <td>Datum</td>
+                    <td>Schaden</td>
+                    <td>Eintrittswahr.keit</td>
+                </tr>
+            </thead>
+    </prop:HeaderTemplate>
+
+    <prop:FooterTemplate>
+            </table>
+    </prop:FooterTemplate>
+
+    <prop:ItemTemplate>
+        <tr>
+               <td><com:TLiteral Text="<%#$this->data->idtm_rcvalue%>" /></td>
+               <td><com:TLiteral Text="<%#RisikoRecord::finder()->FindByPK(RCValueRecord::finder()->findByPK($this->data->idtm_rcvalue)->idtm_risiko)->ris_name%>" /></td>
+               <td><com:TLiteral Text="<%#$this->data->rcv_cdate%>" /></td>
+               <td><com:TLiteral Text="<%#$this->data->rcv_schaden%>" /></td>
+               <td><com:TLiteral Text="<%#$this->data->rcv_ewk%>" /></td>
+        </tr>
+    </prop:ItemTemplate>
+
+     <prop:AlternatingItemTemplate>
+        <tr class="alternating">
+               <td><com:TLiteral Text="<%#$this->data->idtm_rcvalue%>" /></td>
+               <td><com:TLiteral Text="<%#RisikoRecord::finder()->FindByPK(RCValueRecord::finder()->findByPK($this->data->idtm_rcvalue)->idtm_risiko)->ris_name%>" /></td>
+               <td><com:TLiteral Text="<%#$this->data->rcv_cdate%>" /></td>
+               <td><com:TLiteral Text="<%#$this->data->rcv_schaden%>" /></td>
+               <td><com:TLiteral Text="<%#$this->data->rcv_ewk%>" /></td>
+        </tr>
+    </prop:AlternatingItemTemplate>
+
+</com:TRepeater>
+
+</com:TTabView>
+
+</com:TTabPanel>
+	
+
+</td></tr></table>
+
+</com:TContent>

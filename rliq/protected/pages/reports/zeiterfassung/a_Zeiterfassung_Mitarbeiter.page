@@ -1,0 +1,126 @@
+<%@ MasterClass="Application.layouts.TextReportLayout" Title="RiskLogIQ" %>
+
+<com:TContent ID="Main">
+
+<div id="infobox">Zeiterfassung Auswertung nach Mitarbeiter</div>
+
+<div class="mytoolbar">
+    <com:InternalHyperLink ToPage="Home" Text="zurück" CssClass="windowcontent-button"/>
+<%[ User ]%>: <com:POrganisationSelection Id="RCedidtm_organisation" onCallback="bindListRCValue"/>
+
+Projekt:<com:TActiveDropDownList Id="idtm_activity" CssClass="inputnormal" AutoPostBack="true" onCallback="bindListRCValue"/>
+Status:<com:TActiveDropDownList Id="idta_kosten_status" CssClass="inputnormal" AutoPostBack="true" onCallback="bindListRCValue"/>
+
+</div>
+<div class="mytoolbar">
+    <%[ Von ]%>:<com:TActiveDatePicker Id="zeiterfassung_datestart" Mode="ImageButton" DateFormat="yyyy-MM-dd" InputMode="DropDownList" OnTextChanged="bindListRCValue" />
+    <%[ Bis ]%>:<com:TActiveDatePicker Id="zeiterfassung_dateende" Mode="ImageButton" DateFormat="yyyy-MM-dd" InputMode="DropDownList" OnTextChanged="bindListRCValue" />
+</div>
+    <com:TActiveRepeater ID="ZeiterfassungListe"
+        onItemDataBound="load_detailbelege">
+
+        <prop:HeaderTemplate>
+            <table width="100%">
+                <tr class="thead">
+                    <td width="15px">CFrei</td>
+                    <td width="15px">Abg.</td>
+                    <td>Monat</td>
+                    <td>Tag</td>
+                    <td>Wochentag</td>
+                    <td>Beginn</td>
+                    <td>Pause</td>
+                    <td>Ende</td>
+                    <td>Stunden Ges.</td>
+                    <td>Projekt</td>
+                    <td>Aktivität/Zus. Infos</td>
+                    <td>Consultant</td>
+                    <td>Fahrt von:</td>
+                    <td>nach:</td>
+                    <td>km</td>
+                </tr>
+         </prop:HeaderTemplate>
+
+         <prop:ItemTemplate>
+             <tr onMouseOver="setRowBackground(this,'#c3e3ef')"
+                onMouseOut="setRowBackground(this,this.style.backgroundColor)"
+                class="<%# $this->ItemIndex%2?'alternating':'nonealternating' %>">
+                <td><com:TActiveCheckBox Id="zeit_checked" 
+                        Checked="<%#$this->Data->zeit_checked%>"
+                        onCallback="page.updateStatusChecked"
+                        ActiveControl.CallbackParameter="<%#$this->Data->idtm_zeiterfassung%>"
+                        AutoPostBack="true"/></td>
+                <td><com:TActiveCheckBox Id="zeit_abgerechnet" 
+                        Checked="<%#$this->Data->zeit_abgerechnet%>"
+                        onCallback="page.updateStatusAbgerechnet"
+                        ActiveControl.CallbackParameter="<%#$this->Data->idtm_zeiterfassung%>"
+                        AutoPostBack="true"/></td>
+                <td><com:TLiteral Text=<%#date("m",strtotime($this->Data->zeit_date))%>/></td>
+                <td><com:TLiteral Text=<%#date("d",strtotime($this->Data->zeit_date))%>/></td>
+                <td><com:TLiteral Text=<%#date("l",strtotime($this->Data->zeit_date))%>/></td>
+                <td><com:TLiteral Text=<%#$this->Data->zeit_starttime%>/></td>
+                <td><com:TLiteral Text=<%#$this->Data->zeit_break%>/></td>
+                <td><com:TLiteral Text=<%#$this->Data->zeit_endtime%>/></td>
+                <td class="<%#$this->page->TTColors[$this->data->idta_kosten_status]%>"><com:TLiteral Text=<%#$this->Data->zeit_dauer%>/><%#'';$this->page->SummeDauer+=$this->Data->zeit_dauer*1%></td>
+                <td><com:TLiteral Text=<%#ActivityRecord::finder()->findByPk($this->Data->idtm_activity)->act_name%>/></td>
+                <td><com:TLiteral Text=<%#$this->Data->zeit_descr%>/></td>
+                <td><com:TLiteral Text=<%#OrganisationRecord::finder()->findByPK($this->Data->idtm_organisation)->org_name%>/></td>
+                <td><com:TLiteral Text=<%#FahrtenbuchRecord::finder()->findByidtm_zeiterfassung($this->Data->idtm_zeiterfassung)->fahrt_von%>/></td>
+                <td><com:TLiteral Text=<%#FahrtenbuchRecord::finder()->findByidtm_zeiterfassung($this->Data->idtm_zeiterfassung)->fahrt_nach%>/></td>
+                <td><com:TLiteral Text=<%#FahrtenbuchRecord::finder()->findByidtm_zeiterfassung($this->Data->idtm_zeiterfassung)->fahrt_km%>/><%#'';$this->page->SummeKM+=FahrtenbuchRecord::finder()->findByidtm_zeiterfassung($this->Data->idtm_zeiterfassung)->fahrt_km*1%></td>
+            </tr>
+            <<%#$this->page->countDetailbelege($this->Data->idtm_zeiterfassung)==0?'!--':''%>tr>
+                <td class="<%# $this->ItemIndex%2?'alternating':'nonealternating' %>">
+                    &nbsp;</td>
+                <td colspan="14">
+
+<com:TActiveDataGrid
+            Id="CCDetailBelegListe"
+            AutoGenerateColumns="false"
+            PageSize="30"
+            AllowPaging="false"
+            PagerStyle.Mode="Numeric"
+            PagerStyle.HorizontalAlign="Left"
+            PagerStyle.CssClass="pager"
+            AlternatingItemStyle.CssClass="alternating"
+            CssClass="datagrid">
+
+            <com:TActiveBoundColumn HeaderText=<%[ Order ]%> DataField="deb_order" ID="lst_deb_order" HeaderStyle.Width="30px"/>
+            <com:TActiveBoundColumn HeaderText=<%[ Date ]%> DataField="deb_date" ID="lst_deb_date" HeaderStyle.Width="75px"/>
+            <com:TActiveBoundColumn HeaderText=<%[ Nr ]%> DataField="deb_nummer" ID="lst_deb_nummer" HeaderStyle.Width="75px"/>
+
+            <com:TActiveBoundColumn HeaderText=<%[ Menge ]%> DataField="deb_menge" ID="lst_deb_menge" HeaderStyle.Width="70px"/>
+            <com:TActiveBoundColumn HeaderText=<%[ Preis ]%> DataField="deb_preis" ID="lst_deb_preis" HeaderStyle.Width="70px"/>
+            <com:TActiveBoundColumn HeaderText=<%[ Tax ]%> DataField="deb_tax" ID="lst_deb_tax" HeaderStyle.Width="40px"/>
+
+            <com:TActiveBoundColumn HeaderText=<%[ Text ]%> DataField="deb_descr" ID="lst_deb_descr"/>
+
+ </com:TActiveDataGrid>
+
+                </td>
+            </tr<%#$this->page->countDetailbelege($this->Data->idtm_zeiterfassung)==0?'--':''%>>
+         </prop:ItemTemplate>
+
+         <prop:FooterTemplate>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="border-top:1px double"><b><com:TLiteral Text=<%=$this->page->SummeDauer%>/></b></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td style="border-top:1px double"><b><com:TLiteral Text=<%=$this->page->SummeKM%>/></b></td>
+                </tr>
+             </table>
+         </prop:FooterTemplate>
+
+    </com:TActiveRepeater>
+
+</com:TContent>

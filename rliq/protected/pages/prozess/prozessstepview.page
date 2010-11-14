@@ -1,0 +1,398 @@
+<%@ Title="Risklogiq - Prozess" %>
+ 
+<com:TContent ID="Main">
+
+<com:TMultiView ID="viewPanel" ActiveViewIndex="0">
+
+<com:TView ID="neu_Organisation"> 
+<com:TTabPanel>
+<com:TTabView id="NEWTAB" Caption="Neuer Prozesschritt">
+
+<h2>Prozess Detail</h2>
+
+<p id="infobox">Hier legen Sie neue Prozessschritte an, bitte beachten Sie, dass Sie jede Ware als Einzelposition anlegen müssen. Zur Vorbereitung der Logitikausschreibung haben Sie später die Möglichkeit einen Warenkorb zu füllen.</p>
+
+<table>
+
+<tr><td colspan="3" class="portlet-title">Prozessschritt</td></tr>
+
+<tr>
+<td>Bezeichnung:</td>
+<td><com:TActiveTextBox Id="prostep_name" />
+</td>
+<td id="infoboxsmall">
+Tragen Sie hier die Bezeichnung für den Prozessschritt ein
+</td>
+</tr>
+<tr>
+<tr>
+<td>Beschreibung:</td>
+<td><com:THtmlArea Id="prostep_descr" /></td>
+<td id="infoboxsmall">
+Beschreiben Sie hier den entsprechenden Prozessschritt
+</td>
+</tr>
+
+<tr><td colspan="3" class="portlet-title">Zuordnungen</td></tr>
+
+<tr>
+<td>Teilprozess:</td>
+<td><com:TActiveDropDownList Id="idtm_prozess" /></td>
+<td id="infoboxsmall">
+Zu welchem Teilprozess/Hilfsprozess/Prozess gehört dieser Schritt?
+</td>
+</tr>
+
+<tr>
+<td>Verantwortlich:</td>
+<td><com:TActiveDropDownList Id="idtm_organisation" /></td>
+<td id="infoboxsmall">
+Wer führt die Aufgabe durch?
+</td>
+</tr>
+
+<tr>
+<td>Unternehmensbereich:</td>
+<td><com:TActiveDropDownList Id="idtm_struktur" /></td>
+<td id="infoboxsmall">
+Zu welchem Unternehmensbereich gehört dieser Schritt?
+</td>
+</tr>
+
+<tr><td colspan="3" class="portlet-title">Ablaufplan</td></tr>
+
+<tr>
+<td>Vorg&auml;nger:</td>
+<td><com:TActiveDropDownList Id="parent_idtm_prozess_step" /></td>
+<td id="infoboxsmall">
+Der Vorgänger, definiert den Prozessschritt vor diesem
+</td>
+</tr>
+
+<tr>
+<td>Nachfolge bei Fehler:</td>
+<td><com:TActiveDropDownList Id="error_idtm_prozess_step" /></td>
+<td id="infoboxsmall">
+Welcher Prozessschritt wird bei dem Auftreten eines Fehlers gestartet?
+</td>
+</tr>
+
+<tr>
+<td>Gültig:</td>
+<td><com:TActiveCheckBox Id="prostep_valid" checked="true"/></td>
+<td id="infoboxsmall">
+Ist dieser Prozessschritt noch aktiv?
+</td>
+</tr>
+
+
+</table>
+<com:THiddenField id="idtm_prozess_step" />
+<com:TButton Text="Save" OnClick="insertButtonClicked" CssClass="submit"/>
+</com:TTabView>
+
+</com:TTabPanel>
+
+</com:TView>
+
+<com:TView ID="edit_Org"> 
+<com:TTabPanel>
+<com:TTabView id="EDITTAB" Caption="Prozess editieren">
+
+<table>
+
+<tr><td colspan="3" class="portlet-title">Prozessschritt</td></tr>
+
+<tr>
+<td>Bezeichnung:</td>
+<td><com:TActiveTextBox id="edprostep_name" />
+</td>
+<td id="infoboxsmall">
+Tragen Sie hier die Bezeichnung für den Prozessschritt ein
+</td>
+</tr>
+<tr>
+<tr>
+<td>Beschreibung:</td>
+<td><com:THtmlArea Id="edprostep_descr" /></td>
+<td id="infoboxsmall">
+Beschreiben Sie hier den entsprechenden Prozessschritt
+</td>
+</tr>
+
+<tr><td colspan="3" class="portlet-title">Zuordnungen</td></tr>
+
+<tr>
+<td>Teilprozess:</td>
+<td><com:TActiveDropDownList Id="edidtm_prozess" OnSelectedIndexChanged="update_ListBox" AutoPostBack="true" /></td>
+<td id="infoboxsmall">
+Zu welchem Teilprozess/Hilfsprozess/Prozess gehört dieser Schritt?
+</td>
+</tr>
+
+<tr>
+<td>Verantwortlich:</td>
+<td><com:TActiveDropDownList Id="edidtm_organisation" /></td>
+<td id="infoboxsmall">
+Wer führt die Aufgabe durch?
+</td>
+</tr>
+
+<tr>
+<td>Unternehmensbereich:</td>
+<td><com:TActiveDropDownList Id="edidtm_struktur" /></td>
+<td id="infoboxsmall">
+Zu welchem Unternehmensbereich gehört dieser Schritt?
+</td>
+</tr>
+
+<tr><td colspan="3" class="portlet-title">Ablaufplan</td></tr>
+
+<tr>
+<td>Vorg&auml;nger:</td>
+<td><com:TActiveDropDownList Id="edparent_idtm_prozess_step" /></td>
+<td id="infoboxsmall">
+Der Vorgänger, definiert den Prozessschritt vor diesem
+</td>
+</tr>
+
+<tr>
+<td>Nachfolge bei Fehler:</td>
+<td><com:TActiveDropDownList Id="ederror_idtm_prozess_step" /></td>
+<td id="infoboxsmall">
+Welcher Prozessschritt wird bei dem Auftreten eines Fehlers gestartet?
+</td>
+</tr>
+
+<tr>
+<td>Gültig:</td>
+<td><com:TActiveCheckBox Id="edprostep_valid" /></td>
+<td id="infoboxsmall">
+Ist dieser Prozessschritt noch aktiv?
+</td>
+</tr>
+
+
+</table>
+
+
+<com:THiddenField id="edidtm_prozess_step" />
+<com:TButton Text="Save" OnClick="editButtonClicked" CssClass="submit"/>
+</com:TTabView>
+
+<!-- hier kommt der Part für die Aufgaben /-->
+
+<com:TTabView id="NEWEDTABAUFGABE" Caption="Aufgaben">
+
+<table>
+
+<tr><td colspan="3" class="portlet-title">Aufgaben</td></tr>
+
+<tr><td colspan="3" class="mytoolbar">
+|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" OnCommand="ANewButtonClicked"/>new
+|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/filesave.png" OnCommand="ASavedButtonClicked"/>save
+</td></tr>
+
+<tr>
+<td>Bezeichnung:</td>
+<td><com:TActiveTextBox id="Aedauf_name" />
+</td>
+<td id="infoboxsmall">
+Tragen Sie hier die Bezeichnung für die Aufgabe ein
+</td>
+</tr>
+
+<tr>
+<td>Beschreibung:</td>
+<td><com:TActiveTextBox Id="Aedauf_beschreibung" TextMode="MultiLine" /></td>
+<td id="infoboxsmall">
+Beschreiben Sie hier die Aufgabe
+</td>
+</tr>
+
+<tr>
+<td>Priorität:</td>
+<td><com:TActiveTextBox id="Aedauf_priority" />
+</td>
+<td id="infoboxsmall">
+Tragen Sie hier die Priorität für die Aufgabe ein
+</td>
+</tr>
+
+<tr>
+<td>Verantwortlich:</td>
+<td><com:TActiveDropDownList Id="Aedidtm_organisation" /></td>
+<td id="infoboxsmall">
+Wer führt die Aufgabe durch?
+</td>
+</tr>
+
+<tr>
+<td colspan="1">Gültig bis:</td>
+<td colspan="1"><com:TActiveDatePicker Id="Aedauf_tdate" Mode="ImageButton" DateFormat="yyyy-MM-dd" InputMode="DropDownList" /></td>
+<td id="infoboxsmall">
+Bis wann soll die Aufgabe geschlossen werden?
+</td>
+</tr>
+
+
+<tr><td colspan="3" class="portlet-title">Liste der Aufgaben</td></tr>
+
+<tr>
+<td colspan="3">
+<com:XActiveDataGrid ID="AufgabenListe" AllowPaging="true" AllowSorting="false" AllowCustomPaging="true" PageSize="10" OnPageIndexChanged="aufgabenList_PageIndexChanged" AutoGenerateColumns="false" OnEditCommand="load_aufgabe" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+	<com:XActiveBoundColumn ID="lst_aufgaben_idtm_aufgaben" DataField="idtm_aufgaben" HeaderText="ID" SortExpression="idtm_aufgaben" />
+	<com:XActiveBoundColumn ID="lst_auf_name" DataField="auf_name" HeaderText="Bezeichnung" />
+	<com:XActiveBoundColumn ID="lst_auf_tdate" DataField="auf_tdate" HeaderText="bis Datum" />
+	<com:XActiveEditCommandColumn HeaderText="SELECT" HeaderStyle.Width="100px" UpdateText="Save" EditText="Select" CancelText="Cancel"/>
+</com:XActiveDataGrid>
+</td>
+</tr>
+
+</table>
+
+<com:TActiveTextBox id="Aedaufgaben_edit_status" Text="0" CssClass="hiddeninput" visible="false" />
+<com:TActiveTextBox id="Aedauf_tabelle" Text="tm_prozess_step" CssClass="hiddeninput" visible="false" />
+<com:TActiveTextBox id="Aedauf_id" Text="0" CssClass="hiddeninput" visible="false" />
+<com:TActiveTextBox id="Aedidtm_aufgaben" CssClass="hiddeninput" visible="false" />
+
+</com:TTabView>
+
+<!-- hier endet der Part für die Aufgaben /-->
+
+
+<!-- hier kommt der Part für das Risiko/Chance /-->
+
+<com:TTabView id="NEWEDTABRISIKO" Caption="Risiken und Chancen">
+
+<table>
+
+<tr><td colspan="3" class="portlet-title">Risiken und Chancen</td></tr>
+
+<tr><td colspan="3" class="mytoolbar">
+|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" OnCommand="RCNewButtonClicked"/>new
+|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/filesave.png" OnCommand="RCSavedButtonClicked"/>save
+</td></tr>
+
+<tr>
+<td>Verantwortlich:</td>
+<td><com:TActiveDropDownList Id="RCedidtm_organisation" /></td>
+<td id="infoboxsmall">
+Wer führt die Aufgabe durch?
+</td>
+</tr>
+
+<tr>
+<td>Beschreibung:</td>
+<td><com:TActiveTextBox Id="RCedrcv_comment" TextMode="MultiLine" /></td>
+<td id="infoboxsmall">
+Bennen/beschreiben Sie hier das Risiko oder die Chance
+</td>
+</tr>
+
+<tr>
+<td>Risiko oder Chance:</td>
+<td><com:TActiveDropDownList Id="RCedrcv_type" /></td>
+<td id="infoboxsmall">
+Handelt es sich um ein Risiko oder eine Chance?
+</td>
+</tr>
+
+<tr>
+<td>Risikoklasse:</td>
+<td><com:TActiveDropDownList Id="RCedidtm_risiko" /></td>
+<td id="infoboxsmall">
+In welche Risikogruppe lässt sich das Risiko/die Chance einordnen?
+</td>
+</tr>
+
+<tr><td colspan="3" class="portlet-title">Liste der Risiken/Chancen</td></tr>
+
+<tr>
+<td colspan="3">
+<com:XActiveDataGrid ID="RCValueListe" AllowPaging="true" AllowSorting="false" AllowCustomPaging="true" PageSize="5" OnPageIndexChanged="rcvList_PageIndexChanged" AutoGenerateColumns="false" OnEditCommand="load_rcvalue" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+	<com:XActiveBoundColumn ID="lst_rcvalue_idtm_rcvalue" DataField="idtm_rcvalue" HeaderText="ID" SortExpression="idtm_rcvalue" />
+	<com:XActiveBoundColumn ID="lst_rcv_comment" DataField="rcv_comment" HeaderText="Bezeichnung" />
+	<com:XActiveBoundColumn ID="lst_rcvidtm_organisation" DataField="idtm_organisation" HeaderText="Organisation" />
+	<com:XActiveEditCommandColumn HeaderText="SELECT" HeaderStyle.Width="100px" UpdateText="Save" EditText="view" CancelText="Cancel"/>
+</com:XActiveDataGrid>
+</td>
+</tr>
+
+<tr><td colspan="3" class="portlet-title">Klassifizierung</td></tr>
+
+<tr><td colspan="3" class="mytoolbar">
+|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" OnCommand="RCTTNewButtonClicked"/>new
+|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/filesave.png" OnCommand="RCTTSavedButtonClicked"/>save
+</td></tr>
+
+<tr>
+<td>Eintritt-Wahr.keit:</td>
+<td><com:TActiveDropDownList Id="RCTTedrcv_ewk" /></td>
+<td id="infoboxsmall">
+Wie hoch ist die Eintrittswahrscheinlichkeit?
+</td>
+</tr>
+
+<tr>
+<td>Priorität:</td>
+<td><com:TActiveDropDownList Id="RCTTedrcv_prio" />Punkte</td>
+<td id="infoboxsmall">
+Wie stufen Sie die Dringlichkeit ein?
+</td>
+</tr>
+
+
+<tr>
+<td>Schadens-/ Gewinnhöhe:</td>
+<td><com:TActiveTextBox id="RCTTedrcv_schaden" />
+</td>
+<td id="infoboxsmall">
+Tragen Sie hier die zu erwartende Schadenshöhe ein?
+</td>
+</tr>
+
+<tr><td colspan="3" class="portlet-title">Liste der Einstufungen (Werte)</td></tr>
+
+<tr>
+<td colspan="3">
+<com:XActiveDataGrid ID="RCTTValueListe" AllowPaging="true" AllowSorting="false" AllowCustomPaging="true" PageSize="5" OnPageIndexChanged="RCrcvttList_PageIndexChanged" AutoGenerateColumns="false" OnEditCommand="load_rcttvalue" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+	<com:XActiveBoundColumn ID="lst_rcttvalue_idtt_rcvalue" DataField="idtt_rcvalue" HeaderText="ID" SortExpression="idtt_rcvalue" />
+	<com:XActiveBoundColumn ID="lst_rcv_ewk" DataField="rcv_ewk" HeaderText="Eintritt-Wahr.keit" />
+	<com:XActiveBoundColumn ID="lst_rcv_prio" DataField="rcv_prio" HeaderText="Prio" />
+	<com:XActiveBoundColumn ID="lst_rcv_schaden" DataField="rcv_schaden" HeaderText="Schaden/Chance" />
+	<com:XActiveBoundColumn ID="lst_rcv_cdate" DataField="rcv_cdate" HeaderText="Datum" />
+	<com:XActiveEditCommandColumn HeaderText="SELECT" HeaderStyle.Width="100px" UpdateText="Save" EditText="view" CancelText="Cancel"/>
+</com:XActiveDataGrid>
+</td>
+</tr>
+
+<tr>
+	<td colspan="3">
+		<com:TActiveImage ID="RisikoVerlaufImage" />
+	</td>
+</tr>
+
+
+</table>
+
+<com:TActiveTextBox id="RCedrcvalue_edit_status" Text="0" CssClass="hiddeninput" visible="false" />
+<com:TActiveTextBox id="RCTTedrcvalue_edit_status" Text="0" CssClass="hiddeninput" visible="false" />
+<com:TActiveTextBox id="RCedrcv_tabelle" Text="tm_prozess_step" CssClass="hiddeninput" visible="false" />
+<com:TActiveTextBox id="RCedrcv_id" Text="0" CssClass="hiddeninput" visible="false" />
+<com:TActiveTextBox id="RCTTedrcv_cby" Text="1" CssClass="hiddeninput" visible="false" />
+<com:TActiveTextBox id="RCedidtm_rcvalue" CssClass="hiddeninput" visible="false" />
+<com:TActiveTextBox id="RCTTedidtm_rcvalue" CssClass="hiddeninput" visible="false" />
+<com:TActiveTextBox id="RCTTedidtt_rcvalue" CssClass="hiddeninput" visible="false" />
+
+</com:TTabView>
+
+<!-- hier endet der Part für das Risiko/Chance /-->
+
+
+</com:TTabPanel>
+</com:TView>
+
+</com:TMultiView> 
+
+</com:TContent>

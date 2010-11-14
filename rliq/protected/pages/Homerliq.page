@@ -1,0 +1,254 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="RiskLogIQ" %>
+
+
+<com:TContent ID="Navigation">
+
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<h2><%[ Hello ]%> bei RiskLogIQ</h2>
+
+<com:TTabPanel>
+    <com:TTabView Caption="Listen">
+
+<p id="infobox">Risklogiq unterst&uuml;tzt Sie bei der Erfassung und Dokumentation Ihrer Prozesse und der entsprechenden Risikobetrachtung.</p>
+
+<com:NModalPanel ID="mpnlTest" >
+            <div id="test" style="border:solid 1px #660000; min-height:420px; width: 650px; background-color: #ffffff; padding:5px; ">
+                <com:TTabPanel>
+				<com:TTabView id="singletask" Caption="Aufgabe">
+                                            <com:TActivePanel Height="340px" ScrollBars="Auto">
+						<table>
+						<!-- hier starten die aufgaben -->
+							
+							<com:TActiveTextBox id="Aedidtm_aufgaben" Text="" CssClass="hiddeninput" visible="false" />
+							<com:TActiveTextBox id="Aedauf_tabelle" Text="" CssClass="hiddeninput" visible="false" />
+							<com:TActiveTextBox id="Aedauf_id" Text="" CssClass="hiddeninput" visible="false" />
+							<com:TActiveTextBox id="Aedaufgaben_edit_status" Text="" CssClass="hiddeninput" visible="false" />
+					  
+							<tr><td colspan="3" class="portlet-title">Aufgaben</td></tr>
+							
+							<tr><td colspan="3" class="mytoolbar">
+							|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/filesave.png" OnCommand="ASavedButtonClicked"/>save
+							|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/cancel.png" OnCommand="btnClose_OnClick"/>close
+							</td></tr>
+							
+							<tr>
+							<td>Bezeichnung/Dauer:</td>
+							<td><com:TActiveTextBox id="Aedauf_name" />/<com:TActiveTextBox id="Aedauf_dauer" />h
+							</td>
+							<td id="infoboxsmall">
+							Tragen Sie hier die Bezeichnung f&uuml;r die Aufgabe ein
+							</td>
+							</tr>
+							
+							<tr>
+							<td>Beschreibung:</td>
+							<td><com:TActiveTextBox Id="Aedauf_beschreibung" TextMode="MultiLine" /></td>
+							<td id="infoboxsmall">
+							Beschreiben Sie hier die Aufgabe
+							</td>
+							</tr>
+							
+							<tr>
+							<td>Priorit&auml;t:</td>
+							<td><com:TActiveTextBox id="Aedauf_priority" />
+							</td>
+							<td id="infoboxsmall">
+							Tragen Sie hier die Priorit&auml;t für die Aufgabe ein
+							</td>
+							</tr>
+							
+							<tr>
+							<td>Verantwortlich:</td>
+							<td><com:TActiveDropDownList Id="Aedidtm_organisation" CssClass="mandantory" />*Pflicht</td>
+							<td id="infoboxsmall">
+							Wer führt die Aufgabe durch?
+							</td>
+							</tr>
+							
+							<tr>
+							<td colspan="1">Gültig bis:</td>
+							<td colspan="1"><com:TActiveDatePicker Id="Aedauf_tdate" Mode="ImageButton" DateFormat="yyyy-MM-dd" InputMode="DropDownList" /></td>
+							<td id="infoboxsmall">
+							Bis wann soll die Aufgabe geschlossen werden?
+							</td>
+							</tr>
+							
+							<tr>
+							<td colspan="1">Erledigt?</td>
+							<td colspan="1"><com:TActiveCheckBox Id="Aedauf_done" />
+							<com:TActiveDatePicker Id="Aedauf_ddate" Mode="ImageButton" DateFormat="yyyy-MM-dd" InputMode="DropDownList" />
+							</td>
+							<td id="infoboxsmall">
+							Bis wann soll die Aufgabe geschlossen werden?
+							</td>
+							</tr>
+						</table>
+                                            </com:TActivePanel>
+                                </com:TTabView>                        
+                </com:TTabPanel>
+            </div>
+</com:NModalPanel>
+
+
+<div class="startpage">
+<h2>Aufgaben</h2>
+Suchen: <com:TActiveTextBox Id="find_aufgabe" /><com:TImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/about_kde.png" /><com:TActiveButton Text="search" OnClick="searchOffer" CssClass="submit"/>
+ || <%[ Fold ]%> <com:TPager ID="PagerAufgaben" ControlToPaginate="AufgabenListe" PageButtonCount="2" Mode="Numeric" OnPageIndexChanged="pageAufgabenListeChanged"/>
+<com:TActivePanel id="ActiveRepeaterPager" ScrollBars="Auto" Width="370px" Height="200px">
+<com:TRepeater ID="AufgabenListe" PageSize="6" AllowPaging="true" AllowCustomPaging="true" DataKeyField="idtm_aufgaben">
+	<prop:HeaderTemplate>
+		<table>
+			<thead>
+				<tr>
+					<td>ID</td>
+					<td>Beschreibung</td>
+					<td>Ziel Datum</td>
+				</tr>
+			</thead>
+	</prop:HeaderTemplate>
+	
+	<prop:FooterTemplate>
+		</table>
+	</prop:FooterTemplate>
+	
+	<prop:ItemTemplate>
+		<tr>
+			<td><com:TActiveTextBox ID="idtm_aufgaben" Text=<%# $this->DataItem->idtm_aufgaben %> CssClass="hiddeninput" visible="false" />
+			<com:TActiveLinkButton ID="btnShow" Text="Details" OnClick="page.btnShow_OnClick" CommandParameter=<%# $this->DataItem->idtm_aufgaben %> /></td>
+			<td><com:TActiveLabel ID="auf_beschreibung" Text=<%# $this->DataItem->auf_beschreibung %> /></td>
+			<td width="90"><com:TActiveLabel ID="auf_tdate" Text=<%# $this->DataItem->auf_tdate %> /></td>
+		</tr>
+	</prop:ItemTemplate>
+	
+	<prop:AlternatingItemTemplate>
+		<tr class="alternating">
+			<td><com:TActiveTextBox id="idtm_aufgaben" Text=<%# $this->DataItem->idtm_aufgaben %> CssClass="hiddeninput" visible="false" />
+			<com:TActiveLinkButton ID="btnShow" Text="Details" OnClick="page.btnShow_OnClick" CommandParameter=<%# $this->DataItem->idtm_aufgaben %> /></td>
+			<td><com:TActiveLabel ID="auf_beschreibung" Text=<%# $this->DataItem->auf_beschreibung %> /></td>
+			<td width="90"><com:TActiveLabel ID="auf_tdate" Text=<%# $this->DataItem->auf_tdate %> /></td>
+		</tr>
+	</prop:AlternatingItemTemplate>
+	
+</com:TRepeater>
+
+
+</com:TActivePanel>
+</div>
+
+
+<div class="startpage">
+<h2>Termine</h2>
+Suchen: <com:TActiveTextBox Id="find_termine" /><com:TImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/about_kde.png" /><com:TActiveButton Text="search" OnClick="searchTermine" CssClass="submit"/>
+ || <%[ Fold ]%> <com:TPager ID="PagerTermine" ControlToPaginate="TerminListe" PageButtonCount="2" Mode="Numeric" OnPageIndexChanged="pageAufgabenListeChanged"/>
+<com:TActivePanel id="ActiveRepeaterPageTermine" ScrollBars="Auto" Width="370px" Height="200px">
+<com:TRepeater ID="TerminListe" PageSize="6" AllowPaging="true" AllowCustomPaging="true" DataKeyField="idtm_aufgaben">
+	<prop:HeaderTemplate>
+		<table>
+			<thead>
+				<tr>
+					<td>ID</td>
+					<td>Beschreibung</td>
+					<td>Ziel Datum</td>
+				</tr>
+			</thead>
+	</prop:HeaderTemplate>
+
+	<prop:FooterTemplate>
+		</table>
+	</prop:FooterTemplate>
+
+	<prop:ItemTemplate>
+		<tr>
+			<td><com:TActiveTextBox ID="idtm_aufgaben" Text=<%# $this->DataItem->idtm_aufgaben %> CssClass="hiddeninput" visible="false" />
+			<com:TActiveLinkButton ID="btnShow" Text="Details" OnClick="page.btnShow_OnClick" CommandParameter=<%# $this->DataItem->idtm_aufgaben %> /></td>
+			<td><com:TActiveLabel ID="auf_beschreibung" Text=<%# $this->DataItem->auf_beschreibung %> /></td>
+			<td width="90"><com:TActiveLabel ID="auf_tdate" Text=<%# $this->DataItem->auf_tdate %> /></td>
+		</tr>
+	</prop:ItemTemplate>
+
+	<prop:AlternatingItemTemplate>
+		<tr class="alternating">
+			<td><com:TActiveTextBox id="idtm_aufgaben" Text=<%# $this->DataItem->idtm_aufgaben %> CssClass="hiddeninput" visible="false" />
+			<com:TActiveLinkButton ID="btnShow" Text="Details" OnClick="page.btnShow_OnClick" CommandParameter=<%# $this->DataItem->idtm_aufgaben %> /></td>
+			<td><com:TActiveLabel ID="auf_beschreibung" Text=<%# $this->DataItem->auf_beschreibung %> /></td>
+			<td width="90"><com:TActiveLabel ID="auf_tdate" Text=<%# $this->DataItem->auf_tdate %> /></td>
+		</tr>
+	</prop:AlternatingItemTemplate>
+
+</com:TRepeater>
+
+</com:TActivePanel>
+</div>
+
+</com:TTabView>
+
+    <com:TTabView Caption="Zeiterfassung">
+
+        <com:Application.pages.container.ZeiterfassungContainer ID="ZeiterfassungContainer"/>
+
+    </com:TTabView>
+
+</com:TTabPanel>
+
+
+</com:TContent>
+
+<com:TContent ID="GuestMain">
+<h2><%[ Hello ]%> bei RiskLogIQ</h2>
+
+<p id="infobox">Risklogiq unterst&uuml;tzt Sie bei der Erfassung und Dokumentation Ihrer Prozesse und der entsprechenden Risikobetrachtung.</p>
+
+<table width="100%">
+    <tr>
+        <td id="infoboxsmall" valign="top" width="78%">
+            <h3>Aktuelles</h3>
+            <p class="pbox"><b>Vienna, 30.3.2009</b></p>
+            <p class="pbox">Wir sind stolz die aktuelle Stabile Version 0.7 stable unserer Projekt- und Risikomanagement-Lösung - <b>risklogIQ</b> - zu verkünden. In die Lösung sind zahlreiche Verbesserungen eingeflossen und wichtige Standardfunktionen eingebaut! Für Fragen zur Lösung stehen wir Ihnen gerne zur Verfügung.</p>
+
+            <p class="pbox"><b>Vienna, 14.3.2009</b></p>
+            <p class="pbox">Im Rahmen der neuen Anforderungen aus dem Bereich des Projektcontrollings, sind erweiterte Funktionalitäten zur Earned Value Analyse implementiert worden.</p>
+        </td>
+        <td>
+            <com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/manual/netzplan.jpg" Height="100px" Width="150px"></com:TActiveImage>
+        </td>
+    </tr>
+    <tr>
+        <td id="infoboxsmall" valign="top" width="78%">
+            <h3>Funktionen in Anlehnung an die Vorgaben der IPMA und GPM</h3>
+                <ul>
+                    <li>Organisationsmanagement</li>
+                    <li>Projektziele</li>
+                    <li>Projektrisiken</li>
+                    <li>Projektstrukturplan</li>
+                    <li>Ablauf- und Terminplanung</li>                    
+                    <li>Kosten- und Einsatzmittelplanung</li>
+                    <li>Ablauf- und Terminplanung</li>
+                    <li>Änderungsmanagement</li>
+                    <li>Fortschrittskontrolle und Projektcontrolling</li>
+                    <li>Kommunikation im Projekt</li>
+                </ul>
+        </td>
+        <td>
+            <com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/manual/organisation.jpg" Height="100px" Width="150px"></com:TActiveImage>
+        </td>
+    </tr>
+    <tr>
+        <td id="infoboxsmall" valign="top">
+            <h3>Volle Kontrolle durch Managementboards</h3>
+                <ul>
+                    <li>Abbildung relevanter Projektindikatoren</li>
+                    <li>Kostenkontrolle</li>
+                    <li>Auslastungskontrolle</li>
+                </ul>
+        </td>
+        <td>
+            <com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/manual/activitycost.jpg" Height="100px" Width="150px"></com:TActiveImage>
+        </td>
+    </tr>
+</table>
+
+</com:TContent>

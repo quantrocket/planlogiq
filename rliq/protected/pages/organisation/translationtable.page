@@ -1,0 +1,21 @@
+<%@ Title="Translationtable" %>
+ 
+<com:TContent ID="Navigation">
+
+<com:Application.portlets.organisationportlet Visible="true" />
+
+</com:TContent> 
+ 
+<com:TContent ID="Main">
+
+    <p id="infobox">Translation Table</p>
+
+    <com:TActiveDataGrid PagerStyle.Mode="Numeric" PagerStyle.HorizontalAlign="Right" DataKeyField="msg_id" ID="lstTranslations" onUpdateCommand="lstTranslationsSave" onEditCommand="lstTranslationsEdit" onCancelCommand="lstTranslationsCancel" onPageIndexChanged="lstTranslations_pageIndexChanged" AllowPaging="true" PageSize="25" AutoGenerateColumns="false" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+        <com:TActiveBoundColumn HeaderText=<%[ Id ]%> DataField="msg_id" ID="lst_msg_id" />
+        <com:TActiveBoundColumn HeaderText=<%[ Cat-Id ]%> DataField="cat_id" ID="lst_cat_id" />
+        <com:TActiveBoundColumn HeaderText=<%[ Source ]%> DataField="source" ID="lst_source" />
+        <com:TActiveBoundColumn HeaderText=<%[ Target ]%> DataField="target" ID="lst_target" />
+        <com:TActiveEditCommandColumn HeaderText=<%[ actions ]%> />
+    </com:TActiveDataGrid>
+
+</com:TContent>

@@ -1,0 +1,42 @@
+<%@ MasterClass="Application.layouts.ManualLayout" Title="ProLogIQ - Handbuch - Intro" %>
+
+<com:TContent ID="Navigation">
+	<com:Application.portlets.handbuchportlet Visible="true" />
+</com:TContent>
+
+<com:TContent ID="Main">
+<div id="content">
+
+<h2>Benutzerhandbuch ProLogIQ - Kosten</h2>
+
+<h3>Kosten</h3>
+
+<p id="2001" class="block-content">
+</p>
+
+<h3>Rechenlogik</h3>
+<p id="2002" class="block-content">
+Berechnung der Sollprojektkosten (Additionsformel):<br/>
+<h4>Sollprojektkosten = Plangesamtkosten + (aktuelle IST-Kosten - aktueller Fertigstellungswert)</h4>
+</p>
+<p id="20021" class="block-content">
+Bewertung der Sollprojektkosten für die Zukunft - Trend (Extrapolationsformel):<br/>
+<h4>Sollprojektkosten = Plangesamtkosten * (aktuelle IST-Kosten / aktueller Fertigstellungswert)</h4>
+</p>
+<p id="2003" class="block-content">
+Berechnung der geplanten Gesamtkosten:<br/>
+Text
+</p>
+<p id="2004" class="block-content">
+Berechnung der aktuellen IST-Kosten:<br/>
+Text
+</p>
+<p id="2005" class="block-content">
+Berechnung des aktuellen Fertigstellungswertes:<br/>
+Text
+</p>
+
+
+</div>
+
+<div class="last-modified">$Id: introduction.page 20090206 philipp $</div></com:TContent>

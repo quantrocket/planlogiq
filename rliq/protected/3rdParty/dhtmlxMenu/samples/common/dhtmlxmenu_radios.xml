@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<menu>
+	<!-- file -->
+	<item id="m1" text="File">
+		<item id="m11" text="New" img="new.gif" imgdis="new_dis.gif"><hotkey>Ctrl+N</hotkey></item>
+		<item id="ms1" type="separator"/>
+		<item id="m12" text="Open"><hotkey>Ctrl+O</hotkey></item>
+		<item id="m13" text="Save" img="save.gif" imgdis="save_dis.gif"><hotkey>Ctrl+S</hotkey></item>
+		<item id="m14" text="Save As..." enabled="false"/>
+		<item id="ms2" type="separator"/>
+		<item id="m15" text="Print" img="print.gif" imgdis="print_dis.gif"><hotkey>Ctrl+P</hotkey></item>
+		<item id="m16" text="Page Setup" img="page_setup.gif" imgdis="page_setup_dis.gif" enabled="false"/>
+		<item id="ms3" type="separator"/>
+		<item id="m17" text="Close"><hotkey>Ctrl+Q</hotkey></item>
+	</item>
+	<!-- edit -->
+	<item id="m2" text="Edit">
+		<item id="m21" text="Undo" img="undo.gif" imgdis="undo_dis.gif"><hotkey>Ctrl+Z</hotkey></item>
+		<item id="m22" text="Redo" img="redo.gif" imgdis="redo_dis.gif"><hotkey>Ctrl+Y</hotkey></item>
+		<item id="ma1" type="separator"/>
+		<item id="m23" text="Select All" img="select_all.gif" imgdis="select_all_dis.gif"><hotkey>Ctrl+A</hotkey></item>
+		<item id="ma2" type="separator"/>
+		<item id="m24" text="Cut" img="cut.gif" imgdis="cut_dis.gif"><hotkey>Ctrl+X</hotkey></item>
+		<item id="m25" text="Copy" img="copy.gif" imgdis="copy_dis.gif"><hotkey>Ctrl+C</hotkey></item>
+		<item id="m26" text="Paste" img="paste.gif" imgdis="paste_dis.gif"><hotkey>Ctrl+V</hotkey></item>
+	</item>
+	<!-- features -->
+	<item id="p1" text="Settings">
+		<item id="p10" text="Line Numbering" type="checkbox" checked="true" enabled="false"/>
+		<item id="p11" text="Colorize Text" type="checkbox" checked="true"/>
+		<item id="p12" text="Ignore Case" type="checkbox"><hotkey>Alt+I</hotkey></item>
+		<item id="ps1" type="separator"/>
+		<item id="p13" text="Show Popup on Errors" type="checkbox"><hotkey>Alt+P</hotkey></item>
+		<item id="ps2" type="separator"/>
+		<item id="p16" text="Font Color">
+			<item id="p61" text="Black" type="radio" group="fontcolor" checked="true"/>
+			<item id="p62" text="Brown" type="radio" group="fontcolor"/>
+			<item id="p63" text="Red" type="radio" group="fontcolor"/>
+			<item id="p64" text="Blue" type="radio" group="fontcolor"/>
+		</item>
+		<item id="p14" text="Background Color">
+			<item id="p41" text="Transparent" type="radio" group="bgcolor" checked="true"/>
+			<item id="ps3" type="separator"/>
+			<item id="p42" text="White" type="radio" group="bgcolor"/>
+			<item id="p43" text="Yellow" type="radio" group="bgcolor"/>
+			<item id="p44" text="Cyan" type="radio" group="bgcolor"/>
+			<item id="p45" text="Magenta" type="radio" group="bgcolor"/>
+			<item id="p46" text="Black" type="radio" group="bgcolor"/>
+		</item>
+		<item id="ps4" type="separator"/>
+		<item id="p15" text="End Of Line">
+			<item id="p51" text="Unix (\n)" type="radio" group="eol" checked="true" enabled="false"/>
+			<item id="p52" text="DOS/Windows (\r\n)" type="radio" group="eol" enabled="false"/>
+			<item id="p53" text="MacOS (\r)" type="radio" group="eol" enabled="false"/>
+		</item>
+		<item id="p17" text="Syntax">
+			<item id="p70" text="Ignore" type="radio" group="hlm" checked="true"/>
+			<item id="ps5" type="separator"/>
+			<item id="p71" text="HTML/JS" type="radio" group="hlm"/>
+			<item id="p72" text="PHP/ASP/JSP" type="radio" group="hlm"/>
+			<item id="p73" text="Java" type="radio" group="hlm"/>
+		</item>
+		
+	</item>
+	<!-- about -->
+	<item id="m3" text="Help">
+		<item id="m31" text="About..."><hotkey>Ctrl+I</hotkey></item>
+		<item id="m32" text="Help"><hotkey>F1</hotkey></item>
+		<item id="m33" text="Bug Reporting"/>
+		<item id="mk1" type="separator"/>
+		<item id="m34" text="Tip of the Day" enabled="false" type="checkbox" checked="true"/>
+	</item>
+</menu>

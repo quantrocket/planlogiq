@@ -1,0 +1,122 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="RiskLogIQ - Protokollpunkte" %>
+
+<com:TContent ID="HeaderJavascript">
+
+var notIsGuest = <%=!$_GET['modus']?'true':'false'%>;
+
+function initDHTMLXTabbars(TabbarObject){
+
+    TabbarObject.addTab("a1","Protokollpunkte",150);
+    TabbarObject.setContent("a1", "tabhtml_1");
+
+    if(notIsGuest){
+        TabbarObject.setTabActive("a1");
+    }
+    
+    dhxLayout.cells("b").collapse();
+}
+
+</com:TContent>
+
+<com:TContent ID="Navigation">
+
+<com:Application.portlets.protokollportlet Visible="true" />
+
+</com:TContent>
+ 
+<com:TContent ID="Main">
+
+<com:NModalPanel ID="mpnlTest" >
+            <div id="test" style="border:solid 1px #660000; min-height:420px; width: 650px; background-color: #ffffff; padding:5px; ">
+                <com:TTabPanel>
+                	<com:TTabView id="singletask" Caption="Protokolldetailpunkt">
+                        	<com:TActivePanel Height="340px" ScrollBars="Auto">
+                                               <table width="100%">
+							<tr><td colspan="3" class="mytoolbar">
+							|<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/cancel.png" OnCommand="btnClose_OnClick"/>close
+							</td></tr>
+							<tr colspan="3">
+								<td><com:TActiveLabel id="viewprtdet_descr" /></td>
+							</tr>
+						</table>
+                                </com:TActivePanel>
+                	</com:TTabView>
+                    
+                </com:TTabPanel>
+            </div>
+</com:NModalPanel>
+
+<div id="tabhtml_1" style="overflow:auto;height:100%">
+        <div style="overflow:hidden;background:#ffffff">
+
+<table width="100%">
+
+<!-- Hier startet der REPEATER -->
+<tr><td colspan="3">			
+
+        <table width="100%">
+                <thead>
+                        <tr>
+                                <td>bis Datum</td>
+                                <td>Typ</td>
+                                <td>TOP</td>
+                                <td>Verantwortlich</td>
+                                <td>erledigt am</td>
+                                <td rowspan="2">Detail</td>
+                        </tr></thead>
+                        <tr>
+                                <td><com:TActiveTextBox CssClass="listsmall" /></td>
+                                <td><com:TDropDownList id="idta_protokoll_ergebnistype" CssClass="listsmall" onSelectedIndexChanged="loadErgebnistype" AutoPostBack="true" /></td>
+                                <td><com:TActiveTextBox CssClass="listsmall" /></td>
+                                <td><com:TDropDownList id="idtm_organisation" CssClass="listsmall" onSelectedIndexChanged="loadOrganisation" AutoPostBack="true" /></td>
+                                <td><com:TActiveTextBox CssClass="listsmall" /></td>
+                        </tr>
+
+<com:TActiveRepeater ID="ProtokollDetailGroupList">
+
+	<prop:EmptyTemplate>
+	kein Thema existiert<br/>
+	</prop:EmptyTemplate>
+	
+	<prop:HeaderTemplate>
+            
+	</prop:HeaderTemplate>
+	
+	<prop:FooterTemplate>
+		</table>
+	</prop:FooterTemplate>
+
+	<prop:ItemTemplate>
+		<tr>
+			<td><%# $this->DataItem->auf_tdate %></td>
+			<td><%# ProtokollErgebnistypeRecord::finder()->findByPK($this->DataItem->idta_protokoll_ergebnistype)->prt_ergtype_name %></td>
+			<td><%# $this->DataItem->prtdet_topic %></td>
+			<td><%# $this->data->idta_protokoll_ergebnistype<3?OrganisationRecord::finder()->findByPK($this->DataItem->idtm_organisation)->org_name:'-' %></td>
+			<td><%# $this->data->auf_done==1?$this->data->auf_ddate:'-'%></td>
+			<td><com:TActiveTextBox ID="idtm_protokoll_detail" Text=<%# $this->DataItem->idtm_protokoll_detail %> CssClass="hiddeninput" visible="false" />
+			<com:TActiveLinkButton ID="btnShow" Text="Details" OnClick="page.btnShow_OnClick" CommandParameter=<%# $this->DataItem->idtm_protokoll_detail %> /></td>
+		</tr>
+	</prop:ItemTemplate>
+
+	<prop:AlternatingItemTemplate>
+		<tr class="alternating">
+			<td><%# $this->DataItem->auf_tdate %></td>
+			<td><%# ProtokollErgebnistypeRecord::finder()->findByPK($this->DataItem->idta_protokoll_ergebnistype)->prt_ergtype_name %></td>
+			<td><%# $this->DataItem->prtdet_topic %></td>
+			<td><%# $this->data->idta_protokoll_ergebnistype<3?OrganisationRecord::finder()->findByPK($this->DataItem->idtm_organisation)->org_name:'-' %></td>
+			<td><%#$this->data->auf_done==1?$this->data->auf_ddate:'-'%></td>
+			<td><com:TActiveTextBox ID="idtm_protokoll_detail" Text=<%# $this->DataItem->idtm_protokoll_detail %> CssClass="hiddeninput" visible="false" />
+			<com:TActiveLinkButton ID="btnShow" Text="Details" OnClick="page.btnShow_OnClick" CommandParameter=<%# $this->DataItem->idtm_protokoll_detail %> /></td>
+		</tr>
+	</prop:AlternatingItemTemplate>
+				
+</com:TActiveRepeater>
+			
+</td></tr>
+<!-- Hier endet der REPEATER -->
+
+</table>
+
+</div></div>
+
+</com:TContent>

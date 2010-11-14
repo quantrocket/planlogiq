@@ -1,0 +1,93 @@
+<%@ MasterClass="Application.layouts.WindowLayout" Title="planlogIQ" %>
+
+<com:TContent ID="MainWindow">
+
+<com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/Kp_neu_small.jpg"/><br/>
+
+    <com:TActiveRepeater Id="OrgListe"
+                         OnItemDataBound="bindListKommunikation">
+        <prop:HeaderTemplate>
+        </prop:HeaderTemplate>
+
+        <prop:ItemTemplate>
+            
+            <div class="portlet-title">
+                Steckbrief  <com:TLiteral Text=<%#$this->data->org_fk_internal%>/>
+            </div>
+
+            <fieldset>
+                <legend><small>Personeninfo</small></legend>
+            <table width="100%">
+            <tr>
+                <td class="FormLabel" width="100px">Name:</td>
+                <td class="alternating">
+                    <a class="wcbutton" href="javascript:pass_value_to_parent('<%#$this->getRequest()->constructUrl('page','organisation.orgworkspace').'&idtm_organisation='.$this->data->idtm_organisation%>')">
+                        <com:TLiteral Text=<%#$this->data->org_anrede%>/> <com:TLiteral Text=<%#$this->data->org_vorname%>/>, <com:TLiteral Text=<%#$this->data->org_name%>/>
+                    </a>
+                </td>
+            </tr>
+            </table>
+            </fieldset>
+
+            <fieldset>
+                <legend><small>Kommunikationsdaten</small></legend>
+            <table width="100%">
+            <com:TActiveRepeater Id="KomListe">
+                <prop:HeaderTemplate>
+                </prop:HeaderTemplate>
+                <prop:ItemTemplate>
+                    <tr>
+                        <td class="FormLabel" width="100px"><com:TLiteral Text=<%#$this->page->kommunikation_type[$this->data->kom_type]%>/>:</td>
+                        <td class="alternating"><b><com:TLiteral Text=<%#$this->data->kom_information%>/></b></td>
+                    </tr>
+                </prop:ItemTemplate>
+            </com:TActiveRepeater>
+
+            <com:TActiveRepeater Id="AdressListe">
+                <prop:HeaderTemplate>
+                    <tr><td colspan="2"><hr/></td></tr>
+                </prop:HeaderTemplate>
+                <prop:ItemTemplate>
+                    <tr>
+                        <td class="FormLabel" width="100px"><%[ Street ]%>:</td>
+                        <td class="alternating"><b><com:TLiteral Text=<%#$this->data->adresse_street%>/></b></td>
+                    </tr>
+                    <tr>
+                        <td class="FormLabel" width="100px"><%[ Town ]%>:</td>
+                        <td class="alternating"><b><com:TLiteral Text=<%#$this->data->adresse_zip%>/> <com:TLiteral Text=<%#$this->data->adresse_town%>/></b></td>
+                    </tr>
+                </prop:ItemTemplate>
+            </com:TActiveRepeater>
+            </table>
+            </fieldset>
+
+            <fieldset>
+                <legend><small>Bankdaten</small></legend>
+            <table width="100%">
+            <com:TActiveRepeater Id="BankListe">
+                <prop:HeaderTemplate>
+                </prop:HeaderTemplate>
+                <prop:ItemTemplate>
+                    <tr>
+                        <td class="FormLabel" width="100px">Kontowortlaut:</td>
+                        <td class="alternating"><b><com:TLiteral Text=<%#$this->data->bak_kontowortlaut%>/></b></td>
+                    </tr>
+                    <tr>
+                        <td class="FormLabel" width="100px">Konto/BLZ:</td>
+                        <td class="alternating"><b><com:TLiteral Text=<%#$this->data->bak_konto%>/> / <com:TLiteral Text=<%#$this->data->bak_blz%>/></b></td>
+                    </tr>
+                    <tr>
+                        <td class="FormLabel" width="100px">IBAN/BIC:</td>
+                        <td class="alternating"><b><com:TLiteral Text=<%#$this->data->bak_iban%>/> / <com:TLiteral Text=<%#$this->data->bak_bic%>/></b></td>
+                    </tr>
+                </prop:ItemTemplate>
+            </com:TActiveRepeater>
+            </table>
+            </fieldset>
+        </prop:ItemTemplate>
+
+        <prop:FooterTemplate>
+        </prop:FooterTemplate>
+    </com:TActiveRepeater>
+
+</com:TContent>

@@ -1,0 +1,1 @@
+<com:MaskedTextBox ID="XXXTimeInput" Mask="##:##" CssClass="<%#$this->XXXTimeInput->getClientID()%>" Text=<%=$this->getText()%> Width="40px"/>

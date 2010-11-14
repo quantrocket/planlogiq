@@ -1,0 +1,38 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="planlogIQ - Import Immo" %>
+
+<com:TContent ID="HeaderJavascript">
+
+function initDHTMLXTabbars(TabbarObject){
+    TabbarObject.addTab("a1","Import Immo",150);
+    TabbarObject.setContent("a1", "tabhtml_1");
+
+    TabbarObject.setTabActive("a1");
+}
+
+</com:TContent>
+
+<com:TContent ID="Navigation">
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<div id="tabhtml_1" style="overflow:auto;height:100%">
+    <div style="overflow:hidden">
+
+<%[ File ]%>:<com:TFileUpload Id="CSVUploadFile" OnFileUpload="fileUploaded" MaxFileSize="5000000" /><com:TButton Text="Upload" />
+<br />
+<p><com:TActiveLabel Id="UploadFileName" /> / <com:TActiveLabel Id="UploadFileLocalName" /></p
+<p><com:TActiveLabel Id="UploadFileError" /></p>
+
+<p>Verantwortlich:
+        <com:TAutoComplete Id="suggest_idtm_organisation" OnSuggest="suggestOrganisation" OnSuggestionSelected="suggestionSelectedOne" Suggestions.DataKeyField="idtm_organisation" ResultPanel.CssClass="acomplete" CssClass="mandantorylarge">
+            <prop:Suggestions.ItemTemplate>
+                <li><%# $this->Data['org_name'] %> <%# $this->Data['org_vorname'] %></li>
+            </prop:Suggestions.ItemTemplate>
+</com:TAutoComplete>
+<com:TActiveTextBox Visible=<%= $this->User->isInRole('Administrator') %> Id="responsible_idtm_organisation" />
+</p>
+
+</div></div>
+</com:TContent>

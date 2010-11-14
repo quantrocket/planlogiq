@@ -1,0 +1,32 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="PlanlogIQ" %>
+
+<com:TClientScript PradoScripts="qlikview" />
+
+<com:TContent ID="Navigation">
+
+<com:Application.portlets.strukturportletsettings Visible="true" id="strukturportletsettings"/>
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<h2><com:TLabel ID="ttpivot_struktur_name" /> QlikView</h2>
+
+<p id="infobox">
+Hier können die einzelnen Informationen analysiert werden.
+</p>
+
+<table width="100%"><tr><td>
+
+<com:TInlineFrame
+    ID="QlikViewInline"
+    ShowBorder="false"
+    Width="100%"
+    Height="600px"
+    MarginWidth="25"
+    Align="Left" />
+
+
+</td></tr></table>
+
+</com:TContent>

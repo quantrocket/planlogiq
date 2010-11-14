@@ -1,0 +1,20 @@
+<%@ MasterClass="Application.layouts.WindowLayout" Title="planlogIQ - Activity Desciption" %>
+
+<com:TContent ID="MainWindow">
+<table width="100%">
+    <tr><td>
+            <div class="mytoolbar">
+                <com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/filesave.png" OnCallback="SavedButtonClicked"/><com:TActiveButton OnCallback="SavedButtonClicked" Text=<%[ save ]%> CssClass="windowcontent-button"/>
+            </div>
+            <com:TActiveTextBox id="edidtm_activity" CssClass="hiddeninput" visible="false" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <com:THtmlArea ID="edact_descr" Text="" Width="100%"/>
+        </td>
+    </tr>
+</table>
+
+
+</com:TContent>

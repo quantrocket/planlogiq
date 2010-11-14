@@ -1,0 +1,61 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="planlogIQ" %>
+
+<com:TContent ID="HeaderJavascript">
+
+function initDHTMLXTabbars(TabbarObject){
+    TabbarObject.addTab("a1","Pivots",200);
+    TabbarObject.setContent("a1", "tabhtml_1");
+
+    TabbarObject.setTabActive("a1");
+}
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<div id="tabhtml_1" style="overflow:auto;height:100%;background:#EBEEFA;">
+    <div style="overflow:hidden">
+
+    <div id="test" style="border:solid 1px #660000; min-height:300px; width: 100%; background-color: #ffffff; padding:5px; ">
+        <com:Application.pages.container.PivotBerichtContainer ID="PivotBerichtContainer"  />
+    </div>
+
+<table width="100%"><tr><td>
+&nbsp;
+
+</td>
+
+<td class="werkzeuge">
+<table width="100%">
+<tr>
+<td class="portlet-title">
+<%[ Tools ]%>
+</td>
+</tr>
+<tr><td>
+<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit.png" OnCommand="OpenPivotBerichtContainer"/>Manage
+</td></tr>
+</table>
+
+</td></tr></table>
+
+
+<com:TTabPanel>
+
+<com:TTabView id="allorg" Caption="Pivots">
+
+<%[ Find ]%>: <com:TActiveTextBox Id="find_org" /><com:TImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/about_kde.png" /><com:TActiveButton Text="search" OnClick="searchOrg" CssClass="submit"/>
+
+<com:TActiveDataGrid ID="OrgListe" AllowPaging="true" AllowSorting="false" AllowCustomPaging="true" PageSize="10" onSortCommand="dtgList_SortCommand" OnPageIndexChanged="dtgList_PageIndexChanged" onEditCommand="dtgList_editCommand" onUpdateCommand="dtgList_updateCommand" AutoGenerateColumns="false" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+	<com:TActiveBoundColumn ID="lst_idta_pivot_bericht" DataField="idta_pivot_bericht" HeaderText="ID" SortExpression="idta_pivot_bericht" />
+	<com:TActiveBoundColumn ID="lst_pivot_bericht_name" DataField="pivot_bericht_name" HeaderText="Bezeichnung" />
+	<com:TActiveBoundColumn ID="lst_pivot_bericht_operator" DataField="pivot_bericht_operator" HeaderText="Operator" />
+	<com:TActiveBoundColumn ID="lst_pivot_bericht_cdate" DataField="pivot_bericht_cdate" HeaderText="CDate" />
+	<com:TActiveEditCommandColumn HeaderText="Update" HeaderStyle.Width="100px" UpdateText="Save" EditText="view report" CancelText="Cancel"/>
+</com:TActiveDataGrid>
+
+</com:TTabView>
+
+</com:TTabPanel>
+</div></div>
+</com:TContent>

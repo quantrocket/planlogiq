@@ -1,0 +1,135 @@
+<%@ Title="Risklogiq - Ziele" %>
+
+<com:TContent ID="HeaderJavascript">
+
+function initDHTMLXTabbars(TabbarObject){
+    TabbarObject.addTab("a1","Ziele",150);
+    TabbarObject.setContent("a1", "tabhtml_1");
+
+    TabbarObject.setTabActive("a1");
+}
+
+</com:TContent>
+
+
+<com:TContent ID="Main">
+
+<div id="tabhtml_1" style="overflow:auto;height:100%">
+        <div style="overflow:hidden">
+
+<com:TMultiView ID="viewPanel" ActiveViewIndex="0">
+
+<com:TView ID="neu_Organisation"> 
+
+<table width="100%">
+
+<tr><td colspan="3" class="portlet-title">Ziel-, Zielunter- Klassen</td></tr>
+
+<tr>
+<td>Bezeichnung:</td>
+<td><com:TActiveTextBox Id="zie_name" CssClass="mandantorylarge"/>
+</td>
+<td id="infoboxsmall">
+Tragen Sie hier die Bezeichnung für das Ziel ein
+</td>
+</tr>
+<tr>
+<td>Kategorie:</td>
+<td><com:TActiveDropDownList Id="idta_ziele_type" /> <%[ Parent ]%>:<com:TActiveDropDownList Id="parent_idtm_ziele" /></td>
+<td id="infoboxsmall">
+Um was für eine Art von Ziel handelt es sich?
+</td>
+</tr>
+<tr>
+<td>Beschreibung:</td>
+<td>
+<com:THtmlArea Id="zie_descr">
+<prop:Options>
+
+</prop:Options>
+</com:THtmlArea>
+</td>
+<td id="infoboxsmall">
+Freier Text Ihrer Wahl, beschreiben Sie das einzelne Ziel so gut es geht
+</td>
+</tr>
+
+<com:TActivePanel Visible=<%= $this->edidta_ziele_type->Text == 1 %>>
+
+<tr>
+<td><%[ Project ]%>:</td>
+<td><com:TActiveDropDownList Id="idtm_activity" /></td>
+<td id="infoboxsmall">
+<%[ The scope of this project belongs to? ]%>
+</td>
+</tr>
+
+</com:TActivePanel>
+
+
+</table>
+<p class="mytoolbar">
+<com:THiddenField id="idtm_ziele" />
+<com:TButton Text="Save" OnClick="insertButtonClicked" CssClass="submit"/>
+</p>
+</com:TView>
+
+<com:TView ID="edit_Org"> 
+
+<table width="100%">
+
+<tr><td colspan="3" class="portlet-title">Ziele</td></tr>
+
+<tr>
+<td>Bezeichnung:</td>
+<td><com:TActiveTextBox Id="edzie_name" CssClass="mandantorylarge" />
+</td>
+<td id="infoboxsmall">
+Tragen Sie hier die Bezeichnung für das Ziel ein
+</td>
+</tr>
+<tr>
+<td>Kategorie:</td>
+<td><com:TActiveDropDownList Id="edidta_ziele_type" /> <%[ Parent ]%>:<com:TActiveDropDownList Id="edparent_idtm_ziele" /></td>
+<td id="infoboxsmall">
+Um was für eine Art von Ziel handelt es sich?
+</td>
+</tr>
+<tr>
+<td>Beschreibung:</td>
+<td>
+<com:THtmlArea Id="edzie_descr">
+</com:THtmlArea>
+</td>
+<td id="infoboxsmall">
+Freier Text Ihrer Wahl
+</td>
+</tr>
+
+<com:TActivePanel Visible=<%= $this->edidta_ziele_type->Text == 1 %>>
+
+<tr>
+<td><%[ Project ]%>:</td>
+<td><com:TActiveDropDownList Id="edidtm_activity" /></td>
+<td id="infoboxsmall">
+<%[ The scope of this project belongs to? ]%>
+</td>
+</tr>
+
+</com:TActivePanel>
+
+</table>
+
+
+<p class="mytoolbar">
+<com:THiddenField id="edidtm_ziele" />
+<com:TButton Text="Save" OnClick="editButtonClicked" CssClass="submit"/>
+<com:TActiveButton Text="Delete" OnClick="deleteButtonClicked" CssClass="submit"/>
+</p>
+
+</com:TView>
+
+</com:TMultiView> 
+
+</div></div>
+</com:TContent>

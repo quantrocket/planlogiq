@@ -1,0 +1,78 @@
+
+
+====================================
+Log started, 31/08/2009 12:08:15
+====================================
+
+Source:country_data
+Fieldset: *
+Where:     ;
+Start:
+Count:
+=DESC;
+Relation:
+
+SELECT  * FROM country_data WHERE  country_id >40
+
+Done in 0.284954071045s
+
+
+
+====================================
+Log started, 31/08/2009 12:08:21
+====================================
+
+Source:country_data
+Fieldset: *
+Where:     ;
+Start:
+Count:
+=DESC;
+Relation:
+
+SELECT  * FROM country_data WHERE  country_id >40
+
+Done in 0.0801720619202s
+
+
+
+====================================
+Log started, 31/08/2009 12:08:17
+====================================
+
+
+
+====================================
+Log started, 31/08/2009 12:08:35
+====================================
+
+
+
+====================================
+Log started, 31/08/2009 12:08:39
+====================================
+
+
+
+====================================
+Log started, 31/08/2009 12:08:54
+====================================
+
+
+
+====================================
+Log started, 31/08/2009 12:08:27
+====================================
+
+Source:country_data
+Fieldset: *
+Where:     ;
+Start:
+Count:
+name=DESC;
+Relation:
+
+SELECT  * FROM country_data WHERE  country_id >40 ORDER BY name DESC
+
+Done in 0.10551404953s
+

@@ -1,0 +1,52 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="planlogIQ" %>
+
+<com:TContent ID="HeaderJavascript">
+
+var notIsGuest = <%=!$this->User->isGuest?'true':'false'%>;
+var IsAdministrator = <%=$this->User->isAdmin?'true':'false'%>;
+
+function initDHTMLXTabbars(TabbarObject){
+
+    TabbarObject.addTab("a1","Aktivitäten",150);
+    TabbarObject.setContent("a1", "tabhtml_1");
+
+    TabbarObject.setTabActive("a1");
+}
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<div id="tabhtml_1" style="overflow:auto;height:100%;background:#EBEEFA">
+        <div style="overflow:hidden">
+
+<com:POrganisationSelection Text="3" Id="TestOrganisation" OnCallback="changePastedText"/>
+<com:TActiveButton Text="get Value" onCallback="changePastedText" />
+
+<com:TActiveTextBox Id="MyTextOutput" Text="HOWDI" />
+
+<h2>ActiveTable</h2>
+
+<com:TActiveButton Text="showAll" onCallback="unhideTableRows" />
+<com:TTable Id="MyTable" attributes.Name="MyTable"/>
+
+<com:TActiveTextBox Id="MyTextInput" Text="Demo" onCallback="viewClipboard" AutoPostback="true"/>
+
+<p>
+<com:TActiveLabel Id="PastedText" />
+</p>
+
+<com:TActiveButton Text="www.google.com" onCallback="changeURL" />
+
+ <com:TInlineFrame
+            ID="QlikViewInline"
+            ShowBorder="false"
+            Width="300px"
+            Height="300px"
+            MarginWidth="25"
+            Align="Left"
+            FrameUrl="http://wiki.planlogiq.com"/>
+         </div>
+
+</div></div>
+</com:TContent>

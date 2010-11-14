@@ -1,0 +1,75 @@
+<!--conf
+<sample in_favorites="true">
+              <product version="1.0" edition="std"/>
+                     <modifications>
+                            <modified date="080318"/>
+                     </modifications>
+               </sample>
+ --> 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Iterator</title>
+	
+	<link rel="stylesheet" type="text/css" href="../../codebase/skins/dhtmlxmenu_dhx_blue.css">
+	
+	<script  src="../../codebase/dhtmlxcommon.js"></script>
+	<script  src="../../codebase/dhtmlxmenu.js"></script>
+</head>
+<body onload="initMenu();">
+<link rel='STYLESHEET' type='text/css' href='../common/style.css'>
+<table cellspacing="0" cellpadding="0" class="sample_header" border="0">
+	<tr valign="middle">
+		<!-- COMPONENT ICON -->
+		<td width="40" align="center"><img src="../common/dhtmlxmenu_icon.gif" border="0"></td>
+		<!-- COMPONENT NAME -->
+		<td width="150" align="left" nowrap="true">Sample: dhtmlxMenu</td>
+		<!-- SAMPLE TITLE -->
+		<td width="0" align="left" nowrap><b>Iterator</b></td>
+		<!-- LINK TO COMPONENT PAGE -->
+		<td width="0" align="right"><a href="http://www.dhtmlx.com/docs/products/dhtmlxMenu/index.shtml">dhtmlxMenu main page</a></td>
+		<!-- CLOSE BUTTON -->
+		<td width="50"><div class="sample_close"><a href="javascript:void(0);" onclick="self.close();"><img src="../common/sample_close.gif" width="14" height="14" border="0" alt="X"></a></div></td>
+	</tr>
+</table>
+<div id="menuObj"></div>
+<input style="margin: 10px;"type="button" value="Change Names" onclick="changeNames();">
+<div class='sample_code'><div class="hl-main"><pre><span class="hl-code"> 
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">div</span><span class="hl-code"> </span><span class="hl-var">id</span><span class="hl-code">=</span><span class="hl-quotes">&quot;</span><span class="hl-string">menuObj</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">&gt;</span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">div</span><span class="hl-brackets">&gt;</span><span class="hl-code">
+ 
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">script</span><span class="hl-brackets">&gt;</span><span class="hl-code"><div class="hl-main"><pre><span class="hl-code"> 
+    </span><span class="hl-comment">//</span><span class="hl-comment"> creating a new menu object</span><span class="hl-comment"></span><span class="hl-code">
+    </span><span class="hl-reserved">var</span><span class="hl-code"> </span><span class="hl-identifier">menu</span><span class="hl-code"> = </span><span class="hl-reserved">new</span><span class="hl-code"> </span><span class="hl-identifier">dhtmlXMenuObject</span><span class="hl-brackets">(</span><span class="hl-quotes">&quot;</span><span class="hl-string">menuObj</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">)</span><span class="hl-code">;
+    ...
+    </span><span class="hl-comment">//</span><span class="hl-comment"> calling the iterator</span><span class="hl-comment"></span><span class="hl-code">
+    </span><span class="hl-identifier">menu</span><span class="hl-code">.</span><span class="hl-identifier">forEachItem</span><span class="hl-brackets">(</span><span class="hl-reserved">function</span><span class="hl-brackets">(</span><span class="hl-identifier">id</span><span class="hl-brackets">)</span><span class="hl-brackets">{</span><span class="hl-code">
+        </span><span class="hl-reserved">if</span><span class="hl-code"> </span><span class="hl-brackets">(</span><span class="hl-identifier">menu</span><span class="hl-code">.</span><span class="hl-identifier">getItemType</span><span class="hl-brackets">(</span><span class="hl-identifier">id</span><span class="hl-brackets">)</span><span class="hl-code"> == </span><span class="hl-quotes">&quot;</span><span class="hl-string">item</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">)</span><span class="hl-code"> </span><span class="hl-brackets">{</span><span class="hl-code">
+            </span><span class="hl-identifier">menu</span><span class="hl-code">.</span><span class="hl-identifier">setItemText</span><span class="hl-brackets">(</span><span class="hl-identifier">id</span><span class="hl-code">, </span><span class="hl-quotes">&quot;</span><span class="hl-string">New Text</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">)</span><span class="hl-code">;
+        </span><span class="hl-brackets">}</span><span class="hl-code">
+    </span><span class="hl-brackets">}</span><span class="hl-brackets">)</span><span class="hl-code">;</span></pre></div></span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">script</span><span class="hl-brackets">&gt;</span></pre></div></div>
+
+<br>
+
+<script>
+	var menu;
+	function initMenu() {
+		menu = new dhtmlXMenuObject("menuObj");
+		menu.setImagePath("../../codebase/imgs/");
+		menu.setIconsPath("../images/");
+		menu.loadXML("../common/dhtmlxmenu.xml?etc="+new Date().getTime());
+	}
+	function changeNames() {
+		menu.forEachItem(function(id){
+			if (menu.getItemType(id) != "separator") {
+				menu.setItemText(id, "New Text");
+			}
+		});
+	}
+</script>
+
+<!-- FOOTER -->
+<table callspacing="0" cellpadding="0" border="0" class="sample_footer"><tr><td style="padding-left: 8px;">&copy; <a href="http://www.dhtmlx.com">DHTMLX LTD</a>. All rights reserved</td></tr></table>
+<!-- FOOTER -->
+
+</body>

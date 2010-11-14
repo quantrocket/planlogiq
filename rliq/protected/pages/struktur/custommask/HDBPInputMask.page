@@ -1,0 +1,329 @@
+<%@ MasterClass="Application.layouts.CustomLayout" Title="Erfassungsmaske" %>
+
+<com:TContent ID="HeaderJavascript">
+
+</com:TContent>
+
+<com:TContent ID="GuestMain">
+
+<h2>HARLEY-DAVIDSON</h2>
+<h3>D/A/CH</h3>
+
+<fieldset>
+    <legend>Anmeldung</legend>
+<div id="infobox">
+Herzlich Willkommen!<br/>
+Bitte melden Sie sich hier mit den Zugangsdaten aus der erhaltenen Mail an...
+</div>
+<p>
+
+<table cellspacing="4" width="100%"><tr><td>&nbsp</td><td>
+            <com:TActivePanel CssClass="login_sidebar" DefaultButton="LoginButton">
+                <b><%[ Username ]%></b>
+                <com:TRequiredFieldValidator
+                        ControlToValidate="Username"
+                        ValidationGroup="login"
+                        Text="...is required"
+                        Display="Dynamic"/>
+                <br/>
+                <com:TTextBox ID="Username" CssClass="inputmedium"/>
+                <br/>
+                <b><%[ Password ]%></b>
+                <com:TCustomValidator
+                        ControlToValidate="Password"
+                        ValidationGroup="login"
+                        Text="...is invalid"
+                        Display="Dynamic"
+                        OnServerValidate="validateUser" />
+                <br/>
+                <com:TTextBox ID="Password" TextMode="Password" CssClass="inputmedium"/>
+        </com:TActivePanel>
+        </td></tr>
+        <tr><td align="right" colspan="2">
+            <hr/>
+            <com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/unlock.png"/>
+            <com:TLinkButton
+                        ID="LoginButton"
+                        Text="Login"
+                        ValidationGroup="login"
+                        CssClass="windowcontent-button"
+                        OnClick="loginButtonClicked" />
+         </td></tr>
+     </table>
+
+</p>
+</fieldset>
+<p/>
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<com:TActiveLabel Id="cuf_maskenname" Text="HDBPInputMask"/>
+<com:TActiveLabel Id="idtm_struktur" Text="22"/>
+
+<com:TActivePanel Id="ActPanel">
+
+<h2>HARLEY-DAVIDSON</h2>
+<h3>D/A/CH</h3>
+<fieldset>
+    <legend>Berichte</legend>
+<div id="infobox">
+<a href="javascript:win_organisation_openwin('<%=$this->getRequest()->constructUrl('page','reports.StrukturBerichtViewerPlain',array("idtm_strutkur"=>"22","idta_struktur_bericht"=>"5","idta_variante"=>"4","periode"=>"10005"))%>')" Title="GuV-Window"><%[ Gewinn und Verlust ]%></a>
+</div>
+</fieldset>
+<h2>Werte erfassen</h2>
+
+<table>
+    <tr>
+    <td valign="top" colspan="2">
+
+        <table>
+            <tr>
+            <td valign="top">
+
+             <fieldset style="border-color:#ffffff;">
+                <legend>Modelle</legend>
+
+                    <table>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th>2011</th>
+                            <th>Marge</th>
+                        </tr>
+                        <tr>
+                            <td>Sportster (25%)</td>
+                            <td><com:PStrukturInputField Id="1" />Stck.</td>
+                            <td><com:PStrukturInputField Id="2" />PRZ</td>
+                        </tr>
+                        <tr>
+                            <td>Dyna (28%)</td>
+                            <td><com:PStrukturInputField Id="3" />Stck.</td>
+                            <td><com:PStrukturInputField Id="4" />PRZ</td>
+                        </tr>
+                        <tr>
+                            <td>Softail (18%)</td>
+                            <td><com:PStrukturInputField Id="5" />Stck.</td>
+                            <td><com:PStrukturInputField Id="6" />PRZ</td>
+                        </tr>
+                        <tr>
+                            <td>Touring (15%)</td>
+                            <td><com:PStrukturInputField Id="7" />Stck.</td>
+                            <td><com:PStrukturInputField Id="8" />PRZ</td>
+                        </tr>
+                        <tr>
+                            <td>V-Rod (11%)</td>
+                            <td><com:PStrukturInputField Id="9" />Stck.</td>
+                            <td><com:PStrukturInputField Id="10" />PRZ</td>
+                        </tr>
+                        <tr>
+                            <td>CVO (15%)</td>
+                            <td><com:PStrukturInputField Id="11" />Stck.</td>
+                            <td><com:PStrukturInputField Id="12" />PRZ</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><hr /></td>
+                        </tr>
+                        <tr>
+                            <td>Gebrauchte</td>
+                            <td><com:PStrukturInputField Id="21" />Stck.</td>
+                            <td><com:PStrukturInputField Id="22" />PRZ</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>Preis</td>
+                            <td><com:PStrukturInputField Id="23" />EUR</td>
+                        </tr>
+                        <tr>
+                            <td colspan="3"><hr /></td>
+                        </tr>
+                        <tr>
+                            <td>PAM Ertr. Events</td>
+                            <td><com:PStrukturInputField Id="24" />EUR</td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>Mopedvermietung</td>
+                            <td><com:PStrukturInputField Id="25" />EUR</td>
+                            <td></td>
+                        </tr>
+                    </table>
+
+             </fieldset>
+
+             </td>
+             <td valign="top">
+
+             <fieldset style="border-color:#ffffff;">
+                <legend>Kosten (jährlich)</legend>
+
+                    <table>
+                        <tr>
+                            <th>&nbsp;</th>
+                            <th>2011</th>
+                        </tr>
+                        <tr>
+                            <td>Raumkosten</td>
+                            <td><com:PStrukturInputField Id="13" />EUR</td>
+                        </tr>
+                        <tr>
+                            <td>Steuern/Beiträge/Versicherungen</td>
+                            <td><com:PStrukturInputField Id="14" />EUR</td>
+                        </tr>
+                        <tr>
+                            <td>Kfz. Kosten</td>
+                            <td><com:PStrukturInputField Id="15" />EUR</td>
+                        </tr>
+                        <tr>
+                            <td>Werbe/Reisekosten</td>
+                            <td><com:PStrukturInputField Id="16" />EUR</td>
+                        </tr>
+                        <tr>
+                            <td>Abschreibungen</td>
+                            <td><com:PStrukturInputField Id="17" />EUR</td>
+                        </tr>
+                        <tr>
+                            <td>Reparatur/Inst.</td>
+                            <td><com:PStrukturInputField Id="18" />EUR</td>
+                        </tr>
+                        <tr>
+                            <td>Sonstige Kosten</td>
+                            <td><com:PStrukturInputField Id="19" />EUR</td>
+                        </tr>
+                        <tr>
+                            <td>Zinsen</td>
+                            <td><com:PStrukturInputField Id="20" />EUR</td>
+                        </tr>
+                    </table>
+
+             </fieldset>
+
+             </td>
+             </tr>
+         </table>
+    </td></tr>
+         <tr>
+    <td valign="top" colspan="2">
+
+     <fieldset style="border-color:#ffffff;">
+        <legend>Personalplanung</legend>
+
+            <table>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>monatl. Gehalt</th>
+                    <th>Anz. Gehälter</th>
+                    <th>Anz. 2011</th>
+                    <th>Anz. 2012</th>
+                    <th>Anz. 2013</th>
+                </tr>
+                <tr>
+                    <td>Manager / GF</td>
+                    <td><com:PStrukturInputField Id="26" />EUR</td>
+                    <td><com:PStrukturInputField Id="260" /></td>
+                    <td><com:PStrukturInputField Id="27" /></td>
+                    <td><com:PStrukturInputField Id="28" /></td>
+                    <td><com:PStrukturInputField Id="29" /></td>
+                </tr>
+                <tr>
+                    <td>Verwaltung</td>
+                    <td><com:PStrukturInputField Id="30" />EUR</td>
+                    <td><com:PStrukturInputField Id="300" /></td>
+                    <td><com:PStrukturInputField Id="31" /></td>
+                    <td><com:PStrukturInputField Id="32" /></td>
+                    <td><com:PStrukturInputField Id="33" /></td>
+                </tr>
+                <tr>
+                    <td colspan="6"><hr /></td>
+                </tr>
+                <tr>
+                    <td>Verkauf</td>
+                    <td><com:PStrukturInputField Id="34" />EUR</td>
+                    <td><com:PStrukturInputField Id="340" /></td>
+                    <td><com:PStrukturInputField Id="35" /></td>
+                    <td><com:PStrukturInputField Id="36" /></td>
+                    <td><com:PStrukturInputField Id="37" /></td>
+                </tr>
+                <tr>
+                    <td>PAM</td>
+                    <td><com:PStrukturInputField Id="38" />EUR</td>
+                    <td><com:PStrukturInputField Id="380" /></td>
+                    <td><com:PStrukturInputField Id="39" /></td>
+                    <td><com:PStrukturInputField Id="40" /></td>
+                    <td><com:PStrukturInputField Id="41" /></td>
+                </tr>
+                <tr>
+                    <td colspan="6"><hr /></td>
+                </tr>
+                <tr>
+                    <td>Serviceleitung</td>
+                    <td><com:PStrukturInputField Id="42" />EUR</td>
+                    <td><com:PStrukturInputField Id="420" /></td>
+                    <td><com:PStrukturInputField Id="43" /></td>
+                    <td><com:PStrukturInputField Id="44" /></td>
+                    <td><com:PStrukturInputField Id="45" /></td>
+                </tr>
+                <tr>
+                    <td>Service</td>
+                    <td><com:PStrukturInputField Id="46" />EUR</td>
+                    <td><com:PStrukturInputField Id="460" /></td>
+                    <td><com:PStrukturInputField Id="47" /></td>
+                    <td><com:PStrukturInputField Id="48" /></td>
+                    <td><com:PStrukturInputField Id="49" /></td>
+                </tr>
+                <tr>
+                    <td>Azubis</td>
+                    <td><com:PStrukturInputField Id="50" />EUR</td>
+                    <td><com:PStrukturInputField Id="500" /></td>
+                    <td><com:PStrukturInputField Id="51" /></td>
+                    <td><com:PStrukturInputField Id="52" /></td>
+                    <td><com:PStrukturInputField Id="53" /></td>
+                </tr>
+
+            </table>
+
+     </fieldset>
+
+     </td>
+     
+     </tr>
+     <tr>
+        <td valign="top" colspan="2">
+
+     <fieldset style="border-color:#ffffff;">
+        <legend>Werkstatt</legend>
+
+            <table>
+                <tr>
+                    <th>&nbsp;</th>
+                    <th>Stundensatz</th>
+                    <th>2011</th>
+                </tr>
+                <tr>
+                    <td>Stunden pro Mechaniker und Jahr</td>
+                    <td><com:PStrukturInputField Id="54" /></td>
+                    <td><com:PStrukturInputField Id="55" /></td>
+                </tr>
+                <tr>
+                    <td>Stunden pro Meister und Jahr</td>
+                    <td><com:PStrukturInputField Id="56" /></td>
+                    <td><com:PStrukturInputField Id="57" /></td>
+                </tr>
+                <tr>
+                    <td>Stunden pro Azubi und Jahr</td>
+                    <td><com:PStrukturInputField Id="58" /></td>
+                    <td><com:PStrukturInputField Id="59" /></td>
+                </tr>
+            </table>
+
+     </fieldset>
+
+     </td>
+     </tr>
+
+</table>
+
+<p/>
+
+</com:TActivePanel>
+
+</com:TContent>

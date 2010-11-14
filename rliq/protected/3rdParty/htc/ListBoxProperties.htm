@@ -1,0 +1,182 @@
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>List Box Properties</title>
+        <meta name="build" content="$BuildVersion$" />
+        
+        <link href="styles.css" type="text/css" rel="stylesheet" />
+        <script src="/QvAjaxZfc/htc/QvAjax.js" type="text/javascript"></script>
+        <script src="/QvAjaxZfc/htc/QvAjaxBaseMgr.js" type="text/javascript"></script>
+        <script src="/QvAjaxZfc/htc/QvAjaxScan.js" type="text/javascript"></script>
+        <script src="/QvAjaxZfc/htc/QvAjaxTrace.js" type="text/javascript"></script>
+        <script src="/QvAjaxZfc/htc/QvAjaxProperties.js" type="text/javascript"></script>
+    </head>
+    <body onload="Start('ListBoxProperties');" onunload="Qva.CloseModal()" avqscope="ListBoxProperties">
+        <div id="PageNavigation">
+            <a href="#" class="selected"><span onclick="GoTab(document.getElementById('IDD_LISTBOX_GENERAL'), event)">General</span></a>
+            <a href="#"><span onclick="GoTab(document.getElementById('IDD_LISTBOX_LAYOUT'), event)">Presentation</span></a>
+            <a href="#"><span onclick="GoTab(document.getElementById('IDD_SORT_DIALOG'), event)">Sort</span></a>
+        </div>
+        <div id="PageContainer" style="width:580;height:355">
+            <div id="IDD_LISTBOX_GENERAL" style="height:355">
+                <div style="left:10;height:12;width:48;top:4" class="Label">Title</div>
+                <div style="left:10;height:21;width:400;top:22" class="Text" avq="label:.Title.v">
+                    <input avq=".Title.v" style="width:98%" />
+                </div>
+                <div style="left:426;height:12;width:60;top:4" class="Label">Object ID</div>
+                <div style="left:426;height:21;width:90;top:22" class="Text" avq="label:.Layout.Frame.ObjectId">
+                    <input avq=".Layout.Frame.ObjectId" style="width:98%" />
+                </div>
+                <div style="left:10;height:73;width:300;top:52" class="Group">
+                    <span class="grouplabel">Field</span>
+                    <div style="left:12;height:12;width:271;top:18" class="Select" avq="label:.Def.Name">
+                        <select avq=".Def.Name" style="width:98%">
+                        </select>
+                    </div>
+                    <div style="left:12;height:15;width:114;top:45" class="Checkbox" avq="label:.Title.v">
+                        <input type="checkbox" avq="edit:.Title.v:+" />Use as Title</div>
+                </div>
+                <div style="left:322;height:115;width:193;top:52" class="Group">
+                    <span class="grouplabel">Search</span>
+                    <div style="left:11;height:12;width:180;top:18" class="Label">Include Excluded Values in Search</div>
+                    <div style="left:11;height:12;width:162;top:66" class="Label">Default Search Mode</div>
+                    <div style="left:11;height:12;width:174;top:86" class="Select" avq="label:.Layout.DefaultSearchMode">
+                        <select avq=".Layout.DefaultSearchMode" style="width:98%">
+                        </select>
+                    </div>
+                    <div style="left:11;height:12;width:174;top:36" class="Select" avq="label:.Layout.ExcludedValuesMode">
+                        <select avq=".Layout.ExcludedValuesMode" style="width:98%">
+                        </select>
+                    </div>
+                </div>
+                <div style="left:10;height:15;width:96;top:177" class="Checkbox" avq="label:.Layout.HideExcluded">
+                    <input type="checkbox" avq=".Layout.HideExcluded" />Hide Excluded</div>
+                <div style="left:10;height:15;width:96;top:199" class="Checkbox" avq="label:.Layout.ReadOnly">
+                    <input type="checkbox" avq=".Layout.ReadOnly" />Read Only</div>
+                <div style="left:10;height:15;width:127;top:244" class="Checkbox" avq="label:.Layout.SoftLock">
+                    <input type="checkbox" avq=".Layout.SoftLock" />Override Locked Field</div>
+                <div style="left:178;height:15;width:103;top:132" class="Checkbox" avq="label:.Layout.ShowFrequency">
+                    <input type="checkbox" avq=".Layout.ShowFrequency" />Show Frequency</div>
+                <div style="left:198;height:15;width:72;top:154" class="Checkbox" avq="label:.Layout.FrequencyInPercent">
+                    <input type="checkbox" avq=".Layout.FrequencyInPercent" />In Percent</div>
+                <div style="left:336;height:15;width:138;top:222" class="Checkbox" avq="label:.Layout.PrintAllValues">
+                    <input type="checkbox" avq=".Layout.PrintAllValues" />Print All Values</div>
+                <div style="left:336;height:15;width:138;top:244" class="Checkbox" avq="label:.Layout.LayoutDependentPrint">
+                    <input type="checkbox" avq=".Layout.LayoutDependentPrint" />Layout Dependent Print</div>
+            </div>
+            <div id="IDD_LISTBOX_LAYOUT" style="height:355; display:none">
+                <div style="left:10;height:181;width:232;top:4" class="Group">
+                    <span class="grouplabel">Image Options</span>
+                    <div style="left:9;height:12;width:144;top:20" class="Label">Representation</div>
+                    <div style="left:9;height:12;width:205;top:36" class="Select" avq="label:.Layout.ImageRepresentation.Presentation">
+                        <select avq=".Layout.ImageRepresentation.Presentation" style="width:98%">
+                        </select>
+                    </div>
+                    <div style="left:9;height:12;width:108;top:65" class="Label">Image Formatting</div>
+                    <div style="left:9;height:12;width:205;top:81" class="Select" avq="label:.Layout.ImageRepresentation.CellImageStyle.StretchMode">
+                        <select avq=".Layout.ImageRepresentation.CellImageStyle.StretchMode" style="width:98%">
+                        </select>
+                    </div>
+                    <div style="left:9;height:15;width:172;top:107" class="Checkbox" avq="label:.Layout.ImageRepresentation.FallBack">
+                        <input type="checkbox" avq=".Layout.ImageRepresentation.FallBack" />Hide Text When Image Missing</div>
+                </div>
+                <div style="left:253;height:84;width:252;top:4" class="Group">
+                    <span class="grouplabel">Alignment</span>
+                    <div style="left:78;height:12;width:48;top:20;text-align:center" class="Label">Left</div>
+                    <div style="left:135;height:12;width:48;top:20;text-align:center" class="Label">Center</div>
+                    <div style="left:192;height:12;width:48;top:20;text-align:center" class="Label">Right</div>
+                    <div style="left:9;height:12;width:36;top:41" class="Label">Text</div>
+                    <div style="left:96;height:12;width:12;top:38" class="Radio" avq="label:.Layout.TextAdjust">
+                        <input type="radio" avq=".Layout.TextAdjust" value="Left" />
+                    </div>
+                    <div style="left:153;height:12;width:12;top:38" class="Radio" avq="label:.Layout.TextAdjust">
+                        <input type="radio" avq=".Layout.TextAdjust" value="Center" />
+                    </div>
+                    <div style="left:210;height:12;width:12;top:38" class="Radio" avq="label:.Layout.TextAdjust">
+                        <input type="radio" avq=".Layout.TextAdjust" value="Right" />
+                    </div>
+                    <div style="left:9;height:12;width:54;top:59" class="Label">Numbers</div>
+                    <div style="left:96;height:12;width:12;top:57" class="Radio" avq="label:.Layout.NumAdjust">
+                        <input type="radio" avq=".Layout.NumAdjust" value="Left" />
+                    </div>
+                    <div style="left:153;height:12;width:12;top:57" class="Radio" avq="label:.Layout.NumAdjust">
+                        <input type="radio" avq=".Layout.NumAdjust" value="Center" />
+                    </div>
+                    <div style="left:210;height:12;width:12;top:57" class="Radio" avq="label:.Layout.NumAdjust">
+                        <input type="radio" avq=".Layout.NumAdjust" value="Right" />
+                    </div>
+                </div>
+                <div style="left:253;height:90;width:252;top:96" class="Group">
+                    <span class="grouplabel">Multiline Settings</span>
+                    <div style="left:9;height:15;width:93;top:16" class="Checkbox" avq="label:.Layout.MultiLine">
+                        <input type="checkbox" avq="edit:.Layout.MultiLine:-,0,2" />Wrap Cell Text</div>
+                    <div style="left:27;height:12;width:36;top:40" class="Label">Height</div>
+                    <div style="left:68;height:21;width:45;top:37" class="Text" avq="label:.Layout.MultiLine">
+                        <input avq=".Layout.MultiLine" style="width:98%" />
+                    </div>
+                    <div style="left:120;height:12;width:39;top:40" class="Label">Lines</div>
+                </div>
+                <div style="left:19;height:15;width:132;top:192" class="Checkbox" avq="label:.Layout.MultiColumn">
+                    <input type="checkbox" avq="edit:.Layout.MultiColumn:+,0,1" />Single Column</div>
+                <div style="left:36;height:15;width:180;top:213" class="Checkbox" avq="label:.Layout.SuppressHorizontalScroll">
+                    <input type="checkbox" avq=".Layout.SuppressHorizontalScroll" />Suppress Horizontal Scroll Bar</div>
+                <div style="left:19;height:15;width:154;top:237" class="Checkbox" avq="label:.Layout.FixedColumnsCount">
+                    <input type="checkbox" avq="edit:.Layout.FixedColumnsCount:-,-1,2" />Fixed Number of Columns</div>
+                <div style="left:186;height:21;width:36;top:237" class="Text" avq="label:.Layout.FixedColumnsCount">
+                    <input avq=".Layout.FixedColumnsCount" style="width:98%" />
+                </div>
+                <div style="left:19;height:15;width:132;top:256" class="Checkbox" avq="label:.Layout.OrderByRow">
+                    <input type="checkbox" avq=".Layout.OrderByRow" />Order by Column</div>
+                <div style="left:19;height:15;width:132;top:276" class="Checkbox" avq="label:.Layout.Borders.Top.LineStyle">
+                    <input type="checkbox" avq=".Layout.Borders.Top.LineStyle" />Cell Borders</div>
+            </div>
+            <div id="IDD_SORT_DIALOG" style="height:355; display:none">
+                <div style="left:6;height:201;width:240;top:6" class="Group">
+                    <span class="grouplabel">Sort by</span>
+                    <div style="left:12;height:15;width:88;top:21" class="Checkbox" avq="label:.SortCriteria.SortByState">
+                        <input type="checkbox" avq="edit:.SortCriteria.SortByState:-" />State</div>
+                    <div style="left:132;height:12;width:96;top:21" class="Select" avq="label:.SortCriteria.SortByState">
+                        <select avq="edit:.SortCriteria.SortByState:" style="width:98%">
+                        </select>
+                    </div>
+                    <div style="left:12;height:15;width:84;top:42" class="Checkbox" avq="label:.SortCriteria.SortByExpression">
+                        <input type="checkbox" avq="edit:.SortCriteria.SortByExpression:-" />Expression</div>
+                    <div style="left:132;height:12;width:96;top:45" class="Select" avq="label:.SortCriteria.SortByExpression">
+                        <select avq="edit:.SortCriteria.SortByExpression:" style="width:98%">
+                        </select>
+                    </div>
+                    <div style="left:30;height:21;width:198;top:72" class="Text" avq="label:.SortCriteria.Expression.v">
+                        <input avq=".SortCriteria.Expression.v" style="width:98%" />
+                    </div>
+                    <div style="left:12;height:15;width:88;top:100" class="Checkbox" avq="label:.SortCriteria.SortByFrequency">
+                        <input type="checkbox" avq="edit:.SortCriteria.SortByFrequency:-" />Frequency</div>
+                    <div style="left:132;height:12;width:96;top:100" class="Select" avq="label:.SortCriteria.SortByFrequency">
+                        <select avq="edit:.SortCriteria.SortByFrequency:" style="width:98%">
+                        </select>
+                    </div>
+                    <div style="left:12;height:15;width:91;top:124" class="Checkbox" avq="label:.SortCriteria.SortByNumeric">
+                        <input type="checkbox" avq="edit:.SortCriteria.SortByNumeric:-" />Numeric Value</div>
+                    <div style="left:132;height:12;width:96;top:124" class="Select" avq="label:.SortCriteria.SortByNumeric">
+                        <select avq="edit:.SortCriteria.SortByNumeric:" style="width:98%">
+                        </select>
+                    </div>
+                    <div style="left:12;height:15;width:88;top:148" class="Checkbox" avq="label:.SortCriteria.SortByAscii">
+                        <input type="checkbox" avq="edit:.SortCriteria.SortByAscii:-" />Text</div>
+                    <div style="left:132;height:12;width:96;top:148" class="Select" avq="label:.SortCriteria.SortByAscii">
+                        <select avq="edit:.SortCriteria.SortByAscii:" style="width:98%">
+                        </select>
+                    </div>
+                    <div style="left:12;height:15;width:88;top:172" class="Checkbox" avq="label:.SortCriteria.SortByLoadOrder">
+                        <input type="checkbox" avq="edit:.SortCriteria.SortByLoadOrder:-" />Load Order</div>
+                    <div style="left:132;height:12;width:96;top:172" class="Select" avq="label:.SortCriteria.SortByLoadOrder">
+                        <select avq="edit:.SortCriteria.SortByLoadOrder:" style="width:98%">
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="PageFooter" style="width:580">
+            <button onclick="Finish()">OK</button>
+            <button onclick="Qva.CloseModal()">Cancel</button>
+        </div>
+    </body>
+</html>

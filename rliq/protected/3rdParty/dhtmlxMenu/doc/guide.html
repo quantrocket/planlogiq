@@ -1,0 +1,1815 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>dhtmlxMenu 2.0 Guide</title>
+	<link rel="STYLESHEET" type="text/css" href="common/styles.css">
+</head>
+   
+<body>
+  
+<div id="p0c:">
+ 
+<h1 id="ki_v">
+ dhtmlxMenu 2.0 Guide and Code Samples<br id="bqux">
+ </h1>
+<h2><a name='menu_ki_v0'>
+ 1. Introduction
+ </a></h2>
+ 
+<p id="srjz0">
+ </p>
+<h3><a name='menu_ki_v1'>1.1 Scope of the Document
+ 
+ </a></h3>
+<p id="ki_v2">
+ </p>
+ 
+ 
+ 
+<p class="MsoNormal" id="jcck">
+ This document describes <b id="wziw">dhtmlxMenu 2.0 </b>component, defines its methods and global parameters. This documentation is created to give users full understanding of every feature of this component and also to enable users to implement this component quickly and easily.<br id="x-0e">
+ </p>
+ 
+<p id="srjz5">
+ </p>
+<h3><a name='menu_ki_v3'>1.2 Target Readers
+ 
+ </a></h3>
+<p id="ki_v4">
+ </p>
+ 
+ 
+ 
+<p class="MsoNormal" id="l247">
+ Target readers are users (developers).<br id="q0mo">
+ 
+ </p>
+ 
+<p id="giig">
+ </p>
+<h3><a name='menu_ki_v5'>1.3 Used Terms
+ 
+ </a></h3>
+<p id="ki_v6">
+ </p>
+ 
+ The following terms are connected with <b id="eu.y">dhtmlxMenu 2.0 </b>component:<br id="mn2m">
+ <br id="w.58">
+ 
+<ul id="bz1y">
+ <li id="e8t3">
+ <b id="u3c4"> Menu item</b> - a single item in a menu;<br id="b.vy">
+ </li>
+ <li id="n1wh">
+ <b id="u3c40"> Complex menu item</b> - an item in a menu that has sub-items in it;
+ </li>
+ <li id="jcck0">
+ <b id="u3c41">Polygon </b>- area where items are located:
+ </li>
+ 
+<ul id="bkye">
+ <li id="p0:n">
+ <b id="u3c42"> Top-level polygon</b> - its items are always visible on startup. It should be noted that contextual menu doesn't have top-level polygon;<br id="r.ur">
+ </li>
+ </ul>
+ 
+<ul id="bkye0">
+ <li id="jcck1">
+ <b id="u3c43"> Sub-level polygon</b> - its items become visible when the user hovers over any complex item that has at least one visible (not hidden) sub-item in it;<br id="syyh">
+ </li>
+ </ul>
+ <li id="w.s1">
+ <b id="zfz7"> Sibling items</b> - items that are located in one polygon. Siblings are child items of some parent item;<br id="m9mv">
+ </li>
+ <li id="x084">
+ <b id="zfz70"> Child items</b> - items that are located in one sub-level polygon. Child items of one parent item are siblings to each other;<br id="syyh0">
+ </li>
+ <li id="i0qm">
+ <b id="zfz71">Separator </b>- <font id="j-1m" style="font-family: Verdana;" size="2" face="Arial">the horizontal/vertical line separating groups of menu items from each other;</font>
+ </li>
+ <li id="b6gm">
+ <font id="iigt" style="font-family: Verdana;" size="2" face="Arial"><b id="zfz72">Checkbox </b>- </font><font id="p6qc" size="-1">a menu item that has a small square box (in the left part of item display area), which displays a “<b id="birm">v</b>” when it is clicked on by a mouse. They are provided to allow users to choose one or more options, as more than one check box can be clicked;</font>
+ </li>
+ <li id="o9ou">
+ <font id="vkix" style="font-family: Verdana; background-color: rgb(255, 255, 255);" size="2" face="Arial"><b id="zfz73">Radio button</b>- </font><font id="fcq_" size="-1">a menu item that has a small </font><font id="tsyv" size="-1">selectable circle</font><font id="j0_2" size="-1"> (in the left part of item display area), which displays a “?” when it is clicked on by a mouse. Radio Buttons are grouped so that only one can be chosen at a time.</font><br id="mwp_">
+ </li>
+ </ul>
+ 
+<h2><a name='menu_ki_v7'>
+ 2. What is dhtmlxMenu
+ </a></h2>
+ <b id="h48.">dhtmlxMenu 2.0 </b>is a component that provides an easy way to add a professional drop down menu or a contextual menu to user's projects. This component is highly customizable and supports a wide range of features. <b id="ljm6">dhtmlxMenu 2.0 </b>component can be a good navigation aid to web sites, help systems, etc.<br id="g4b7">
+ As a matter of fact, this component will work well at any page and in any browser that supports JavaScript.<br id="elc3">
+ <br id="te40">
+ This component provides the user with the possibility to:<br id="elc30">
+ <br id="jt38">
+ 
+<ul id="res4">
+ <li id="kx3_">
+ Create unlimited number of menu items;
+ </li>
+ <li id="e9o_">
+ Add icons and hotkeys to menu items;
+ </li>
+ <li id="r5c7">
+ Set dynamical loading of items;
+ </li>
+ <li id="qz0t">
+ Manipulate items' settings;
+ </li>
+ <li id="qbvi">
+ Use predefined skins;<br id="ff5p">
+ </li>
+ <li id="ssdi">
+ Use built-in checkboxes and radio buttons.</li>
+ </ul>
+<h3><a name='menu_siuf'>2.1 Main Features</a></h3>
+<ul id="dhbx0"><li id="dhbx1">Multibrowser/Multiplatform support;</li>
+<li id="oq1q">Full control with JavaScript API;</li>
+<li id="jypv">Dropdown/Context modes;</li>
+<li id="jypv0">Multiple ways of data loading (AJAX, HTML, Script Object, Script API);</li>
+<li id="jypv1">Dynamical loading;</li>
+<li id="jypv2">Hotkeys support;</li>
+<li id="jypv3">Tooltips support;</li>
+<li id="jypv4">Different skins.<br id="jypv5">
+</li></ul>
+<h3><a name='menu_siuf0'>2.2 Supported Browsers</a></h3>
+<ul id="jypv7"><li id="jypv8">IE;</li>
+<li id="siuf1">Mac OS X Safari/Conqueror;</li>
+<li id="siuf2">Mozilla/Mozilla Firefox;</li>
+<li>Google Chrome;<br>
+</li>
+<li id="yso20">
+ Opera 8.5+.</li></ul>
+ 
+<h2><a name='menu_ki_v8'>
+ 3. Initializing dhtmlxMenu 2.0
+</a></h2>
+<h3><a name='menu_ki_v9'>3.1 New Menu Object Creation</a></h3>
+ 
+<p id="e4qj">
+ </p>
+ 
+<p id="ki_v11">
+ </p>
+ 
+ 
+<p id="jcck5">
+ The first steps that need to be taken for <b id="bmqe">dhtmlx</b><b id="l35y0">Menu'</b>s initialization are the following:
+ </p>
+ 
+<p id="jcck6">
+ <br id="l35y1">
+ </p>
+ 
+<ul id="tour">
+ <li id="p5-m">
+ Download dhtmlxMenu package from the server and place it in a folder;
+ </li>
+ <li id="jcck7">
+ Create an index.html file;
+ </li>
+ <li id="jcck8">
+ Place a full path to the CSS file into the &lt;head> tag of html file. This file determines menu appearance according to the chosen skin (in this example we use dhx_blue skin, as it's the default one). That's why, we recommend our users to make up their mind on which skin they are going to apply right on this very step;
+ </li>
+ <li id="jcck10">
+ Place the full paths to JS files into the &lt;head> tag of html file.</li>
+ </ul>
+<blockquote id="ayuy">&lt;head><br id="ayuy0">
+    &lt;script src="<span id="jcck11" style="font-family: Verdana;"><font id="jcck12" size="2">[full path to this file]</font></span>/dhtmlxcommon.js">&lt;/script><br id="ayuy1">
+    &lt;script src="<span id="jcck13" style="font-family: Verdana;"><font id="jcck14" size="2">[full path to this file]</font></span>/dhtmlxmenu.js">&lt;/script><br id="ayuy2">
+    &lt;link rel="stylesheet" type="text/css" href="<span id="x_e0" style="font-family: Verdana;"><font id="ekf7" size="2">[full path to this file]</font></span>/dhtmlxmenu_dhx_blue.css"><br id="ayuy3">
+&lt;/head><br id="ayuy4">
+</blockquote>
+From this point further steps the user should take are different for creating a usual menu and a contextual menu.<br id="h.5j">
+</div>
+<div id="ayuy5"><a id="bb-h" name="_Toc193605132">
+ <br id="h.5j0">
+ </a>
+<p id="jzju"><a id="jzju0" name="_Toc193605132"><span id="jzju1" style="font-family: Verdana;"><font id="jzju2" size="2"><b id="h.5j1">3.1.1 Usual Menu</b></font></span></a></p>
+<p id="jzju3"><a id="jzju4" name="_Toc193605132"></a></p>
+<a id="jzju6" name="_Toc193605132">
+ <span id="xapr" style="font-family: Verdana;"><font id="rehr" size="2"><br id="ckkbq0">
+The user needs to create </font></span>an object where <span id="jcck15" style="background-color: rgb(255, 255, 255);"><b id="on2r">dhtmlxMenu</b></span><span id="jcck16" style="background-color: rgb(255, 255, 255);"> 2.0 will</span><span id="nv3o" style="background-color: rgb(255, 255, 255);"> be placed later. In this example the object is a &lt;div> element on page, which is placed in the &lt;body> tag:</span><br id="s6c9">
+ </a>
+ 
+<blockquote id="saby"><a id="jcck25" name="_Toc193605132"></a><font id="lqhv0" size="2"> &lt;<span class="start-tag" id="vw:q0">div</span><span class="attribute-name" id="vw:q1"> id</span>=<span class="attribute-value" id="vw:q2">"menuObj"</span>>&lt;/<span class="end-tag" id="vw:q3">div</span>></font><a id="vw:q4" name="_Toc193605132"></a><a id="jcck53" name="_Toc193605132" style="background-color: rgb(255, 255, 0);"></a><br id="saby11">
+ <a id="jcck56" name="_Toc193605132"></a><a id="jcck61" name="_Toc193605132"></a><a id="jcck64" name="_Toc193605132"></a>
+ </blockquote>
+ <a id="jcck65" name="_Toc193605132"> The next step is to create </a><a id="jcck66" name="_Toc193605132">a new </a><b id="qtx8"><a id="jcck67" name="_Toc193605132"><span id="jcck68" style="font-family: Verdana;"><font id="jcck69" size="2">dhtmlXMenuObject</font></span></a></b><a id="jcck70" name="_Toc193605132"> and </a><span id="d3gs" style="font-family: Verdana;"><font id="an7g" size="2">place it after the &lt;div> element (object) that we've just created</font></span><span id="jcck71" style="font-family: Verdana;"><font id="jcck72" size="2">:</font></span><a id="jcck73" name="_Toc193605132"></a>
+ 
+<blockquote id="hini">
+ <a id="jcck74" name="_Toc193605132"></a><a id="jcck78" name="_Toc193605132"></a><span id="jcck81" style="font-family: Verdana;"><font id="jcck82" size="2">&lt;script></font></span><a id="jcck83" name="_Toc193605132"><br id="m9kn">
+ <span id="jcck84" style="font-family: Verdana;"><font id="jcck85" size="2">     var menu = new dhtmlXMenuObject(baseId, <span id="i:yf" style="background-color: rgb(255, 255, 255);">skin</span>);<br id="m9kn0">
+ </font></span><span id="jcck86" style="font-family: Verdana;"><font id="jcck87" size="2"> &lt;/script></font></span></a><a id="y-u03" name="_Toc193605132"></a><a id="e_-3" name="DDE_LINK"></a><a id="cea0" name="DDE_LINK"></a><a id="wia2" name="DDE_LINK"><br id="a7nx">
+ </a>
+ </blockquote>
+ <a id="mx0d" name="_Toc193605132"></a><a id="dj6d" name="_Toc193605132" style="background-color: rgb(255, 255, 255);"></a><a id="jcck88" name="_Toc193605132"></a><span id="mx9i" style="font-family: Verdana;"><font id="w58a" size="2"><b id="bm84">baseId </b>defines </font></span><span id="xbn:" style="font-family: Verdana;"><font id="xqry" size="2">an HTML object on page to which the menu is attached</font></span><span id="f4:w" style="font-family: Verdana;"><font id="bwed" size="2"> <span id="rzmx" style="color: rgb(0, 0, 0);">(the main menu container in the code mentioned above)</span>.<br id="m:ii">
+</font></span>
+<p id="r2650"><span id="r2651" style="font-family: Verdana; background-color: rgb(255, 255, 255);"><font id="r2652" size="2">The second argument is optional, and it indicates the name of the <a title="skin" href="#Available_Skins" id="f9sn">skin</a> chosen for the Menu. If this argument is not indicated, the component will be created with the default skin (<i id="kdxa">dhx_blue</i>).</font></span><br id="cm6g">
+</p>
+<br id="jf55">
+</div>
+<div id="p0c:0">
+ So, in our case the code will look like this:<br id="km18">
+ 
+<blockquote id="r.dw">
+ <span id="km181" style="font-family: Verdana;"><font id="km182" size="2">&lt;script></font></span><a id="km183" name="_Toc193605132"></a><br id="y-u04">
+ <a id="km184" name="_Toc193605132"><span id="y-u05" style="font-family: Verdana;"><font id="y-u06" size="2">     var menu = new dhtmlXMenuObject(<span id="y-u07" style="background-color: rgb(255, 255, 255);">"</span></font></span><font id="zkxg" size="2"><span class="attribute-value" id="zkxg0">menuObj</span></font><span id="zkxg1" style="font-family: Verdana;"><font id="zkxg2" size="2"><span id="zkxg3" style="background-color: rgb(255, 255, 255);">"</span><span id="km185" style="background-color: rgb(255, 255, 255);">); </span></font></span></a><br id="y-u08">
+ <a id="km186" name="_Toc193605132"><span id="km188" style="font-family: Verdana;"><font id="km189" size="2"> &lt;/script></font></span></a>
+ </blockquote>
+ 
+<p id="jzju9"><a id="r.dw3" name="_Toc193605132"></a><a id="bs.k" name="_Toc193605132" style="background-color: rgb(255, 255, 255);"></a></p>
+<p id="jzju9"><a id="bs.k" name="_Toc193605132" style="background-color: rgb(255, 255, 255);"></a><a id="w_tk" name="_Toc193605132">It should be noted that with the way
+of menu creating described above, the system will first <b>clear the menu
+container</b> (&lt;div>), and then create the menu. </a></p>
+<p id="jzju9"><a id="bs.k" name="_Toc193605132" style="background-color: rgb(255, 255, 255);"><b id="vsm32"></b></a></p>
+<p id="jzju9"><a id="bs.k" name="_Toc193605132" style="background-color: rgb(255, 255, 255);"><b id="vsm32"><br>
+</b></a></p>
+<p id="jzju9"><a id="bs.k" name="_Toc193605132" style="background-color: rgb(255, 255, 255);"><b id="vsm32">3.1.2 Contextual Menu</b></a></p>
+ 
+<p id="jzju10"><a id="jzju11" name="_Toc193605132" style="background-color: rgb(255, 255, 255);"></a></p>
+<a id="jzju12" name="_Toc193605132" style="background-color: rgb(255, 255, 255);">
+ <br id="p7j9">
+</a><a id="p7j90" name="_Toc193605132" style="background-color: rgb(255, 255, 255);"><span id="p7j91" style="font-family: Verdana;"><font id="p7j92" size="2">The user needs to create </font></span>an object to which <b id="p7j94">dhtmlxMenu 2.0</b> will be attached later. In this example the object is a &lt;div> element on page, which is placed in the &lt;body> tag.</a><a id="p7j97" name="_Toc193605132" style="background-color: rgb(255, 255, 255);"><br id="lpo5">
+ </a>
+ 
+<blockquote id="p7j98" style="background-color: rgb(255, 255, 255);">
+ &lt;<span class="start-tag" id="dqk45">div</span><span class="attribute-name" id="dqk46"> id</span>=<span class="attribute-value" id="dqk47">"<span id="b5ec" style="color: rgb(0, 0, 0);">contextArea</span>"</span>>&lt;/<span class="end-tag" id="dqk410">div</span>><br id="ls-n0">
+ </blockquote>
+ <a id="nl_8" name="_Toc193605132" style="background-color: rgb(255, 255, 255);"></a><span id="nl_87" style="font-family: Verdana;"><font id="nl_88" size="2"><span id="bd:t" style="background-color: rgb(255, 255, 255);">For a contextual menu the </span>user should:<br id="tt3m">
+ <br id="xcwy">
+ </font></span>
+ 
+<ul id="xcwy0">
+ <li id="xcwy1">
+ <a id="tt3m0" name="_Toc193605132">Create </a><a id="nl_80" name="_Toc193605132">a new </a><b id="nl_81"><a id="nl_83" name="_Toc193605132"><span id="nl_84" style="font-family: Verdana;"><font id="nl_85" size="2">dhtmlxMenuObject </font></span></a></b><a id="n-o7" name="_Toc193605132"><span id="n-o70" style="font-family: Verdana;"><font id="n-o71" size="2">attached to "</font></span></a><b id="n-o72"><a id="n-o73" name="_Toc193605132"><span id="n-o74" style="font-family: Verdana;"><font id="n-o75" size="2">contextArea</font></span></a></b><a id="tisz" name="_Toc193605132"><span id="tisz0" style="font-family: Verdana;"><font id="tisz1" size="2">"</font></span></a><a id="nl_86" name="_Toc193605132">;</a></li>
+<li id="il8e">Set the name of the necessary <font id="pikm0" size="2"><a title="skin" href="RawDocContents?docID=dgr5rjkf_22cp5x64fz&amp;justBody=false&amp;revision=_latest&amp;timestamp=1219848590664&amp;editMode=true&amp;strip=true#Available_Skins" id="pikm1">skin</a> </font>as the second argument for dhtmlXMenuObjec<span id="o71y" style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);">t</span> (optional; if the name of the skin is not indicated, the default one will be used);<br id="il8e0">
+</li>
+<li id="il8e1"><a id="il8e2" name="_Toc193605132"> </a>
+ </li>
+ <li id="pqhq">
+ <span id="xcwy2" style="font-family: Verdana;"><font id="xcwy3" size="2">Use </font></span><b id="kcce">renderAsContextMenu()</b> method<span id="nl_89" style="font-family: Verdana;"><font id="nl_810" size="2">:</font></span><br id="nl_813">
+ </li>
+ </ul>
+ <a id="lpo53" name="_Toc193605132"></a><a id="nl_814" name="_Toc193605132"></a>
+ 
+<blockquote id="vzmk">
+ <a id="vzmk0" name="_Toc193605132"><span id="vzmk1" style="font-family: Verdana;"><font id="vzmk2" size="2">&lt;script></font></span></a><br id="z9h72">
+ <a id="vzmk3" name="_Toc193605132"></a>    menu = new dhtmlXMenuObjec<span id="ziz1" style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);">t</span><span id="ziz10" style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">("contextArea</span><span id="o71y1" style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);">");</span><br id="kl9o">
+     menu.renderAsContextMenu();<br id="z9h73">
+ &lt;/script><br id="lpo56">
+ <a id="vzmk5" name="_Toc193605132"></a>
+ </blockquote>
+ <a id="w_tk" name="_Toc193605132">It should be noted that with the way of menu creating described above, the system will first <b>clear the menu container</b> (&lt;div>), and then create the contextual menu. To prevent container data from clearing, the user should use the method described in <b>Contextual menu zones</b> section.<br>
+<br>
+</a>
+<p id="jzju13"><a id="jzju14" name="_Toc193605132"><span id="jzju15" style="background-color: rgb(255, 255, 0);"><b id="w_tk2"><span id="w_tk3" style="background-color: rgb(255, 255, 255);">3.1.3 </span></b></span></a><b id="w_tk2"><a id="ti5y" name="Contextual_Menu_Zones"></a>Context<span id="h3dg" style="background-color: rgb(255, 255, 255);">ual Menu Zones</span></b></p>
+<p id="jzju16"><a id="jzju17" name="_Toc193605132"></a></p>
+<a id="jzju21" name="_Toc193605132">
+ <br id="w_tk5">
+ <span id="jzju22" style="background-color: rgb(255, 255, 0);"><span id="axfx" style="background-color: rgb(255, 255, 255);">A contextual menu zone is the area the user needs to click for a contextual menu to appear. The previous snippet shows us initialization of a contextual menu with <span id="goat" style="color: rgb(0, 0, 0);">the predefined</span> contextual zone: when the user indicates contextual zone id while creating a new menu object, it means that this area is set to be a contextual menu zone <span id="tnnh" style="color: rgb(0, 0, 0);">automatically by script</span>.<br id="qc5w">
+ <br id="qc5w0">
+ In other way, the user can initialize a contextual menu without indicating a contextual zone initially. And use </span></span></a><b id="sk00">addContextZone()</b> method later, which parameter is <b id="c28o">id </b>of the object that will act as a contextual zone:<br id="nsme">
+ <a id="nn5k" name="_Toc193605132"> </a>
+ 
+<blockquote id="l-et">
+ 
+<p id="l-et0">
+ <a id="ssub0" name="_Toc193605132"><span id="ssub1" style="font-family: Verdana;"><font id="ssub2" size="2">&lt;script></font></span></a>
+ </p>
+ 
+<p id="l-et1">
+ <a id="ssub4" name="_Toc193605132"></a>    menu = new dhtmlXMenuObject();
+ </p>
+ 
+<p id="l-et2">
+     menu.renderAsContextMenu();
+ </p>
+ 
+<p id="l-et3">
+     menu.addContextZone(contextZoneId);
+ </p>
+ 
+<p id="l-et4">
+ &lt;/script>
+ </p>
+ </blockquote>
+ A contextual zone can be easily removed with the help of the following method:<br id="wmrz">
+ 
+<blockquote id="blmf">
+ &lt;script><br id="wmrz0">
+     menu.removeContextZone(contextZoneId);<br id="usc6">
+ &lt;/script><br id="usc60">
+ </blockquote>
+ 
+<p id="l-et6">
+ There is also the possibility to check whether an object is a contextual menu zone:<br id="l-et7">
+ </p>
+ 
+<blockquote id="x56j">
+ &lt;script><br id="ph00">
+     <span id="egxk" style="color: rgb(0, 0, 0);">var isZone = </span><span id="ll9n" style="color: rgb(0, 0, 0);">menu.isContextZone(objectId);</span><span id="egxk1" style="color: rgb(0, 0, 0);">  // returns true|false</span><br id="ph000">
+ &lt;/script><a id="l-et17" name="_Toc193605132"></a>
+ 
+ 
+ 
+ <a id="l-et23" name="_Toc193605132"></a><br>
+</blockquote>
+<p id="jzju13"><font size="2"><a id="jzju14" name="_Toc193605132"><span id="jzju15" style="background-color: rgb(255, 255, 0);"><b id="w_tk2"><span id="w_tk3" style="background-color: rgb(255, 255, 255);">3.1.4 Initialization Recommendation</span></b></span></a></font></p>
+<p id="jzju13"><font size="5"><a id="jzju14" name="_Toc193605132"><span id="jzju15" style="background-color: rgb(255, 255, 0);"><b id="w_tk2"><span id="w_tk3" style="background-color: rgb(255, 255, 255);"></span></b></span></a></font><b id="w_tk2"><a id="ti5y" name="Contextual_Menu_Zones"></a><span id="h3dg" style="background-color: rgb(255, 255, 255);"></span></b></p>
+<p id="jzju16"><a id="jzju17" name="_Toc193605132"></a></p>
+<a id="jzju21" name="_Toc193605132">
+ </a>
+<p><br>
+</p>
+<p> </p>
+The recommended way of menu initialization is the following:<br>
+<blockquote>
+<p>&lt;html><br>
+&lt;head><br>
+    &lt;script><br>
+        var menu;<br>
+        <b>function doOnLoad() {</b><br>
+            menu = new dhtmlXMenuObject("parentId");<br>
+        }<br>
+    &lt;/script><br>
+    ...<br>
+&lt;/head><br>
+&lt;body <b>onload="doOnLoad();"</b>><br>
+    &lt;div id="parentId">&lt;/div><br>
+    ...<br>
+&lt;/body><br>
+&lt;/html><br>
+</p>
+</blockquote>
+<h3><a name='menu_wsxz'>3.2 Setting Image Path
+</a></h3>
+<a id="wsxz4" name="_Toc193605132"></a><a id="wsxz2" name="_Toc193605132"></a>
+<p id="jrc02"><a id="jrc05" name="_Toc193605132"></a><a id="jcck97" name="_Toc193605132"></a></p>
+<a id="jrc09" name="_Toc193605132">
+ </a>
+ 
+ <span id="lm96" style="font-family: Verdana;"><font id="dhit" size="2">Methods </font><b id="n0.f">setImagePath</b></span><b id="x604"><span id="r7bq" style="font-family: Tahoma;"><font id="a9qb" size="2">()</font> </span></b><span id="v86x" style="font-family: Tahoma;"><span id="qy.z" style="font-family: Verdana;">and</span> </span><b id="v86x0"><span id="v86x1" style="font-family: Tahoma;"><span id="qy.z0" style="font-family: Verdana;">setIconsPath()</span> </span></b><span id="xh:e" style="font-family: Verdana;"><font id="x:nm" size="2">should be used to </font></span><span id="jx3b" style="font-family: Verdana;"><font id="om81" size="2">set the full paths to the directories, where menu image files are located. The following code strings should be placed before any of data loading methods</font></span><a id="jcck98" name="_Toc193605132"></a><span id="u3lc" style="font-family: Verdana;"><font id="z_0p" size="2">:<br id="srfv">
+ <br id="g6v3">
+ </font></span>
+ 
+<ul id="vw3:">
+ <li id="vw3:0">
+ <span id="vw3:1" style="font-family: Verdana;"><font id="vw3:2" size="2"><b id="ox1t">setImagePath()</b> - in this method the user should set path to </font></span>'codebase/imgs/' directory, where menu <b id="kxj-">skin </b>images are stored. Skin images are grouped by skin name in the directories inside this <b id="x16s">imgs</b> one. The user shouldn't indicate a certain skin images directory inside <b id="j6._">imgs</b> one in setImagePath() method, as the system will do it itself;
+ </li>
+ <li id="v1hq">
+ <b id="hinx">setIconsPath()</b> - by means of this method the user is able to set path to the directory, where menu<b id="kxj-0"> icons</b> images are stored.<br id="iw17">
+ </li>
+ </ul>
+ 
+<blockquote id="l_a.">
+ <span id="k2ta" style="font-family: Verdana;"><font id="d_7o" size="2">&lt;script></font></span><br id="ulkz">
+     menu.setImagePath("[full path to this directory]/codebase/imgs/");<br id="uq2i">
+ <span id="ruv0" style="font-family: Verdana;"><font id="ruv00" size="2">    menu.</font></span><span id="ul.3" style="font-family: Verdana;"><font id="k3m1" size="2">setIconsPath("[</font></span><span id="jcck101" style="font-family: Verdana;"><font id="jcck102" size="2">full path to icons image files directory]</font></span><span id="jcck103" style="font-family: Verdana;"><font id="jcck104" size="2">");</font></span><br id="ds_o0">
+ <span id="jcck105" style="font-family: Verdana;"><font id="jcck106" size="2">&lt;/script></font></span><br id="tg0_0">
+ </blockquote>
+ <a id="jcck109" name="_Toc193605132"></a>
+<h3><a name='menu_lg:2'>3.3 Setting Skin
+ </a></h3>
+<a id="lg:22" name="_Toc193605132"></a><a id="wsxz8" name="_Toc193605132"></a><a id="wsxz9" name="_Toc193605132">
+ </a>
+ 
+ <a id="c5ry" name="_Toc193605132"></a>
+ 
+ <span id="e1w9" style="font-family: Verdana;"><font id="rr36" size="2">We recommend users to choose and set menu skin before data loading. </font></span><span id="wxym" style="font-family: Verdana;"><font id="xqr-" size="2">If the user wants to set a menu skin or change the current/default menu skin to, let's say, <b id="lkok">clear_blue</b> one, he should take the following steps:<br id="tr5x">
+ <br id="w5m4">
+ </font></span>
+ 
+<ul id="b:kaj">
+ <li id="b:kaj0">
+ Set/Change the link to the required skin by the chosen style menu CSS file in the &lt;head> tag of html:<br id="kidm">
+ </li>
+ </ul>
+ 
+<blockquote id="tr5x0">
+ &lt;head><br id="kidm0">
+     &lt;link rel="stylesheet" type="text/css" href="[<span id="id2g0" style="font-family: Verdana;"><font id="id2g2" size="2">full path to this file</font></span>]/<b id="lkok0">dhtmlxmenu_clear_blue.css</b>"><br id="kidm1">
+ &lt;/head><a id="bt3_60" name="_Toc193605132"></a><a id="jcck175" name="_Toc193605132"></a><br id="lkok7">
+ </blockquote>
+ 
+<ul id="trz.">
+ <li style="text-align: left;" id="trz.0">Write the name of the skin as the second parameter for <b id="l_o1"><a id="ikpk0" name="_Toc193605132"><span id="ikpk1" style="font-family: Verdana;"><font id="ikpk2" size="2">dhtmlXMenuObject</font></span></a></b>:<br id="lchm">
+ </li>
+ </ul>
+ 
+<blockquote id="yjrv">
+ <span id="claq" style="font-family: Verdana;"><font id="d0tt" size="2">&lt;script><br id="zcfe">
+     </font></span><a id="l_o12" name="_Toc193605132"><span id="l_o13" style="font-family: Verdana;"><font id="l_o14" size="2">var menu = new dhtmlXMenuObject(</font></span></a><a id="hmfe" name="_Toc193605132"><span id="hmfe0" style="font-family: Verdana;"><font id="hmfe1" size="2"><span id="hmfe2" style="background-color: rgb(255, 255, 255);">"</span></font></span><font id="hmfe3" size="2"><span class="attribute-value" id="hmfe4">menuObj</span></font><span id="hmfe5" style="font-family: Verdana;"><font id="hmfe6" size="2"><span id="hmfe7" style="background-color: rgb(255, 255, 255);">"</span></font></span></a><a id="hmfe8" name="_Toc193605132"></a><a id="hmfe10" name="_Toc193605132"><span id="hmfe11" style="font-family: Verdana;"><font id="hmfe12" size="2">, <span id="ikpk3" style="background-color: rgb(255, 255, 255);">"<b id="fkdk">clear_blue</b>"</span>);<br id="hmfe13">
+    //or<br id="hmfe14">
+    </font></span></a><a id="spxb" name="_Toc193605132">menu = new dhtmlXMenuObjec<span id="spxb0" style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);">t</span><span id="spxb1" style="color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);">("contextArea</span><span id="spxb2" style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);">"</span></a><a id="spxb5" name="_Toc193605132"><span id="spxb6" style="font-family: Verdana;"><font id="spxb7" size="2">, <span id="spxb8" style="background-color: rgb(255, 255, 255);">"<b id="fkdk0">clear_blue</b>"</span></font></span></a><span id="spxb9" style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);">);</span><br id="spxb10">
+     menu.renderAsContextMenu();<br id="zcfe0">
+<a id="spxb12" name="_Toc193605132"></a><span id="mqd45" style="font-family: Verdana;"><font id="mqd46" size="2">
+ &lt;/script><br id="smyr">
+ </font></span>
+ </blockquote>
+ <span id="laxj" style="font-family: Verdana;"><b id="fkdk1">Note</b><i id="jyx5">: </i></span><span id="nedn" style="font-family: Verdana;"><font id="nedn0" size="2">there's no need to write the name of the skin as the second argument for the default menu skin (dhx_blue).<br id="lkoz">
+<br id="zzhu">
+</font></span>
+ 
+<p id="fav9"><span id="gn10" style="font-family: Verdana;"><font id="bg2j" size="2"><b id="za0j">3.3.1 <a id="u92i" name="Available_Skins"></a>Available Skins</b></font></span></p>
+<p id="fav90"></p>
+<span id="fav92" style="font-family: Verdana;"><font id="fav93" size="2"><br id="za0j1">
+The following predefined skins are available in </font><b id="o4uz">dhtmlxMenu</b><font id="m49g" size="2"> 2.0:<br id="nblc">
+<br id="nblc0">
+dhx_blue (the default one)</font></span><br id="lkoz0">
+<div id="dy7v" style="padding: 1em 0pt; text-align: left;">
+<div id="d00e" style="padding: 1em 0pt; text-align: left;"><img id="byj4" src="common/dgr5rjkf_177c5mhqtdq_b.png" width="259" height="171"></div>
+</div>
+<p id="p97b"><span id="lkoz1" style="font-family: Verdana;"><font id="lkoz2" size="2">dhx_black</font></span></p>
+<p id="p97b0">
+ </p>
+<span id="p97b3" style="font-family: Verdana;"><font id="p97b4" size="2">
+<div id="r822" style="padding: 1em 0pt; text-align: left;"><img id="bbnx" src="common/dgr5rjkf_178g8vphsfv_b.png" width="263" height="171"></div>
+aqua_dark<br id="gyos">
+ </font>
+ 
+<div id="f-re" style="padding: 1em 0pt; text-align: left;">
+ <img id="p93c" src="common/dgr5rjkf_72dvqwmhfs_b.png" style="width: 220px; height: 248px;">
+ </div>
+ <font id="cr.z3" size="2">aqua_orange<br id="asc8">
+ </font>
+ 
+<div id="k7.g" style="padding: 1em 0pt; text-align: left;">
+ <img id="dkst" src="common/dgr5rjkf_73hnpxvchn_b.png" style="width: 220px; height: 248px;">
+ </div>
+ <font id="cr.z5" size="2">aqua_sky<br id="mwew">
+ </font>
+ 
+<div id="hwr:" style="padding: 1em 0pt; text-align: left;">
+ <img id="xgz." src="common/dgr5rjkf_74d65d4d8x_b.png" style="width: 220px; height: 248px;">
+ </div>
+ <font id="cr.z7" size="2">clear_blue<br id="k4_i">
+ </font>
+ 
+<div id="eno-" style="padding: 1em 0pt; text-align: left;">
+ <img id="xc9y" src="common/dgr5rjkf_75cx4qnpc7_b.png" style="width: 220px; height: 249px;">
+ </div>
+ <font id="cr.z9" size="2">clear_green<br id="n7cb">
+ </font>
+ 
+<div id="rc6y" style="padding: 1em 0pt; text-align: left;">
+ <img id="ca7u" src="common/dgr5rjkf_76cprwprg3_b.png" style="width: 220px; height: 249px;">
+ </div>
+ <font id="cr.z11" size="2">clear_silver<br id="wmi6">
+ </font>
+ 
+<div id="hyo4" style="padding: 1em 0pt; text-align: left;">
+ <img id="vld-" src="common/dgr5rjkf_77d2zct25d_b.png" style="width: 220px; height: 249px;">
+ </div>
+ <font id="cr.z13" size="2">modern_black<br id="b-qf">
+ </font>
+ 
+<div id="c_ov" style="padding: 1em 0pt; text-align: left;">
+ <img id="v.30" src="common/dgr5rjkf_78dnr536c2_b.png" style="width: 220px; height: 271px;">
+ </div>
+ <font id="cr.z15" size="2">modern_blue<br id="lg.t">
+ </font>
+ 
+<div id="kkiw" style="padding: 1em 0pt; text-align: left;">
+ <img id="eu18" src="common/dgr5rjkf_79dzj4rhdd_b.png" style="width: 220px; height: 271px;">
+ </div>
+ <font id="cr.z17" size="2">modern_red<br id="t6qe">
+ </font>
+ 
+<div id="a38l" style="padding: 1em 0pt; text-align: left;">
+ <img id="i5i6" src="common/dgr5rjkf_80htvhvjd9_b.png" style="width: 220px; height: 271px;">
+ </div>
+ <font id="cr.z19" size="2">standard<br id="pqha">
+ </font>
+ 
+<div id="o61q" style="padding: 1em 0pt; text-align: left;">
+ <img id="ji:." src="common/dgr5rjkf_81dtsmpvg6_b.png" style="width: 220px; height: 223px;"><br id="vckh">
+<br id="vckh0">
+It should be noted that some skins can be available as <b id="yjpd">addons</b>, and they are not included into the package. But they can be downloaded from the site.<br id="vxak">
+<h3><a name='menu_vxak0'>3.4 Data Loading</a></h3>
+<p id="jcck185"><span id="vxak2" style="font-weight: normal;">The next step of initialization of </span>dhtmlxMenu <span id="vxak3" style="font-weight: normal;">component is Data Loading. </span>The user can choose one of 5 data loading possibilities:<br id="s7um">
+</p>
+</div>
+</span>
+<ul id="j13a">
+ <li id="ovdq">
+ <b id="e.g:"><a href="RawDocContents?docID=dgr5rjkf_136dmwghngs&amp;justBody=false&amp;revision=_latest&amp;timestamp=1214817857400&amp;editMode=true&amp;strip=true#Data_Loading_from_XML_File" id="blfl" title="From external XML file">From external XML file</a></b> (with Ajax);<br id="o:dp">
+ </li>
+ <li id="elei">
+ <b id="e.g:0"><a href="RawDocContents?docID=dgr5rjkf_136dmwghngs&amp;justBody=false&amp;revision=_latest&amp;timestamp=1214817857400&amp;editMode=true&amp;strip=true#Data_Loading_from_XML_String" id="guur" title="From XML string;">From XML string;</a></b>
+ </li>
+ <li id="g00p">
+ <b id="e.g:1"><a href="RawDocContents?docID=dgr5rjkf_136dmwghngs&amp;justBody=false&amp;revision=_latest&amp;timestamp=1214817857400&amp;editMode=true&amp;strip=true#Data_Loading_from_HTML_Object" id="jwwu" title="From HTML object">From HTML object</a>;
+ </b></li>
+ <li id="zme4">
+ <b id="e.g:2"><a href="#Loading_Data_from_Script" id="l26u" title="From script">From Script</a>;<br id="zme40">
+</b>
+ </li>
+ <li id="aarb">
+ <b id="e.g:3"><a href="RawDocContents?docID=dgr5rjkf_136dmwghngs&amp;justBody=false&amp;revision=_latest&amp;timestamp=1214817857400&amp;editMode=true&amp;strip=true#Dynamic_Loading" id="c-8j" title="Dynamical loading">Dynamical loading</a></b> (with Ajax).<br id="q937">
+ </li>
+ </ul>
+ 
+<p id="j91c"><b id="j91c0"><a id="if:3" name="_Toc193605132"><span id="p0tv" style="font-family: Verdana;"><font id="t9:r" size="2">3.4.1 </font></span></a><font id="jcck186" size="2"><a id="uo60" name="Data_Loading_from_XML_File"></a>Data Loading from XML File</font></b></p>
+<p id="j91c1">
+ </p>
+ 
+ 
+ <a id="dw45" name="_Toc193605132"></a>
+ 
+ <b id="n:fh">loadXML()</b> method loads menu data from an XML file. When the data is loaded into the object, <b id="f_ee">a user-defined </b>handler is called (<a title="onLoadFunction" href="#onLoadFunction%28%29" id="zcuv">onLoadFunction</a>), if it was indicated by the user. All the data is loaded at once:<br id="r:df">
+ 
+<blockquote id="bl10">
+ &lt;script><br id="thvt">
+     menu.loadXML("<span id="jcck187" style="font-family: Verdana;"><font id="jcck188" size="2">[path to this file</font></span>]/file.xml", <span id="z-e7" style="color: rgb(0, 0, 0);">onLoadFunction</span><span id="rrhg" style="color: rgb(0, 0, 0);">);</span><br id="uvak" style="color: rgb(0, 0, 0);">
+ <span id="z-e70" style="color: rgb(0, 0, 0);">    onLoadFunction = function(){</span><br id="uvak0" style="color: rgb(0, 0, 0);">
+ <span id="z-e71" style="color: rgb(0, 0, 0);">        // will be called if specified</span><br id="uvak1" style="color: rgb(0, 0, 0);">
+ <span id="z-e72" style="color: rgb(0, 0, 0);">    }</span><br id="thvt0" style="color: rgb(255, 0, 0);">
+ &lt;/script><br id="ay0j">
+ </blockquote>
+ 
+ <a id="oe5u" name="_Toc193605132"></a>
+ 
+ 
+<p id="s7um3">
+ The first parameter of <b id="jcck189">loadXML() </b>method is the path to the XML file, while the second parameter is an optional user-defined handler.</p>
+<p id="ugf5">See <b id="y9y_"><a title="here" href="#XML_Format_Template" id="pk38">here</a> </b>for <b id="h5.k1">XML Format Template</b>.<br id="vjhm">
+ </p>
+ 
+ 
+<p id="j91c4"><b id="j91c5"><a id="jcck191" name="_Toc193605132"><span id="cs13" style="font-family: Verdana;"><font id="ur-7" size="2">3.4.2</font></span></a><font id="jcck192" size="2"><a id="q7xr" name="Data_Loading_from_XML_String"></a> Data Loadi<span id="x.rw" style="background-color: rgb(255, 255, 255);">n</span><span id="y9qb" style="background-color: rgb(255, 255, 255);">g from XML String</span></font></b></p>
+ 
+ <b id="r9pt">loadXMLString()</b> method loads menu data from the XML string. When the data is loaded into the object, <b id="vxkc">a user-defined </b>handler is called (<a title="onLoadFunction" href="RawDocContents?docID=dgr5rjkf_22cp5x64fz&amp;justBody=false&amp;revision=_latest&amp;timestamp=1217420784827&amp;editMode=true&amp;strip=true#onLoadFunction%28%29" id="mvi_">onLoadFunction</a>).<br id="i.9e">
+ All the data is loaded at once:<br id="hd1f">
+ 
+<blockquote id="h8hq">
+ &lt;script><br id="thvt1">
+     menu.loadXMLString("&lt;menu>&lt;item....>", <a id="w5y1" name="_Toc193605132" style="color: rgb(0, 0, 0);"><span id="w5y10" style="font-family: Verdana;">onLoadFunction</span></a><span id="bupx" style="color: rgb(0, 0, 0);">);</span><br id="thvt2" style="color: rgb(0, 0, 0);">
+ <span id="xk4f" style="color: rgb(0, 0, 0);">    onLoadFunction = function(){</span><br id="xk4f0" style="color: rgb(0, 0, 0);">
+ <span id="xk4f1" style="color: rgb(0, 0, 0);">        // will be called if specified</span><br id="xk4f2" style="color: rgb(0, 0, 0);">
+ <span id="xk4f3" style="color: rgb(0, 0, 0);">    }<br id="xk4f4">
+ </span><span id="bupx0" style="color: rgb(0, 0, 0);"> &lt;/script></span><br id="mmyo">
+ </blockquote>
+ 
+ <a id="d8ar" name="_Toc193605132"></a>
+ 
+ 
+<p id="d.y9">
+ The first parameter for <b id="jcck193">loadXMLString() </b>method is the XML string from our html file, while the second parameter is an optional user-defined handler.</p>
+<p id="a63i">See <b id="a63i0"><a title="here" href="RawDocContents?docID=dgr5rjkf_22cp5x64fz&amp;justBody=false&amp;revision=_latest&amp;timestamp=1219908307547&amp;editMode=true&amp;strip=true#XML_Format_Template" id="a63i1">here</a> </b>for <b id="a63i2">XML Format Template</b>.
+ </p>
+ 
+ 
+<p id="j91c7"><b id="j91c8"><a id="jcck195" name="_Toc193605132"><span id="a62-" style="font-family: Verdana;"><font id="oy5a" size="2">3.4.3 </font></span></a><font id="jcck196" size="2"><a id="qvw:" name="Data_Loading_from_HTML_Object"></a>Data <span id="h8hh0" style="background-color: rgb(255, 255, 255);">Loading from HTML Object</span></font></b></p>
+<p id="j91c9">
+ </p>
+ 
+ 
+ <a id="h31c" name="_Toc193605132"></a>
+ 
+ 
+<p id="nrrm">
+ <a id="wxpz" name="_Toc193605132"><span id="lys." style="font-family: Verdana;"><font id="r7jx" size="2"><b id="xewo">loadFromHTML()</b> </font></span></a>method loads content from HTML object to the menu. First, the user should create this HTML object. For example:
+ </p>
+ 
+<blockquote id="c_pi">
+ 
+<pre id="rn68"><span id="c_pi0" style="font-family: Verdana;">&lt;body></span><br id="b2bs" style="font-family: Verdana;"><span id="c_pi1" style="font-family: Verdana;">    &lt;</span><span class="start-tag" id="rn680" style="font-family: Verdana;">div</span><span class="attribute-name" id="rn681" style="font-family: Verdana;"> id</span><span id="c_pi2" style="font-family: Verdana;">=</span><span class="attribute-value" id="rn682" style="font-family: Verdana;">"menuData" </span><span class="attribute-name" id="rn683" style="font-family: Verdana;">style</span><span id="c_pi3" style="font-family: Verdana;">=</span><span class="attribute-value" id="rn684" style="font-family: Verdana;">"display: none;"</span><span id="c_pi4" style="font-family: Verdana;">></span><br id="rn685" style="font-family: Verdana;">        <span id="c_pi6" style="font-family: Verdana;">&lt;</span><span class="start-tag" id="rn688" style="font-family: Verdana;">div</span><span class="attribute-name" id="rn689" style="font-family: Verdana;"> id</span><span id="c_pi7" style="font-family: Verdana;">=</span><span class="attribute-value" id="rn6810" style="font-family: Verdana;">"m1" </span><span class="attribute-name" id="rn6811" style="font-family: Verdana;">text</span><span id="c_pi8" style="font-family: Verdana;">=</span><span class="attribute-value" id="rn6812" style="font-family: Verdana;">"File"</span><span id="c_pi9" style="font-family: Verdana;">> // the first top menu item</span><br id="rn6813" style="font-family: Verdana;"><span id="c_pi10" style="font-family: Verdana;">	     &lt;</span><span class="start-tag" id="rn6814" style="font-family: Verdana;">div</span><span class="attribute-name" id="rn6815" style="font-family: Verdana;"> id</span><span id="c_pi11" style="font-family: Verdana;">=</span><span class="attribute-value" id="rn6816" style="font-family: Verdana;">"m11" </span><span class="attribute-name" id="rn6817" style="font-family: Verdana;">text</span><span id="c_pi12" style="font-family: Verdana;">=</span><span class="attribute-value" id="rn6818" style="font-family: Verdana;">"New" </span><span id="c_pi15" style="font-family: Verdana;">&lt;</span><span class="start-tag" id="rn6823" style="font-family: Verdana;">hotkey</span><span id="c_pi16" style="font-family: Verdana;">>Ctrl+N&lt;/</span><span class="end-tag" id="rn6824" style="font-family: Verdana;">hotkey</span><span id="c_pi17" style="font-family: Verdana;">>&lt;/</span><span class="end-tag" id="rn6825" style="font-family: Verdana;">div</span><span id="c_pi18" style="font-family: Verdana;">>//</span><span id="bkr_" style="font-family: Verdana;"> the first</span> <span id="bkr_0" style="font-family: Verdana;">child item</span><br id="bkr_1"><span id="c_pi19" style="font-family: Verdana;">	     &lt;</span><span class="start-tag" id="rn6827" style="font-family: Verdana;">div</span><span class="attribute-name" id="rn6828" style="font-family: Verdana;"> id</span><span id="c_pi20" style="font-family: Verdana;">=</span><span class="attribute-value" id="rn6829" style="font-family: Verdana;">"ms1" </span><span class="attribute-name" id="rn6830" style="font-family: Verdana;">type</span><span id="c_pi21" style="font-family: Verdana;">=</span><span class="attribute-value" id="rn6831" style="font-family: Verdana;">"separator"</span><span id="c_pi22" style="font-family: Verdana;">>&lt;/</span><span class="end-tag" id="rn6832" style="font-family: Verdana;">div</span><span id="c_pi23" style="font-family: Verdana;">> // a separator</span><br id="rn6833" style="font-family: Verdana;"><span id="c_pi24" style="font-family: Verdana;">	     &lt;</span><span class="start-tag" id="rn6834" style="font-family: Verdana;">div</span><span class="attribute-name" id="rn6835" style="font-family: Verdana;"> id</span><span id="c_pi25" style="font-family: Verdana;">=</span><span class="attribute-value" id="rn6836" style="font-family: Verdana;">"m12" </span><span class="attribute-name" id="rn6837" style="font-family: Verdana;">text</span><span id="c_pi26" style="font-family: Verdana;">=</span><span class="attribute-value" id="rn6838" style="font-family: Verdana;">"Open"</span><span id="c_pi27" style="font-family: Verdana;">>&lt;</span><span class="start-tag" id="rn6839" style="font-family: Verdana;">hotkey</span><span id="c_pi28" style="font-family: Verdana;">>Ctrl+O&lt;/</span><span class="end-tag" id="rn6840" style="font-family: Verdana;">hotkey</span><span id="c_pi29" style="font-family: Verdana;">>&lt;/</span><span class="end-tag" id="rn6841" style="font-family: Verdana;">div</span><span id="c_pi30" style="font-family: Verdana;">> // the second child item</span><br id="rn6842" style="font-family: Verdana;"><span id="c_pi31" style="font-family: Verdana;">        &lt;/div></span><br id="vk40" style="font-family: Verdana;"><span id="c_pi32" style="font-family: Verdana;">    &lt;/div></span><br id="u1vr" style="font-family: Verdana;"><span id="c_pi33" style="font-family: Verdana;">&lt;/body></span></pre>
+ </blockquote>
+ 
+<p id="rn6844">
+ </p>
+ 
+<p id="s.-z0">
+ </p>
+ 
+<p id="s.-z2">
+ Then <b id="fyyi0"><a id="fyyi1" name="_Toc193605132"><span id="fyyi2" style="font-family: Verdana;"><font id="fyyi3" size="2"><b id="fyyi4">loadFromHTML() </b></font></span></a></b><a id="fyyi5" name="_Toc193605132"><span id="fyyi6" style="font-family: Verdana;"><font id="fyyi7" size="2">should be applied with the following parameters:</font></span></a><br id="j7zv">
+ </p>
+ 
+<p id="s.-z5">
+ <br id="prjh">
+ </p>
+ 
+<ul id="eq77">
+ <li id="q6tg">
+ <b id="va9t">objectId</b> - id of data container <span id="ru9k" style="color: rgb(0, 0, 0);">("</span><span class="attribute-value" id="gue00" style="font-family: Verdana; color: rgb(0, 0, 0);"><b id="gue01"><b id="gue02">menuData</b></b></span><span id="ru9k0" style="color: rgb(0, 0, 0);">" in our case)</span>;
+ </li>
+ <li id="xfct">
+ <b id="s15q">clear -</b> true|false, re<span id="bfva" style="background-color: rgb(255, 255, 255);">m</span><font id="an6d" style="background-color: rgb(255, 255, 255);" color="#000000">oves HTML object after data was loaded, if this parameter is set to <b id="xm4v">true</b>;</font>
+ </li>
+ <li id="ycui">
+ <a id="ajn9" name="_Toc193605132"></a><b id="mvi_0"><a title="onLoadFunction" href="RawDocContents?docID=dgr5rjkf_22cp5x64fz&amp;justBody=false&amp;revision=_latest&amp;timestamp=1217420784827&amp;editMode=true&amp;strip=true#onLoadFunction%28%29" id="mvi_1">onLoadFunction</a></b><a id="mvi_2" name="_Toc193605132"></a><b id="mvi_3"><a id="mvi_4" name="_Toc193605132"></a> -</b> a user-defined handler, which will be called, when the data is loaded <span id="mipe" style="color: rgb(0, 0, 0);">(optional)</span>.
+ </li>
+ </ul>
+ 
+<p class="MsoNormal" id="iu0j">
+ <a id="uvru" name="DDE_LINK7"></a>
+ </p>
+ 
+<blockquote id="lc.j">
+ &lt;script><br id="lho4">
+     menu.loadFromHTML(objectId, clear, <a id="ycui2" name="_Toc193605132"><span id="ycui3" style="font-family: Verdana;">f</span></a>unction(){});<br id="t5r5">
+ &lt;/script><br id="vrmy">
+ </blockquote>
+ 
+ <a id="ytzw" name="_Toc193605132"></a>
+ 
+ 
+<p id="r:f1">
+ So, in our example this code will look like this (without any user-defined handler):<br id="a-hg">
+ </p>
+ 
+<blockquote id="o3qm">
+ 
+<p id="a-hg0">
+ &lt;script><br id="a-hg1">
+ </p>
+ 
+<p id="a-hg2">
+     menu.loadFromHTML("<span id="wlct0" style="color: rgb(0, 0, 0);">menuData</span>", true);
+ </p>
+ 
+<p id="a-hg3">
+ &lt;/script><br id="t5r52">
+ </p>
+ </blockquote>
+ 
+<p id="a1op">
+ </p>
+ 
+ 
+ 
+ 
+<p id="v8q8"><b id="v8q80"><a id="rc:.2" name="_Toc193605132"><span id="rc:.3" style="font-family: Verdana;"><font id="zvan" size="2">3.4.4</font></span></a><font id="jcck197" size="2"><a id="i2hg" name="Dynamic_Loading"></a> <a id="upxm" name="Loading_Data_from_Script"></a>Data <font id="x-ov" size="2"><a id="x-ov0" name="Loading_Data_from_Script"></a>Loading </font>from Script</font></b></p>
+<p id="v8q81">
+ </p>
+ 
+ 
+<p id="loqb2">
+ Loading data from script means that the user should write a special method for adding every menu item. <font id="i8w3" size="2">In our example to add a new sibling item, a child item, a new separator and set a hotkey, we should write the following:</font><br id="vq9h">
+ </p>
+ 
+<blockquote id="y3-4">
+ 
+<p id="loqb3">
+ <font id="i8w31" size="2">&lt;script></font>
+ </p>
+ 
+<p id="loqb4">
+ <font id="i8w33" size="2">    menu.addNewSibling(null, "file", "File", false); <span id="e4_n" style="color: rgb(0, 0, 0);">// adding the first item to the menu, "nextToId" param is null</span><br id="vq9h1" style="color: rgb(0, 0, 0);">
+ </font>
+ </p>
+ 
+<p id="loqb5" style="color: rgb(0, 0, 0);">
+ <font id="vq9h3" size="2">    menu.addNewChild("file", 0, "file_new", "New", false); // adding a new child item<br id="loqb6">
+ </font>
+ </p>
+ 
+<p id="loqb7">
+ <font id="loqb8" size="2"><span id="mpo4" style="color: rgb(0, 0, 0);">    menu.setHotKey("file_new", "Ctrl+N"); </span><span id="e4_n0" style="color: rgb(0, 0, 0);">// setting a hotkey to a button</span><br id="loqb9">
+ </font>
+ </p>
+ 
+<p id="loqb10">
+ <font id="loqb11" size="2">    menu.addNewSeparator("file_new"); // adding a separator</font>
+ </p>
+ 
+<p id="loqb12">
+ <font id="loqb13" size="2">&lt;/script></font><br id="k9xr5">
+ </p>
+ </blockquote>
+ 
+<p id="rjp.">
+ Refer to the section<b id="jw9l"> <a href="#Items_Settings_Manipulations" id="a:yb" title="Items Settings Manipulations">Items Settings Manipulations</a></b> to learn about the methods used in the above mentioned snippet.<br id="rjp.0">
+ </p>
+ 
+ 
+<p id="v8q84"><b id="v8q85"><font id="k9xr7" size="2">3.4.5 Dynamical Loading</font></b></p>
+ 
+ Dynamical loading means loading data on request. The user can split data into parts by levels and decrease loading time this way.<br id="m.bb">
+ <b id="u85t">enableDynamicLoading()</b> method should be used with the following parameters:<br id="h1ap">
+ <br id="g:5q">
+ 
+<ul id="d5ix">
+ <li id="pbu3">
+ <b id="b2v9">url </b>- server-side script, transmitted parameters are action (set to "loadMenu") and "parentId" (will pass <b id="fojg">id </b>of the selected complex item for loading its child items into sub-level polygon<span id="ypjl" style="font-family: 'Times New Roman';"><font id="uj0z" size="3">)</font></span>;
+ </li>
+ <li id="m4.1">
+ <b id="mbkv">icon -</b> true|false, replaces item's arrow icon while loading data with a "loading" icon to indicate the process of data loading.<a id="m4.11" name="_Toc193605132"></a>
+ </li>
+ </ul>
+ 
+<blockquote id="fjs3">
+ &lt;script><br id="innf">
+     menu.enableDynamicLoading(url, icon<a id="m4.13" name="_Toc193605132"></a>);<br id="innf0">
+ &lt;/script><br id="nt66">
+ </blockquote>
+ 
+ <a id="ab.v" name="_Toc193605132"></a>
+ 
+ 
+ <a id="h6x8" name="_Toc193605132"></a>
+ 
+ 
+<p id="mkfq">
+ <font id="g3l:0" size="2">So, in our case we should write this line of code (without an icon):</font><br id="mkfq1">
+ 
+ </p>
+ 
+<blockquote id="innf1">
+ 
+<p id="mkfq2">
+ <font id="mkfq3" size="2">&lt;script></font>
+ </p>
+ 
+<p id="avw6">
+ <font id="avw60" size="2">    menu.enableDynamicLoading("[script url]");</font>
+ </p>
+ 
+<p id="innf2">
+ <font id="innf3" size="2">&lt;/script><br id="innf4">
+ </font>
+ </p>
+ </blockquote>
+ 
+ 
+<p id="hvg0"><b id="hvg00"><a id="g3l:4" name="_Toc193605132"><span id="g3l:5" style="font-family: Verdana;"><font id="ucou" size="2">3.4.6 </font></span></a><font id="aur1" size="2"><a id="kpws" name="onLoadFunction()"></a>onLoadFunction()</font></b></p>
+<p id="hvg01">
+ </p>
+ 
+ 
+ <a id="ik4-" name="_Toc193605132"></a>
+ 
+ 
+<p id="bt_b">
+ <a id="bt_b0" name="_Toc193605132"><b id="bt_b1"><span id="bt_b2" style="font-family: Verdana;"><font id="bt_b4" size="2">onLoadFunction()</font></span></b> </a><a id="wj7j" name="_Toc193605132"><span id="fs2j" style="font-family: Verdana;">is a user-defined handler that is called after the data was loaded into the object</span></a><a id="tn.u" name="_Toc193605132"><span id="wi_h" style="font-family: Verdana;">:</span></a>
+ </p>
+ 
+<p id="wro9">
+ </p>
+ 
+<blockquote id="ucfg">
+ 
+<p id="qglu">
+ <a id="rd73" name="_Toc193605132"><span id="i2_d" style="font-family: Verdana;">&lt;script><br id="y3-40">
+ </span></a>
+ </p>
+ 
+<p id="y3-41">
+ <a id="y3-42" name="_Toc193605132"><span id="y3-43" style="font-family: Verdana;">    menu.loadXML("file.xml", function(){</span></a>
+ </p>
+ 
+<p id="jcck198">
+ <a id="jcck199" name="_Toc193605132"><span id="jcck200" style="font-family: Verdana;">        alert(the data is loaded); // will be invoked after XML file was loaded (after onXLE, if specified)<br id="jnp0">
+ </span></a>
+ </p>
+ 
+<p id="jcck201">
+ <a id="jcck202" name="_Toc193605132"><span id="jcck203" style="font-family: Verdana;">    });</span></a>
+ </p>
+ 
+<p id="y3-44">
+ <a id="y3-45" name="_Toc193605132"><span id="y3-46" style="font-family: Verdana;">&lt;/script></span></a><br id="xy.-2">
+ 
+ </p>
+ </blockquote>
+ 
+<h3><a name='menu_x-ov1'>
+ 3.5 Global Parameters
+ 
+ </a></h3>
+ 
+ 
+ <a id="zh9i" name="_Toc193605132"></a>
+ 
+ 
+ 
+<p id="hvg04"><b id="hvg05"><a id="jcck213" name="_Toc193605132"><span id="llkg" style="font-family: Verdana;"><font id="fupi" size="2">3.5.1 Setting Menu Mode</font></span></a></b></p>
+ The user can choose what mode to set for the top-level items of the new menu object. There are two modes available:<br id="cfgb">
+ <br id="e7yq">
+ 
+<ul id="u1jd">
+ <li id="xv9t">
+ <b id="l9l9">win</b> - In this mode the user should click any complex item in the top-level polygon to expand it. The item will be expanded until the user clicks<font id="rvq0" style="font-family: Verdana;" size="2"> any top-level open item in </font>the menu, or any other place on the page;
+ </li>
+ <li id="ih41">
+ <b id="p9jf0">web </b>(the default one) - In this mode items in the top-level polygon are expanded immediately, when the user hovers the mouse over any of them. When the mouse is moved outside the menu area, the open item collapses.
+ </li>
+ </ul>
+ <br id="cfgb0">
+ <b id="z-es">setOpenMode()</b> method is used to set the menu mode<a id="jcck214" name="_Toc193605132"></a><span id="jcck215" style="font-family: Verdana;"><font id="jcck216" size="2">:</font></span><br id="y3z2">
+ 
+<blockquote id="fwfk">
+ &lt;script><br id="q_j7">
+     menu.setOpenMode("win");<br id="q_j70">
+ &lt;/script><br id="chhd">
+ </blockquote>
+ <i id="w51b">Note</i>: setting of the <b id="kmng">web </b>mode from the script is not required because it's already set by default.<br id="f9ds">
+ 
+ 
+<p id="hvg07"><b id="hvg08"><a id="j1w6" name="_Toc193605132"><span id="v6vx" style="font-family: Verdana;"><font id="ua-7" size="2">3.5.2 Setting Timeout for Web Mode</font></span></a></b></p>
+<p id="hvg09"><a id="hvg010" name="_Toc193605132">
+ </a></p>
+ 
+ 
+ <a id="h3es" name="_Toc193605132"></a>
+ 
+ When the Menu is set to the <b id="ya8o">web</b> mode, there is an opportunity to set the period of time, during which the menu will be held expanded, even if the user moves the mouse outside the menu area. By default this time is set to <b id="oifz">400 msec</b>.<br id="g54.">
+ To set this time period the user should use <b id="ume4">setWebModeTimeout()</b> method:<br id="paks">
+ 
+<blockquote id="kkms">
+ &lt;script><br id="u:ve">
+     menu.setWebModeTimeout(time);<br id="u:ve0">
+ &lt;/script><br id="g:9e">
+ </blockquote>
+ 
+ <a id="n_i1" name="_Toc193605132"></a>
+ 
+ 
+ 
+<p id="hvg014"><b id="hvg015"><a id="jcck218" name="_Toc193605132"><span id="bkb2" style="font-family: Verdana;"><font id="yc-q" size="2">3.5.3 Setting Visible Area</font></span></a></b></p>
+ 
+ <b id="w215">setVisibleArea()</b> method sets the <span id="nks4" style="color: rgb(0, 0, 0);">rectangle</span> area in which sub-level polygon items will be able to appear. If this area is not set, sub-level polygon items can occupy any available visible space.<br id="j1v1">
+ The parameters are:<br id="xagg0">
+ <br id="pluq">
+ 
+<ul id="hccv">
+ <li id="curz">
+ <b id="wt60">x1, x2</b> - int, leftmost and rightmost coordinates by x axis;
+ </li>
+ <li id="hoer">
+ <b id="isxu">y1, y2</b> - int, topmost and bottommost coordinates by y axis.<br id="jr58">
+ </li>
+ </ul>
+ 
+<blockquote id="vmwj">
+ &lt;script><br id="myvc">
+     menu.setVisibleArea(x1,x2,y1,y2);<br id="myvc0">
+ &lt;/script><br id="h5ww">
+ </blockquote>
+ 
+ 
+<p style="background-color: rgb(255, 255, 255);" id="hvg017"><a id="a19x" name="_Toc193605132"><span id="ptds" style="font-family: Verdana;"><font id="ezvc" size="2">Usage example</font></span></a><a id="a19x" name="_Toc193605132"><span id="ptds" style="font-family: Verdana;"><font id="ezvc" size="2"><br>
+</font></span></a></p>
+<p style="background-color: rgb(255, 255, 255);" id="hvg017"><b id="cjlh"><a id="a19x" name="_Toc193605132"><span id="ptds" style="font-family: Verdana;"></span></a></b></p>
+<p style="background-color: rgb(255, 255, 255);" id="hvg017"><b id="cjlh"><a id="a19x" name="_Toc193605132"><span id="ptds" style="font-family: Verdana;"></span></a></b></p>
+<p style="background-color: rgb(255, 255, 255);" id="hvg017"><b id="cjlh"><a id="a19x" name="_Toc193605132"><span id="ptds" style="font-family: Verdana;"></span></a></b></p>
+<p style="background-color: rgb(255, 255, 255);" id="hvg017"><b id="cjlh"><a id="a19x" name="_Toc193605132"><span id="ptds" style="font-family: Verdana;"><font id="ezvc" size="2"><br>
+</font></span></a></b></p>
+<p style="background-color: rgb(255, 255, 255);" id="hvg017"><b id="cjlh"><a id="a19x" name="_Toc193605132"><span id="ptds" style="font-family: Verdana;"></span></a></b></p>
+<p style="background-color: rgb(255, 255, 255);" id="hvg017"><b id="cjlh"><a id="a19x" name="_Toc193605132"><span id="ptds" style="font-family: Verdana;"></span></a></b></p>
+<p style="background-color: rgb(255, 255, 255);" id="hvg017"><a id="a19x" name="_Toc193605132"><span id="ptds" style="font-family: Verdana;"><font id="ezvc" size="2">When using dhtmlxGrid with Contextual menu you often meet some inconveniences. For example </font></span></a><a id="a19x" name="_Toc193605132"><span id="ptds" style="font-family: Verdana;"><font id="ezvc" size="2">you need to read contextual menu of the record placed at the bottom of the grid, but the appearing of browser's scrollbars will disturb the impementation of this task. To avoid scrolling appearence set visible area and define menu position. </font></span></a><a id="a19x" name="_Toc193605132"><span id="ptds" style="font-family: Verdana;"><font id="ezvc" size="2">(set grid's coordinates to acheive this).</font></span></a></p>
+<p id="hvg017"><a id="a19x" name="_Toc193605132"><span id="ptds" style="font-family: Verdana;"></span></a></p>
+<p id="hvg017"><a id="a19x" name="_Toc193605132"><span id="ptds" style="font-family: Verdana;"></span></a></p>
+<p id="hvg017"><a id="a19x" name="_Toc193605132"><span id="ptds" style="font-family: Verdana;"><font id="ezvc" size="2">
+<div id="mlwy" style="padding: 1em 0pt; text-align: left;"><img style="width: 538px; height: 530px;" src="common/ddvbbsvw_7fsjpsffw_b.png"></div>
+</font></span></a></p>
+<p id="hvg017"><b id="cjlh"><a id="a19x" name="_Toc193605132"><span id="ptds" style="font-family: Verdana;"><font id="ezvc" size="2"><br>
+</font></span></a></b></p>
+<p id="hvg017"><b id="cjlh"><a id="a19x" name="_Toc193605132"><span id="ptds" style="font-family: Verdana;"><font id="ezvc" size="2">3.5.4 Hiding Open Polygons</font></span></a></b></p>
+<p id="hvg018"><a id="hvg019" name="_Toc193605132">
+ </a></p>
+ 
+ There is the possibility to hide <b id="mmo_">all</b> open polygons in a menu from script with the help of <b id="qgei">hide()</b> method:<br id="n0:3">
+ 
+<blockquote id="sc7a">
+ &lt;script>    <br id="hzza">
+     menu.hide();<br id="hzza0">
+ &lt;/script><br id="xkxs">
+ </blockquote>
+ 
+ 
+<p id="svau"><b id="svau0"><a id="bw9v" name="_Toc193605132"><span id="byic" style="font-family: Verdana;"><font id="pkps" size="2">3.5.5 Setting Overflow Height</font></span></a></b></p>
+ 
+ 
+ <a id="vpnc" name="_Toc193605132"></a>
+ 
+ By default there is no limits on the number of visible menu items in any sub-level polygon. However, the user can limit the number of visible items in a sub-level polygon using <b id="p.rk">setOverflowHeight()</b> method.<br id="lclm">
+ <br id="qy:k">
+ This method adds scroll-arrows to a sub-level polygon, if there are more visible menu items than it is allowed by <b id="in4b">setOverflowHeight() </b>method. The following example shows how this method should be used as a function with any of data loading methods:<br id="h9qy">
+ 
+<blockquote id="owxa">
+ &lt;script><br id="i5f7">
+     menu.loadXML("dhtmlxMenu/codebase/dhtmlxmenu.xml", function () {<br id="i5f70">
+         menu.setOverflowHeight(4);<br id="i5f71">
+         });<br id="lclm1">
+ &lt;/script><br id="l-4h">
+ </blockquote>
+ 
+<h2><a name='menu_npx_'>
+ 4. Items Settings Manipulations</a></h2>
+<h3><a name='menu_y07b'>4.1 First Menu Item Creation
+</a></h3>
+<p>The first menu item in the <b>usual menu</b> can be created with the help of <b id="ewwf">addNewSibling() </b>method. The parameters here are as follows:
+ 
+ </p>
+<p id="eb8w">
+ <br id="eb8w0">
+ </p>
+ 
+<ul id="wtou"><li id="ffjd">
+ <b id="rks4">nextToId </b>- <b id="l3wp">null</b> should be indicated;</li>
+<li id="kte4">....</li></ul>
+<br>
+Other parameters of addNewSibling() method can be found <b><a title="here" href="#Sibling_Item_Creation" id="agfu">here</a></b>.<br>
+<blockquote>
+<p>
+ &lt;script><br id="khd0">
+     ... <br>
+</p>
+<p>    menu.addNewSibling(<b>null</b>, ...);  <br id="khd00">
+ &lt;/script></p>
+</blockquote>
+<p>The first menu item in the <b>contextual menu</b> can be created with the help of <b id="ewwf">addNewChild</b><b id="ewwf">() </b>method. The parameters here are as follows:</p>
+<p><br>
+ 
+ </p>
+<p id="eb8w">
+ </p>
+<ul id="wtou"><li id="ffjd">
+ <b id="rks4">parentId </b>- <b>menu.topId </b>should be indicated where <b>menu </b>is an instance of the menu object;</li>
+<li id="ffjd">...</li></ul>
+<br>
+Other parameters of addNewChild()<b id="ewwf"> </b> method can be found <b><a title="here" href="#Child_Item_Creation" id="quwa">here</a></b>.<br>
+<blockquote>&lt;script><br>
+    ...<br>
+    menu.renderAsContextMenu();
+<p id="g0eo0">
+     menu.addNewChild(<b>menu.topId</b>, ...);
+ </p>
+ &lt;/script><br>
+</blockquote>
+ 
+ 
+ 
+<h3><a name='menu_y07b'>4.2 Sibling Item Creation</a></h3>
+<b></b>The user can create a new sibling item in any polygon. To do this <b id="ewwf">addNewSibling()</b> method should be used. The parameters here are as follows:
+ 
+ 
+<p id="eb8w">
+ <br id="eb8w0">
+ </p>
+ 
+<ul id="wtou">
+ <li id="ffjd">
+ <b id="rks4">nextToId </b>- id of the element after which the new item will be inserted.</li>
+ <li id="yq.0">
+ <b id="x.bd">itemId </b>- id of the new sibling item;
+ </li>
+ <li id="t4yb">
+ <b id="gwwm">itemText </b>- the label of the new sibling item;
+ </li>
+ <li id="qcdv">
+ <b id="w7yj">disabled </b>- true|false, if this new sibling item is disabled or not;
+ </li>
+ <li id="u:e9">
+ <b id="f1ik">img </b>- path to image for the enabled state of the new sibling item;
+ </li>
+ <li id="kte4">
+ <b id="z6wr">imgDis </b>- path to image for the disabled state of the new sibling item.<br id="eb8w1">
+ </li>
+ </ul>
+ <br id="eb8w2">
+ The new sibling item will be inserted right after the item chosen as "nextToId" one.<br id="qth:">
+ 
+<blockquote id="g_u_">
+ &lt;script><br id="khd0">
+     menu.addNewSibling(nextToId, ItemId, itemText, disabled, img,imgDis);<br id="khd00">
+ &lt;/script><br>
+</blockquote>
+<h3><a name='menu_ii8q'>4.3 Child Item Creation
+</a></h3>
+
+ 
+ 
+ 
+<p id="oiyo"><a id="xb2w" name="_Toc193605132"></a>There is the possibility to create a child item for any item in the menu. The child item will be located in a sub-level polygon and won't be visible until its parent item is hovered over.<br id="ii8q1">
+<b id="h8q0">addNewChild()</b> method should be called and the following parameters are to be passed:
+ </p>
+ 
+<p id="tjfq1">
+ <br id="tjfq2">
+ </p>
+ 
+<ul id="h5r4">
+ <li id="zqfj">
+ <b id="t1.0">parentId </b>- id of the element that will contain the newly created item in its sub-level polygon;
+ </li>
+ <li id="d70m">
+ <b id="so55">position </b>- position/order of the new child item in the polygon among other child items, whether it comes first, second, etc. (starts with 0);
+ </li>
+ <li id="g4pr">
+ <b id="tl6g">itemId </b>- id of the new child item;
+ </li>
+ <li id="tdgx">
+ <b id="f7g7">itemText </b>- the label of the new child item;
+ </li>
+ <li id="zcg5">
+ <b id="n7-0">disabled </b>- true|false, whether this new child item is disabled or not;
+ </li>
+ <li id="qesk">
+ <b id="cgbq">img </b>- path to image for the enabled state of the new child item;
+ </li>
+ <li id="q.ev">
+ <b id="u62u">imgDis </b>- path to image for the disabled state of the new child item.<br id="tjfq5">
+ </li>
+ </ul>
+ 
+<blockquote id="x.ok">
+ 
+<p id="l9yb">
+ &lt;script><br id="g0eo">
+ </p>
+ 
+<p id="g0eo0">
+     menu.addNewChild(parentId, position, itemId, itemText, disabled, img, imgDis);
+ </p>
+ 
+<p id="g0eo1">
+ &lt;/script><br id="fv-x">
+ </p>
+ </blockquote>
+ 
+ 
+<h3><a name='menu_osfa'>4.4 New Separator Creation
+</a></h3>
+<p id="nc8g0"><a id="fahh5" name="_Toc193605132"></a>Separators can be created with the help of <b id="nzrc">addNewSeparator()</b> method. A separator provides kind of a logical grouping of menu items.
+ </p>
+ 
+ 
+<p id="ew_x">
+ <b id="dgs_">addNewSeparator()</b> method has the following parameters:
+ </p>
+ 
+<p id="jyna">
+ <br id="jyna0">
+ </p>
+ 
+<ul id="rqyc">
+ <li id="zf7a">
+ <b id="spxk">nextToId </b>- id of the element after which the new separator will be inserted;
+ </li>
+ <li id="x-st">
+ <b id="bob4">itemId </b>- id of the new separator.
+ </li>
+ </ul>
+ 
+<blockquote id="pepz">
+ &lt;script><br id="o-0y">
+     menu.addNewSeparator(nextToId, itemId);<br id="o-0y0">
+ &lt;/script><br id="fsgx">
+ </blockquote>
+ 
+ 
+<h3><a name='menu_nc8g1'>4.5 Removing Item
+</a></h3>
+<p id="nc8g3"><a id="w16x" name="_Toc193605132"></a></p>
+ The user can choose to remove any item from a menu. The item will be removed with all its sub-items/sub-polygons.<br id="gefk">
+ An item can be removed in the following way:<br id="cufd">
+ 
+<blockquote id="y33r">
+ &lt;script><br id="o8d6">
+     menu.removeItem(Id);<br id="o8d60">
+ &lt;/script><br id="e7n_">
+ </blockquote>
+ 
+ 
+<h3><a name='menu_nc8g5'>4.6 Getting Parent Id
+</a></h3>
+<p id="nc8g7"><a id="m6yb" name="_Toc193605142"></a>
+ </p>
+ 
+ <a id="zhiv" name="_Toc193605132"></a>
+ 
+ There is the possibility to get parent id of any menu item. This can be done by means of <b id="hi9b">getParentId()</b> method:<br id="f305">
+ 
+<blockquote id="vctq">
+ &lt;script><br id="s-d9">
+     var parentId = menu.getParentId(id);<br id="s-d90">
+ &lt;/script><br id="b0qo">
+ </blockquote>
+ 
+ 
+<h3><a name='menu_syc-'>4.7 Enabling/Disabling Item
+</a></h3>
+
+ Any menu item can be enabled/disabled by user:<br id="qvrp">
+ 
+<blockquote id="e2_b">
+ &lt;script><br id="e94k">
+     menu.setItemEnabled(id);<br id="b0aq">
+     menu.setItemDisabled(id);<br id="e94k0">
+ &lt;/script><br id="of58">
+ </blockquote>
+ Also the user has the possibility to check whether an item is enabled. This can be done by calling the following method:<br id="xuf5">
+ 
+<blockquote id="pjkw">
+ &lt;script><br id="rzvj">
+     var isEnabled = menu.isItemEnabled(id); // returns true|false<br id="ws4v">
+ &lt;/script><br id="y4wz">
+ </blockquote>
+ The user should pass <b id="opad">id</b> of the item that will be checked. The method returns <b id="egu4">true</b> if the item is enabled.<br id="n3r9">
+ 
+ 
+<h3><a name='menu_tbvt'>4.8 Showing/Hiding Item
+</a></h3>
+
+ Any item in a menu can be shown/hidden. To do this the user should pass this item's <b id="nr88">id </b>to the following methods:<br id="jgfp">
+ 
+<blockquote id="iu-d">
+ &lt;script><br id="aj9t">
+     menu.showItem(id);<br id="r2vi">
+     menu.hideItem(id);<br id="p1lj">
+ &lt;/script><br id="bk:_">
+ </blockquote>
+ The user has the possibility to check whether an item is hidden. The method returns <b id="es6t">true</b> if the item is hidden:<br id="yhpu">
+ 
+<blockquote id="y3j_">
+ &lt;script><br id="fvuj">
+     var isHidden = menu.isItemHidden(id);<br id="fvuj0">
+ &lt;/script><br id="iyi4">
+ </blockquote>
+ 
+ 
+<h3><a name='menu_tbvt1'>4.9 Setting Item's Text
+</a></h3>
+
+ 
+<p class="MsoNormal" id="r86j" style="margin-left: 70.9pt;">
+ <a id="ymed" name="DDE_LINK33"></a>
+ </p>
+The user can set text for any menu item. This item's <b id="mswk">id </b>and <b id="vhid">text </b>are passed as parameters to the following method:<br id="t:fn">
+ 
+<blockquote id="w2.8">
+ &lt;script><br id="br-2">
+     menu.setItemText(id, text);<br id="br-20">
+ &lt;/script><br id="jo7h">
+ </blockquote>
+The user can get item's text using <b id="a-o9">getItemText()</b> method. The method returns the current text of the item:<br id="c2q8">
+ 
+<blockquote id="psoa">
+ &lt;script><br id="nbv3">
+     var text = menu.getItemText(id); // returns item's text<br id="nbv30">
+ &lt;/script><br id="negn">
+ </blockquote>
+ 
+ 
+<h3><a name='menu_tbvt3'>4.10 Setting Item's Positing
+</a></h3>
+
+ Item's position in the polygon can be set applying the method <b id="bu.j">setItemPosition()</b> and passing item's <b id="c:2e">id </b>and item's <b id="vad6">position number </b>(starting with 0) as parameters:<br id="bcz5">
+ 
+<blockquote id="i7bm">
+ &lt;script><br id="p-83">
+     menu.setItemPosition(id,pos);<br id="p-830">
+ &lt;/script><br id="z1uu">
+ </blockquote>
+ There is the possibility to get items' position. The method returns item's position number:
+ 
+<p class="MsoNormal" id="ip7q">
+ <a id="jgz5" name="DDE_LINK6"></a>
+ </p>
+ 
+<blockquote id="og01">
+ &lt;script><br id="vc.a">
+     var pos = menu.getItemPosition(id); // returns item's position<br id="vc.a0">
+ &lt;/script><br id="loi2">
+ </blockquote>
+ 
+ 
+<h3><a name='menu_tbvt5'>4.11 Setting User Data
+</a></h3>
+<p id="tbvt7">
+ </p>
+ The user has the possibility to set, store, and pass values set for a certain menu item. One menu item can have several differ<span id="ly7g" style="background-color: rgb(255, 255, 255);">ent user </span><span id="wm7e" style="background-color: rgb(255, 255, 255);">data stored </span><span id="ly7g0" style="background-color: rgb(255, 255, 255);">in it</span>.<br id="q.23">
+ User data can be set to any menu item. The user just needs to pass this item's id, name of the data and its value to <b id="u96w">setUserData() </b>method:<br id="g.i_">
+ 
+<blockquote id="l22o">
+ &lt;script><br id="v5j:">
+     menu.setUserData(id, name, value);<br id="j48w">
+ &lt;/script><br id="zdu3">
+ </blockquote>
+ An easy way to get user data is to use <b id="qk9e">getUserData()</b> method passing the item's <b id="f5vb">id </b>and data <b id="bfsw">name</b>:<br id="yguw">
+ 
+<blockquote id="q7xk">
+ &lt;script><br id="pwtb">
+     var value = menu.getUserData(id, name); <br id="pwtb0">
+ &lt;/script><br id="bwg_">
+ </blockquote>
+ 
+ 
+<h3><a name='menu_tbvt9'>4.12 Setting Item's Image
+</a></h3>
+
+ 
+ Any item in a menu can have its own image displayed in the left part of item display area. <b id="w76c">setItemImage()</b> method allows the user to set image to an item by passing the following parameters:<br id="sq4x">
+ <br id="eg1m">
+ 
+<ul id="wdd4">
+ <li id="vteh">
+ <b id="qak0">id </b><span id="t7-p" style="background-color: rgb(255, 255, 255);">- id of the item to which the image will be set;</span>
+ </li>
+ <li id="ps0-">
+ <b id="poyg">img </b>- path to the image for the enabled state of the item;
+ </li>
+ <li id="utp4">
+ <b id="nxp2">imgDis </b>- path to the image for the disabled state of the item.
+ </li>
+ </ul>
+ 
+<blockquote id="kime">
+ &lt;script><br id="t183">
+     menu.setItemImage(id,img,imgDis);<br id="t1830">
+ &lt;/script><br id="gpmm">
+ </blockquote>
+ <b id="x:04">getItemImage()</b> method gets current item images for enabled and disabled states and returns array(img, imgDis) that will contain URLs to images:<br id="m1ts">
+ 
+<blockquote id="gkb5">
+ &lt;script><br id="bj3:">
+     var imgs = menu.getItemImage(id); // returns array<br id="bj3:0">
+ &lt;/script><br id="c:rz">
+ </blockquote>
+ Item's image can be easily removed/cleared by means of <b id="xtmh">clearItemImage()</b> method to which the user should pass item's id:<br id="svg3">
+ 
+<blockquote id="m_eo">
+ &lt;/script><br id="tjuf">
+     menu.clearItemImage(id);<br id="tjuf0">
+ &lt;/script><br id="ee3h">
+ </blockquote>
+ 
+<p id="c00b">
+ </p>
+<h3><a name='menu_tbvt12'>4.13 Setting Item's Tooltip
+</a></h3>
+<p id="tbvt14">
+ </p>
+<p id="tbvt15">
+ </p>
+ 
+ 
+<p id="a9x:">The user can specify the supplementary information regarding the item - tooltip. <b id="xd7:">setTooltip()</b> method takes the following parameters:
+ </p>
+ 
+<p id="s0g5">
+ <br id="s0g50">
+ </p>
+ 
+<ul id="a_0c">
+ <li id="zy6t">
+ <b id="g1qb">id </b>- item id;
+ </li>
+ <li id="z8_x">
+ <b id="arzr">tip </b>- <span id="t:l2" style="font-family: Verdana;"><font id="qq1e" size="2">this parameter sets the text that appears when user hovers the mouse over the item.</font></span>
+ </li>
+ </ul>
+ 
+<blockquote id="o-np">
+ &lt;script><br id="n8nt">
+     menu.setTooltip(id,tip);<br id="n8nt0">
+ &lt;/script><br id="qzqo">
+ </blockquote>
+ The following method can return current item's tooltip text:<br id="nkcy">
+ 
+<blockquote id="d..g">
+ &lt;script><br id="lnhg">
+     var tip = menu.getTooltip(id);<br id="lnhg0">
+ &lt;/script><br id="cbns">
+ </blockquote>
+ 
+<p id="nruw">
+ </p>
+<h3><a name='menu_tbvt16'>4.14 Setting Item's Hotkey
+</a></h3>
+
+ <font id="mpbx" size="-1">Hotkey is a short-cut to a menu option. In our menu it's just a label (text) written in the item display area</font>. A hotkey can be set to any menu item by calling <b id="wq5n">setHotKey()</b> method and passing item's <b id="qbl:">id </b>and setting hotkey <b id="k03h">label</b>:<br id="ssv4">
+ 
+<blockquote id="lrda">
+ &lt;script><br id="y8as">
+     menu.setHotKey(id, hkey);<br id="raaj">
+ &lt;/script><br id="hk7y">
+ </blockquote>
+ <b id="zg1c">getHotKey()</b> method returns current item's hotkey text:<br id="zua2">
+ 
+<blockquote id="s6c5">
+ &lt;script><br id="ewms">
+     var hkey = menu.getHotKey(id); // returns hotkey text<br id="ewms0">
+ &lt;/script><br id="f:ba">
+ </blockquote>
+ 
+<h3><a name='menu_jxhf'>4.15  Checkbox Creation</a></h3>
+ An item of this type has a small, <font id="do1b" size="-1">square box (in the left part of item display area) in addition to item's title. Any other icons can't be added to this type of items.<br id="k83q">
+ This item can be created by calling <b id="bfwu">addCheckBox()</b> method that takes the following parameters:<br id="wz:9">
+ <br id="la:o">
+ </font>
+ 
+<ul id="ywn2">
+ <li id="m9yy">
+ <b id="ttvf">mode </b>- sibling|child, determines whether the checkbox is a sibling or a child;
+ </li>
+ <li id="d97g">
+ <b id="sq-v">nextoId </b>- id of the element,after which the new checkbox will be inserted as a sibling <span id="izk." style="color: rgb(0, 0, 0);">(<b id="v_e3">parentId </b>for a child)</span>;
+ </li>
+ <li id="sq-v0">
+ <b id="stca">pos </b>- item's position in the child mode (<b id="hedi">null </b>for sibling);<br id="giin">
+ </li>
+ <li id="giin0">
+ <b id="nh3w">itemId </b>- id of the new checkbox;
+ </li>
+ <li id="hsya">
+ <b id="gk90">itemText </b>- the text of the new checkbox;
+ </li>
+ <li id="v8fe">
+ <b id="pdav">state</b>- true|false, <b id="wz:90">true</b> and <b id="wz:91">false</b> mean "checked" and "unchecked" respectively;
+ </li>
+ <li id="xod_">
+ <b id="ryrt">disabled</b>- true|false, <b id="c_0q">true</b> and <b id="c_0q0">false</b> mean "disabled" and "enabled" respectively.
+ </li>
+ </ul>
+ 
+<blockquote id="lw1w">
+ &lt;script><br id="d1ep">
+     menu.addCheckbox(mode, nextToId, pos, itemId, itemText, state, disabled);<br id="d1ep0">
+ &lt;/script><br id="yvjl">
+ </blockquote>
+ New state (checked/unchecked) of the checkbox can be set by the following method:<br id="vjwr">
+ 
+<blockquote id="ddrh">
+ &lt;script><br id="m_hu">
+     menu.setCheckboxState(id,state);<br id="m_hu0">
+ &lt;/script><br id="xh7:">
+ </blockquote>
+ A simple way to get the current state of a checkbox is presented below:<br id="ecz3">
+ 
+<blockquote id="amm4">
+ &lt;script><br id="m_hu1">
+     var state = menu.getCheckboxState(id); // returns true|false<br id="m_hu2">
+ &lt;/script><br id="j5mz">
+ </blockquote>
+<h3><a name='menu_jxhf4'>4.16  Radio Button Creation</a></h3>
+ Item of this type has a small <font id="vwh_" size="-1">selectable circle</font><font id="g167" size="-1"> (in the left part of item display area) </font><font id="b2zf" size="-1">in addition to item's title. Any other icons can't be added to this type of items.<br id="r_tg">
+ </font><font id="z3ya" size="-1">This item can be created by calling <b id="epad">addRadioButton()</b> method that takes the following parameters:<br id="hd4n15">
+ <br id="i0oq">
+ </font>
+ 
+<ul id="bkw2">
+ <li id="d21b">
+ <b id="u1.k">mode </b>- sibling|child, determines whether the radio button is a sibling or a child;
+ </li>
+ <li id="u1.k0">
+ <b id="a5nu">nextToId </b>- id of the element, after which the new radio button will be inserted as a sibling (<b id="qbsc">parentId </b>for a child);
+ </li>
+ <li id="o_u5">
+ <b id="u1.k1">pos </b>- item's position in the child mode (<b id="u1.k2">null </b>for sibling);
+ </li>
+ <li id="u1.k3">
+ <b id="hq2r">itemId </b>- id of the new radio button;
+ </li>
+ <li id="jzyc">
+ <b id="yz_d">itemText </b>- the text of the new radio button;
+ </li>
+ <li id="az2w">
+ <b id="azt2">group</b> - name of the radio group;<br id="w5sw">
+ </li>
+ <li id="tux4">
+ <b id="jh.t">state</b>- true|false, <b id="yg4q">true</b> and <b id="yg4q0">false</b> mean "checked" and "unchecked" respectively;
+ </li>
+ <li id="x71z">
+ <b id="mvy0">disabled</b>- true|false, <b id="yg4q1">true</b> and <b id="yg4q2">false</b> mean "disabled" and "enabled" respectively.
+ </li>
+ </ul>
+ 
+<blockquote id="y5-v">
+ &lt;script><br id="l-b8">
+     menu.addRadioButton(mode, nextToId, pos, itemId, itemText, group, state, disabled);<br id="l-b80">
+ &lt;/script><br id="l-b81">
+ </blockquote>
+ 
+<p class="MsoNormal" id="bb2t">
+ Any unchecked radio button can be made checked while currently checked radio button automatically changes its state to unchecked:
+ </p>
+ 
+<blockquote id="m_vf">
+ &lt;script><br id="l-b82">
+     menu.setRadioButtonChecked(id,state);<br id="l-b83">
+ &lt;/script><br id="okaz">
+ </blockquote>
+ An easy way to get <b id="i10e">id </b>of the current checked radio button in a radio group is presented below:<br id="dy8v">
+ 
+<blockquote>
+ &lt;script><br id="doke">
+     var idChecked = menu.getRadioChecked(group);<br id="a3cf">
+ &lt;/script><br>
+</blockquote>
+<h3><a name='menu_jxhf4'>4.17  Iterator
+</a></h3>
+Method <b id="cpci">forEachItem()</b> calls a user-defined function for <b id="dgpn">every existing item </b>in the menu passing <b id="v.se">item's id </b>into it. Using iterator can be very useful in case the user wants all the items to be subjects for the same changes.<br id="fvtf0">
+<blockquote id="om1-">&lt;script><br id="megf">
+ <span id="fvtf1" style="background-color: rgb(255, 255, 255);">   </span><span id="w.9k" style="background-color: rgb(255, 255, 255);">menu.forEachItem(function(itemId){})</span><span id="fvtf2" style="background-color: rgb(255, 255, 255);">; </span><br id="megf0">
+&lt;/script><br id="o4pw">
+ </blockquote>
+<h2><a name='menu_cbs0'>
+ 5. Event Handling
+ </a></h2>
+ 
+<h3><a name='menu_jxhf5'>5.1 Available Events</a></h3>
+<p id="jxhf6"><a id="zkto" name="_Toc193605132"></a></p>
+ 
+ There are the following available events in <b id="ttrc">dhtmlxMenu</b>:<br id="x45l">
+ <br id="g5yw">
+ 
+ 
+<ul id="x35m">
+ <li id="lu-3">
+ <b id="ieou"><a href="#onClick_onTouch_events" id="w62g" title="onClick">onClick</a></b> - occurs when the user clicks the left mouse button on an enabled, not complex menu item;
+ </li>
+ <li id="q4bf">
+ <span id="xhxm" style="background-color: rgb(255, 255, 255);"><b id="ik0j0"><a href="#onClick_onTouch_events" id="e.2c" title="onTouch">onTouch</a> </b>- </span>occurs when the user first hovers over any menu item by a <span id="lh19" style="color: rgb(255, 0, 0);"><span id="awzu" style="color: rgb(0, 0, 0);">mouse cursor </span><span id="asz9" style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);">(is not applicable for the contextual menu)</span></span><span id="asz90" style="background-color: rgb(255, 255, 255); color: rgb(0, 0, 0);">;</span>
+ </li>
+ <li id="nv-f">
+ <b id="ik0j1"><a href="#onCheckboxClick_event" id="to_s" title="onCheckboxClick">onCheckboxClick</a> </b>- occurs when the user clicks any checkbox item;
+ </li>
+ <li id="g0dv">
+ <b id="ik0j2"><a href="#onRadioClick_event" id="f.43" title="onRadioClick">onRadioClick</a> </b>- occurs when the user clicks any radio item;
+ </li>
+ <li id="u:9z">
+ <b id="ik0j3"><a href="#onXLS_event" id="zp2b" title="onXLS">onXLS</a> </b>- occurs before data loading from XML has started;<br id="u:9z0">
+ </li>
+ <li id="u:9z1">
+ <b id="en3u"><a href="#onXLE_event" id="v-v3" title="onXLE">onXLE</a></b> - occurs after data loading from XML has finished;
+ </li>
+ <li id="u:9z2">
+ <b id="ik0j5"><a href="#onBeforeContextMenu_event" id="v026" title="onBeforeContextMenu">onBeforeContextMenu</a> </b>- occurs before the moment when a contextual menu appears (can be used only for a contextual menu);
+ </li>
+ <li id="p0wu0">
+ <b id="ik0j6"><a href="#onAfterContextMenu_event" id="ul-x" title="onAfterContextMenu">onAfterContextMenu</a> </b>- occurs after the moment when a contextual menu appears (can be used only for a contextual menu).<br id="itwj">
+ </li>
+ </ul>
+<h3><a name='menu_w7ad'>5.2 Attaching Event Handler
+ </a></h3>
+<p id="k-lu"><a id="w39j" name="_Toc193605166"></a><a id="yv3v" name="_Toc193605132"></a><a id="h.uh" name="_Toc193605132"></a></p>
+The user can add any user-defined handler to available events.
+ 
+ 
+<p class="MsoNormal" id="s15b">
+ To do this, he can use <b id="th5p">attachEvent()</b> method with the following parameters:
+ </p>
+ 
+<p class="MsoNormal" id="fb8w">
+ <br id="fb8w1">
+ 
+ </p>
+ 
+<ul id="p13y">
+ <li id="h1m9">
+ <b id="nwz-">evName </b>- name of the event;
+ </li>
+ <li id="q05i">
+ <b id="jg3k">evHandler </b>- user-defined event handler.<br id="b2zd">
+ 
+ </li>
+ </ul>
+ 
+<blockquote id="c92g">
+ 
+<p class="MsoNormal" id="hvtm">
+ &lt;script><br id="ojxu">
+ 
+ </p>
+ 
+<p class="MsoNormal" id="ojxu0">
+     attachEvent(evName, evHandler);
+ </p>
+ 
+<p class="MsoNormal" id="ojxu2">
+ &lt;/script><br id="li1u">
+ 
+ </p>
+ </blockquote>
+ <a id="cpww" name="_Toc193605132"></a><a id="pfq90" name="_Toc193605132"><span id="sij3" style="font-family: Verdana;"><font id="g0lq" size="2"><b id="q.lw">Note: </b>the names of the events are <b id="bmi:">case-insensitive</b>. </font></span></a><br id="g360">
+<h3><a name='menu_w7ad1'>5.3 onClick and onTouch Events
+ </a></h3>
+<font id="euzj" size="2">These events call user-defined handlers (if there are any) and pass the following parameters:<br id="q-c0">
+ </font>
+ 
+<ul id="u6g7">
+ <li id="w35j">
+ <a id="twi7" name="_Toc193605132"></a>
+ </li>
+ <li id="nis8">
+ <b id="ku1v">id </b>- id of the clicked/hovered menu item;
+ </li>
+ 
+ <li id="lspu"><a id="lspu0" name="_Toc193605132"><b id="mk7p">zoneId </b>(only for </a><a id="ij7q" name="_Toc193605132">onClick event in case of a </a><a id="ij7q0" name="_Toc193605132">Contextual Menu) - id of the contextual menu zone;</a></li>
+<li id="lspu"><a id="ij7q0" name="_Toc193605132"></a><a id="k:0m3" name="_Toc193605132"></a><b>casState</b>(<a id="lspu0" name="_Toc193605132">only for </a><a id="ij7q" name="_Toc193605132">onClick event</a>)<b> </b>- whether <span style="background-color: rgb(255, 255, 255);">the </span>key "Ctrl", "Alt", or "Shift" was pressed with click or not.<br id="l-yt4">
+ </li>
+ </ul>
+</div>
+<div id="l9xl0">
+ 
+<blockquote id="en-u">
+ 
+<p class="MsoNormal" id="l-yt5">
+ <span id="l-yt6" style="font-family: Verdana;"><font id="l-yt7" size="2">&lt;script><br id="fqj5">
+ </font></span>
+ </p>
+ 
+<p class="MsoNormal" id="fqj50">
+ <span id="fqj51" style="font-family: Verdana;"><font id="fqj52" size="2">    menu.attachEvent("onClick", function(id, zoneId, casState){});</font></span>
+ </p>
+ <span id="qcw6" style="font-family: Verdana;"><font id="fwuc" size="2">    menu.attachEvent("onTouch", function(id){});</font></span><br id="fqj53">
+ <span id="en-u0" style="font-family: Verdana;"><font id="en-u1" size="2"> &lt;/script></font></span><br id="bg75">
+ </blockquote>
+ <a id="buua" name="_Toc193605132"></a> <a id="px40" name="_Toc193605132"></a><a id="ir6v" name="_Toc193605132"></a><a id="mupi" name="_Toc193605166"></a><a id="nm77" name="_Toc193605132"></a><a id="pnu5" name="_Toc193605132"><span id="pnu50" style="font-family: Verdana;"><font id="djk." size="2">Now </font></span>let's attach an event handler for <b id="l225">onClick</b> event:<br id="pnu52">
+ </a>
+ 
+<blockquote id="qy_x">
+ <a id="qy_x0" name="_Toc193605132"><span id="zdof" style="font-family: Verdana;"><font id="zdof0" size="2">&lt;script><br id="fqj54">
+     menu.attachEvent("onClick", function(id, zoneId, casState){</font></span></a><br id="oxfx">
+ <a id="qy_x1" name="_Toc193605132"><span id="qy_x2" style="font-family: Verdana;"><font id="qy_x3" size="2">       alert("element "+id+" was clicked");<br>
+        //  ctrl<br>
+        if (casState["ctrl"] == true) { <br>
+                // ctrl key was pressed with click <br>
+        } else { <br>
+                // ctrl key was not pressed with click <br>
+        } <br>
+        // alt <br>
+        if (casState["alt"] == true) { <br>
+                // alt key was pressed with click <br>
+        } else { <br>
+                // alt key was not pressed with click <br>
+        } <br>
+        // shift <br>
+        if (casState["shift"] == true) { <br>
+                // shift key was pressed with click <br>
+        } else { <br>
+                // shift key was not pressed with click <br>
+        }<br id="j1qf">
+    </font></span></a><a id="qy_x4" name="_Toc193605132"><span id="qy_x5" style="font-family: Verdana;"><font id="qy_x6" size="2">});<br id="fqj55">
+ &lt;/script></font></span></a><a id="qy_x8" name="_Toc193605132"></a></blockquote>
+<h3><a name='menu_f.3y'>5.4 onCheckboxClick Event
+ </a></h3>
+<a id="w7ad5" name="_Toc193605132"></a><a id="w7ad7" name="_Toc193605132"></a><a id="uwoi" name="_Toc193605132"><span id="kwt3" style="font-family: Verdana;"><font id="h4_g" size="2">By default this event changes the state of the clicked checkbox item. The visible sub-polygon won't be hidden after this action.<br id="sawc">
+ </font></span></a><a id="b76-" name="_Toc193605132"><span id="ckkb" style="font-family: Verdana;"><font id="cdfc" size="2"><b id="nrf7">onCheckboxClick</b> event can call user-defined handler (if there is any) and pass the following parameters</font></span></a><span id="ohzz" style="font-family: Verdana;"><font id="n:hb" size="2">:<br>
+<br>
+</font></span><b id="fywn"></b>
+<ul><li><b id="fywn">id </b>- id of the clicked checkbox item;</li>
+<li><a id="n5l0" name="_Toc193605132"><b id="y97.">state</b> - state of the clicked checkbox item. Defines </a><a id="td4y" name="_Toc193605132"><span id="rsn3" style="font-family: Verdana;"><font id="s7on" size="2">whether the item is checked or not;</font></span></a></li>
+<li><a id="hsao0" name="_Toc193605132"><b id="hsao1">zoneId </b>(only for </a><a id="hsao2" name="_Toc193605132"></a>Contextual Menu) - id of the contextual menu zone;</li>
+<li><a id="hsao3" name="_Toc193605132"></a><a id="hsao3" name="_Toc193605132"><b>casState</b></a><a id="lspu0" name="_Toc193605132"></a><a id="ij7q" name="_Toc193605132"></a> - whether <span style="background-color: rgb(255, 255, 255);">the </span>key "Ctrl", "Alt", or "Shift" was pressed with click or not.<br>
+</li></ul>
+<a id="n8dp" name="_Toc193605132"><span id="qdvh" style="font-family: Verdana;"><font id="x.t6" size="2"></font></span></a>
+<blockquote><a id="n8dp" name="_Toc193605132"><span id="qdvh" style="font-family: Verdana;"><font id="x.t6" size="2">&lt;script></font></span></a><br id="aem1">
+<a id="n8dp" name="_Toc193605132"><span id="qdvh" style="font-family: Verdana;"><font id="x.t6" size="2">
+     menu.attachEvent("onCheckboxClick", function(id, state, zoneId, casState){</font></span></a><br id="o7k.">
+<a id="n8dp" name="_Toc193605132"><span id="qdvh" style="font-family: Verdana;"><font id="x.t6" size="2">
+         ... // user-defined handler</font></span></a><br id="o7k.0">
+<a id="n8dp" name="_Toc193605132"><span id="qdvh" style="font-family: Verdana;"><font id="x.t6" size="2">
+        </font></span></a><a id="o7k.3" name="_Toc193605132"><span id="o7k.4" style="font-family: Verdana;"><font id="o7k.5" size="2"></font></span></a><a id="qy_x1" name="_Toc193605132"><span id="qy_x2" style="font-family: Verdana;"><font id="qy_x3" size="2"> //  ctrl<br>
+        if (casState["ctrl"] == true) { <br>
+                // ctrl key was pressed with click <br>
+        } else { <br>
+                // ctrl key was not pressed with click <br>
+        } <br>
+        // alt <br>
+        if (casState["alt"] == true) { <br>
+                // alt key was pressed with click <br>
+        } else { <br>
+                // alt key was not pressed with click <br>
+        } <br>
+        // shift <br>
+        if (casState["shift"] == true) { <br>
+                // shift key was pressed with click <br>
+        } else { <br>
+                // shift key was not pressed with click <br>
+        }</font></span></a><span id="o7k.4" style="font-family: Verdana;"><font id="o7k.5" size="2"><br>
+</font></span><a id="n8dp" name="_Toc193605132"><span id="qdvh" style="font-family: Verdana;"><font id="x.t6" size="2">   </font></span></a><a id="o7k.3" name="_Toc193605132"><span id="o7k.4" style="font-family: Verdana;"><font id="o7k.5" size="2">return true;</font></span></a><br id="o7k.6">
+<span id="o7k.7" style="font-family: Verdana;"><font id="o7k.8" size="2">    });  </font></span><br id="u7:e">
+<span id="o7k.7" style="font-family: Verdana;"><font id="o7k.8" size="2">
+ &lt;/script></font></span><a id="arj1" name="_Toc193605132"></a>
+ 
+ <a id="el2e1" name="_Toc193605132"></a><br>
+<a id="el2e1" name="_Toc193605132"></a></blockquote>
+ <a id="el2e1" name="_Toc193605132">When the user attaches a user-defined handler to this event, the state of the item can no longer be changed automatically. The user can control this by returning <b id="el2e2">true|false</b> from a user-defined handler. That's why, <b id="el2e3">return true </b>should be added after </a><a id="el2e4" name="_Toc193605132">a user-defined handler in order to let the script know that the state of the item should be changed.<br id="sx2w">
+ </a><a id="w0.r0" name="_Toc193605132"></a><a id="m.mq" name="_Toc193605132"></a>
+<h3><a name='menu_w7ad9'>5.5 onRadioClick Event
+ </a></h3>
+<a id="w7ad11" name="_Toc193605132"></a> <a id="i1bl" name="onRadioClick_event"></a><a id="w7ad14" name="_Toc193605132"></a><a id="d181" name="_Toc193605132"><span id="b92w" style="font-family: Verdana;"><font id="vy4p" size="2">By default this event makes another radio item in the group checked instead of the current checked one. The visible sub-polygon won't be hidden after this action.<br id="vve7">
+ </font></span></a><a id="rykl" name="_Toc193605132"><span id="v4.b" style="font-family: Verdana;"><font id="ue7f" size="2"><b id="d2qp">onRadioClick</b> event can call a user-defined handler (if there is any) and pass the following parameters</font></span></a><span id="alt4" style="font-family: Verdana;"><font id="wwwc" size="2">:<br id="qgav">
+ <br id="yyo7">
+ </font></span>
+ 
+<ul id="mrp9">
+ <li id="t6is">
+ <b id="vqt.">group </b>- name of the radio group;<br id="fxuk">
+ </li>
+ <li id="i0.4">
+ <b id="jf4g">idChecked </b>- id of the checked radio item;
+ </li>
+ <li id="rndk">
+ <a id="uhi7" name="_Toc193605132"><b id="doan">idClicked</b> - id of the clicked radio item</a><a id="boc_" name="_Toc193605132"><span id="cluj" style="font-family: Verdana;"><font id="fxwl" size="2">;</font></span></a>
+ </li>
+ <li id="s5t0">
+ <a id="s5t00" name="_Toc193605132"><b id="s5t01">zoneId </b>(only for </a><a id="s5t02" name="_Toc193605132"></a><a id="s5t03" name="_Toc193605132">Contextual Menu) - id of the contextual menu zone</a><a id="s5t04" name="_Toc193605132"><span id="s5t05" style="font-family: Verdana;"><font id="s5t06" size="2">;</font></span></a></li>
+<li id="s5t0"><a id="hsao3" name="_Toc193605132"><b>casState</b></a><a id="lspu0" name="_Toc193605132"></a><a id="ij7q" name="_Toc193605132"></a> - whether <span style="background-color: rgb(255, 255, 255);">the </span>key "Ctrl", "Alt", or "Shift" was pressed with click or not<a id="s5t04" name="_Toc193605132"><span id="s5t05" style="font-family: Verdana;"><font id="s5t06" size="2">.</font></span></a>
+ </li>
+ </ul>
+ 
+<blockquote id="ugex">
+ <a id="i33e" name="_Toc193605132"><span id="nd79" style="font-family: Verdana;"><font id="v-q:" size="2">&lt;script>  <br id="y122">
+     menu.attachEvent("onRadioClick", function(group, idChecked, idClicked, zoneId, casState){<br id="n.z7">
+ </font></span></a><a id="n.z70" name="_Toc193605132"><span id="n.z71" style="font-family: Verdana;"><font id="n.z72" size="2">        ... // user-defined handler<br>
+       </font></span></a><a id="qy_x1" name="_Toc193605132"><span id="qy_x2" style="font-family: Verdana;"><font id="qy_x3" size="2">//  ctrl<br>
+        if (casState["ctrl"] == true) { <br>
+                // ctrl key was pressed with click <br>
+        } else { <br>
+                // ctrl key was not pressed with click <br>
+        } <br>
+        // alt <br>
+        if (casState["alt"] == true) { <br>
+                // alt key was pressed with click <br>
+        } else { <br>
+                // alt key was not pressed with click <br>
+        } <br>
+        // shift <br>
+        if (casState["shift"] == true) { <br>
+                // shift key was pressed with click <br>
+        } else { <br>
+                // shift key was not pressed with click <br>
+        }</font></span></a><br id="n.z73">
+<span id="n.z71" style="font-family: Verdana;"><font id="n.z72" size="2">
+         </font></span><a id="n.z75" name="_Toc193605132"><span id="n.z76" style="font-family: Verdana;"><font id="n.z77" size="2">return true;</font></span></a><a id="n.z78" name="_Toc193605132"><br id="n.z79">
+ <span id="n.z710" style="font-family: Verdana;"><font id="n.z711" size="2">    });<br id="ynhd">
+ &lt;/script><br id="ynhd0">
+ </font></span></a>
+ </blockquote>
+ 
+<p id="kkoh">
+ <a id="mj19" name="_Toc193605132"></a><a id="jcck221" name="_Toc193605132"></a>
+ </p>
+ 
+<p id="kkoh0">
+ <a id="nf0a" name="_Toc193605132">When the user attaches a user-defined handler to this event, the state of the item can no longer be changed automatically. The user can control this by returning <b id="nf0a0">true|false</b> from a user-defined handler. That's why <b id="nf0a1">return true </b>should be added after </a><a id="nf0a2" name="_Toc193605132">a user-defined handler in order to let the script know that the state of the item should be changed.</a>
+ </p>
+ <a id="kkoh14" name="_Toc193605132"></a>
+<h3><a name='menu_w7ad16'>5.6 onXLS Event</a></h3>
+ 
+<p id="w7ad17"><a id="h3he" name="onXLS_event"></a><a id="w7ad21" name="onXLS_event"></a></p>
+<a id="zfse1" name="_Toc193605132"></a><a id="jcck225" name="_Toc193605132"><span id="jcck226" style="font-family: Verdana;"><font id="jcck227" size="2">This event occurs </font></span></a><a id="ukc_" name="_Toc193605132">before data loading from XML has started</a><a id="ukc_1" name="_Toc193605132"></a><a id="jcck230" name="_Toc193605132"></a><a id="jcck231" name="_Toc193605132"></a><a id="jcck235" name="_Toc193605132"><span id="jcck236" style="font-family: Verdana;">. </span></a><a id="o2.j" name="_Toc193605132"></a><a id="a2080" name="_Toc193605132"><span id="a2081" style="font-family: Verdana;"><font id="a2082" size="2"><b id="a2083">onXLS</b> event can call user-defined handler (if there is any): </font></span></a><a id="a2086" name="_Toc193605132"></a><br id="xnxl">
+ <a id="a2089" name="_Toc193605132"></a>
+ 
+<blockquote id="fm7c">
+ <a id="xnxl1" name="_Toc193605132">&lt;script><br id="i..o">
+     menu.attachEvent("onXLS", function() {});<br id="lvpz">
+ &lt;/script><br id="zfse4">
+ </a><a id="fm7c0" name="_Toc193605132"></a>
+ </blockquote>
+ <a id="xnxl3" name="_Toc193605132"></a><a id="zfse3" name="_Toc193605132"></a><a id="zfse9" name="_Toc193605132"></a>
+ 
+<p id="zfse13">
+ <a id="zfse18" name="_Toc193605132"></a>
+ </p>
+ 
+<p id="zfse20">
+ <a id="zfse25" name="_Toc193605132"></a>
+ </p>
+ <a id="zfse31" name="_Toc193605132"></a><a id="n63m" name="_Toc193605132">In case of dynamic loading, <b id="s4-s">onXLS</b> event will be called every time before a system loads a certain part of data into the menu.<br id="e5as">
+ <b id="p9ym">Note</b><i id="fvty">:</i> this event should be attached before the code line that calls <b id="ej1.">loadXML()</b> method.<br id="w7ad22">
+</a>
+<h3><a name='menu_i4nl'>5.7 onXLE Event</a></h3>
+<a id="i4nl2" name="_Toc193605132"></a><a id="i4nl3" name="_Toc193605132">
+ </a><a id="zfse36" name="_Toc193605132"><span id="zfse37" style="font-family: Verdana;"><font id="zfse38" size="2">This event occurs when the menu has already been loaded</font></span></a><a id="zfse42" name="_Toc193605132"> </a><a id="zfse43" name="_Toc193605132"><span id="zfse44" style="font-family: Verdana;"><font id="zfse45" size="2">and just before </font></span></a><a id="zfse46" name="_Toc193605132"></a><b id="zfse47"><a id="zfse48" name="_Toc193605132"><span id="zfse49" style="font-family: Verdana;"><b id="zfse50">onLoadFunction:<br id="ajdn">
+ </b></span></a></b>
+ 
+<blockquote id="zzab">
+ <a id="jcck238" name="_Toc193605132"></a><a id="jcck240" name="_Toc193605132"></a><a id="jcck241" name="_Toc193605132"></a><a id="jcck242" name="_Toc193605132">&lt;script><br id="hhos">
+     menu.attachEvent("onXLE", function(){});<br id="f.0_">
+ &lt;/script></a><a id="jcck244" name="_Toc193605132"></a><a id="jcck248" name="_Toc193605132"></a><br id="qmm:">
+ <a id="jcck249" name="_Toc193605132"></a><a id="jcck254" name="_Toc193605132"></a>
+ </blockquote>
+ <a id="jcck255" name="_Toc193605132"></a><a id="jcck260" name="_Toc193605132"></a>In case of dynamical loading, <b id="n63m7">onXLE</b> event will be called every time after a system loads a certain part of data into the menu.<br id="hua6">
+ <a id="qdn6" name="_Toc193605132"><b id="p9ym0">Note</b><i id="qdn60">:</i> this event should be attached after </a><a id="wmmd" name="_Toc193605132">the code line that calls <b id="wmmd0">loadXML()</b> method.<br id="hx6y">
+</a>
+<h3><a name='menu_hx6y0'>5.8 onBeforeContextMenu Event</a></h3>
+ This event occurs before the moment when a contextual menu appears by a right mouse click.<br id="e0l_">
+ <a id="g2ot" name="_Toc193605132"><b id="g2ot0">onBeforeContextMenu</b><span id="g2ot1" style="font-family: Verdana;"><font id="g2ot2" size="2"> event can call a user-defined handler (if there is any) and pass the following parameter</font></span></a><span id="g2ot3" style="font-family: Verdana;"><font id="g2ot4" size="2">:<br id="g2ot5">
+ <br id="g2ot6">
+ </font></span>
+ 
+<ul id="lh4z">
+ <li id="lh4z0">
+ <b id="aga5">zoneId</b> - id of the contextual menu zone.<br id="tci:">
+ </li>
+ </ul>
+ 
+<blockquote id="swyt">
+ &lt;script><br id="swyt0">
+     menu.attachEvent("onBeforeContextMenu", function(zoneId){<br id="swyt1">
+ <a id="swyt3" name="_Toc193605132"><span id="swyt4" style="font-family: Verdana;"><font id="swyt5" size="2">        ... // user-defined handler</font></span></a><br id="swyt6">
+         return true;<br id="dgyh">
+     });<br id="swyt7">
+ &lt;/script><br id="wzvm0">
+ </blockquote>
+ <a id="l2bx" name="_Toc193605132">When the user attaches a user-defined handler to this event, the state of the item can no longer be changed automatically. The user can control this by returning <b id="l2bx0">true|false</b> from a user-defined handler. That's why <b id="l2bx1">return true </b>should be added after </a><a id="l2bx2" name="_Toc193605132">user-defined handler, in order to let the script know that the state of the item should be changed.<br id="hx6y2">
+</a>
+<h3><a name='menu_hx6y3'>5.9 onAfterContextMenu Event</a></h3>
+ This event occurs after the moment when a contextual menu appears by a right mouse click.<br id="a.3v">
+ <a id="a.3v0" name="_Toc193605132"><b id="a.3v1">onAfterContextMenu</b><span id="a.3v2" style="font-family: Verdana;"><font id="a.3v3" size="2"> event can call a user-defined handler (if there is any) and pass the following parameter</font></span></a><span id="a.3v4" style="font-family: Verdana;"><font id="a.3v5" size="2">:</font></span>   <br id="rd68">
+ <br id="e5td">
+ 
+<ul id="aw1t">
+ <li id="aw1t0">
+ <b id="aw1t1">zone id</b> - id of the contextual menu zone.
+ </li>
+ </ul>
+ 
+ 
+ 
+<blockquote id="c3r8">
+ 
+<p class="MsoNormal" id="xt9o">
+ &lt;script>
+ </p>
+ 
+<p class="MsoNormal" id="e5oc">
+     menu.attachEvent("onAfterContextMenu", function(zoneId){});
+ </p>
+ &lt;/script><br id="wdxo">
+</blockquote>
+<h2><a name='menu_qwju'>6. XML Format Template</a></h2>
+
+This section is created in order to give the user the idea of <b id="ebl7">XML Format Template</b>. It aims at helping users in creating XML files for <b id="ebl70">dhtmlxMenu </b>initialization.
+ 
+ 
+<blockquote id="xo8l">
+<p class="MsoNormal" id="ysx5">[BASIC]</p>
+<p class="MsoNormal" id="gsem"><br id="gsem0">
+</p>
+<p class="MsoNormal" id="dnd3">
+ &lt;?xml version="1.0"?><br id="xo8l0">
+&lt;menu>                                                                                                                                a <i id="hsos">top xml tag, mandatory</i><br id="xo8l1">
+    &lt;item id="file" text="File">                                                                                                    <i id="hsos0">a top-level item, each item must have a unique ID</i><br id="xo8l2">
+        &lt;item id="new" text="New"/>                                                                                            <i id="l36o">a sub-level item</i><br id="xo8l3">
+        &lt;item id="ms1" type="separator"/>                                                                                     <i id="ch-3">a sub-level separator item</i><br id="xo8l4">
+        ...<br id="xo8l5">
+        &lt;item id="export" text="Export"><br id="xo8l6">
+            &lt;item id="export_pdf" text="PDF"/>                                                                                <i id="ch-30">a sub-level item</i><br id="xo8l7">
+            ...<br id="xo8l8">
+        &lt;/item><br id="xo8l9">
+        ...<br id="xo8l10">
+    &lt;/item><br id="xo8l11">
+&lt;/menu><br id="xo8l12">
+<br id="xo8l13">
+[ADVANCED]<br id="xo8l14">
+<br id="xo8l15">
+&lt;?xml version="1.0"?><br id="xo8l16">
+&lt;menu><br id="xo8l17">
+    &lt;item id="file" text="File"><br id="xo8l18">
+        &lt;item id="new" text="New" img="new.gif" imgdis="new_dis.gif"/>                                             <i id="z9io">a sub-level item </i><i id="h:hu">with images for enabled/disabled states</i><br id="xo8l19">
+        &lt;item id="ms1" type="separator"/><br id="xo8l20">
+        ...<br id="xo8l21">
+        &lt;item id="export" text="Export"><br id="xo8l22">
+            &lt;item id="export_pdf" text="PDF" enabled="false"/>                                                          <i id="chs3">a sub-level item </i><i id="h:hu0">disabled by default</i><br id="xo8l23">
+            ...<br id="xo8l24">
+        &lt;/item><br id="xo8l25">
+        ...<br id="xo8l26">
+    &lt;/item><br id="xo8l27">
+&lt;/menu><br id="xo8l28">
+<br id="xo8l29">
+[FULL]<br id="xo8l30">
+<br id="xo8l31">
+&lt;?xml version="1.0"?><br id="xo8l32">
+&lt;menu><br id="xo8l33">
+    &lt;item id="file" text="File"><br id="xo8l34">
+        &lt;item id="new" text="New" img="new.gif" imgdis="new_dis.gif"><br id="xo8l35">
+            &lt;hotkey>Ctrl+N&lt;/hotkey>                                                                                            <i id="hfu4">a hotkey (just a text) to a menu item</i><br id="xo8l36">
+        &lt;/item><br id="xo8l37">
+        &lt;item id="ms1" type="separator"/><br id="xo8l38">
+        ...<br id="xo8l39">
+        &lt;item id="export" text="Export"><br id="xo8l40">
+            &lt;item id="export_pdf" text="PDF" enabled="false"/><br id="xo8l41">
+            ...<br id="xo8l42">
+        &lt;/item><br id="xo8l43">
+        ...<br id="xo8l44">
+        &lt;item id="eol" text="End Of Line"><br id="xo8l45">
+            &lt;item id="eol_u" text="Unix (\n)" type="radio" group="eol" checked="true"/>                           a <i id="agxl">radiobutton, group "eol", checked by default</i><br id="xo8l46">
+            &lt;item id="eol_w" text="DOS/Windows (\r\n)" type="radio" group="eol"/>                                a <i id="agxl0">radiobutton, group "eol"</i><br id="xo8l47">
+            &lt;item id="eol_m" text="MacOS (\r)" type="radio" group="eol"/>                                            <i id="agxl1">a radiobutton, group "eol"</i><br id="xo8l48">
+            &lt;item id="eol_m" text="MacOS (\r)" type="radio" group="eol"/>                                            <i id="ow6l">a radiobutton, group "eol", disabled</i><br id="xo8l49">
+                                                                                                                                           <i id="a8qu">we got a radiogroup "eol" with 4 buttons, 1 disabled</i><br id="xo8l50">
+        &lt;/item><br id="xo8l51">
+        &lt;item id="ms2" type="separator"/><br id="xo8l52">
+        &lt;item id="ignorecase" text="Ignore Case" type="checkbox" checked="true" enabled="false"/>        a <i id="zigp">disabled checked checkbox</i><br id="xo8l53">
+        &lt;item id="checkspelling" text="Check Spelling" type="checkbox"/>                                            an <i id="zigp0">unchecked checkbox</i><br id="xo8l54">
+    &lt;/item><br id="xo8l55">
+&lt;/menu><br id="qfsm">
+</p>
+</blockquote>
+</div>
+<br id="hf7t">
+
+	
+</body>
+</html>

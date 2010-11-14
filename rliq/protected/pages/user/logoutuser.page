@@ -1,0 +1,9 @@
+<%@ Title="GSProcurement - Login" %>
+ 
+<com:TContent ID="Main">
+
+<h1><com:TImage ImageUrl="/gsprocurement/themes/basic/gfx/64x64/apps/kdevelop.png" />Logout</h1>
+ 
+<com:TButton Text="Login" OnClick="logoutButtonClicked" />
+ 
+</com:TContent>

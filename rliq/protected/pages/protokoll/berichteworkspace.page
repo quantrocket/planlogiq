@@ -1,0 +1,227 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="Berichte" %>
+
+<com:TContent ID="HeaderJavascript">
+
+function initDHTMLXTabbars(TabbarObject){
+    TabbarObject.addTab("a1","Berichte",150);
+    TabbarObject.setContent("a1", "tabhtml_1");
+
+    TabbarObject.addTab("a2","Empfänger",150);
+    TabbarObject.setContent("a2", "tabhtml_2");
+
+    TabbarObject.addTab("a3","Berichtsstruktur",150);
+    TabbarObject.setContent("a3", "tabhtml_3");
+
+    TabbarObject.addTab("a4","Protokoll",150);
+    TabbarObject.setContent("a4", "tabhtml_4");
+
+    TabbarObject.setTabActive("a1");
+
+    dhxLayout.cells("b").collapse();
+}
+
+</com:TContent>
+
+<com:TContent ID="Navigation">
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<com:TCallbackOptions ID="options">
+	<prop:ClientSide.RequestTimeOut>720000</prop:ClientSide.RequestTimeOut>
+</com:TCallbackOptions>
+
+<div id="infobox"><%[ All the informations linked to the revolving reporting ]%></div>
+
+
+<div id="tabhtml_1"  style="width:100%;height:100%;overflow:auto;background:#EBEEFA">
+    <div style="overflow:hidden">
+
+                <div class="mytoolbar">
+                <com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" OnCommand="BRNewClicked"/>
+                 <com:TActiveButton OnCallback="BRNewClicked" Text=<%[ neu ]%> CssClass="windowcontent-button" />
+                <com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/filesave.png" OnCommand="BRSaveClicked"/>
+                 <com:TActiveButton OnCallback="BRSaveClicked" Text=<%[ speichern ]%> CssClass="windowcontent-button" />
+                <com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/cancel.png" OnCommand="BRDeleteClicked"/>
+                 <com:TActiveButton OnCallback="BRDeleteClicked" Text=<%[ entfernen ]%> CssClass="windowcontent-button" />
+                
+                <com:TActiveTextBox id="idta_berichte" Text="" CssClass="hiddeninput" visible="false" />
+                <com:TActiveTextBox id="idtm_user" CssClass="hiddeninput" visible="false" Text=<%= $this->User->GetUserId($this->User->Name) %> />
+                <com:TActiveTextBox id="berichte_edit_status" Text="0" CssClass="hiddeninput" visible="false" />
+                </div>
+
+<table><tr><td>
+     <fieldset>
+        <legend>Gemeinde</legend>
+            <table width="100%" cellspacing="1">
+                <tr>
+                    <td class="FormLabel"><%[ Name ]%>:</td>
+                <td><com:TActiveTextBox ID="ber_name" CssClass="mandantorylarge" /></td>
+                <td class="FormLabel"><%[ Erstellungs Dauer ]%>:</td>
+                <td><com:TActiveTextBox ID="ber_production_time" CssClass="mandantorysmall" /><%[ Stunden ]%></td>
+            </tr>
+            <tr>
+                <td class="FormLabel"><%[ Report ID (QV) ]%>:</td>
+                <td><com:TActiveTextBox ID="ber_id" CssClass="mandantorylarge" /> </td>
+                <td class="FormLabel" rowspan="3"><%[ Type ]%>:</td>
+                <td rowspan="3"><com:TActiveRadioButtonList ID="idta_bericht_type" AutoPostBack="false" /> <com:TActiveLabel Id="ber_cdate" /></td>
+            </tr>
+            <tr>
+                <td class="FormLabel"><%[ Responsible ]%>:</td>
+                <td>
+                    <com:POrganisationSelection ID="idtm_organisation" />
+                </td>    
+            </tr>
+            <tr>
+                <td class="FormLabel"><%[ Lokaler Pfad ]%>:</td>
+                <td><com:TActiveTextBox ID="ber_local_path" CssClass="mandantorylarge" /></td>
+            </tr>
+            <tr>
+                <td class="FormLabel"><%[ Description ]%>:</td>
+                <td><com:TActiveTextBox ID="ber_descr" CssClass="inputlarge" /></td>
+                <td class="FormLabel"><%[ Zyklus ]%>:</td>
+                <td><com:TActiveDropDownList ID="ber_zyklus" AutoPostBack="false" /> <%[ Zyklus Start ]%>:<com:TActiveTextBox ID="ber_zyklus_start" AutoPostBack="false" CssClass="inputsmall"/></td>
+            </tr>
+            <tr>
+                <td class="FormLabel"><%[ Mail Subject ]%>:</td>
+                <td><com:TActiveTextBox ID="ber_mail_subject" CssClass="inputlarge" /></td>
+                <td class="FormLabel"><%[ Uhrzeit ]%>:</td>
+                <td>
+                    <com:PTimeSelection ID="ber_zyklus_time" />
+                </td>
+            </tr>
+            <tr>
+                <td class="FormLabel"><%[ Mail Body ]%>:</td>
+                <td><com:TActiveTextBox ID="ber_mail_body" TextMode="MultiLine" Rows="7" Font.Italic="true" Width="350px"/></td>
+                <td class="FormLabel"><%[ Zyklus Abstand ]%>:</td>
+                <td>
+                    <com:TActiveCheckBoxList ID="ber_zyklus_gap" RepeatColumns="2" AutoPostBack="false"/>
+                </td>
+            </tr>
+     </table>
+</fieldset>
+</td></tr></table>
+
+<fieldset style="background-color:#ffffff">
+<div class="mytoolbar">Berichte:</div>
+<table width="100%">
+            <tr>
+                <td colspan="4">
+                    <com:TActiveDataGrid ID="lstBerichte" PageSize="10" AllowPaging="true" onPageIndexChanged="lstBerichte_pageIndexChanged" AutoGenerateColumns="false" onUpdateCommand="startSOAPClient" onEditCommand="editlstBerichte" onCancelCommand="open_Commatrix" PagerStyle.Mode="Numeric" PagerStyle.HorizontalAlign="Right" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+                        <com:TActiveTemplateColumn>
+                            <prop:HeaderTemplate><%[ Senden ]%></prop:HeaderTemplate>
+                            <prop:ItemTemplate>
+                                <com:TActiveImageButton ID="ReportsExecute" CommandParameter="ReportsExecute" ImageUrl="/rliq/themes/basic/gfx/16x16/apps/kmail.png" CommandName="update"/>
+                            </prop:ItemTemplate>
+                        </com:TActiveTemplateColumn>
+                        <com:TActiveTemplateColumn>
+                            <prop:HeaderTemplate><%[ Anmelden ]%></prop:HeaderTemplate>
+                            <prop:ItemTemplate>
+                                <com:TActiveImageButton ID="ReportsRegisterJob" CommandParameter="ReportsRegisterJob" ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" CommandName="update" />
+                            </prop:ItemTemplate>
+                        </com:TActiveTemplateColumn>
+                        <com:TActiveTemplateColumn>
+                            <prop:HeaderTemplate><%[ Abmelden ]%></prop:HeaderTemplate>
+                            <prop:ItemTemplate>
+                                <com:TActiveImageButton ID="ReportsUnregisterJob" CommandParameter="ReportsUnregisterJob" ImageUrl="/rliq/themes/basic/gfx/16x16/actions/cancel.png" CommandName="update" />
+                            </prop:ItemTemplate>
+                        </com:TActiveTemplateColumn>
+                        <com:TActiveBoundColumn HeaderText=<%[ Id ]%> DataField="idta_berichte" ID="lst_idta_berichte" />
+                        <com:TActiveBoundColumn HeaderText=<%[ Name ]%> DataField="ber_name" ID="lst_ber_name" />
+                        <com:TActiveBoundColumn HeaderText=<%[ File ]%> DataField="ber_local_path" ID="lst_local_path" />
+                        <com:TActiveBoundColumn HeaderText=<%[ Description ]%> DataField="ber_descr" ID="lst_ber_descr" />
+                        <com:TActiveBoundColumn HeaderText=<%[ Created ]%> DataField="ber_cdate" ID="lst_ber_cdate" />
+                        <com:TActiveTemplateColumn>
+                            <prop:HeaderTemplate><%[ Type ]%></prop:HeaderTemplate>
+                            <prop:ItemTemplate>
+                                <%#BerichtTypeRecord::finder()->findByPK($this->Parent->DataItem->idta_bericht_type)->ber_type_name%>
+                            </prop:ItemTemplate>
+                        </com:TActiveTemplateColumn>
+                        <com:TActiveEditCommandColumn HeaderText=<%[ actions ]%> />
+                        <com:TActiveButtonColumn ID="viewXML" ButtonType="ImageButton" ImageUrl="/rliq/themes/basic/gfx/16x16/apps/ooo-calc.png" CommandName="cancel" HeaderText="XML" HeaderStyle.Width="30px" />
+                    </com:TActiveDataGrid>
+                </td>
+            </tr>
+        </table>
+</fieldset>
+    </div>
+</div>
+<div id="tabhtml_2" style="overflow:auto;height:100%">
+    <div style="overflow:hidden">
+        <table width="100%">
+            <tr>
+                <td colspan="3" class="mytoolbar">
+                    |<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" OnCommand="BORNewClicked"/>
+                    <com:TActiveButton OnCallback="BORNewClicked" Text=<%[ neu ]%> CssClass="windowcontent-button" />
+                    |<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/filesave.png" OnCommand="BORSaveClicked"/>
+                    <com:TActiveButton OnCallback="BORSaveClicked" Text=<%[ speichern ]%> CssClass="windowcontent-button" />
+                    |<com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/cancel.png" OnCommand="BORDeleteClicked"/>
+                    <com:TActiveButton OnCallback="BORDeleteClicked" Text=<%[ entfernen ]%> CssClass="windowcontent-button" />
+                    |<com:TActiveTextBox ID="FFBerichteOrganisationRecord" Text=<%[ search ]%> /><com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/find.png" OnCommand="BORFindClicked"/><%[ search ]%>
+                    <com:TActiveTextBox id="idtm_berichte_has_organisation" Text="" CssClass="hiddeninput" visible="false" />
+                    <com:TActiveTextBox id="rcidta_berichte" Text="" CssClass="hiddeninput" visible="false" />
+                    <com:TActiveTextBox id="berichteorganisation_edit_status" Text="0" CssClass="hiddeninput" visible="false" />
+                </td>
+            </tr>
+            <tr>
+                <td><%[ Empfänger ]%></td>
+                <td><com:TActiveDropDownList ID="rcidtm_organisation" /></td>
+                <td id="infoboxsmall"><%[ Who will recieve the report ]%></td>
+            </tr>
+            <tr>
+                <td><%[ Modul or QV-Field ]%></td>
+                <td><com:TActiveTextBox ID="rcbho_modul" /></td>
+                <td id="infoboxsmall"><%[ Modul or QV-Field, that will be the startpoint for the report ]%></td>
+            </tr>
+            <tr>
+                <td><%[ Id or Criteria ]%></td>
+                <td><com:TActiveTextBox ID="rcbho_id" /></td>
+                <td id="infoboxsmall"><%[ The id or criteria for the Modul/QV-Field ]%></td>
+            </tr>
+            <tr><td colspan="3" class="portlet-title"><%[ List of ]%> <%[ Empfänger ]%></td></tr>
+            <tr>
+                <td colspan="3">
+                    <com:TActiveDataGrid ID="lstBerichteOrganisation" PageSize="20" AllowPaging="true" onPageIndexChanged="lstBerichteOrganisation_pageIndexChanged" AutoGenerateColumns="false" onEditCommand="editlstBerichteOrganisation" PagerStyle.Mode="Numeric" PagerStyle.HorizontalAlign="Right" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+                        <com:TActiveBoundColumn HeaderText=<%[ Key ]%> DataField="idtm_berichte_has_organisation" ID="lst_idtm_berichte_has_organisation" />
+                        <com:TActiveTemplateColumn>
+                            <prop:HeaderTemplate><%[ Organisation ]%></prop:HeaderTemplate>
+                            <prop:ItemTemplate>
+                                <%#OrganisationRecord::finder()->findByPK($this->Parent->DataItem->idtm_organisation)->org_name%>
+                            </prop:ItemTemplate>
+                        </com:TActiveTemplateColumn>
+                        <com:TActiveBoundColumn HeaderText=<%[ Modul ]%> DataField="bho_modul" ID="lst_bho_modul" />
+                        <com:TActiveBoundColumn HeaderText=<%[ ID ]%> DataField="bho_id" ID="lst_bho_id" />
+                        <com:TActiveEditCommandColumn HeaderText=<%[ actions ]%> />
+                    </com:TActiveDataGrid>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div id="tabhtml_3" style="overflow:auto;height:100%">
+    <div style="overflow:hidden">
+        <table width="100%">
+            <tr>
+		<td>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+<div id="tabhtml_4" style="overflow:auto;height:100%;background:#EBEEFA">
+    <div style="overflow:hidden">
+        <table width="100%">
+            <tr>
+		<td style="background:#ffffff">
+                    <com:TActiveDatagrid Id="QVMailerLogger" AutogenerateColumns="true" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+                    </com:TActiveDatagrid>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+</com:TContent>

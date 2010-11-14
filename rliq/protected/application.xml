@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<application id="planlogIQ" mode="Normal">
+  
+  <paths>
+        <using namespace="System.I18N.*" />
+        <using namespace="System.I18N.core.*" />
+        <using namespace="System.Data.*" />
+        <using namespace="System.Data.ActiveRecord.*" />
+        <using namespace="System.Data.ActiveRecord.Scaffold.*" />
+        <using namespace="System.Data.ActiveRecord.Relations.*" />
+        <using namespace="System.Security.*" />
+        <using namespace="System.Web.*" />
+        <using namespace="System.Web.UI.WebControls.*" />
+        <using namespace="System.Web.UI.ActiveControls.*" />
+        <using namespace="System.Web.UI.ActiveControls.TActiveControlAdapter.*" />
+        <using namespace="Application.database.*" />
+        <using namespace="Application.common.TTooltip" />
+        <using namespace="Application.common.AxListMenu" />
+        <using namespace="Application.common.MaskedTextBox" />
+        <using namespace="Application.common.CActiveContextMenu" />
+        <using namespace="Application.common.InternalHyperLink" />
+        <using namespace="Application.common.XGlobalCallbackOptions" />
+        <using namespace="Application.common.BubbleService" />
+        <using namespace="Application.common.GanttService" />
+        <using namespace="Application.common.GraphService" />
+        <using namespace="Application.common.PWCWindow.*" />
+        <using namespace="Application.views.*" />
+        <using namespace="Application.app_code.GSProcUser" />
+        <using namespace="Application.app_code.PFH" />
+        <using namespace="Application.app_code.PFHierarchyPullDown" />
+        <!-- 3rd Party Modules -->
+        <using namespace="Application.phpMailer.PHPMailer" />
+        <!-- Webservice Folder -->
+        <!--using namespace="Application.webservices.QVTicketSecure" /-->
+        <using namespace="Application.webservices.QVMailerWS" />
+        <using namespace="Application.webservices.QVHPMailer" />
+        <using namespace="Application.pages.components.*" />
+    </paths>
+
+  <!-- configurations for modules -->
+  <modules>	  	
+        <module class="System.Data.TDataSourceConfig" id="db1">
+            <database ConnectionString="mysql:host=localhost;dbname=planlogiq" Username="root" Password="admin" />
+        </module>
+        <module id="Globalization" class="TGlobalization" DefaultCulture="de_DE" Culture="de_DE" DefaultCharset="UTF-8">
+            <translation type="Database" autosave="true" cache="false" source="db1" />
+        </module>
+
+        <module id="cache" class="System.Caching.TDbCache" ConnectionID="db1" />
+        <!--module id="session"
+            class="System.Web.THttpSession"
+            SessionName="SSID"
+            CookieMode="Allow"
+            AutoStart="true"
+            GCProbability="1"
+            UseTransparentSessionID="true"
+            TimeOut="3600" /-->
+        <module class="System.Data.ActiveRecord.TActiveRecordConfig" ConnectionID="db1" EnableCache="true"></module>
+
+        <module id="auth" class="System.Security.TAuthManager" UserManager="users" LoginPage="Home" />
+        <module id="users" class="System.Security.TDbUserManager" UserClass="GSProcUser" />
+
+        <module id="log" class="System.Util.TLogRouter">
+            <route class="TBrowserLogRoute" Categories="System" Levels="ERROR, FATAL" /> <!--ALERT, DEBUG, NOTICE, WARNING, /-->
+        </module>
+
+    </modules>
+
+  <!-- configuration for available services -->
+    <services>
+        <service id="page" class="TPageService" DefaultPage="Home">
+            <!--pages StatePersisterClass="System.Web.UI.TCachePageStatePersister"
+                   StatePersister.CacheModuleID="cache"
+                   MasterClass="Application.layouts.MainLayout" /-->
+            <pages MasterClass="Application.layouts.MainLayout" />
+            <module id="theme" class="System.Web.UI.TThemeManager" />
+        </service>
+
+        <service id="soap" class="System.Web.Services.TSoapService">
+            <!--soap id="QVTicketSecure" provider="Application.webservices.QVTicketSecure" /-->
+            <soap id="QVHPMailer" provider="Application.webservices.QVHPMailer" />
+        </service>
+
+        <!--service id="report" class="Application.common.TReportingService">
+            <report id="profit" class="Application.pages.reports.workbook.ProfitReport" format="Excel2007" />
+        </service-->
+
+        <service id="graph" class="Application.common.GraphService" Width="500" Height="300" Shadow="false" />
+        <service id="gantt" class="Application.common.GanttService" Width="800" Height="0" Shadow="false" />
+        <service id="bubble" class="Application.common.BubbleService" Width="800" Height="400" Shadow="false" />
+    </services>
+
+    <parameters>
+        <parameter id="GMapApiKey" value="ABQIAAAAgJKACr6hV9VnZre_lHeXiRQlY3ltp2-bess5WvHWv--gJ-8q9BT8AM3AIn1VHU78fFZ2KPq7lHNVBQ" />
+        <parameter id="PDFHost" value="localhost" />
+        <parameter id="Host" value="localhost" />
+        <parameter id="Database" value="planlogiq" />
+        <!-- hier starte ich jetzt mit den parametern fuer die Applikation /-->
+        <parameter id="allowUserRegistration" value="1" />
+        <parameter id="MODComments" value="1" />
+        <parameter id="isPlanningSolution" value="0" />
+        <parameter id="QlikView" value="0" />
+        <parameter id="QlikViewHost" value="192.168.0.22" />
+    </parameters>
+
+</application>

@@ -1,0 +1,126 @@
+<%@ Title="planlogIQ - New User" %>
+
+<com:TContent ID="HeaderJavascript">
+
+function initDHTMLXTabbars(TabbarObject){
+    TabbarObject.addTab("a1","Registration",150);
+    TabbarObject.setContent("a1", "tabhtml_1");
+
+    TabbarObject.setTabActive("a1");
+}
+
+</com:TContent>
+
+<com:TContent ID="GuestMain">
+
+<div id="tabhtml_1" style="overflow:auto;height:100%">
+    <div style="overflow:hidden">
+
+<div id="infobox"><%[ Register new User]%></div>
+<div class="pboxuseraction"><%[ Thank you for your interest in planlogIQ, here you can add a new user account, after registration you'll recieve
+further information, that will help you with your first steps ]%></div>
+
+
+    <table width="100%">
+
+       <tr><td colspan="3" class="portlet-title"><%[ my Account ]%></td></tr>
+
+        <tr>
+            <td><%[ Username ]%>:</td>
+            <td>
+                <com:TRequiredFieldValidator
+                    ControlToValidate="Username"
+                    ErrorMessage="Please provide a username."
+                    Display="Dynamic" />
+                <com:TCustomValidator
+                    ControlToValidate="Username"
+                    ErrorMessage="Sorry, your username is taken by someone else. Please choose another username."
+                    OnServerValidate="checkUsername"
+                    Display="Dynamic" />
+                <com:TTextBox ID="Username" CssClass="mandantorylarge"/>
+                <com:TDropDownList ID="Role" CssClass="inputnormal"></com:TDropDownList>
+            </td>
+            <td id="infoboxsmall">
+                <%[ Please enter you prefered username ]%></td>
+        </tr>
+
+        <tr>
+            <td><%[ Password ]%>:</td>
+            <td>
+                <com:TRequiredFieldValidator
+                ControlToValidate="Password"
+                ErrorMessage="Please provide a password."
+                Display="Dynamic" />
+                <com:TTextBox ID="Password" TextMode="Password" CssClass="mandantory" />
+                <com:TCompareValidator
+                ControlToValidate="Password"
+                ControlToCompare="Password2"
+                ErrorMessage="Your password entries did not match."
+                Display="Dynamic" />
+                <%[ Re-Type ]%>:<com:TTextBox ID="Password2" TextMode="Password" CssClass="mandantory" />
+            </td>
+            <td id="infoboxsmall">
+                <%[ Please enter you password ]%>
+            </td>
+        </tr>
+
+        <tr><td colspan="3" class="portlet-title"><%[ my personal data ]%></td></tr>
+
+        <tr>
+            <td><%[ First Name ]%>:</td>
+            <td>
+                <com:TTextBox ID="FirstName" CssClass="inputnormal" /> <%[ Last Name ]%>:<com:TTextBox ID="LastName" CssClass="inputnormal" />
+            </td>
+            <td id="infoboxsmall">
+            Tragen Sie hier ihren Vor- und Nachnamen ein...
+            </td>
+        </tr>
+
+        <tr>
+            <td><%[ EMail ]%>:</td>
+            <td>
+                <com:TRequiredFieldValidator
+                ControlToValidate="Email"
+                ErrorMessage="Please provide your email address."
+                Display="Dynamic" />
+            <com:TEmailAddressValidator
+                ControlToValidate="Email"
+                ErrorMessage="You entered an invalid email address."
+                Display="Dynamic" />
+            <com:TTextBox ID="Email" CssClass="mandantorylarge" />
+            </td>
+            <td id="infoboxsmall">
+            Tragen Sie hier ihre Mail-Adresse ein...
+            </td>
+        </tr>
+
+        <tr>
+            <td><%[ Street ]%>:</td>
+            <td>
+                <com:TTextBox ID="adresse_street" CssClass="inputlarge" />
+            </td>
+            <td id="infoboxsmall">
+            <%[ The name of your street, including number ]%>
+            </td>
+        </tr>
+
+        <tr>
+            <td><%[ Post Code ]%>:</td>
+            <td>
+                <com:TTextBox ID="adresse_zip" CssClass="inputsmall" /><%[ Town ]%>:<com:TTextBox ID="adresse_town" CssClass="inputnormal" />
+            </td>
+            <td id="infoboxsmall">
+            <%[ Your ZIP-Code and Hometown ]%>
+            </td>
+        </tr>
+
+    </table>
+   
+<p class="mytoolbar">
+    <com:TActiveButton Text="Reset" OnCallback="resetButtonClicked" CssClass="windowcontent-button" />
+    <com:TActiveButton Text="Create" OnCallback="createButtonClicked" CssClass="windowcontent-button" />
+</p>
+
+</div></div>
+
+</com:TContent>

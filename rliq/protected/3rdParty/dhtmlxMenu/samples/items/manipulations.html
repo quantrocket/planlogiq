@@ -1,0 +1,174 @@
+<!--conf
+<sample>
+              <product version="1.0" edition="std"/>
+                     <modifications>
+                            <modified date="080318"/>
+                     </modifications>
+               </sample>
+ --> 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Menu Items Manipulations</title>
+	
+	<link rel="stylesheet" type="text/css" href="../../codebase/skins/dhtmlxmenu_dhx_blue.css">
+	
+	<script  src="../../codebase/dhtmlxcommon.js"></script>
+	<script  src="../../codebase/dhtmlxmenu.js"></script>
+</head>
+<body onload="initMenu();">
+<link rel='STYLESHEET' type='text/css' href='../common/style.css'>
+<table cellspacing="0" cellpadding="0" class="sample_header" border="0">
+	<tr valign="middle">
+		<!-- COMPONENT ICON -->
+		<td width="40" align="center"><img src="../common/dhtmlxmenu_icon.gif" border="0"></td>
+		<!-- COMPONENT NAME -->
+		<td width="150" align="left" nowrap="true">Sample: dhtmlxMenu</td>
+		<!-- SAMPLE TITLE -->
+		<td width="0" align="left" nowrap><b>Menu Items Manipulations</b></td>
+		<!-- LINK TO COMPONENT PAGE -->
+		<td width="0" align="right"><a href="http://www.dhtmlx.com/docs/products/dhtmlxMenu/index.shtml">dhtmlxMenu main page</a></td>
+		<!-- CLOSE BUTTON -->
+		<td width="50"><div class="sample_close"><a href="javascript:void(0);" onclick="self.close();"><img src="../common/sample_close.gif" width="14" height="14" border="0" alt="X"></a></div></td>
+	</tr>
+</table>
+	<div id="menuObj"></div>
+	<div style="margin-top: 200px;">
+		<table border="0" cellspacing="0" cellpadding="0">
+			<tr>
+				<td valign="top">
+					<table border="0" cellspacing="0" cellpadding="0">
+						<th colspan="3" style="padding-bottom: 10px;">Add New Item</th>
+						<tr>
+							<td>Item Type</td>
+							<td width="10">&nbsp;</td>
+							<td><select id="add_type"><option value="0">Child</option><option value="1">Sibling</option></select></td>
+						</tr>
+						<tr>
+							<td>Parent</td>
+							<td>&nbsp;</td>
+							<td><div id="item_parent" style="font-weight: bold;">(Click menu to select)</div></td>
+						</tr>
+						<tr>
+							<td>Item Text</td>
+							<td>&nbsp;</td>
+							<td><input id="item_text" type="text" value=""></td>
+						</tr>
+						<tr>
+							<td>Item Has Icon</td>
+							<td>&nbsp;</td>
+							<td>
+								<span><input id="icon_exists" type="checkbox" checked></span>
+								<span><img id="icon_src" width="16" height="16" border="0" src="../images/copy.gif"></span>
+							</td>
+						</tr>
+						<tr>
+							<td>Icon Source</td>
+							<td>&nbsp;</td>
+							<td>
+								<span><img onclick="changeIcon(this, 'copy');" width="16" height="16" border="0" src="../images/copy.gif"></span>
+								<span><img onclick="changeIcon(this, 'cut');" width="16" height="16" border="0" src="../images/cut.gif"></span>
+								<span><img onclick="changeIcon(this, 'edit');" width="16" height="16" border="0" src="../images/edit.gif"></span>
+								<span><img onclick="changeIcon(this, 'new');" width="16" height="16" border="0" src="../images/new.gif"></span>
+								<span><img onclick="changeIcon(this, 'paste');" width="16" height="16" border="0" src="../images/paste.gif"></span>
+								<span><img onclick="changeIcon(this, 'print');" width="16" height="16" border="0" src="../images/print.gif"></span>
+								<span><img onclick="changeIcon(this, 'redo');" width="16" height="16" border="0" src="../images/redo.gif"></span>
+								<span><img onclick="changeIcon(this, 'undo');" width="16" height="16" border="0" src="../images/undo.gif"></span>
+								<span><img onclick="changeIcon(this, 'save');" width="16" height="16" border="0" src="../images/save.gif"></span>
+								<span><img onclick="changeIcon(this, 'select_all');" width="16" height="16" border="0" src="../images/select_all.gif"></span>
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td>&nbsp;</td>
+							<td><input type="button" value="Add Item" style="margin-top: 10px;" onclick="addItem();"></td>
+						</tr>
+					</table>
+				</td>
+				<td width="30">&nbsp;</td>
+				<td valign="top">
+					<table border="0" cellspacing="0" cellpadding="0">
+						<th colspan="3" style="padding-bottom: 10px;">Remove Item</th>
+						<tr>
+							<td>Item</td>
+							<td>&nbsp;</td>
+							<td><div id="item_id" style="font-weight: bold;">(Click menu to select)</div></td>
+						</tr>
+						<tr>
+							<td colspan="3" align="center"><input type="button" value="Remove Item" style="margin-top: 10px;" onclick="removeItem();"></td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</div>
+<div class='sample_code'><div class="hl-main"><pre><span class="hl-code"> 
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">script</span><span class="hl-brackets">&gt;</span><span class="hl-code"><div class="hl-main"><pre><span class="hl-code"> 
+    </span><span class="hl-reserved">var</span><span class="hl-code"> </span><span class="hl-identifier">menu</span><span class="hl-code"> = </span><span class="hl-reserved">new</span><span class="hl-code"> </span><span class="hl-identifier">dhtmlXMenuObject</span><span class="hl-brackets">(</span><span class="hl-quotes">&quot;</span><span class="hl-string">menuObj</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">)</span><span class="hl-code">;
+    ...
+    </span><span class="hl-comment">//</span><span class="hl-comment"> adding items</span><span class="hl-comment"></span><span class="hl-code">
+    </span><span class="hl-identifier">menu</span><span class="hl-code">.</span><span class="hl-identifier">addNewChild</span><span class="hl-brackets">(</span><span class="hl-identifier">parentId</span><span class="hl-code">, </span><span class="hl-identifier">pos</span><span class="hl-code">, </span><span class="hl-identifier">itemId</span><span class="hl-code">, </span><span class="hl-identifier">itemText</span><span class="hl-code">, </span><span class="hl-identifier">disabled</span><span class="hl-code">, </span><span class="hl-identifier">img</span><span class="hl-code">, </span><span class="hl-identifier">imgDis</span><span class="hl-brackets">)</span><span class="hl-code">;
+    </span><span class="hl-identifier">menu</span><span class="hl-code">.</span><span class="hl-identifier">addNewSibling</span><span class="hl-brackets">(</span><span class="hl-identifier">nextToId</span><span class="hl-code">, </span><span class="hl-identifier">itemId</span><span class="hl-code">, </span><span class="hl-identifier">itemText</span><span class="hl-code">, </span><span class="hl-identifier">disabled</span><span class="hl-code">, </span><span class="hl-identifier">img</span><span class="hl-code">, </span><span class="hl-identifier">imgDis</span><span class="hl-brackets">)</span><span class="hl-code">;
+    </span><span class="hl-comment">//</span><span class="hl-comment"> removing items</span><span class="hl-comment"></span><span class="hl-code">
+    </span><span class="hl-identifier">menu</span><span class="hl-code">.</span><span class="hl-identifier">removeItem</span><span class="hl-brackets">(</span><span class="hl-identifier">itemId</span><span class="hl-brackets">)</span><span class="hl-code">;</span></pre></div></span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">script</span><span class="hl-brackets">&gt;</span></pre></div></div>
+
+<br>
+
+<script>
+	var menu;
+	function initMenu() {
+		menu = new dhtmlXMenuObject("menuObj");
+		menu.setImagePath("../../codebase/imgs/");
+		menu.setIconsPath("../images/");
+		menu.attachEvent("onClick", changeParent);
+		menu.loadXML("../common/dhtmlxmenu.xml?e=" + new Date().getTime());
+	}
+	var itemImg = "copy";
+	function changeIcon(obj, icon) {
+		document.getElementById("icon_src").src = obj.src;
+		itemImg = icon;
+	}
+	var parentId = null;
+	function changeParent(id) {
+		parentId = id;
+		var text = menu.getItemText(id);
+		document.getElementById("item_parent").innerHTML = id + " ("+text+")";
+		document.getElementById("item_id").innerHTML = id + " ("+text+")";
+	}
+	var itemId = 0;
+	function addItem() {
+		if (parentId == null) { alert("Please select parentId"); return; }
+		var itemText = document.getElementById("item_text").value;
+		if (itemText.length == 0) { itemText = "New Item"; }
+		var img = "";
+		var imgDis = "";
+		if (document.getElementById("icon_exists").checked) {
+			img = itemImg+".gif";
+			imgDis = itemImg+"_dis.gif";
+		}
+		var opts = document.getElementById("add_type");
+		if (opts.options[opts.selectedIndex].value == "0") {
+			menu.addNewChild(parentId, 0, "item_"+itemId, itemText, false, img, imgDis);
+		} else {
+			menu.addNewSibling(parentId, "item_"+itemId, itemText, false, img, imgDis);
+		}
+		itemId++;
+		parentId = null;
+		document.getElementById("item_parent").innerHTML = "(Click menu to select)";
+		document.getElementById("item_id").innerHTML = "(Click menu to select)";
+	}
+	function removeItem() {
+		if (parentId == null) { alert("Please select itemId"); return; }
+		menu.removeItem(parentId);
+		parentId = null;
+		document.getElementById("item_parent").innerHTML = "(Click menu to select)";
+		document.getElementById("item_id").innerHTML = "(Click menu to select)";
+	}
+</script>
+
+<!-- FOOTER -->
+<table callspacing="0" cellpadding="0" border="0" class="sample_footer"><tr><td style="padding-left: 8px;">&copy; <a href="http://www.dhtmlx.com">DHTMLX LTD</a>. All rights reserved</td></tr></table>
+<!-- FOOTER -->
+
+</body>

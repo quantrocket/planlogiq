@@ -1,0 +1,45 @@
+<%@ MasterClass="Application.layouts.WindowLayout" Title="Adressen" %>
+
+<com:TContent ID="MainWindow">
+
+<div class="portlet-title"><%[ List of ]%> <%[ Organisations ]%></div>
+<table><tr>
+        <td>Typ: </td>
+        <td><com:TActiveDropDownList Id="WINOrgaidta_organisation_type" AutoPostback="true" OnCallback="bindListOrgListe" CssClass="mandantory" /></td>
+    </tr>
+</table>
+    <com:TActiveRepeater DataKeyField="idtm_organisation"
+                         ID="OrgListe"
+                         AllowPaging="true"
+                         PagerStyle.Mode="Numeric"
+                         PagerStyle.HorizontalAlign="Left"
+                         AllowSorting="true"
+                         PageSize="250"
+                         OnPageIndexChanged="dtgList_PageIndexChanged"
+                         onEditCommand="dtgList_editCommand"
+                         onSortCommand="dtgList_sortCommand"
+                         AutoGenerateColumns="false"
+                         CssClass="datagrid"
+                         PagerStyle.CssClass="pager"
+                         HeaderStyle.CssClass="header"
+                         AlternatingItemStyle.CssClass="alternating">
+            <com:TActiveBoundColumn ID="lst_idtm_organisation" DataField="idtm_organisation" HeaderText="ID" SortExpression="idtm_organisation" HeaderStyle.Width="40px"/>
+            <com:TActiveTemplateColumn HeaderStyle.Width="20px">
+                <prop:HeaderTemplate><%[ Type ]%></prop:HeaderTemplate>
+                <prop:ItemTemplate>
+                    <com:TActiveImage ImageUrl=<%#'/rliq/themes/basic/imgs/s'.OrganisationRecord::finder()->findByidtm_organisation($this->Parent->DataItem->idtm_organisation)->idta_organisation_type.'.gif'%> />
+                </prop:ItemTemplate>
+            </com:TActiveTemplateColumn>
+            <com:TActiveTemplateColumn HeaderStyle.Width="30px">
+                <prop:HeaderTemplate><%[ V ]%></prop:HeaderTemplate>
+                <prop:ItemTemplate>
+                    <a href="javascript:pass_value_to_parent('<%#$this->getRequest()->constructUrl('page','organisation.orgworkspace').'&idtm_organisation='.$this->Parent->DataItem->idtm_organisation%>')">view</a>
+                </prop:ItemTemplate>
+            </com:TActiveTemplateColumn>
+            <com:TActiveBoundColumn ID="lst_org_fk_internal" DataField="org_fk_internal" HeaderText="FK ID"  HeaderStyle.Width="50px" SortExpression="org_fk_internal"/>
+            <com:TActiveBoundColumn ID="lst_org_anrede" DataField="org_anrede" HeaderText="Anrede"  HeaderStyle.Width="40px"/>
+            <com:TActiveBoundColumn ID="lst_org_name" DataField="org_name" HeaderText="Organisation"  HeaderStyle.Width="200px" SortExpression="org_name"/>
+            <com:TActiveBoundColumn ID="lst_org_name1" DataField="org_vorname" HeaderText="Vorname"  HeaderStyle.Width="200px" SortExpression="org_vorname"/>
+    </com:TActiveDataGrid>
+
+</com:TContent>

@@ -1,0 +1,1 @@
+<?xml version="1.0" encoding="utf-8"?><application id="TestSWFChart" Mode="Debug">	<paths>	</paths>	<services>		<service id="page" class="TPageService" BasePath="Application.pages" DefaultPage="SWFChartBase" />	</services></application>

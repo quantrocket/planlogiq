@@ -1,0 +1,7 @@
+<%@ MasterClass="Application.layouts.WindowLayout" Title="Green Source Trading GmbH" %>
+
+<com:TContent ID="MainWindow">
+
+		<com:TScaffoldView RecordClass="AdresseRecord" />
+
+</com:TContent>

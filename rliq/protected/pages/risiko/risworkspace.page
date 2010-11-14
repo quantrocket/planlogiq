@@ -1,0 +1,70 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="planlogIQ" %>
+
+
+<com:TContent ID="HeaderJavascript">
+
+var IsAdministrator = <%=$this->User->isAdmin?'true':'false'%>;
+
+function initDHTMLXTabbars(TabbarObject){
+
+    TabbarObject.addTab("a1","Risiken",150);
+    TabbarObject.setContent("a1", "tabhtml_1");
+
+    TabbarObject.setTabActive("a1");
+}
+
+</com:TContent>
+
+<com:TContent ID="Main">
+<div id="tabhtml_1" style="overflow:auto;height:100%;background:#EBEEFA">
+        <div style="overflow:hidden">
+
+<h2>Risiko</h2>
+
+<p id="infobox">Definieren Sie hier die Risiko (personell) ihrer Unternehmung.</p>
+
+<table width="100%"><tr><td>
+
+</td>
+
+<td class="werkzeuge">
+<table width="100%">
+<tr>
+<td class="portlet-title">
+Werkzeuge
+</td>
+</tr>
+<tr><td>
+<com:TImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" />
+<com:InternalHyperLink id="NewRecord"/>
+</td></tr>
+<tr><td>
+<com:TImage ImageUrl="/rliq/themes/basic/gfx/16x16/apps/atlantik.png" />
+<com:InternalHyperLink id="RiskNav"/>
+</td></tr>
+</table>
+
+</td></tr></table>
+
+
+<com:TTabPanel>
+
+<com:TTabView id="allorg" Caption="Risiko Details">
+
+Suchen: <com:TActiveTextBox Id="find_org" /><com:TImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/about_kde.png" /><com:TActiveButton Text="search" OnClick="searchOrg" CssClass="submit"/>
+
+<com:TActiveDataGrid ID="OrgListe" AllowPaging="true" AllowSorting="false" AllowCustomPaging="true" PageSize="10" onSortCommand="dtgList_SortCommand" OnPageIndexChanged="dtgList_PageIndexChanged" onEditCommand="dtgList_editCommand" onUpdateCommand="jump_special" AutoGenerateColumns="false" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+	<com:TActiveBoundColumn ID="lst_ris_idtm_risiko" DataField="idtm_risiko" HeaderText="ID" SortExpression="idtm_risiko" />
+	<com:TActiveBoundColumn ID="lst_ris_name" DataField="ris_name" HeaderText="Bezeichnung" />
+	<com:TActiveBoundColumn ID="lst_ris_type_name" DataField="ristype.ris_type_name" HeaderText="Type" />
+	<com:TActiveBoundColumn ID="lst_ris_parent" DataField="parent_idtm_risiko" HeaderText="Vater" />
+	<com:TActiveEditCommandColumn HeaderText="Update" HeaderStyle.Width="100px" UpdateText="Save" EditText="Edit" CancelText="Cancel"/>
+</com:TActiveDataGrid>
+
+</com:TTabView>
+
+</com:TTabPanel>
+
+</div></div>
+
+</com:TContent>

@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!--conf
+<sample in_favorites="true">
+              <product version="1.0" edition="std"/>
+                     <modifications>
+                            <modified date="080318"/>
+                     </modifications>
+               <sampledescription><![CDATA[dhtmlxMenu can be populated from XML source of with script. This sample demonstrates script way.]]></sampledescription></sample>
+ --> 
+<html>
+<head>
+	<title>Initiazation using Script</title>
+	
+	<link rel="stylesheet" type="text/css" href="../../codebase/skins/dhtmlxmenu_dhx_blue.css">
+	
+	<script  src="../../codebase/dhtmlxcommon.js"></script>
+	<script  src="../../codebase/dhtmlxmenu.js"></script>
+</head>
+<body>
+<link rel='STYLESHEET' type='text/css' href='../common/style.css'>
+<table cellspacing="0" cellpadding="0" class="sample_header" border="0">
+	<tr valign="middle">
+		<!-- COMPONENT ICON -->
+		<td width="40" align="center"><img src="../common/dhtmlxmenu_icon.gif" border="0"></td>
+		<!-- COMPONENT NAME -->
+		<td width="150" align="left" nowrap="true">Sample: dhtmlxMenu</td>
+		<!-- SAMPLE TITLE -->
+		<td width="0" align="left" nowrap><b>Initiazation using Script</b></td>
+		<!-- LINK TO COMPONENT PAGE -->
+		<td width="0" align="right"><a href="http://www.dhtmlx.com/docs/products/dhtmlxMenu/index.shtml">dhtmlxMenu main page</a></td>
+		<!-- CLOSE BUTTON -->
+		<td width="50"><div class="sample_close"><a href="javascript:void(0);" onclick="self.close();"><img src="../common/sample_close.gif" width="14" height="14" border="0" alt="X"></a></div></td>
+	</tr>
+</table>
+<div id="menuObj"></div>
+<div class='sample_code'><div class="hl-main"><pre><span class="hl-code"> 
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">script</span><span class="hl-brackets">&gt;</span><span class="hl-code"><div class="hl-main"><pre><span class="hl-code"> 
+    </span><span class="hl-reserved">var</span><span class="hl-code"> </span><span class="hl-identifier">menu</span><span class="hl-code"> = </span><span class="hl-reserved">new</span><span class="hl-code"> </span><span class="hl-identifier">dhtmlXMenuObject</span><span class="hl-brackets">(</span><span class="hl-quotes">&quot;</span><span class="hl-string">menuObj</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">)</span><span class="hl-code">;
+    ...
+    </span><span class="hl-comment">//</span><span class="hl-comment"> initializing with script</span><span class="hl-comment"></span><span class="hl-code">
+    </span><span class="hl-identifier">menu</span><span class="hl-code">.</span><span class="hl-identifier">addNewSibling</span><span class="hl-brackets">(</span><span class="hl-reserved">null</span><span class="hl-code">, </span><span class="hl-quotes">&quot;</span><span class="hl-string">file</span><span class="hl-quotes">&quot;</span><span class="hl-code">, </span><span class="hl-quotes">&quot;</span><span class="hl-string">File</span><span class="hl-quotes">&quot;</span><span class="hl-code">, </span><span class="hl-reserved">false</span><span class="hl-brackets">)</span><span class="hl-code">;
+    </span><span class="hl-identifier">menu</span><span class="hl-code">.</span><span class="hl-identifier">addNewChild</span><span class="hl-brackets">(</span><span class="hl-quotes">&quot;</span><span class="hl-string">file</span><span class="hl-quotes">&quot;</span><span class="hl-code">, </span><span class="hl-number">0</span><span class="hl-code">, </span><span class="hl-quotes">&quot;</span><span class="hl-string">file_new</span><span class="hl-quotes">&quot;</span><span class="hl-code">, </span><span class="hl-quotes">&quot;</span><span class="hl-string">New</span><span class="hl-quotes">&quot;</span><span class="hl-code">, </span><span class="hl-reserved">false</span><span class="hl-code">, </span><span class="hl-quotes">&quot;</span><span class="hl-string">new.gif</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">)</span><span class="hl-code">;
+    </span><span class="hl-identifier">menu</span><span class="hl-code">.</span><span class="hl-identifier">setHotKey</span><span class="hl-brackets">(</span><span class="hl-quotes">&quot;</span><span class="hl-string">file_new</span><span class="hl-quotes">&quot;</span><span class="hl-code">, </span><span class="hl-quotes">&quot;</span><span class="hl-string">Ctrl+N</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">)</span><span class="hl-code">;
+    ...
+    
+    </span><span class="hl-comment">//</span><span class="hl-comment"> adding first menu item in case of script init</span><span class="hl-comment"></span><span class="hl-code">
+    
+    </span><span class="hl-comment">//</span><span class="hl-comment"> usual menu</span><span class="hl-comment"></span><span class="hl-code">
+    </span><span class="hl-reserved">var</span><span class="hl-code"> </span><span class="hl-identifier">menu</span><span class="hl-code"> = </span><span class="hl-reserved">new</span><span class="hl-code"> </span><span class="hl-identifier">dhtmlXMenuObject</span><span class="hl-brackets">(</span><span class="hl-quotes">&quot;</span><span class="hl-string">menuObj</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">)</span><span class="hl-code">;
+    </span><span class="hl-identifier">menu</span><span class="hl-code">.</span><span class="hl-identifier">addNewSibling</span><span class="hl-brackets">(</span><span class="hl-reserved">null</span><span class="hl-code">, ...</span><span class="hl-brackets">)</span><span class="hl-code">;
+    
+    </span><span class="hl-comment">//</span><span class="hl-comment"> contextual menu</span><span class="hl-comment"></span><span class="hl-code">
+    </span><span class="hl-reserved">var</span><span class="hl-code"> </span><span class="hl-identifier">menu</span><span class="hl-code"> = </span><span class="hl-reserved">new</span><span class="hl-code"> </span><span class="hl-identifier">dhtmlXMenuObject</span><span class="hl-brackets">(</span><span class="hl-brackets">)</span><span class="hl-code">;
+    </span><span class="hl-identifier">menu</span><span class="hl-code">.</span><span class="hl-identifier">renderAsContextMenu</span><span class="hl-brackets">(</span><span class="hl-brackets">)</span><span class="hl-code">;
+    </span><span class="hl-identifier">menu</span><span class="hl-code">.</span><span class="hl-identifier">addNewChild</span><span class="hl-brackets">(</span><span class="hl-identifier">menu</span><span class="hl-code">.</span><span class="hl-identifier">topId</span><span class="hl-code">, ...</span><span class="hl-brackets">)</span><span class="hl-code">;</span></pre></div></span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">script</span><span class="hl-brackets">&gt;</span></pre></div></div>
+
+<script>
+	var menu = new dhtmlXMenuObject("menuObj");
+	menu.setImagePath("../../codebase/imgs/");
+	menu.setIconsPath("../images/");
+	// initing
+	menu.addNewSibling(null, "file", "File", false);
+		menu.addNewChild("file", 0, "file_new", "New", false, "new.gif");
+		menu.setHotKey("file_new", "Ctrl+N");
+		menu.addNewSeparator("file_new", "s1");
+		menu.addNewChild("file", 2, "file_open", "Open", false);
+		menu.setHotKey("file_open", "Ctrl+O");
+		menu.addNewChild("file", 3, "file_save", "Save", false, "save.gif");
+		menu.setHotKey("file_save", "Ctrl+S");
+		menu.addNewChild("file", 4, "file_saveas", "Save As...", true);
+		menu.addNewSeparator("file_saveas");
+		menu.addNewChild("file", 6, "file_print", "Print", false, "print.gif");
+		menu.setHotKey("file_print", "Ctrl+P");
+		menu.addNewChild("file", 7, "file_page_setup", "Page Setup", true, null, "page_setup_dis.gif");
+		menu.addNewSeparator("file_page_setup");
+		menu.addNewChild("file", 9, "file_eol", "End Of Line", false);
+			menu.addRadioButton("child", "file_eol", 0, "eol_unix", "Unix (\\n)", "eol", true, false);
+			menu.addRadioButton("sibling", "eol_unix", null, "eol_doswin", "DOS/Windows (\\r\\n)", "eol", false, false);
+			menu.addRadioButton("sibling", "eol_doswin", null, "eol_macos", "MacOS (\\r)", "eol", false, false);
+		menu.addNewChild("file", 10, "file_syntax", "Syntax", false);
+			menu.addRadioButton("child", "file_syntax", 0, "syntax_ignore", "Ignore", "syntax", true, true);
+			menu.addNewSeparator("syntax_ignore");
+			menu.addRadioButton("child", "file_syntax", 2, "syntax_htmljs", "HTML/JS", "syntax", false, false);
+			menu.addRadioButton("child", "file_syntax", 3, "syntax_phpaspjsp", "PHP/ASP/JSP", "syntax", false, false);
+			menu.addRadioButton("child", "file_syntax", 4, "syntax_java", "Java", "syntax", false, false);
+		menu.addNewSeparator("file_syntax");
+		menu.addNewChild("file", 12, "file_close", "Close", true);
+		menu.setHotKey("file_close", "Ctrl+Q");
+	menu.addNewSibling("file", "edit", "Edit", false);
+		menu.addNewChild("edit", 0, "edit_undo", "Undo", false, "undo.gif");
+		menu.setHotKey("edit_undo", "Ctrl+Z");
+		menu.addNewSibling("edit_undo", "edit_redo", "Redo", false, "redo.gif");
+		menu.setHotKey("edit_redo", "Ctrl+Y");
+		menu.addNewSeparator("edit_redo", "sep_1");
+		menu.addNewSibling("sep_1", "edit_select_all", "Select All", false, "select_all.gif");
+		menu.setHotKey("edit_select_all", "Ctrl+A");
+		menu.addNewSeparator("edit_select_all", "sep_2");
+		menu.addNewSibling("sep_2", "edit_cut", "Cut", false, "cut.gif");
+		menu.setHotKey("edit_cut", "Ctrl+X");
+		menu.addNewSibling("edit_cut", "edit_copy", "Copy", false, "copy.gif");
+		menu.setHotKey("edit_copy", "Ctrl+C");
+		menu.addNewSibling("edit_copy", "edit_paste", "Paste", false, "paste.gif");
+		menu.setHotKey("edit_paste", "Ctrl+V");
+		menu.addNewSeparator("edit_paste", "sep_3");
+		menu.addNewSibling("sep_3", "edit_features", "Features", false);
+			menu.addCheckbox("child", "edit_features", 0, "ignore_case", "Ignore Case", true, false);
+			menu.addCheckbox("sibling", "ignore_case", null, "multiselect", "Multiselect Support", false, false);
+	menu.addNewSibling("edit", "help", "Help", false);
+		menu.addNewChild("help", 0, "about", "About...");
+		menu.setHotKey("about", "Ctrl+I");
+		menu.addNewChild("help", 1, "help2", "Help");
+		menu.setHotKey("help2", "F1");
+		menu.addNewChild("help", 2, "bugrep", "Bug Reporting");
+		menu.addNewSeparator("bugrep", "sep_help");
+		menu.addCheckbox("sibling", "sep_help", null, "tip_of_the_day", "Tip of the Day", true, true);
+</script>
+
+<!-- FOOTER -->
+<table callspacing="0" cellpadding="0" border="0" class="sample_footer"><tr><td style="padding-left: 8px;">&copy; <a href="http://www.dhtmlx.com">DHTMLX LTD</a>. All rights reserved</td></tr></table>
+<!-- FOOTER -->
+
+</body>

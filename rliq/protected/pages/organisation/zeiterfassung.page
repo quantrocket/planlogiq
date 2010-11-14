@@ -1,0 +1,250 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="planlogIQ - Zeiterfassung" %>
+
+<com:TContent ID="HeaderJavascript">
+
+var dhxTabbarInt;
+
+function initDHTMLXTabbars(TabbarObject){
+    dhxTabbarInt = dhxLayout.cells("b").attachTabbar();
+    dhxTabbarInt.setSkin('dhx_web');
+    dhxTabbarInt.setImagePath("/rliq/protected/3rdParty/dhtmlxTabbar/codebase/imgs/");
+
+    dhxTabbarInt.addTab("b1","Zeiterfassung",150);
+    dhxTabbarInt.setContent("b1", "tabhtml_1");
+
+    TabbarObject.addTab("a2","Belegerfassung",150);
+    TabbarObject.setContent("a2", "tabhtml_2");
+
+    dhxTabbarInt.setTabActive("b1");
+
+    TabbarObject.addTab("a1","Tabelle",150);
+    TabbarObject.setContent("a1", "tabhtml_3");
+    TabbarObject.setTabActive("a1");
+
+    dhxLayout.cells("b").setWidth(420);
+}
+
+</com:TContent>
+
+
+<com:TContent ID="Main">
+<div id="tabhtml_3" style="overflow:auto;height:100%;background-color:#cdcdcd;">
+        <div style="overflow:hidden">
+<div style="background-color:#D3E5E8;border:1px 1px 1px 1px solid #000000;">
+        <b>Projektfilter:</b><com:TActiveDropDownList Id="FFidtm_activity"
+                CssClass="mandantory"
+                OnCallBack="bindListRCValue"/>
+        <b>User:</b><com:POrganisationSelection Id="FFidtm_organisation" OnCallBack="bindListRCValue" Visible="<%#$this->User->getIsAdmin()%>"/>
+        <br/><b><%[ Start ]%>:</b>
+        <com:TActiveDatePicker Id="zeiterfassung_datestart" Mode="Basic" DateFormat="yyyy-MM-dd" InputMode="TextBox" OnTextChanged="bindListRCValue" Width="80px" />
+        <b><%[ End ]%>:</b>
+        <com:TActiveDatePicker Id="zeiterfassung_dateende" Mode="Basic" DateFormat="yyyy-MM-dd" InputMode="TextBox" OnTextChanged="bindListRCValue" Width="80px" />
+</div>
+
+<com:TActiveDataGrid ID="ZeiterfassungListe"
+        PagerStyle.Mode="Numeric"
+        PagerStyle.HorizontalAlign="Right"
+        AllowPaging="true"
+        AllowSorting="true"
+        PageSize="25"
+        AutoGenerateColumns="false"
+        PagerStyle.CssClass="pager"
+        AlternatingItemStyle.CssClass="alternating"
+        ItemStyle.CssClass="nonealternating"
+        OnPageIndexChanged="page.rcvList_PageIndexChanged"
+        OnEditCommand="page.load_rcvalue"
+        Width="100%">
+    <com:TActiveEditCommandColumn HeaderText=<%[ Action ]%> EditText="view" HeaderStyle.Width="45px"/>
+    <com:TActiveTemplateColumn HeaderStyle.Width="95px" ItemStyle.Height="21px">
+        <prop:HeaderTemplate><%[ Date ]%></prop:HeaderTemplate>
+        <prop:ItemTemplate>
+            <%#date("D d. M Y",strtotime($this->Parent->DataItem->zeit_date))%>
+        </prop:ItemTemplate>
+    </com:TActiveTemplateColumn>
+    <com:TActiveTemplateColumn>
+        <prop:HeaderTemplate><%[ User ]%></prop:HeaderTemplate>
+        <prop:ItemTemplate>
+            <com:TActiveLabel Text=<%#OrganisationRecord::finder()->findByPK($this->Parent->DataItem->idtm_organisation)->org_name%> />
+        </prop:ItemTemplate>
+    </com:TActiveTemplateColumn>
+    <com:TActiveTemplateColumn>
+        <prop:HeaderTemplate><%[ Activity ]%></prop:HeaderTemplate>
+        <prop:ItemTemplate>
+            <com:TActiveLabel Text=<%#ActivityRecord::finder()->findByPK($this->Parent->DataItem->idtm_activity)->act_name%> />
+        </prop:ItemTemplate>
+    </com:TActiveTemplateColumn>
+    <com:TActiveBoundColumn HeaderText=<%[ CT ]%> DataField="idta_kosten_status" ID="idta_kosten_status" />
+    <com:TActiveBoundColumn HeaderText=<%[ S-time ]%> DataField="zeit_starttime" ID="lst_zeit_starttime" />
+    <com:TActiveBoundColumn HeaderText=<%[ E-time ]%> DataField="zeit_endtime" ID="lst_zeit_endtime" />
+    <com:TActiveBoundColumn HeaderText=<%[ Break ]%> DataField="zeit_break" ID="lst_zeit_break" />
+    <com:TActiveBoundColumn HeaderText=<%[ Nettime ]%> DataField="zeit_dauer" ID="lst_zeit_dauer" />
+    <com:TActiveBoundColumn HeaderText=<%[ ID ]%> DataField="idtm_zeiterfassung" ID="lst_idtm_zeiterfassung" />
+</com:TActiveDataGrid>
+
+</div></div>
+
+    <div id="tabhtml_1" style="overflow:auto;height:100%;background-color:#ffffff;">
+        <div style="overflow:hidden">
+
+<div class="mytoolbar">
+    <com:TActiveImage
+        ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png"/>
+    <com:TActiveButton OnCommand="RCNewButtonClicked" Text=<%[ neu ]%> CssClass="windowcontent-button"/>
+</div>
+
+<table><tr><td>
+<fieldset>
+    <legend>Details</legend>
+
+<table width="100%">
+
+    <tr>
+    <td class="FormLabel"><%[ Datum ]%>:</td>
+    <td><com:TActiveDatePicker Id="RCedzeit_date" Mode="ImageButton" DateFormat="yyyy-MM-dd" InputMode="TextBox" Text="<%#date('Y-m-d')%>"/>
+    <com:TActiveLinkButton Text="Fahrtenbuch anzeigen" Id="FahrtenSichtButton" OnCallback="showFahrtenDialog" ToolTip="Fahrtenbuch anzeigen" CssClass="wcbutton"/>
+    </td>
+    </tr><tr>
+    <td class="FormLabel"><%[ Benutzer ]%>:</td>
+    <td>
+    <com:POrganisationSelection Id="RCedidtm_organisation"/>
+    </td>
+    </tr>
+
+    <tr>
+    <td class="FormLabel" valign="top"><%[ Projekt ]%>:</td>
+    <td valign="top">
+        <com:PActivitySelection Id="RCedidtm_activity" StartPunkt="2" StartKnoten="0"/>
+    </td>
+    </tr>
+
+    <tr>
+    <td class="FormLabel"><%[ Dauer ]%></td>
+    <td>
+        <table><tr><td>
+            <com:TActiveTextBox Id="RCedzeit_dauer"
+                CssClass="inputsmall"
+                onCallback="calcDauer"
+                AutoPostback="true"/> <i>h</i>
+            </td><td>
+            <com:TActiveRadioButtonList
+                RepeatColumns="2"
+                Id="RCedzeit_typ"
+                AutoPostBack="false"/>
+            </td></tr>
+        </table>
+    </td>
+    </tr>
+
+    <tr>
+    <td class="FormLabel"><%[ von / bis ]%></td>
+    <td>
+    <com:PTimeSelection Id="RCedzeit_starttime"/> / 
+    <com:PTimeSelection Id="RCedzeit_endtime"/>
+    <b><%[ Pause ]%>:</b>
+        <com:TActiveTextBox Id="RCedzeit_break"
+            CssClass="inputsmall"
+            onCallback="calcDauer"
+            AutoPostback="true"/> <i>min</i>
+    </td>
+    </tr>
+
+    
+
+    <tr>
+    <td class="FormLabel" valign="top"><%[ Status ]%>/<%[ Prozess ]%>:</td>
+    <td><com:TActiveRadioButtonList
+            RepeatColumns="4"
+            Id="RCedidta_kosten_status"
+            AutoPostBack="false"/>
+    <com:TActiveListBox
+            Id="RCedidtm_prozess"
+            AutoPostBack="false"
+            SelectionMode="Single"
+            CssClass="inputnormal"/></td>
+    </tr>
+
+    <tr>
+    <td class="FormLabel" valign="top"><%[ Beschreibung ]%>:</td>
+    <td><com:TActiveTextBox Id="RCedzeit_descr" TextMode="MultiLine" Width="200px"/></td>
+    </tr>
+
+    <tr><td colspan="2">
+
+        <com:TActivePanel ID="FahrtenDialog" Display="None">
+        <table width="100%">
+        <tr><td colspan="2" class="portlet-title"><%[ Fahrtenbuch ]%>
+        <com:TActiveLinkButton Text="Fahrtenbuch ausblenden" OnCallback="hideFahrtenDialog" ToolTip="Fahrtenbuch ausblenden" CssClass="wcbutton"/></td></tr>
+
+        <tr>
+        <td colspan="1" class="FormLabel" style="background-color:#efefef;"><%[ von ]%>/<%[ nach ]%>/<%[ km ]%>:</td>
+        <td colspan="1">
+            <com:TAutoComplete Id="fahrt_von" ResultPanel.Style="position:relative"
+                OnSuggest="suggestOrganisation" Suggestions.DataKeyField="org_name" ResultPanel.CssClass="acomplete">
+                    <prop:Suggestions.ItemTemplate>
+                        <li><%# $this->Data['org_name'] %></li>
+                    </prop:Suggestions.ItemTemplate>
+            </com:TAutoComplete>
+            <com:TAutoComplete Id="fahrt_nach" ResultPanel.Style="position:relative"
+                OnSuggest="suggestOrganisation" Suggestions.DataKeyField="org_name" ResultPanel.CssClass="acomplete">
+                    <prop:Suggestions.ItemTemplate>
+                        <li><%# $this->Data['org_name'] %></li>
+                    </prop:Suggestions.ItemTemplate>
+            </com:TAutoComplete>
+            <com:TActiveTextBox Id="fahrt_km" CssClass="inputsmall" />
+        </td>
+        </tr>
+
+        <tr>
+        <td class="FormLabel" style="background-color:#efefef;"><%[ Fahrtkostenstatus ]%>:</td><td><com:TActiveDropDownList Id="fahrt_status" /></td>
+        </tr>
+
+        </table>
+        </com:TActivePanel>
+    </td></tr>
+    <tr>
+        <td colspan="2">
+        <hr/>
+        </td>
+    </tr>
+    <tr>
+        <td colspan="2">
+        <table cellpadding="0" cellspacing="0" width="100%">
+            <tr>
+                <td align="left">
+                    <com:TActivePanel ID="SpeichernDialog" Display="None">
+                        <com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/filesave.png" />
+                        <com:TActiveButton OnCallback="RCSavedButtonClicked" Text=<%[ speichern ]%> CssClass="windowcontent-button"/>
+                        <com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/editdelete.png" />
+                        <com:TActiveButton OnCallback="RCDeleteButtonClicked" Text=<%[ entfernen ]%> CssClass="windowcontent-button"/>
+                    </com:TActivePanel>
+                </td>
+                <td align="right">
+                    <com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/pencil.png"/>
+                    <com:TActiveButton OnCallback="RCSavedButtonClicked"
+                        Text="<%[ hinzufügen ]%>"
+                        CssClass="windowcontent-button"/>
+                </td>
+              </tr>
+           </table>
+        </td>
+    </tr>
+    </table>
+    </fieldset>
+</td></tr></table>
+
+<com:TActiveTextBox id="RCedzeiterfassung_edit_status" Text="0" CssClass="hiddeninput" visible="false" />
+<com:TActiveTextBox id="RCedidtm_zeiterfassung" CssClass="hiddeninput" visible="false" />
+
+        </div>
+    </div>
+
+<div id="tabhtml_2" style="overflow:auto;height:100%;background:#EBEEFA">
+        <div style="overflow:hidden">
+
+<com:Application.pages.container.DetailBelegContainer ID="DetailBelegContainer"/>
+
+    </div>
+</div>
+
+
+</com:TContent>

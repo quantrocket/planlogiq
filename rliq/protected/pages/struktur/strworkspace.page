@@ -1,0 +1,50 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="RiskLogIQ" %>
+
+<com:TContent ID="HeaderJavascript">
+
+function initDHTMLXTabbars(TabbarObject){
+    TabbarObject.addTab("a1","Strukturelemente",150);
+    TabbarObject.setContent("a1", "tabhtml_1");
+
+    TabbarObject.setTabActive("a1");
+}
+
+</com:TContent>
+
+<com:TContent ID="Navigation">
+
+<com:Application.portlets.strukturportletsettings Visible="true" />
+
+</com:TContent>
+
+<com:TContent ID="Main">
+<div id="tabhtml_1" style="overflow:auto;height:100%">
+    <div style="overflow:hidden">
+
+<div class="mytoolbar">
+        <com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" OnCallback="saveValues"/><com:TActiveButton OnCallback="newStructureRecord" Text=<%[ new ]%> CssClass="windowcontent-button" Id="NewButton"/>
+</div>
+
+<%[ Set Focus ]%>: <com:TActiveDropDownList Id="idtm_struktur" OnSelectedIndexChanged="applyTargetFilter" CssClass="mandantory" />
+<%[ Find ]%>: <com:TActiveTextBox Id="find_org" /><com:TImage ImageUrl="/rliq/themes/basic/gfx/16x16/actions/about_kde.png" /><com:TActiveButton Text="search" OnClick="searchOrg" CssClass="submit"/>
+
+<com:TActiveDataGrid ID="OrgListe" AllowPaging="true" AllowSorting="false" PageSize="30" onUpdateCommand="dtgList_viewChildren" OnPageIndexChanged="dtgList_PageIndexChanged" onEditCommand="dtgList_editCommand" AutoGenerateColumns="false" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating" PagerStyle.Mode="Numeric" PagerStyle.HorizontalAlign="Right">
+	<com:TActiveBoundColumn ID="lst_str_idtm_struktur" DataField="idtm_struktur" HeaderText="ID" SortExpression="idtm_struktur" />
+	<com:TActiveTemplateColumn HeaderStyle.Width="20px">
+            <prop:HeaderTemplate><%[ Type ]%></prop:HeaderTemplate>
+            <prop:ItemTemplate>
+                <com:TActiveImage ImageUrl=<%#'/rliq/themes/basic/imgs/s'.StrukturRecord::finder()->findByidtm_struktur($this->Parent->DataItem['idtm_struktur'])->idta_struktur_type.'.gif'%> />
+            </prop:ItemTemplate>
+        </com:TActiveTemplateColumn>
+        <com:TActiveBoundColumn ID="lst_str_name" DataField="struktur_name" HeaderText="Bezeichnung" />
+	<com:TActiveTemplateColumn>
+            <prop:HeaderTemplate><%[ Type ]%></prop:HeaderTemplate>
+            <prop:ItemTemplate>
+                <com:TActiveLabel Text=<%#StrukturTypeRecord::finder()->findByidta_struktur_type(StrukturRecord::finder()->findByidtm_struktur($this->Parent->DataItem['idtm_struktur'])->idta_struktur_type)->struktur_type_name%> />
+            </prop:ItemTemplate>
+        </com:TActiveTemplateColumn>
+        <com:TActiveEditCommandColumn HeaderText="Update" HeaderStyle.Width="100px" UpdateText="Save" EditText="Edit" CancelText="Cancel"/>
+</com:TActiveDataGrid>
+
+</div></div>
+</com:TContent>

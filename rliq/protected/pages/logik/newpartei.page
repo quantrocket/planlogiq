@@ -1,0 +1,33 @@
+<%@ Title="GSProcurement - Partei neu" %>
+ 
+<com:TContent ID="Main">
+ 
+<h1>Neuer Standort</h1>
+
+<span>Name 1:</span>
+<br/>
+<com:TTextBox Id="Name1" />
+<br/>
+
+
+<span>Name 2:</span>
+<br/>
+<com:TTextBox Id="Name2" />
+<br/>
+
+
+<span>Name 3:</span>
+<br/>
+<com:TTextBox Id="Name3" />
+<br/>
+
+
+<span>Vorname:</span>
+<br/>
+<com:TTextBox Id="Vorname" />
+<br/>
+
+<br/>
+<com:TButton Text="Save" OnClick="saveButtonClicked" CssClass="submit"/>
+ 
+</com:TContent>

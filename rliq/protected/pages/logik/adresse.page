@@ -1,0 +1,66 @@
+<%@ Title="GSProcurement - Adresse neu" %>
+ 
+<com:TContent ID="Main">
+
+<com:TMultiView ID="viewPanel" ActiveViewIndex="0">
+
+<com:TView> 
+<h1>Neue Adresse</h1>
+
+<span>Street:</span>
+<br/>
+<com:TTextBox Id="Street" />
+<br/>
+
+
+<span>Town:</span>
+<br/>
+<com:TTextBox Id="Town" />
+<br/>
+
+
+<span>Zip:</span>
+<br/>
+<com:TTextBox Id="Zip" />
+<br/>
+
+
+<span>Country:</span>
+<br/>
+<com:TDropDownList ID="Country">
+</com:TDropDownList>
+<br/>
+
+<com:THiddenField id="idta_partei" />
+<com:TButton Text="Save" OnClick="insertButtonClicked" CssClass="submit"/>
+</com:TView>
+
+<com:TView>
+<h1>edit Adresse</h1>
+
+<span>Street:</span>
+<br/>
+<com:TTextBox Id="edStreet" />
+<br/>
+<span>Town:</span>
+<br/>
+<com:TTextBox Id="edTown" />
+<br/>
+<span>Zip:</span>
+<br/>
+<com:TTextBox Id="edZip" />
+<br/>
+<span>Country:</span>
+<br/>
+<com:TDropDownList ID="edCountry">
+</com:TDropDownList>
+<br/>
+
+<com:THiddenField id="edidta_adresse" />
+<com:THiddenField id="edidta_partei" />
+<com:TButton Text="Save" OnClick="editButtonClicked" CssClass="submit"/>
+</com:TView>
+
+
+</com:TMultiView> 
+</com:TContent>

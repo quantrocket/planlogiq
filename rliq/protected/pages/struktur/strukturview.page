@@ -1,0 +1,232 @@
+<%@ Title="planlogIQ - Struktur" %>
+
+<com:TContent ID="HeaderJavascript">
+
+var notIsGuest = <%=$this->Request['modus']?'true':'false'%>;
+
+function initDHTMLXTabbars(TabbarObject){
+    if(notIsGuest){
+        TabbarObject.addTab("a1","Struktur Element Details",150);
+        TabbarObject.setContent("a1", "tabhtml_1");
+
+        TabbarObject.addTab("a2","Dimensionszuordnung",150);
+        TabbarObject.setContent("a2", "tabhtml_2");
+
+        TabbarObject.addTab("a3","Benutzerrechte",150);
+        TabbarObject.setContent("a3", "tabhtml_3");
+    }else{
+        TabbarObject.addTab("a1","Struktur Element Details",150);
+        TabbarObject.setContent("a1", "tabhtml_1");
+    }
+
+    TabbarObject.setTabActive("a1");
+}
+
+</com:TContent>
+
+<com:TContent ID="Navigation">
+
+     <com:Application.portlets.strukturportletsettings Visible="true" />
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<com:TMultiView ID="viewPanel" ActiveViewIndex="0">
+
+<com:TView ID="neu_Organisation"> 
+<div id="tabhtml_1" style="overflow:auto;height:100%">
+    <div style="overflow:hidden">
+
+<h2><%[ Structure Element Detail ]%></h2>
+
+<p id="infobox"><%[ Here you add a new logical structure element, take care about the dimension mapping! ]%></p>
+
+<table width="100%">
+
+<tr><td colspan="3" class="portlet-title"><%[ Structure ]%></td></tr>
+
+<tr>
+<td><%[ Name ]%></td>
+<td><com:TActiveTextBox Id="struktur_name" CssClass="mandantorylarge" />
+</td>
+<td id="infoboxsmall">
+<%[ Give the element a name ]%>
+</td>
+</tr>
+<tr>
+<td><%[ Type ]%></td>
+<td><com:TActiveDropDownList Id="idta_struktur_type" /></td>
+<td id="infoboxsmall">
+<%[ What kind of element is it - logical - company, profitcenter, revenue, income, expense ]%>
+</td>
+</tr>
+
+<tr><td colspan="3" class="portlet-title"><%[ Hierarchy ]%></td></tr>
+
+
+<tr>
+<td><%[ Parent ]%></td>
+<td><com:TActiveDropDownList Id="parent_idtm_struktur" CssClass="mandantory" /></td>
+<td id="infoboxsmall">
+<%[ Please select the parent element ]%>
+</td>
+</tr>
+
+<tr>
+<td><%[ Dimension link ]%>:</td>
+<td><com:TActiveDropDownList Id="idtm_stammdaten" /></td>
+<td id="infoboxsmall">
+<%[ Here you will see, to which Dimension, this element is linked ]%>
+</td>
+</tr>
+
+
+</table>
+<com:THiddenField id="idtm_struktur" />
+<p class="mytoolbar">
+    <com:TActiveButton Text=<%[ save ]%> OnCallback="insertButtonClicked" CssClass="submit"/>
+</p>
+
+</div></div> <!--ende tab /-->
+</com:TView>
+
+<com:TView ID="edit_Org"> 
+<div id="tabhtml_1" style="overflow:auto;height:100%">
+    <div style="overflow:hidden">
+
+<table width="100%">
+
+<tr><td colspan="3" class="portlet-title"><%[ Structure Element ]%></td></tr>
+
+<tr>
+<td><%[ Name ]%></td>
+<td><com:TActiveTextBox Id="edstruktur_name" CssClass="mandantorylarge"/>
+</td>
+<td id="infoboxsmall">
+<%[ This is the name of the element, displayed in tree ]%>
+</td>
+</tr>
+<tr>
+<td><%[ Type ]%></td>
+<td><com:TActiveDropDownList Id="edidta_struktur_type" /></td>
+<td id="infoboxsmall">
+<%[ What kind of element is it - logical - company, profitcenter, revenue, income, expense ]%>
+</td>
+</tr>
+
+<tr><td colspan="3" class="portlet-title"><%[ Hierarchy ]%></td></tr>
+
+
+<tr>
+<td><%[ Parent ]%></td>
+<td><com:TActiveDropDownList Id="edparent_idtm_struktur" CssClass="mandantory" /></td>
+<td id="infoboxsmall">
+<%[ Please select the parent element ]%>
+</td>
+</tr>
+
+<tr>
+<td><%[ Dimension link ]%>:</td>
+<td><com:TActiveDropDownList Id="edidtm_stammdaten" /></td>
+<td id="infoboxsmall">
+<%[ Here you will see, to which Dimension, this element is linked ]%>
+</td>
+</tr>
+
+</table>
+
+
+<com:THiddenField id="edidtm_struktur" />
+<p class="mytoolbar">
+<com:TActiveButton Text=<%[ save ]%> OnCallback="editButtonClicked" CssClass="submit"/>
+<com:TActiveButton Text=<%[ delete ]%> OnCallback="deleteButtonClicked" CssClass="submit"/>
+</p>
+</div></div> <!--ende tab /-->
+
+<div id="tabhtml_2" style="overflow:auto;height:100%">
+    <div style="overflow:hidden">
+
+    <com:Application.pages.container.StrukturStammdatenGroupContainer ID="StrukturStammdatenGroupContainer"  />
+
+</div></div> <!--ende tab /-->
+
+<div id="tabhtml_3" style="overflow:auto;height:100%">
+    <div style="overflow:hidden">
+        <table width="100%">
+            <tr>
+                <td colspan="3" class="mytoolbar">
+                    <com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/edit_add.png" OnCallback="XXRNewClicked"/><com:TActiveButton OnCallback="XXRNewClicked" Text=<%[ new ]%> CssClass="windowcontent-button"/>
+                    <com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/filesave.png" OnCallback="XXRSaveClicked"/><com:TActiveButton OnCallback="XXRSaveClicked" Text=<%[ save ]%> CssClass="windowcontent-button"/>
+                    <com:TActiveImageButton ImageUrl="/rliq/themes/basic/gfx/16x16/actions/cancel.png" OnCallback="XXRDeleteClicked"/><com:TActiveButton OnCallback="XXRDeleteClicked" Text=<%[ delete ]%> CssClass="windowcontent-button"/>
+                    <com:TActiveTextBox id="idxx_berechtigung" Text="" CssClass="hiddeninput" visible="false" />
+                    <com:TActiveTextBox id="xx_id" Text="" CssClass="hiddeninput" visible="false" />
+                    <com:TActiveTextBox id="xx_modul" Text="tm_struktur" CssClass="hiddeninput" visible="false" />
+                    <com:TActiveTextBox id="berechtigung_edit_status" Text="0" CssClass="hiddeninput" visible="false" />
+                </td>
+            </tr>
+            <tr>
+                <td><%[ User ]%></td>
+                <td><com:TActiveListBox ID="idtm_user" Rows="4" CssClass="inputnormal" /></td>
+                <td id="infoboxsmall"><%[ please choose the user, the rights are given ]%></td>
+            </tr>
+            <tr>
+                <td><%[ Rights ]%></td>
+                <td>
+                    Read:<com:TActiveCheckBox ID="xx_read" />
+                    Write:<com:TActiveCheckBox ID="xx_write" />
+                    Create:<com:TActiveCheckBox ID="xx_create" />
+                    Delete:<com:TActiveCheckBox ID="xx_delete" />
+                </td>
+                <td id="infoboxsmall"><%[ Please add the rights for the selected user ]%></td>
+            </tr>
+            <tr><td colspan="3" class="portlet-title"><%[ List of ]%> <%[ User rights ]%></td></tr>
+            <tr>
+                <td colspan="3">
+                    <com:TActiveDataGrid ID="lstBerechtigung" PageSize="20" AllowPaging="true" onPageIndexChanged="lstBerechtigung_pageIndexChanged" AutoGenerateColumns="false" onEditCommand="editlstBerechtigung" PagerStyle.Mode="Numeric" PagerStyle.HorizontalAlign="Right" CssClass="datagrid" PagerStyle.CssClass="pager" AlternatingItemStyle.CssClass="alternating">
+                        <com:TActiveBoundColumn HeaderText=<%[ Key ]%> DataField="idxx_berechtigung" ID="lst_idxx_berechtigung" />
+                        <com:TActiveBoundColumn HeaderText=<%[ Modul ]%> DataField="xx_modul" ID="lst_xx_modul" />
+                        <com:TActiveBoundColumn HeaderText=<%[ StrID ]%> DataField="xx_id" ID="lst_xx_id" />
+                        <com:TActiveBoundColumn HeaderText=<%[ UserID ]%> DataField="idtm_user" ID="lst_idtm_user" />
+                        <com:TActiveTemplateColumn>
+                            <prop:HeaderTemplate><%[ User ]%></prop:HeaderTemplate>
+                            <prop:ItemTemplate>
+                                <com:TActiveLabel Text=<%#UserRecord::finder()->findByidtm_user($this->Parent->DataItem->idtm_user)->user_name%> />
+                            </prop:ItemTemplate>
+                        </com:TActiveTemplateColumn>
+                        <com:TActiveTemplateColumn>
+                            <prop:HeaderTemplate><%[ R ]%></prop:HeaderTemplate>
+                            <prop:ItemTemplate>
+                                <com:TActiveImage ImageUrl=<%#"/rliq/themes/basic/gfx/16x16/actions/".$this->Parent->DataItem->xx_read.".png"%> />
+                            </prop:ItemTemplate>
+                        </com:TActiveTemplateColumn>
+                        <com:TActiveTemplateColumn>
+                            <prop:HeaderTemplate><%[ U ]%></prop:HeaderTemplate>
+                            <prop:ItemTemplate>
+                                <com:TActiveImage ImageUrl=<%#"/rliq/themes/basic/gfx/16x16/actions/".$this->Parent->DataItem->xx_write.".png"%> />
+                            </prop:ItemTemplate>
+                        </com:TActiveTemplateColumn>
+                        <com:TActiveTemplateColumn>
+                            <prop:HeaderTemplate><%[ C ]%></prop:HeaderTemplate>
+                            <prop:ItemTemplate>
+                                <com:TActiveImage ImageUrl=<%#"/rliq/themes/basic/gfx/16x16/actions/".$this->Parent->DataItem->xx_create.".png"%> />
+                            </prop:ItemTemplate>
+                        </com:TActiveTemplateColumn>
+                        <com:TActiveTemplateColumn>
+                            <prop:HeaderTemplate><%[ D ]%></prop:HeaderTemplate>
+                            <prop:ItemTemplate>
+                                <com:TActiveImage ImageUrl=<%#"/rliq/themes/basic/gfx/16x16/actions/".$this->Parent->DataItem->xx_delete.".png"%> />
+                            </prop:ItemTemplate>
+                        </com:TActiveTemplateColumn>
+                        <com:TActiveEditCommandColumn HeaderText=<%[ actions ]%> />
+                    </com:TActiveDataGrid>
+                </td>
+            </tr>
+        </table>
+
+</div></div> <!--ende tab /-->
+</com:TView>
+
+</com:TMultiView> 
+
+</com:TContent>

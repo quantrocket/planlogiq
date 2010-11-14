@@ -1,0 +1,78 @@
+<%@ MasterClass="Application.layouts.MainLayout" Title="ProLogIQ - Handbuch - Intro" %>
+
+<com:TContent ID="Navigation">
+	<com:Application.portlets.handbuchportlet Visible="true" />
+</com:TContent>
+
+<com:TContent ID="Main">
+<div id="content">
+
+<h2>Benutzerhandbuch ProLogIQ</h2>
+
+<h3>Intro</h3>
+
+<p class="pbox">
+Herzlich Willkommen im Handbuch für Prologiq - Projektmanagement, Risikomanagement und Kommunikationsmanagement.</p>
+
+<p class="pbox">
+Prologiq unterstützt Sie bei allen Prozessen, die im Rahmen eines Einzelprojektes auftreten. Ob es um die Zeitplanung, die Protokollierung und Dokumentation oder die Definition von Zielen und deren Messgrößen geht - prologIQ ist ihr Helfer. Dabei wächst die Funktionalität täglich und wir Ihnen nach sorgreichen Testst direkt zur Verfügung gestellt.</p>
+
+<p class="pboxusertip">
+Im folgenden können Sie sich durch die einzelnen Themengebiete in der Applikation bewegen. In den grauen Boxen befinden sich grundsätzliche Arbeitsanweisungen, wie Sie Aufgaben lösen können.
+</p>
+
+
+<h3>Themenliste</h3>
+<table width="100%">
+    <tr>
+        <td id="infoboxsmall" valign="top" width="78%">
+            <h3>Organisation</h3>
+            <p class="pbox">
+                <ol>
+                    <li><a href="<%= $this->getRequest()->constructUrl('page','manual.orga.orga') %>">Anlegen der Organisationsstruktur</a></li>
+                    <li><a href="<%= $this->getRequest()->constructUrl('page','manual.orga.zeiterfassung') %>">Zeiterfassung</a></li>
+                </ol>
+            </p>
+        </td>
+        <td>
+            <com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/manual/organisation_overview.jpg" Height="100px" Width="150px"></com:TActiveImage>
+        </td>
+    </tr>
+    <tr>
+        <td id="infoboxsmall" valign="top" width="78%">
+            <h3>Ziele</h3>
+            <p class="pbox">
+                <ol>
+                    <li><a href="<%= $this->getRequest()->constructUrl('page','manual.ziele.ziele') %>">Anlegen der Zielhierarchie</a></li>
+                </ol>
+            </p>
+        </td>
+        <td>
+            <com:TActiveImage ImageUrl="/rliq/themes/basic/gfx/manual/netzplan.jpg" Height="100px" Width="150px"></com:TActiveImage>
+        </td>
+    </tr>
+</table>
+<p class="pbox">
+<ol>
+<li><a href="<%= $this->getRequest()->constructUrl('page','manual.ziele.ziele') %>">
+Definition der Ziele</a></li>
+<li>Stakeholer und Organisation</li>
+<li>Phasenplan</li>
+<li>Risikoanalyse</li>
+<li>Projektorganisation</li>
+<ul>
+<li>Besprechungswesen</li>
+<li>Berichtswesen</li>
+<li>Änderungsmanagement</li>
+<li>Projektdokumentation</li>
+</ul>
+<li>PSP/Arbeitspakete</li>
+<li>Ablauf- und Terminplanung</li>
+<li>Einsatzmittelplanung</li>
+<li>Kostenplanung</li>
+</ol>
+</p>
+
+</div>
+
+<div class="last-modified">$Id: introduction.page 20090206 philipp $</div></com:TContent>

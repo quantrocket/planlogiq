@@ -1,0 +1,76 @@
+.image-manager
+{
+	border: 1px solid #ccc;
+}
+.image-manager, .image-manager select, .image-manager td
+{
+	font-family: Tahoma, Arial, Helvetica, sans-serif;
+	font-size: 9pt;
+}
+
+.image-manager .location-bar
+{
+	width: 100%;
+}
+
+.image-manager td.location
+{
+	width: 50%;
+}
+
+.image-manager td.buttons
+{
+	width: 50%;
+}
+
+.image-manager select.location
+{
+	width: 100%;
+}
+
+.image-manager .image-button
+{
+	padding: 2px;
+	text-align: center;
+	float: left;
+	font-size: 8pt;
+	margin-right: 2px;
+	border: 0 none;
+	text-decoration: none;
+	color: Black;
+	border: 1px solid transparent;
+}
+
+.image-manager .image-button:hover
+{
+	background-color: #FAFAD2;
+	border: 1px solid #F0E68C;
+}
+
+.image-manager .image-button img
+{
+	vertical-align: -3px;
+	border: 0 none;
+}
+
+.image-manager .image-button .caption
+{
+	margin-left: 3px;
+}
+
+.image-manager .separator
+{
+	width:0px;
+	height: 3ex;
+	border-left: 1px solid #ccc;
+	float: left;
+	margin-right: 5px;
+	margin-left: 3px;
+}
+
+.content-frame
+{
+	border: 1px solid red;
+	width: 100%;
+	height: 400px;
+}

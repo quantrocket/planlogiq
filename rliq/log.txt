@@ -1,0 +1,1848 @@
+
+
+====================================
+Log started, 31/08/2010 10:08:49
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr FROM vv_termin_connector
+
+Done in 0.0051589012145996s
+
+
+
+====================================
+Log started, 31/08/2010 10:08:11
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr FROM vv_termin_connector
+
+Done in 0.0044801235198975s
+
+
+
+====================================
+Log started, 31/08/2010 10:08:30
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr FROM vv_termin_connector
+
+Done in 0.0087499618530273s
+
+
+
+====================================
+Log started, 31/08/2010 10:08:52
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr FROM vv_termin_connector
+
+Done in 0.0027658939361572s
+
+
+
+====================================
+Log started, 31/08/2010 11:08:24
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr FROM vv_termin_connector
+
+Done in 0.0038878917694092s
+
+
+
+====================================
+Log started, 31/08/2010 03:08:56
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr FROM vv_termin_connector
+
+Done in 0.010544061660767s
+
+
+
+====================================
+Log started, 31/08/2010 05:08:53
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0030748844146729s
+
+
+
+====================================
+Log started, 31/08/2010 05:08:15
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.004817008972168s
+
+
+
+====================================
+Log started, 31/08/2010 05:08:14
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0027000904083252s
+
+
+
+====================================
+Log started, 31/08/2010 05:08:06
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0034899711608887s
+
+
+
+====================================
+Log started, 31/08/2010 05:08:29
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0039458274841309s
+
+
+
+====================================
+Log started, 31/08/2010 05:08:16
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0035228729248047s
+
+
+
+====================================
+Log started, 31/08/2010 05:08:41
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0050032138824463s
+
+
+
+====================================
+Log started, 31/08/2010 05:08:37
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0027999877929688s
+
+
+
+====================================
+Log started, 31/08/2010 05:08:02
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0039539337158203s
+
+
+
+====================================
+Log started, 31/08/2010 06:08:31
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0037472248077393s
+
+
+
+====================================
+Log started, 31/08/2010 06:08:05
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0050010681152344s
+
+
+
+====================================
+Log started, 31/08/2010 06:08:52
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0037369728088379s
+
+
+
+====================================
+Log started, 31/08/2010 06:08:26
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0049099922180176s
+
+
+
+====================================
+Log started, 31/08/2010 06:08:06
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0035209655761719s
+
+
+
+====================================
+Log started, 31/08/2010 06:08:39
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0035037994384766s
+
+
+
+====================================
+Log started, 31/08/2010 06:08:07
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0036931037902832s
+
+
+
+====================================
+Log started, 31/08/2010 06:08:30
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0032579898834229s
+
+
+
+====================================
+Log started, 31/08/2010 06:08:51
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0039670467376709s
+
+
+
+====================================
+Log started, 31/08/2010 06:08:49
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0065360069274902s
+
+
+
+====================================
+Log started, 31/08/2010 06:08:46
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0038390159606934s
+
+
+
+====================================
+Log started, 31/08/2010 06:08:32
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0044889450073242s
+
+
+
+====================================
+Log started, 31/08/2010 06:08:38
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0030860900878906s
+
+
+
+====================================
+Log started, 31/08/2010 06:08:53
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0033209323883057s
+
+
+
+====================================
+Log started, 31/08/2010 06:08:05
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0039489269256592s
+
+
+
+====================================
+Log started, 31/08/2010 06:08:47
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0037109851837158s
+
+
+
+====================================
+Log started, 31/08/2010 06:08:17
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0043609142303467s
+
+
+
+====================================
+Log started, 31/08/2010 06:08:49
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0047190189361572s
+
+
+
+====================================
+Log started, 31/08/2010 07:08:45
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.00382399559021s
+
+
+
+====================================
+Log started, 31/08/2010 08:08:07
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0029370784759521s
+
+
+
+====================================
+Log started, 31/08/2010 08:08:08
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0035150051116943s
+
+
+
+====================================
+Log started, 31/08/2010 08:08:17
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0044679641723633s
+
+
+
+====================================
+Log started, 31/08/2010 08:08:36
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0030868053436279s
+
+
+
+====================================
+Log started, 31/08/2010 08:08:59
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0031230449676514s
+
+
+
+====================================
+Log started, 31/08/2010 08:08:07
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0028588771820068s
+
+
+
+====================================
+Log started, 31/08/2010 08:08:30
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0038819313049316s
+
+
+
+====================================
+Log started, 31/08/2010 08:08:37
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0044081211090088s
+
+
+
+====================================
+Log started, 31/08/2010 08:08:58
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0044419765472412s
+
+
+
+====================================
+Log started, 31/08/2010 08:08:55
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0044591426849365s
+
+
+
+====================================
+Log started, 31/08/2010 08:08:19
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.004857063293457s
+
+
+
+====================================
+Log started, 31/08/2010 08:08:56
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.004166841506958s
+
+
+
+====================================
+Log started, 31/08/2010 08:08:56
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0033140182495117s
+
+
+
+====================================
+Log started, 31/08/2010 09:08:23
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0037901401519775s
+
+
+
+====================================
+Log started, 31/08/2010 09:08:44
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.003511905670166s
+
+
+
+====================================
+Log started, 01/09/2010 10:09:26
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.032213926315308s
+
+
+
+====================================
+Log started, 01/09/2010 10:09:32
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0053160190582275s
+
+
+
+====================================
+Log started, 01/09/2010 10:09:09
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0038719177246094s
+
+
+
+====================================
+Log started, 01/09/2010 11:09:54
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0036051273345947s
+
+
+
+====================================
+Log started, 06/09/2010 12:09:39
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.12583994865417s
+
+
+
+====================================
+Log started, 06/09/2010 08:09:52
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.093560934066772s
+
+
+
+====================================
+Log started, 07/09/2010 09:09:30
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.095874786376953s
+
+
+
+====================================
+Log started, 07/09/2010 04:09:29
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.063740015029907s
+
+
+
+====================================
+Log started, 08/09/2010 05:09:11
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.075683116912842s
+
+
+
+====================================
+Log started, 08/09/2010 05:09:40
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.003957986831665s
+
+
+
+====================================
+Log started, 08/09/2010 08:09:12
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0041909217834473s
+
+
+
+====================================
+Log started, 09/09/2010 10:09:09
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.074857950210571s
+
+
+
+====================================
+Log started, 11/09/2010 03:09:50
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.069354057312012s
+
+
+
+====================================
+Log started, 12/09/2010 10:09:53
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.096645832061768s
+
+
+
+====================================
+Log started, 12/09/2010 10:09:51
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0029590129852295s
+
+
+
+====================================
+Log started, 12/09/2010 10:09:05
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0029468536376953s
+
+
+
+====================================
+Log started, 13/09/2010 02:09:41
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.097822904586792s
+
+
+
+====================================
+Log started, 16/09/2010 09:09:44
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.21783208847046s
+
+
+
+====================================
+Log started, 17/09/2010 01:09:22
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.075547933578491s
+
+
+
+====================================
+Log started, 17/09/2010 05:09:40
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.069324016571045s
+
+
+
+====================================
+Log started, 20/09/2010 12:09:58
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.057536125183105s
+
+
+
+====================================
+Log started, 01/10/2010 11:10:54
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.030778169631958s
+
+
+
+====================================
+Log started, 01/10/2010 11:10:01
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0044128894805908s
+
+
+
+====================================
+Log started, 05/10/2010 02:10:18
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.091839075088501s
+
+
+
+====================================
+Log started, 05/10/2010 02:10:33
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0034410953521729s
+
+
+
+====================================
+Log started, 05/10/2010 02:10:02
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.004802942276001s
+
+
+
+====================================
+Log started, 06/10/2010 02:10:09
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.099307060241699s
+
+
+
+====================================
+Log started, 07/10/2010 06:10:25
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.10302901268005s
+
+
+
+====================================
+Log started, 08/10/2010 09:10:13
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.020243167877197s
+
+
+
+====================================
+Log started, 11/10/2010 09:10:44
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.30810213088989s
+
+
+
+====================================
+Log started, 11/10/2010 09:10:10
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0043468475341797s
+
+
+
+====================================
+Log started, 11/10/2010 09:10:08
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0043830871582031s
+
+
+
+====================================
+Log started, 11/10/2010 12:10:52
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.064420938491821s
+
+
+
+====================================
+Log started, 12/10/2010 09:10:59
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.14642596244812s
+
+
+
+====================================
+Log started, 12/10/2010 11:10:39
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.058552026748657s
+
+
+
+====================================
+Log started, 12/10/2010 11:10:36
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.004054069519043s
+
+
+
+====================================
+Log started, 12/10/2010 11:10:30
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0037648677825928s
+
+
+
+====================================
+Log started, 12/10/2010 11:10:22
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0040590763092041s
+
+
+
+====================================
+Log started, 12/10/2010 11:10:14
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.004256010055542s
+
+
+
+====================================
+Log started, 12/10/2010 11:10:34
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0029621124267578s
+
+
+
+====================================
+Log started, 12/10/2010 11:10:23
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0027658939361572s
+
+
+
+====================================
+Log started, 12/10/2010 11:10:48
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0042271614074707s
+
+
+
+====================================
+Log started, 12/10/2010 11:10:49
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0037910938262939s
+
+
+
+====================================
+Log started, 12/10/2010 11:10:20
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0037460327148438s
+
+
+
+====================================
+Log started, 12/10/2010 11:10:35
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0035548210144043s
+
+
+
+====================================
+Log started, 12/10/2010 12:10:56
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.040634870529175s
+
+
+
+====================================
+Log started, 12/10/2010 12:10:02
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-09-01' AND ter_endtimestamp > '2010-08-01'
+
+Done in 0.0026791095733643s
+
+
+
+====================================
+Log started, 12/10/2010 12:10:21
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector
+
+Done in 0.0039958953857422s
+
+
+
+====================================
+Log started, 12/10/2010 12:10:39
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.0038058757781982s
+
+
+
+====================================
+Log started, 12/10/2010 12:10:45
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-09-01' AND ter_endtimestamp > '2010-08-01'
+
+Done in 0.0030660629272461s
+
+
+
+====================================
+Log started, 12/10/2010 12:10:52
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.002856969833374s
+
+
+
+====================================
+Log started, 12/10/2010 12:10:43
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-09-01' AND ter_endtimestamp > '2010-08-01'
+
+Done in 0.0028140544891357s
+
+
+
+====================================
+Log started, 12/10/2010 12:10:10
+====================================
+
+DataProcessor object initialized
+6_id => 6
+6_start_date => 2010-08-31 12:00
+6_end_date => 2010-08-31 14:00
+6_text => Humba, das ist ein Test
+6_ter_descr => Wie auch immer, wie kann das funktionieren;)
+6_idtm_activity => 3
+6_!nativeeditor_status => updated
+ids => 6
+
+Row data [6]
+idtm_termin => 6
+ter_starttimestamp => 2010-08-31 12:00
+ter_endtimestamp => 2010-08-31 14:00
+ter_betreff => Humba, das ist ein Test
+ter_descr => Wie auch immer, wie kann das funktionieren;)
+idtm_activity => 3
+!nativeeditor_status => updated
+
+UPDATE vv_termin_connector SET ter_starttimestamp='2010-08-31 12:00',ter_endtimestamp='2010-08-31 14:00',ter_betreff='Humba, das ist ein Test',ter_descr='Wie auch immer, wie kann das funktionieren;)',idtm_activity='3' WHERE idtm_termin='6'
+
+Edit operation finished
+0 => action:error; sid:6; tid:6;
+
+Done in 0.17258882522583s
+
+
+
+====================================
+Log started, 12/10/2010 12:10:20
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-12-01'
+
+Done in 0.0022320747375488s
+
+
+
+====================================
+Log started, 12/10/2010 12:10:30
+====================================
+
+DataProcessor object initialized
+2_id => 2
+2_start_date => 2010-09-01 10:00
+2_end_date => 2010-09-01 14:00
+2_text => TestTermin wie auch immer
+2_ter_descr => Text
+2_idtm_activity => 2
+2_!nativeeditor_status => updated
+ids => 2
+
+Row data [2]
+idtm_termin => 2
+ter_starttimestamp => 2010-09-01 10:00
+ter_endtimestamp => 2010-09-01 14:00
+ter_betreff => TestTermin wie auch immer
+ter_descr => Text
+idtm_activity => 2
+!nativeeditor_status => updated
+
+UPDATE vv_termin_connector SET ter_starttimestamp='2010-09-01 10:00',ter_endtimestamp='2010-09-01 14:00',ter_betreff='TestTermin wie auch immer',ter_descr='Text',idtm_activity='2' WHERE idtm_termin='2'
+
+Edit operation finished
+0 => action:error; sid:2; tid:2;
+
+Done in 0.003870964050293s
+
+
+
+====================================
+Log started, 12/10/2010 12:10:38
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.0026378631591797s
+
+
+
+====================================
+Log started, 12/10/2010 12:10:42
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-09-01' AND ter_endtimestamp > '2010-08-01'
+
+Done in 0.0027000904083252s
+
+
+
+====================================
+Log started, 12/10/2010 12:10:43
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-08-01' AND ter_endtimestamp > '2010-07-01'
+
+Done in 0.0023868083953857s
+
+
+
+====================================
+Log started, 12/10/2010 12:10:47
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-07-01' AND ter_endtimestamp > '2010-06-01'
+
+Done in 0.0029900074005127s
+
+
+
+====================================
+Log started, 12/10/2010 12:10:01
+====================================
+
+DataProcessor object initialized
+2_id => 2
+2_start_date => 2010-09-01 10:00
+2_end_date => 2010-09-01 14:00
+2_text => TestTermin
+2_ter_descr => Text unserer Nachricht
+2_idtm_activity => 2
+2_!nativeeditor_status => updated
+ids => 2
+
+Row data [2]
+idtm_termin => 2
+ter_starttimestamp => 2010-09-01 10:00
+ter_endtimestamp => 2010-09-01 14:00
+ter_betreff => TestTermin
+ter_descr => Text unserer Nachricht
+idtm_activity => 2
+!nativeeditor_status => updated
+
+UPDATE vv_termin_connector SET ter_starttimestamp='2010-09-01 10:00',ter_endtimestamp='2010-09-01 14:00',ter_betreff='TestTermin',ter_descr='Text unserer Nachricht',idtm_activity='2' WHERE idtm_termin='2'
+
+Edit operation finished
+0 => action:error; sid:2; tid:2;
+
+Done in 0.0038430690765381s
+
+
+
+====================================
+Log started, 12/10/2010 12:10:08
+====================================
+
+DataProcessor object initialized
+2_id => 2
+2_start_date => 2010-09-01 10:00
+2_end_date => 2010-09-01 14:00
+2_text => TestTermin
+2_ter_descr => Text unserer Nachricht
+2_idtm_activity => 2
+2_!nativeeditor_status => updated
+ids => 2
+
+Row data [2]
+idtm_termin => 2
+ter_starttimestamp => 2010-09-01 10:00
+ter_endtimestamp => 2010-09-01 14:00
+ter_betreff => TestTermin
+ter_descr => Text unserer Nachricht
+idtm_activity => 2
+!nativeeditor_status => updated
+
+UPDATE vv_termin_connector SET ter_starttimestamp='2010-09-01 10:00',ter_endtimestamp='2010-09-01 14:00',ter_betreff='TestTermin',ter_descr='Text unserer Nachricht',idtm_activity='2' WHERE idtm_termin='2'
+
+Edit operation finished
+0 => action:error; sid:2; tid:2;
+
+Done in 0.0035161972045898s
+
+
+
+====================================
+Log started, 12/10/2010 12:10:48
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.0038108825683594s
+
+
+
+====================================
+Log started, 12/10/2010 12:10:43
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-09-01' AND ter_endtimestamp > '2010-08-01'
+
+Done in 0.0028958320617676s
+
+
+
+====================================
+Log started, 12/10/2010 02:10:10
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.003856897354126s
+
+
+
+====================================
+Log started, 12/10/2010 02:10:19
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-09-01' AND ter_endtimestamp > '2010-08-01'
+
+Done in 0.0029299259185791s
+
+
+
+====================================
+Log started, 12/10/2010 02:10:32
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-12-01'
+
+Done in 0.002647876739502s
+
+
+
+====================================
+Log started, 14/10/2010 03:10:32
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.070911169052124s
+
+
+
+====================================
+Log started, 14/10/2010 03:10:41
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.0038540363311768s
+
+
+
+====================================
+Log started, 14/10/2010 04:10:43
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.0044639110565186s
+
+
+
+====================================
+Log started, 14/10/2010 04:10:06
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.0030601024627686s
+
+
+
+====================================
+Log started, 14/10/2010 07:10:58
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.0035529136657715s
+
+
+
+====================================
+Log started, 14/10/2010 10:10:50
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.0033819675445557s
+
+
+
+====================================
+Log started, 15/10/2010 10:10:49
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.1012110710144s
+
+
+
+====================================
+Log started, 15/10/2010 11:10:00
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.0046079158782959s
+
+
+
+====================================
+Log started, 15/10/2010 11:10:19
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.0028810501098633s
+
+
+
+====================================
+Log started, 15/10/2010 11:10:36
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.0035319328308105s
+
+
+
+====================================
+Log started, 15/10/2010 01:10:20
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.0051090717315674s
+
+
+
+====================================
+Log started, 20/10/2010 11:10:20
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.086561918258667s
+
+
+
+====================================
+Log started, 21/10/2010 09:10:26
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.064727067947388s
+
+
+
+====================================
+Log started, 21/10/2010 01:10:49
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.055509090423584s
+
+
+
+====================================
+Log started, 22/10/2010 05:10:46
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.017929077148438s
+
+
+
+====================================
+Log started, 22/10/2010 05:10:53
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-09-01' AND ter_endtimestamp > '2010-08-01'
+
+Done in 0.0026500225067139s
+
+
+
+====================================
+Log started, 22/10/2010 05:10:39
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.0031909942626953s
+
+
+
+====================================
+Log started, 22/10/2010 06:10:11
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.0039410591125488s
+
+
+
+====================================
+Log started, 27/10/2010 12:10:41
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.16698288917542s
+
+
+
+====================================
+Log started, 27/10/2010 02:10:00
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.0041921138763428s
+
+
+
+====================================
+Log started, 27/10/2010 05:10:56
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.0044541358947754s
+
+
+
+====================================
+Log started, 27/10/2010 06:10:33
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.0027329921722412s
+
+
+
+====================================
+Log started, 28/10/2010 11:10:19
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.099647998809814s
+
+
+
+====================================
+Log started, 28/10/2010 04:10:23
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.028078079223633s
+
+
+
+====================================
+Log started, 29/10/2010 08:10:00
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.040493011474609s
+
+
+
+====================================
+Log started, 29/10/2010 11:10:46
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-12-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.019244909286499s
+
+
+
+====================================
+Log started, 01/11/2010 06:11:48
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.018846035003662s
+
+
+
+====================================
+Log started, 01/11/2010 06:11:58
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.0040340423583984s
+
+
+
+====================================
+Log started, 01/11/2010 10:11:38
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.018192052841187s
+
+
+
+====================================
+Log started, 01/11/2010 10:11:16
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.0031170845031738s
+
+
+
+====================================
+Log started, 01/11/2010 10:11:52
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.0033299922943115s
+
+
+
+====================================
+Log started, 01/11/2010 10:11:20
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.0030288696289062s
+
+
+
+====================================
+Log started, 02/11/2010 12:11:40
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.017503976821899s
+
+
+
+====================================
+Log started, 02/11/2010 01:11:26
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.028907060623169s
+
+
+
+====================================
+Log started, 02/11/2010 01:11:45
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-11-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.0028650760650635s
+
+
+
+====================================
+Log started, 02/11/2010 04:11:08
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.065617084503174s
+
+
+
+====================================
+Log started, 02/11/2010 07:11:27
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.084364891052246s
+
+
+
+====================================
+Log started, 02/11/2010 08:11:21
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.0026340484619141s
+
+
+
+====================================
+Log started, 03/11/2010 01:11:46
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.051312923431396s
+
+
+
+====================================
+Log started, 03/11/2010 01:11:50
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-11-01' AND ter_endtimestamp > '2010-09-01'
+
+Done in 0.0031490325927734s
+
+
+
+====================================
+Log started, 03/11/2010 01:11:50
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-09-01' AND ter_endtimestamp > '2010-08-01'
+
+Done in 0.0030970573425293s
+
+
+
+====================================
+Log started, 03/11/2010 01:11:51
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2010-08-01' AND ter_endtimestamp > '2010-07-01'
+
+Done in 0.0030200481414795s
+
+
+
+====================================
+Log started, 03/11/2010 04:11:32
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.089931011199951s
+
+
+
+====================================
+Log started, 03/11/2010 05:11:24
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.0024878978729248s
+
+
+
+====================================
+Log started, 04/11/2010 01:11:09
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.063166856765747s
+
+
+
+====================================
+Log started, 08/11/2010 04:11:27
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.015350103378296s
+
+
+
+====================================
+Log started, 09/11/2010 11:11:05
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.072702884674072s
+
+
+
+====================================
+Log started, 09/11/2010 11:11:14
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.015908002853394s
+
+
+
+====================================
+Log started, 09/11/2010 11:11:28
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.053922891616821s
+
+
+
+====================================
+Log started, 10/11/2010 10:11:35
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.10043907165527s
+
+
+
+====================================
+Log started, 10/11/2010 06:11:33
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.074759960174561s
+
+
+
+====================================
+Log started, 11/11/2010 04:11:57
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.04820704460144s
+
+
+
+====================================
+Log started, 11/11/2010 04:11:22
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.004770040512085s
+
+
+
+====================================
+Log started, 11/11/2010 05:11:01
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.0035901069641113s
+
+
+
+====================================
+Log started, 11/11/2010 08:11:15
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.090764045715332s
+
+
+
+====================================
+Log started, 11/11/2010 10:11:51
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.0029060840606689s
+
+
+
+====================================
+Log started, 11/11/2010 10:11:04
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.0027928352355957s
+
+
+
+====================================
+Log started, 12/11/2010 11:11:05
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.056483030319214s
+
+
+
+====================================
+Log started, 13/11/2010 01:11:06
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.060139179229736s
+
+
+
+====================================
+Log started, 13/11/2010 06:11:30
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.048144102096558s
+
+
+
+====================================
+Log started, 14/11/2010 08:11:15
+====================================
+
+SELECT idtm_termin,ter_starttimestamp,ter_endtimestamp,ter_betreff,ter_descr,idtm_activity FROM vv_termin_connector WHERE ter_starttimestamp < '2011-01-01' AND ter_endtimestamp > '2010-11-01'
+
+Done in 0.048475980758667s
+

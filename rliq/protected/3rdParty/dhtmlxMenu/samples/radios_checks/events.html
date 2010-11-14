@@ -1,0 +1,80 @@
+<!--conf
+<sample>
+              <product version="1.0" edition="std"/>
+                     <modifications>
+                            <modified date="080318"/>
+                     </modifications>
+               </sample>
+ --> 
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+	<title>Radio Buttons And Checkboxes Event Handling</title>
+	
+	<link rel="stylesheet" type="text/css" href="../../codebase/skins/dhtmlxmenu_dhx_blue.css">
+	
+	<script  src="../../codebase/dhtmlxcommon.js"></script>
+	<script  src="../../codebase/dhtmlxmenu.js"></script>
+</head>
+<body onload="initMenu();">
+<link rel='STYLESHEET' type='text/css' href='../common/style.css'>
+<table cellspacing="0" cellpadding="0" class="sample_header" border="0">
+	<tr valign="middle">
+		<!-- COMPONENT ICON -->
+		<td width="40" align="center"><img src="../common/dhtmlxmenu_icon.gif" border="0"></td>
+		<!-- COMPONENT NAME -->
+		<td width="150" align="left" nowrap="true">Sample: dhtmlxMenu</td>
+		<!-- SAMPLE TITLE -->
+		<td width="0" align="left" nowrap><b>Radio Buttons And Checkboxes Event Handling</b></td>
+		<!-- LINK TO COMPONENT PAGE -->
+		<td width="0" align="right"><a href="http://www.dhtmlx.com/docs/products/dhtmlxMenu/index.shtml">dhtmlxMenu main page</a></td>
+		<!-- CLOSE BUTTON -->
+		<td width="50"><div class="sample_close"><a href="javascript:void(0);" onclick="self.close();"><img src="../common/sample_close.gif" width="14" height="14" border="0" alt="X"></a></div></td>
+	</tr>
+</table>
+<p>"Settings" item contains sub items with checkboxes and radio buttons. Try to change their states.</p>
+	<div id="menuObj"></div>
+	<div id="ta" style="margin-top: 200px; width: 500px; height: 100px; border: #909090 1px solid; overflow: auto; font-size: 10px; font-family: Tahoma;"></div>
+<div class='sample_code'><div class="hl-main"><pre><span class="hl-code"> 
+</span><span class="hl-brackets">&lt;</span><span class="hl-reserved">script</span><span class="hl-brackets">&gt;</span><span class="hl-code"><div class="hl-main"><pre><span class="hl-code"> 
+    </span><span class="hl-reserved">var</span><span class="hl-code"> </span><span class="hl-identifier">menu</span><span class="hl-code"> = </span><span class="hl-reserved">new</span><span class="hl-code"> </span><span class="hl-identifier">dhtmlXMenuObject</span><span class="hl-brackets">(</span><span class="hl-quotes">&quot;</span><span class="hl-string">menuObj</span><span class="hl-quotes">&quot;</span><span class="hl-brackets">)</span><span class="hl-code">;
+    ...
+    </span><span class="hl-comment">//</span><span class="hl-comment"> attaching onCheckboxClick event handler</span><span class="hl-comment"></span><span class="hl-code">
+    </span><span class="hl-identifier">menu</span><span class="hl-code">.</span><span class="hl-identifier">attachEvent</span><span class="hl-brackets">(</span><span class="hl-quotes">&quot;</span><span class="hl-string">onCheckboxClick</span><span class="hl-quotes">&quot;</span><span class="hl-code">, </span><span class="hl-reserved">function</span><span class="hl-brackets">(</span><span class="hl-identifier">id</span><span class="hl-code">, </span><span class="hl-identifier">state</span><span class="hl-brackets">)</span><span class="hl-code"> </span><span class="hl-brackets">{</span><span class="hl-code">
+        </span><span class="hl-comment">//</span><span class="hl-comment"> return true to change state automatically</span><span class="hl-comment"></span><span class="hl-code">
+        </span><span class="hl-reserved">return</span><span class="hl-code"> </span><span class="hl-reserved">true</span><span class="hl-code">;
+    </span><span class="hl-brackets">}</span><span class="hl-brackets">)</span><span class="hl-code">;
+    </span><span class="hl-comment">//</span><span class="hl-comment"> attaching onRadioClick event handler</span><span class="hl-comment"></span><span class="hl-code">
+    </span><span class="hl-identifier">menu</span><span class="hl-code">.</span><span class="hl-identifier">attachEvent</span><span class="hl-brackets">(</span><span class="hl-quotes">&quot;</span><span class="hl-string">onRadioClick</span><span class="hl-quotes">&quot;</span><span class="hl-code">, </span><span class="hl-reserved">function</span><span class="hl-brackets">(</span><span class="hl-identifier">group</span><span class="hl-code">, </span><span class="hl-identifier">idChecked</span><span class="hl-code">, </span><span class="hl-identifier">idClicked</span><span class="hl-brackets">)</span><span class="hl-code"> </span><span class="hl-brackets">{</span><span class="hl-code">
+        </span><span class="hl-comment">//</span><span class="hl-comment"> return true to change state automatically</span><span class="hl-comment"></span><span class="hl-code">
+        </span><span class="hl-reserved">return</span><span class="hl-code"> </span><span class="hl-reserved">true</span><span class="hl-code">;
+    </span><span class="hl-brackets">}</span><span class="hl-brackets">)</span><span class="hl-code">;</span></pre></div></span><span class="hl-brackets">&lt;/</span><span class="hl-reserved">script</span><span class="hl-brackets">&gt;</span></pre></div></div>
+
+<br>
+
+<script>
+	var menu;
+	function initMenu() {
+		menu = new dhtmlXMenuObject("menuObj");
+		menu.setImagePath("../../codebase/imgs/");
+		menu.setIconsPath("../images/");
+		menu.attachEvent("onCheckboxClick", menuCheckboxClick);
+		menu.attachEvent("onRadioClick", menuRadioClick);
+		menu.loadXML("../common/dhtmlxmenu_radios.xml?e=" + new Date().getTime());
+	}
+	function menuCheckboxClick(id, state) {
+		document.getElementById("ta").innerHTML += "Checkbox '"+menu.getItemText(id)+"' (id:"+id+") was "+(state?"unchecked":"checked")+"<br>";
+		return true;
+	}
+	function menuRadioClick(group, idChecked, idClicked) {
+		document.getElementById("ta").innerHTML += "Radiobutton '"+menu.getItemText(idClicked)+"' (id:"+idClicked+") was checked<br>";
+		return true;
+	}
+</script>
+
+<!-- FOOTER -->
+<table callspacing="0" cellpadding="0" border="0" class="sample_footer"><tr><td style="padding-left: 8px;">&copy; <a href="http://www.dhtmlx.com">DHTMLX LTD</a>. All rights reserved</td></tr></table>
+<!-- FOOTER -->
+
+</body>

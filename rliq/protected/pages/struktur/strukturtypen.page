@@ -1,0 +1,77 @@
+<%@ Title="planlogIQ - Strukturtypen" %>
+
+<com:TContent ID="HeaderJavascript">
+
+function initDHTMLXTabbars(TabbarObject){
+    TabbarObject.addTab("a1","StrukturTypen",200);
+    TabbarObject.setContent("a1", "tabhtml_1");
+
+    TabbarObject.addTab("a2","Rechenlogik",200);
+    TabbarObject.setContent("a2", "tabhtml_2");
+
+    TabbarObject.setTabActive("a1");
+}
+
+</com:TContent>
+
+<com:TContent ID="Navigation">
+
+     <com:Application.portlets.strukturportletsettings Visible="true" />
+
+</com:TContent>
+
+<com:TContent ID="Main">
+
+<div id="tabhtml_1" style="overflow:auto;height:100%;background:#EBEEFA;">
+    <div style="overflow:hidden">
+
+<div class="mytoolbar">
+        || <com:TActiveButton OnCallback="RCNewButtonClicked" Text=<%[ neu ]%> CssClass="windowcontent-button"/>
+        <com:TActiveButton OnCallback="RCSavedButtonClicked" Text=<%[ speichern ]%> CssClass="windowcontent-button"/>
+        <com:TActiveButton OnCallback="RCDeleteButtonClicked" Text=<%[ entfernen ]%> CssClass="windowcontent-button"/>
+</div>
+
+<fieldset width="98%">
+<legend>Strukturtypen</legend>
+<table width="100%" style="background-color:#ffffff;">
+    <tr>
+        <td class="FormLabel" style="background-color:#efefef;">
+          <%[ Strukturname ]%>:
+        </td>
+        <td>
+            <com:TActiveTextBox ID="struktur_type_name" CssClass="mandantorylarge" />
+        </td>
+        <td class="FormLabel" style="background-color:#efefef;">
+          ID:
+        </td>
+        <td>
+            <com:TActiveTextBox Id="idta_struktur_type" Text="0" ReadOnly="true" CssClass="inputsmall"/>
+        </td>
+    </tr>
+</table>
+</fieldset>
+<div style="background-color:#ffffff">
+<com:TActiveDataGrid ID="StrukturtypeListe"
+    CssClass="datagrid"
+    AutogenerateColumns="false"
+    PagerStyle.CssClass="pager"
+    AlternatingItemStyle.CssClass="alternating"
+    OnEditCommand="load_rcvalue">
+    <com:TActiveEditCommandColumn HeaderText="SELECT" HeaderStyle.Width="80px" UpdateText="Save" EditText="selektieren" CancelText="Cancel" ItemStyle.CssClass="wcbutton"/>
+    <com:TActiveBoundColumn ID="edlst_idta_struktur_type" DataField="idta_struktur_type" HeaderText="ID" SortExpression="idta_struktur_type" HeaderStyle.Width="40px"/>
+    <com:TActiveBoundColumn ID="edlst_struktur_type_name" DataField="struktur_type_name" HeaderText="Name" SortExpression="struktur_type_name"/>
+</com:TActiveDataGrid>
+</div>
+
+<com:TActiveTextBox Id="strukturtype_edit_status" Text="0" Visible="false"/>
+
+</div></div> <!--ende tab /-->
+
+<div id="tabhtml_2" style="overflow:auto;height:100%;background:#EBEEFA;">
+    <div style="overflow:hidden">
+
+    <com:Application.pages.container.FeldfunktionContainer ID="FeldfunktionContainer"  />
+
+</div></div> <!--ende tab /-->
+
+</com:TContent>
